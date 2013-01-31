@@ -1,0 +1,14 @@
+.gallery {
+	background: #0f0;
+	position: relative;
+	height: 700px;
+	overflow: hidden;
+
+	.gallery-container {
+		position: absolute;
+	}
+	img {
+		float: left;
+	}
+
+}

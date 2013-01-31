@@ -1,0 +1,101 @@
+
+# Code Igniter #
+###################
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# SCSS #
+######################
+.sass-cache/
+.sass-cache
+
+# ----------------------------------------------------------------------
+# Numerous always-ignore extensions
+# ----------------------------------------------------------------------
+
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*.sass-cache
+*~
+
+
+# ----------------------------------------------------------------------
+# OS or Editor folders
+# ----------------------------------------------------------------------
+
+.DS_Store
+._*
+Thumbs.db
+.cache
+.project
+.settings
+.com.apple*
+.buildpath
+.tmproj
+.tm_properties
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+codekit-config.json
+
+
+# ----------------------------------------------------------------------
+# Folders to ignore
+# ----------------------------------------------------------------------
+
+.hg
+.svn
+.CVS
+intermediate
+publish
+.idea
+
