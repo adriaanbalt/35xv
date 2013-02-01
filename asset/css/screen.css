@@ -1,10 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
-/*
-	Colors
-
-	Blues	#d9e8ff		#c4d8f6		#4e7bc5
-	Red 	#a82121
-*/
+/* filter-gradient needs this */
 nav {
   background: rgba(255, 255, 255, 0.5);
   position: fixed;
@@ -12,6 +7,7 @@ nav {
   width: 100%;
   z-index: 1000;
   zoom: 1;
+  padding: 0 0 .5em 0;
 }
 nav ul li {
   font-weight: 100;
@@ -21,8 +17,39 @@ nav ul li {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #80cff0;
   color: black;
+  position: relative;
+  /* IE; docs say this should go first (or better, placed in separate IE-only stylesheet): */
+  /* Fallback: */
+  /* CSS 3 plus vendor prefixes: */
+  background: #70cbf2;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #70cbf2), color-stop(16%, #34b7ef), color-stop(34%, #20a2d6), color-stop(58%, #70cbf2), color-stop(86%, #20a2d6), color-stop(100%, #7db9e8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 );
+  /* IE6-9 */
+}
+
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.layered {
+  position: absolute;
+}
+
+section {
   position: relative;
 }
 
@@ -65,223 +92,21 @@ a, a:visited {
   text-decoration: none;
 }
 
-.wrapper {
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
-.layered {
-  position: absolute;
-}
-
-section {
-  position: relative;
-}
-
-.header-example h1,
-.header-example h2,
-.header-example h3,
-.header-example h4,
-.header-example p {
-  margin-bottom: 0;
-}
-
-.grid-demo {
-  width: 98%;
-  height: 4.8em;
-  margin: .5em .5em 0;
-}
-
-.grid-demo .grid-1 {
-  height: 4.8em;
-  background: #d9e8ff;
-}
-
-.grid-demo .grid-1 .content-box {
-  height: 3.6em;
-  background: rgba(255, 255, 255, 0.4);
-  border-left: dashed 1px #c4d8f6;
-  border-right: dashed 1px #c4d8f6;
-}
-
-.header-top h1 {
-  margin: .4em 0 0;
-  font-size: 2.2em;
-}
-
-.header-top h2 {
-  margin: 0;
-  color: #a82121;
-  text-transform: uppercase;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 1.1em;
-}
-
-.header-top p {
-  margin: -0.25em 0;
-  opacity: .8;
-}
-
-.hero-img-contain {
-  position: relative;
-  height: 4em;
-}
-
-.hero-img {
-  position: absolute;
-  top: -3em;
-  left: 14%;
-  width: 88%;
-  min-width: 10em;
-}
-
-.content-download {
-  margin-bottom: 2em;
-}
-
-.content-download p {
-  margin: .25em;
-}
-
 .content-box {
-  background: #d9e8ff;
+  border: 1px solid #d9e8ff;
 }
 
-.content-box-header {
-  background: #4e7bc5;
-  color: #fff;
+#container {
+  z-index: 1;
+  zoom: 1;
 }
 
-.content-box-secondary {
-  background: #4e7bc5;
-  color: #fff;
+#clouds {
+  position: absolute;
+  z-index: 0;
+  zoom: 1;
 }
 
-.content-box-inner {
-  background: #c4d8f6;
-  margin-bottom: .5em;
-}
-
-.content-box-transparent {
-  background: rgba(78, 123, 197, 0.2);
-}
-
-.content-box p {
-  margin: 0 0 1em;
-}
-
-.padding-demo {
-  border: dashed 1px #c4d8f6;
-  color: #4e7bc5;
-}
-
-.padding-demo-last {
-  border-left: none;
-}
-
-.padding-demo p {
-  margin: 0 0 .5em;
-  opacity: .8;
-  border-left: dashed 1px #4e7bc5;
-}
-
-.padding-demo .content-box p {
-  border: dashed 1px #4e7bc5;
-}
-
-.btn-big {
-  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-  box-shadow: inset 0px 1px 0px 0px #ffffff;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d9e8ff), color-stop(1, #c4d8f6));
-  background: -moz-linear-gradient(center top, #d9e8ff 5%, #c4d8f6 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9e8ff', endColorstr='#c4d8f6');
-  background-color: #d9e8ff;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  border: 1px solid #c4d8f6;
-  display: inline-block;
-  color: #4e7cc5;
-  font-size: 2em;
-  font-style: normal;
-  font-family: 'Alfa Slab One', cursive;
-  padding: 6px 24px;
-  text-decoration: none;
-  text-shadow: 0 1px 0 #ffffff;
-}
-
-.btn-big:hover {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c4d8f6), color-stop(1, #d9e8ff));
-  background: -moz-linear-gradient(center top, #c4d8f6 5%, #d9e8ff 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c4d8f6', endColorstr='#d9e8ff');
-  background-color: #c4d8f6;
-}
-
-.btn-big:active {
-  position: relative;
-  top: 1px;
-}
-
-.content-box-cta {
-  background: #a82121;
-  color: #fff;
-}
-
-.content-box-cta a, .content-box-cta a:visited {
-  color: #fff;
-}
-
-.content-box-cta p {
-  margin: 0 0 1em;
-}
-
-.warning {
-  font-style: italic;
-}
-
-.citations {
-  border-top: dashed 1px #4e7bc5;
-}
-
-.citations p {
-  margin: 0 0 .5em;
-  line-height: 1;
-}
-
-.center {
-  text-align: center;
-}
-
-.strong-very {
-  color: #a82121;
-}
-
-#resize {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-@media (max-width: 800px) {
-  .header-top h1, .header-top h2, .header-top p {
-    padding-left: 16px;
-  }
-}
-@media (max-width: 480px) {
-  .header-top h1 {
-    font-size: 1.6em;
-  }
-
-  .header-top h2 {
-    font-size: .8em;
-  }
-
-  .btn-big {
-    font-size: 1.2em;
-  }
-}
 .gallery {
   background: #0f0;
   position: relative;
@@ -293,6 +118,18 @@ section {
 }
 .gallery img {
   float: left;
+}
+
+.gallery-info {
+  background: #eee;
+}
+
+#home .content-box {
+  margin-top: 100px;
+}
+#home img {
+  display: block;
+  margin: 0 auto;
 }
 
 #design #building-large {

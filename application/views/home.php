@@ -11,35 +11,50 @@
 			<li><a href='#team'>TEAM</a></li>
 			<li><a href='#press'>PRESS</a></li>
 			<li><a href='#contact'>CONTACT</a></li>
+			<li><img src='asset/img/logo-small.png' class='logo'/></li>
 		</ul>
 	</div>
 </nav>
 
-<div id='container' class='wrapper'>
-
 <!-- home -->
-	<section id='home' class="">
-		<div class="center">
-			<img src='asset/img/home.png' />
-		</div>
-	</section>
+<section id='home' class="">
+	<div class="content-box center">
+		<img src='asset/img/logo-large.png' class='logo'/>
+		<img src='asset/img/home.png' class='skyline'/>
+	</div>
+</section>
+
+<div id='container' class='wrapper'>
 
 <!-- design -->
 	<section id='design' class="grid-whole">
 		<h2>DESIGN</h2>
-		<div class="grid-two-thirds">
-			<div class="padded-inner content-box center">
-				<!-- spinning building -->
-				<p>.grid-two-third</p>
+		<div class='equalize'>
+			<div class="grid-two-thirds">
+				<div class="padded-inner content-box center">
+					<!-- spinning building -->
+					<p>.grid-two-third</p>
 
-				<div id='building-large' class='spin'>
+					<div id='building-large' class='spin'>
+					</div>
+
 				</div>
-
 			</div>
-		</div>
-		<div class="grid-third">
-			<div class="padded-inner content-box center">
-				<p>.grid-third</p>
+			<div class="grid-third content-box">
+				<div class="padded-inner">
+					<div class='building-section'>
+						<h3>RESIDENCES</h3>
+					</div>
+					<div class='building-section'>
+						<h3>AMENTIY FLOORS</h3>
+					</div>
+					<div class='building-section'>
+						<h3>COMMERCIAL SPACE</h3>
+					</div>
+					<div class='building-section'>
+						<h3>BUILDING ENTRANCE</h3>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -62,25 +77,37 @@
 <!-- residences -->
 	<section id='residences' class="grid-whole">
 		<h2>RESIDENCES</h2>
-		<div class="grid-whole">
-			<div class="content-box center">
-				<!-- gallery -->
-				<p>.grid-whole</p>
-				<div id='residences-gallery' class='gallery'>
-					<div class='gallery-container'>
+		<div class='equalize'>
+			<div class="grid-whole">
+				<div class="center">
+					<!-- gallery -->
+					<div id='residences-gallery' class='gallery'>
+						<div class='gallery-container'>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="grid-whole layered">
-			<div class="grid-two-thirds">
-				<div class="padded-inner content-box center">
-					<p>.grid-two-thirds</p>
+			<div class="grid-whole layered">
+				<div class="grid-two-thirds">
+					<div class="padded-inner"></div>
 				</div>
-			</div>
-			<div class="grid-third">
-				<div class="padded-inner content-box center">
-					<p>.grid-third</p>
+				<div class="grid-third">
+					<div id='residences-gallery-info' class='gallery-info'>
+						<div class='gallery-info-container'>
+							<div class='slide'>
+								<h3>LIVING ROOM</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<div>
+							<div class='slide'>
+								<h3>KITCHEN</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<div>
+							<div class='slide'>
+								<h3>BATHROOM</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -105,9 +132,12 @@
 <!-- amenities-services -->
 	<section id='amenities-services' class="grid-whole">
 		<h2>AMENITIES &AMP;<br>SERVICES</h2>
-		<div class="padded-inner content-box center">
+		<div class="pcontent-box center">
 			<!-- gallery -->
-			<p>.grid-whole</p>
+			<div id='amenities-gallery' class='gallery'>
+				<div class='gallery-container'>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -145,4 +175,7 @@
 	</section>
 
 </div>
+
+<section id='clouds'>
+</section>
 

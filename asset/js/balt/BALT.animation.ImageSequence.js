@@ -82,7 +82,6 @@ var ImageSequence = function( opts ) {
 		if (image) {
 			hideImageAt( currentIndex );
 			currentIndex = index;
-			image.style.display = 'block';
 		} else {
 			clearTimeout(recheckTimeout);
 			recheckTimeout = setTimeout(showImageAt, settings.recheckDelay, index);

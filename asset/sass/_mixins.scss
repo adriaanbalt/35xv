@@ -1,0 +1,76 @@
+// =========================
+// @name   Mixins
+// @desc   This is a list of custom mixins. Each provides its own documentation
+
+// =========================
+
+// =========================
+// @name   media-block mixin
+// @desc   This mixin takes the media-block CSS styles from OOCSS by Nicole Sullivan
+//         and makes them more semantic. Call it within the parent of the media
+//         block with a simple @include media-block();
+//         More Info: http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+// @param  $bodyClass {Class Name} This is the name of the body
+// @param  $imgClass {Class Name} This is the name of the image on the left
+// @param  $imgExtClass {Class Name} This is the name of the image on the right
+// @req    There must be a width set on the container !important
+// =========================
+@mixin media-block($bodyClass: bd, $imgClass: img, $imgExtClass: imgExt) {
+  & {
+    margin: 10px;
+    &, .#{$bodyClass} {
+      overflow: hidden;
+      _overflow: visible;
+      zoom: 1;
+    }
+    .#{$imgClass} {
+      float: left;
+      margin-right: 10px;
+      img {
+        display: block;
+      }
+    }
+    .#{$imgExtClass} {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+
+// =========================
+// @name   gradient-background
+// @desc   This mixing generates the proper background-styles and fallbacks for
+//         the input element backgrounds.
+// =========================
+@mixin gradient-background($color-one: #fff, $color-two: #999){
+  background-color: $color-one;
+  @include background-image(linear-gradient(top, color-stops($color-one, $color-two)));
+}
+
+// =========================
+// @name   size
+// @desc   This mixing generates width and height properties
+// =========================
+@mixin size($width, $height){
+  width: $width;
+  height: $height;
+}
+
+// =========================
+// @name   sprite-icons
+// @desc   ouputs background position for a given image in the icons sprite
+// =========================
+@mixin sprite-icons($image){
+    @include sprite($booker-icon-sprites, $image, $booker-icon-sprite-dimensions);
+}
+
+// =========================
+// @name   viewport($base-width)
+// @desc   Reusabled styles for setting the .inner width for a container
+// =========================
+@mixin viewport($base-width: 960px){
+  width: $base-width;
+  margin: 0 auto;
+}
