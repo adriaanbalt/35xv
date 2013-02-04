@@ -26,13 +26,29 @@
 		onComplete: function() {
 		//	console.log ( "loadProgress COMPLETE" );
 		//	nav.hideLoadProgress( this.skipImages );
-			gallery.init();
+			residences_gallery.init();
+			residences_info.init();
+
+			amenities_gallery.init();
+		//	amenities_info.init();
 		}
 	});
 
 	initImageSequences();
 
-	gallery = new $.BALT.gallery( $('.gallery') );
+	residences_gallery = new $.BALT.gallery( $('#residences-gallery') );
+	residences_info = new $.BALT.gallery( $('#residences-gallery-info'), {
+		ratioResize: false
+	});
+	residences_controls = new $.BALT.controls( $( '#residences .gallery-controls'), {
+		toControl : [ residences_info, residences_gallery ]
+	} );
+
+	amenities_gallery = new $.BALT.gallery( $('#amenities-gallery') );
+//	amenities_info = new $.BALT.gallery( $('#residences-gallery') );
+	amenities_controls = new $.BALT.controls( $( '#amenities .gallery-controls'), {
+		toControl : [ amenities_gallery ]
+	} );
 
 	calculations = new $.BALT.animation.calculations();
 
@@ -84,7 +100,7 @@
 		});
 
 		imageSequences['amenities'] = new ImageSequence({
-			filesPath:'asset/img/residences/temp-{index}.jpg',
+			filesPath:'asset/img/amenities-services/temp-{index}.jpg',
 			imageCount: 2,
 			skipImages: 1,
 			container: $('#amenities-gallery .gallery-container'),
