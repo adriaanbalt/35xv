@@ -60,6 +60,7 @@
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
         <script src='asset/js/utils/UTIL.LoadProgress.js?v=2'></script>
 
+        <script src='asset/js/balt/BALT.utils.js?v=2'></script>
         <script src='asset/js/balt/BALT.animation.ImageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.gallery.js?v=2'></script>
         <script src='asset/js/balt/BALT.animation.scroller.js?v=2'></script>

@@ -10,6 +10,7 @@ drawing.drawBGShapes = function() {
 	
 	// Loop thru all the dom elements with the drawing-shape class and draw on them based on their attr
 	$('.drawing-shape').each(function(index){
+		console.log ( "draw: ",  $(this) );
 		var ctx, pointList, $target = $(this),
 			maxSize = 300,
 			container = $(window);

@@ -5,7 +5,7 @@
 @description Gallery with endless scroll and clones
 */
 
-(function($) {
+;(function($) {
 
 	if ( !$.BALT ) {
 		$.BALT = {};
@@ -29,7 +29,6 @@
 			ratio : 0
 		};
 		root.settings = $.extend( root.settings, o );
-		console.log ( 'root.settings: ', root.settings );
 		root.init = function() {
 
 			if ( root.settings.loader ){
@@ -53,9 +52,9 @@
 
 			root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
 
-			console.log ( '' );
-			console.log ( "target ", $target );
-			console.log ( "ratioResize ", root.settings.ratioResize );
+			// console.log ( '' );
+			// console.log ( "target ", $target );
+			// console.log ( "ratioResize ", root.settings.ratioResize );
 
 			bindEvents();
 		};
@@ -115,7 +114,6 @@
 
 				$(this).width( $target.width() );
 
-				console.log( '.ratioResize: ', root.settings.ratioResize );
 				if ( root.settings.ratioResize ){
 					$(this).height( Math.round ( $target.width() * root.settings.ratio ) );
 					if ( $(this).height() < $target.height() ) {
@@ -146,7 +144,6 @@
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
 			totalImagesWidth = root.settings.slideCount * root.settings.itemWidth;
 
-			console.log ( "root.settings.itemWidth : ", root.settings.itemWidth, totalImagesWidth );
 
 			$container.width( totalImagesWidth );
 			$container.css( 'left', -root.settings.itemWidth );
@@ -156,7 +153,7 @@
 
 		root.gotoIterativeIndex = function( dir ) {
 			//console.log( 'gotoIterativeIndex ', dir );
-			console.log( 'gotoIterativeIndex ', root.settings.itemWidth, root.settings.animating );
+			//console.log( 'gotoIterativeIndex ', root.settings.itemWidth, root.settings.animating );
 
 			if ( !root.settings.animating ) {
 				root.settings.direction = dir;
@@ -175,11 +172,9 @@
 		};
 
 		root.next = function() {
-			console.log ( "NEXT: ", $container.find( '.slide' ) );
 			root.gotoIterativeIndex( 1 );
 		};
 		root.previous = function() {
-			console.log ( "PREVIOUS: ", $container.find( '.slide' ) );
 			root.gotoIterativeIndex( -1 );
 		};
 
@@ -248,7 +243,7 @@
 			}
 		};
 		init();
-	}
+	};
 
 
 })(jQuery);

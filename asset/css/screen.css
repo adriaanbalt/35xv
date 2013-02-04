@@ -12,7 +12,7 @@ nav {
 nav ul li {
   font-weight: 100;
   float: left;
-  margin-right: 5px;
+  margin-right: 2px;
 }
 nav a, nav a:visited {
   font-size: 16px;
@@ -44,7 +44,7 @@ body {
 }
 
 .wrapper {
-  max-width: 1024px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -100,10 +100,8 @@ sup {
 }
 
 a, a:visited {
-  font-style: italic;
   color: #4e7bc5;
   text-decoration: none;
-  font-size: 30px;
 }
 
 #container {
@@ -128,9 +126,14 @@ a, a:visited {
 .gallery .slide {
   float: left;
 }
-
-.white-bg {
-  background: rgba(255, 255, 255, 0.75);
+.gallery .copy {
+  position: absolute;
+  z-index: 5;
+}
+.gallery .shape {
+  position: absolute;
+  top: 0;
+  z-index: 4;
 }
 
 #home .content-box {
@@ -163,4 +166,44 @@ a, a:visited {
 }
 #design #design-info .three {
   height: 250px;
+}
+
+#unit-availability {
+  color: #226d96;
+  text-transform: uppercase;
+}
+#unit-availability td {
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 3px 45px;
+  font-weight: 400;
+  font-size: 13px;
+}
+#unit-availability td:last-child {
+  border-right: 0;
+}
+#unit-availability th {
+  background: rgba(255, 255, 255, 0.75);
+  font-weight: 100;
+}
+#unit-availability .arrow {
+  position: absolute;
+  margin: 7px 5px;
+}
+#unit-availability .arrow.down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #226d96;
+}
+#unit-availability .arrow.up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #226d96;
+}
+#unit-availability a, #unit-availability a:visited {
+  color: #226d96;
 }

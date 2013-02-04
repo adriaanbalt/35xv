@@ -9,9 +9,13 @@
 	.slide {
 		float: left;
 	}
-
-}
-
-.white-bg {
-	background: rgba( 255, 255, 255, .75);
+	.copy {
+		position: absolute;
+		z-index: 5;
+	}
+	.shape {
+		position: absolute;
+		top: 0;
+		z-index: 4
+	}
 }

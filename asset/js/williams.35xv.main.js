@@ -15,17 +15,15 @@
 		$.BALT = {};
 	};
 
+// LOADING
 	var imageSequences = {};
 
-	// init LoadProgress
 	loadProgress = new LoadProgress({
 		onUpdate: function( val ) {
 		//	console.log (" update: ", val );
-		//	nav.setLoadProgress( val*100 );
 		},
 		onComplete: function() {
 		//	console.log ( "loadProgress COMPLETE" );
-		//	nav.hideLoadProgress( this.skipImages );
 			residences_gallery.init();
 			residences_info.init();
 
@@ -33,9 +31,60 @@
 		//	amenities_info.init();
 		}
 	});
+	imageSequences['building-large'] = new ImageSequence({
+		filesPath:'asset/img/building-large/35XV_rotate_08_000{index}.gif',
+		imageCount: 100,
+		skipImages: 5,
+		container: $('#building-large'),
+		onProgress: function() {
+			loadProgress.update();
+		}
+	});
+	imageSequences['residences'] = new ImageSequence({
+		filesPath:'asset/img/residences/temp-{index}.jpg',
+		imageCount: 2,
+		skipImages: 1,
+		container: $('#residences-gallery .gallery-container'),
+		onProgress: function() {
+			loadProgress.update( this.skipImages );
+		}
+	});
+	imageSequences['amenities'] = new ImageSequence({
+		filesPath:'asset/img/amenities-services/temp-{index}.jpg',
+		imageCount: 2,
+		skipImages: 1,
+		container: $('#amenities-gallery .gallery-container'),
+		onProgress: function() {
+			loadProgress.update( this.skipImages );
+		}
+	});
+	imageSequences['clouds'] = new ImageSequence({
+		filesPath:'asset/img/clouds/cloud-{index}.png',
+		imageCount: 6,
+		skipImages: 1,
+		container: $('#clouds'),
+		onProgress: function() {
+			loadProgress.update( this.skipImages );
+		}
+	});
+	for (i in imageSequences) {
+		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
+		imageSequences[i].load();
+	}
+// -----
 
-	initImageSequences();
+// TEXT SLANTS
+	$('.text-slant').each( function() {
+		new TextSlant( $(this), $(this).css('line-height'), 230, 300, 5 );
+	});
 
+// DRAW SHAPES
+	$('.shape').each( function() {
+		new DrawShape( $(this).attr('id'), "rgba(255, 255, 255, 0.75)", $(this).data('width'), $(this).data('height') );
+	});
+
+
+// GALLERIES
 	residences_gallery = new $.BALT.gallery( $('#residences-gallery') );
 	residences_info = new $.BALT.gallery( $('#residences-gallery-info'), {
 		ratioResize: false
@@ -45,10 +94,10 @@
 	} );
 
 	amenities_gallery = new $.BALT.gallery( $('#amenities-gallery') );
-//	amenities_info = new $.BALT.gallery( $('#residences-gallery') );
 	amenities_controls = new $.BALT.controls( $( '#amenities .gallery-controls'), {
 		toControl : [ amenities_gallery ]
 	} );
+// -----
 
 	calculations = new $.BALT.animation.calculations();
 
@@ -78,52 +127,5 @@
 			images: $('#building-large img')
 		});
 
-	function initImageSequences() {
-		imageSequences['building-large'] = new ImageSequence({
-			filesPath:'asset/img/building-large/35XV_rotate_08_000{index}.gif',
-			imageCount: 100,
-			skipImages: 5,
-			container: $('#building-large'),
-			onProgress: function() {
-				loadProgress.update();
-			}
-		});
-
-		imageSequences['residences'] = new ImageSequence({
-			filesPath:'asset/img/residences/temp-{index}.jpg',
-			imageCount: 2,
-			skipImages: 1,
-			container: $('#residences-gallery .gallery-container'),
-			onProgress: function() {
-				loadProgress.update( this.skipImages );
-			}
-		});
-
-		imageSequences['amenities'] = new ImageSequence({
-			filesPath:'asset/img/amenities-services/temp-{index}.jpg',
-			imageCount: 2,
-			skipImages: 1,
-			container: $('#amenities-gallery .gallery-container'),
-			onProgress: function() {
-				loadProgress.update( this.skipImages );
-			}
-		});
-
-		imageSequences['clouds'] = new ImageSequence({
-			filesPath:'asset/img/clouds/cloud-{index}.png',
-			imageCount: 5,
-			skipImages: 1,
-			container: $('#clouds'),
-			onProgress: function() {
-				loadProgress.update( this.skipImages );
-			}
-		});
-
-		// register with LoadProgress
-		for (i in imageSequences) {
-			loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
-			imageSequences[i].load();
-		}
-	};
 
 })(jQuery);

@@ -91,27 +91,38 @@
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
-							<div class="grid-third white-bg padded-inner">
+							<div class="grid-third padded-inner">
 								<h3>LIVING ROOM</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								<div class='text-slant'>
+									<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+								</div>
+								<canvas id='shape-livingroom' class='shape' data-width='500' data-height='500'/>
 							</div>
 						</div>
 						<div class='slide'>
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
-							<div class="grid-third white-bg padded-inner">
-								<h3>BATHROOM</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>BATHROOM</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-bathroom' class='shape' data-width='500' data-height='500'/>
 							</div>
 						</div>
 						<div class='slide'>
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
-							<div class="grid-third white-bg padded-inner">
+							<div class="grid-third padded-inner">
 								<h3>KITCHEN</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								<div class='text-slant'>
+									<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+								</div>
+								<canvas id='shape-kitchen' class='shape' data-width='500' data-height='500'/>
 							</div>
 						</div>
 					</div>
@@ -139,12 +150,7 @@
 	</section>
 
 <!-- unit-availability -->
-	<section id='unit-availability' class="grid-whole">
-		<h2>UNIT<br>AVAILABILITY</h2>
-		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
-		</div>
-	</section>
+<?php echo $unit_availability; ?>
 
 <!-- amenities-services -->
 	<section id='amenities' class="grid-whole">
