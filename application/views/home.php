@@ -182,6 +182,16 @@
 		<h2>TEAM</h2>
 		<div class="padded-inner content-box center">
 			<p>.grid-whole</p>
+
+			<div>
+				<video id="my_video_1" class="video-js vjs-default-skin" controls
+  preload="auto" width="640" height="264"
+  data-setup="{}">
+					<source src="my_video.mp4" type='video/mp4'>
+					<source src="my_video.webm" type='video/webm'>
+				</video>
+			</div>
+
 		</div>
 	</section>
 

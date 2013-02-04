@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="asset/css/grid.css">
         <link rel="stylesheet" href="asset/css/screen.css">
         <link rel="stylesheet" href="asset/css/print.css">
+        <link rel="stylesheet" href="asset/css/video-js.css">
         <!--[if IE]><link href="asset/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /><![endif]-->
         <script src="asset/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
@@ -55,6 +56,7 @@
         <script src="asset/js/vendor/touchscroll.js?v=2"></script>
         <script src='asset/js/vendor/Tween.js?v=2'></script>
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>
+        <script src="asset/js/vendor/video.min.js?v=2"></script>
 
         <script src='asset/js/utils/UTIL.IsMobile.js?v=2'></script>
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
