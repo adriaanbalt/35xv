@@ -15,23 +15,25 @@
 		var root = this,
 		$target = target,
 		$container = $target.find('.gallery-container');
-		settings = {
-			loader : false
-		},
-		animating = false,
-		itemWidth = $container.width(),
-		imageCount = $container.find('img').length,
-		loadCounter = 0,
-		newTop = 0,
-		origHeighttext = 0,
-		origToptext = 0,
-		direction = 1,
-		ratio = 0;
-
+		root.settings = {
+			loader : false,
+			ratioResize : true,
+			animating : false,
+			itemWidth : $container.width(),
+			slideCount : $container.find('.slide').length,
+			loadCounter : 0,
+			newTop : 0,
+			origHeighttext : 0,
+			origToptext : 0,
+			direction : 1,
+			ratio : 0
+		};
+		root.settings = $.extend( root.settings, o );
+		console.log ( 'root.settings: ', root.settings );
 		root.init = function() {
 
-			if ( settings.loader ){
-				var images = $target.find('img');
+			if ( root.settings.loader ){
+				var images = $target.find('.slide');
 				images.each(function(){
 					registerImgFileSize( this.src );
 					if ( $(this)[0].complete || $(this)[0].readyState == 4 ) {
@@ -44,13 +46,16 @@
 			}
 
 			// $container.prepend( $('.slide').last() );
-			// $container.css( 'left', -itemWidth );
+			// $container.css( 'left', -root.settings.itemWidth );
 			// $( '.slide' ).first().css('z-index','1');
 			// $( '.slide' ).last().css('z-index','2');
 			// $( '.slide:eq(1)' ).css('z-index','0');
-			
-			ratio = $container.find('img:eq(0)').height() / $container.find('img:eq(0)').width();
-			console.log ( 'ratio : ', ratio );
+
+			root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
+
+			console.log ( '' );
+			console.log ( "target ", $target );
+			console.log ( "ratioResize ", root.settings.ratioResize );
 
 			bindEvents();
 		};
@@ -61,20 +66,20 @@
 
 			$('.next').click( function( e ) {
 				e.preventDefault();
-				// gotoIterativeIndex( 1 );
+				// root.gotoIterativeIndex( 1 );
 			});
 			$('.previous').click( function( e ) {
 				e.preventDefault();
-				// gotoIterativeIndex( -1 );
+				// root.gotoIterativeIndex( -1 );
 			});
 
-            $(document).keydown( keyboardHandler );
+			$(document).keydown( keyboardHandler );
 		};
 
 		var imageLoaded = function( e ) {
 			try {
-				loadCounter++;
-				if (loadCounter == (imageCount-1) )  {
+				root.settings.loadCounter++;
+				if (root.settings.loadCounter == (root.settings.slideCount-1) )  {
 					preloadComplete();
 					resize();
 				}
@@ -93,39 +98,35 @@
 
 		var imageResize = function( img, w, h ) {
 			img.width( w );
-			img.height( Math.round ( w * ratio ) );
+			img.height( Math.round ( w * root.settings.ratio ) );
 			if ( img.height() < h ) {
 				img.height( h );
-				img.width( Math.round ( h / ratio ) );
+				img.width( Math.round ( h / root.settings.ratio ) );
 			}
 		};
 
 		var resize = function () {
 
-			totalImagesWidth = imageCount * $target.width();
-
-			itemWidth = $target.width();
-
-			$container.width( totalImagesWidth );
-			$container.css( 'left', -itemWidth );
-			
-			$container.find('img').each( function() {
+			$container.find('.slide').each( function() {
 				//$(this).css( {'width':$(window).width(), 'height':$(window).height()} );
 				//$(this).width( $target.width() ).height( $target.height() );
 
 			//	imageResize ( $(this), $target.width(), $target.height() )
-console.log ( "this: ",  $(this).width(), $(this).height(), ratio, $target.width()* ratio );
 
 				$(this).width( $target.width() );
-				$(this).height( Math.round ( $target.width() * ratio ) );
-				if ( $(this).height() < $target.height() ) {
-					$(this).height( $target.height() );
-					$(this).width( Math.round ( $target.height() / ratio ) );
+
+				console.log( '.ratioResize: ', root.settings.ratioResize );
+				if ( root.settings.ratioResize ){
+					$(this).height( Math.round ( $target.width() * root.settings.ratio ) );
+					if ( $(this).height() < $target.height() ) {
+						$(this).height( $target.height() );
+						$(this).width( Math.round ( $target.height() / root.settings.ratio ) );
+					}
 				}
-				
+
 
 				// if ( $(window).height() < 800 ) {
-					// begin scaling the  text  down by ratio relative to the height
+					// begin scaling the  text  down by root.settings.ratio relative to the height
 					// move the aboutBox upward relative to the height
 					// var eq = 1 - parseInt($(this).find(".text").css('height')) / $(window).height();
 					// if ( eq > 0 ) {
@@ -141,28 +142,49 @@ console.log ( "this: ",  $(this).width(), $(this).height(), ratio, $target.width
 
 				//$(this).find(".text").css( 'left', (( $(window).width() - $(this).find(".text").width() ) / 2) );
 			});
+
+			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
+			totalImagesWidth = root.settings.slideCount * root.settings.itemWidth;
+
+			console.log ( "root.settings.itemWidth : ", root.settings.itemWidth, totalImagesWidth );
+
+			$container.width( totalImagesWidth );
+			$container.css( 'left', -root.settings.itemWidth );
+
 //			$container.width( $(window).width() );
 		};
 
-		var gotoIterativeIndex = function( dir ) {
-			console.log( 'gotoIterativeIndex ', dir );
+		root.gotoIterativeIndex = function( dir ) {
+			//console.log( 'gotoIterativeIndex ', dir );
+			console.log( 'gotoIterativeIndex ', root.settings.itemWidth, root.settings.animating );
 
-			if ( !animating ) {
-				direction = dir;
-				animating = true;
+			if ( !root.settings.animating ) {
+				root.settings.direction = dir;
+				root.settings.animating = true;
 				if ( dir == 1 ) {
-					$container.find( 'img' ).first().remove().css('z-index','1').appendTo( $container );
+					console.log ( "$container.find( '.slide' ).first(): ", $container.find( '.slide' ).first() );
+					$container.find( '.slide' ).first().remove().css('z-index','1').appendTo( $container );
 					$container.css({ left: 0 });
 				} else if ( dir == -1 ) {
-					$container.find( 'img' ).last().remove().css('z-index','2').prependTo( $container );
-					$container.css({ left: (itemWidth * -2) });
+					$container.find( '.slide' ).last().remove().css('z-index','2').prependTo( $container );
+					$container.css({ left: (root.settings.itemWidth * -2) });
 				}
-				$container.find( 'img:eq(1)' ).css('z-index','0');
-				move ( itemWidth * (-1), animationComplete );
+				$container.find( '.slide:eq(1)' ).css('z-index','0');
+				move ( root.settings.itemWidth * (-1), animationComplete );
 			}
 		};
+
+		root.next = function() {
+			console.log ( "NEXT: ", $container.find( '.slide' ) );
+			root.gotoIterativeIndex( 1 );
+		};
+		root.previous = function() {
+			console.log ( "PREVIOUS: ", $container.find( '.slide' ) );
+			root.gotoIterativeIndex( -1 );
+		};
+
 		var animationComplete = function() {
-			animating = false;
+			root.settings.animating = false;
 			show();
 		};
 		var move = function ( newLeft, callback ) {
@@ -182,12 +204,12 @@ console.log ( "this: ",  $(this).width(), $(this).height(), ratio, $target.width
 		var keyboardHandler = function(e) {
 			if (e.keyCode == 37) {
 				console.log ( "nxt" );
-				gotoIterativeIndex( 1 );
+				root.gotoIterativeIndex( 1 );
 				return false;
 			}
 			if (e.keyCode == 39) {
 				console.log ( "prev" );
-				gotoIterativeIndex( -1 );
+				root.gotoIterativeIndex( -1 );
 				return false;
 			}
 		};
@@ -195,6 +217,38 @@ console.log ( "this: ",  $(this).width(), $(this).height(), ratio, $target.width
 		var getAttributeAsNumber = function( target, attribute ){
 			return parseInt(target.css(attribute).replace('px', ''));
 		};
+	};
+
+
+	$.BALT.controls = function( target, o ) {
+		var root = this,
+		$target = target,
+		settings = {
+		};
+		settings = $.extend( settings, o );
+
+		var init = function() {
+			// $(window).resize( resize );
+			// resize();
+			$target.on( "click", '.next', next );
+			$target.on( "click", '.previous', previous );
+		};
+
+		var next = function( e ) {
+			e.preventDefault();
+			for ( var i = 0; i < settings.toControl.length; i++ ){
+				settings.toControl[i].next();
+			}
+		};
+		var previous = function( e ) {
+			e.preventDefault();
+			for ( var i = 0; i < settings.toControl.length; i++ ){
+				settings.toControl[i].previous();
+				console.log ( "settings.toControl[i]: ", settings.toControl[i] );
+			}
+		};
+		init();
 	}
+
 
 })(jQuery);
