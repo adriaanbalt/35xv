@@ -78,13 +78,14 @@
 
 			scrollTopTweened += settings.tweenSpeed * ($window.scrollTop() - scrollTopTweened);
 			progress = calculations.calcProgress( settings.startAt, settings.endAt );
+			if ( progress <= 1 ) {
+				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
+				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
 
-			var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
-			toFrame = Math.floor(progress*endFrame) % settings.imageCount;
-
-			showImageAt( toFrame );
+				showImageAt( toFrame );
+			//	console.log ( "progress ", toFrame, " | ", progress, " | ", scrollTopTweened, " | " );
+			}
 			//console.log( 'toFrame: ', toFrame, settings.imageCount, settings.skipImages, settings.frameSpeed, endFrame, progress, settings.startAt, settings.endAt );
-			//console.log ( "progress ", toFrame, " | ", progress, " | ", scrollTopTweened, " | ", pos );
 		};
 		var showImageAt = function( index ) {
 			if (index == currentIndex) return false;
