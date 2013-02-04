@@ -35,7 +35,7 @@ var ImageSequence = function( opts ) {
 			}
 			return false;
 		}
-		
+
 		// not yet, go again
 		//clearTimeout( loadTimeout );
 		if (!loadTimeout) {
@@ -47,10 +47,10 @@ var ImageSequence = function( opts ) {
 
 		loaded += settings.skipImages;
 	};
-	
+
 	var hideImageAt = function( index ) {
 		var image = settings.container.children()[ index ];
-		//if (image) image.style.display = 'none';	
+		//if (image) image.style.display = 'none';
 	};
 
 	// to get the images file size run a XHR
@@ -75,7 +75,7 @@ var ImageSequence = function( opts ) {
 // PUBLIC
 	var showImageAt = function( index ) {
 		if (index == currentIndex) return false;
-		
+
 		var image = settings.container.children()[ index ];
 		clearTimeout( timeout );
 
@@ -91,7 +91,8 @@ var ImageSequence = function( opts ) {
 	var load = function() {
 		for ( var i = 0; i <= settings.imageCount; i=i+settings.skipImages) {
 			var image = new Image();
-			image.src = settings.filesPath.replace('{index}', i)
+			image.src = settings.filesPath.replace('{index}', i);
+			image.className = 'slide';
 	//		image.style.display = 'none';
 			settings.container.append( image );
 		//	sequence.push(image);
