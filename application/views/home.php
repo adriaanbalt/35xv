@@ -28,27 +28,24 @@
 
 <!-- design -->
 	<section id='design' class="grid-whole">
-		<h2>DESIGN</h2>
 		<div class='equalize'>
 			<div class="grid-two-thirds">
 				<div class="padded-inner content-box center">
 					<!-- spinning building -->
-					<p>.grid-two-third</p>
-
 					<div id='building-large' class='spin'>
 					</div>
 
 				</div>
 			</div>
-			<div class="grid-third content-box">
+			<div class="grid-third content-box" id='design-info'>
 				<div class="padded-inner">
-					<div class='building-section'>
+					<div class='building-section one'>
 						<h3>RESIDENCES</h3>
 					</div>
-					<div class='building-section'>
+					<div class='building-section two'>
 						<h3>AMENTIY FLOORS</h3>
 					</div>
-					<div class='building-section'>
+					<div class='building-section three'>
 						<h3>COMMERCIAL SPACE</h3>
 					</div>
 					<div class='building-section'>
@@ -82,34 +79,48 @@
 				<div class="center">
 					<!-- gallery -->
 					<div id='residences-gallery' class='gallery'>
-						<div class='gallery-container'>
+						<div class='gallery-container clearfix'>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="grid-whole layered">
-				<div class="grid-two-thirds">
-					<div class="padded-inner"></div>
-				</div>
-				<div class="grid-third">
-					<div id='residences-gallery-info' class='gallery-info'>
-						<div class='gallery-info-container'>
-							<div class='slide'>
+				<div id='residences-gallery-info' class='gallery'>
+					<div class='gallery-container clearfix'>
+						<div class='slide'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third white-bg padded-inner">
 								<h3>LIVING ROOM</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<div>
-							<div class='slide'>
-								<h3>KITCHEN</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<div>
-							<div class='slide'>
+							</div>
+						</div>
+						<div class='slide'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third white-bg padded-inner">
 								<h3>BATHROOM</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<div>
+							</div>
+						</div>
+						<div class='slide'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third white-bg padded-inner">
+								<h3>KITCHEN</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="grid-whole gallery-controls">
+			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
+			<a href='javascript:void(0);' class='next'>NEXT</a>
 		</div>
 	</section>
 
@@ -117,7 +128,13 @@
 	<section id='featured-plan' class="grid-whole">
 		<h2>FEATURED<br>PLAN</h2>
 		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
+			<div class='feature'>
+				<img src="asset/img/featured-plan/plan-feature.png"/>
+			</div>
+			<div class='list'>
+				<ul>
+				</ul>
+			</div>
 		</div>
 	</section>
 
@@ -130,14 +147,18 @@
 	</section>
 
 <!-- amenities-services -->
-	<section id='amenities-services' class="grid-whole">
+	<section id='amenities' class="grid-whole">
 		<h2>AMENITIES &AMP;<br>SERVICES</h2>
 		<div class="pcontent-box center">
 			<!-- gallery -->
 			<div id='amenities-gallery' class='gallery'>
-				<div class='gallery-container'>
+				<div class='gallery-container clearfix'>
 				</div>
 			</div>
+		</div>
+		<div class="grid-whole gallery-controls">
+			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
+			<a href='javascript:void(0);' class='next'>NEXT</a>
 		</div>
 	</section>
 
