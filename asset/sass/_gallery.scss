@@ -1,5 +1,4 @@
 .gallery {
-	background: #0f0;
 	position: relative;
 	height: 700px;
 	overflow: hidden;
@@ -7,12 +6,12 @@
 	.gallery-container {
 		position: absolute;
 	}
-	img {
+	.slide {
 		float: left;
 	}
 
 }
 
-.gallery-info {
-	background: #eee;
+.white-bg {
+	background: rgba( 255, 255, 255, .75);
 }

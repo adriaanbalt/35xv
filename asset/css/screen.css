@@ -14,6 +14,9 @@ nav ul li {
   float: left;
   margin-right: 5px;
 }
+nav a, nav a:visited {
+  font-size: 16px;
+}
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -64,7 +67,17 @@ h1 {
   letter-spacing: 1px;
 }
 
-h2, h3, h4, h5, h6 {
+h2 {
+  font-weight: 100;
+  font-size: 32px;
+}
+
+h3 {
+  font-weight: 100;
+  font-size: 26px;
+}
+
+h4, h5, h6 {
   font-weight: 100;
 }
 
@@ -90,10 +103,7 @@ a, a:visited {
   font-style: italic;
   color: #4e7bc5;
   text-decoration: none;
-}
-
-.content-box {
-  border: 1px solid #d9e8ff;
+  font-size: 30px;
 }
 
 #container {
@@ -108,7 +118,6 @@ a, a:visited {
 }
 
 .gallery {
-  background: #0f0;
   position: relative;
   height: 700px;
   overflow: hidden;
@@ -116,12 +125,12 @@ a, a:visited {
 .gallery .gallery-container {
   position: absolute;
 }
-.gallery img {
+.gallery .slide {
   float: left;
 }
 
-.gallery-info {
-  background: #eee;
+.white-bg {
+  background: rgba(255, 255, 255, 0.75);
 }
 
 #home .content-box {
@@ -138,10 +147,20 @@ a, a:visited {
   zoom: 1;
   display: block;
   z-index: 100;
+  left: -200px;
 }
 #design #building-large img {
   display: none;
   position: absolute;
   top: 0;
   left: 0;
+}
+#design #design-info .one {
+  height: 1350px;
+}
+#design #design-info .two {
+  height: 250px;
+}
+#design #design-info .three {
+  height: 250px;
 }

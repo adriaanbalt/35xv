@@ -6,6 +6,7 @@
 		//top: 0%;
 		display: block;
 		z-index: 100;
+		left: -200px;
 		img {
 			display: none;
 			position: absolute;
@@ -13,4 +14,17 @@
 			left: 0;
 		}
 	}
+
+	#design-info{
+		.one {
+			height: 1350px;
+		}
+		.two {
+			height: 250px;
+		}
+		.three {
+			height: 250px;
+		}
+	}
 }
+
