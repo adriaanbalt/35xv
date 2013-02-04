@@ -1,27 +1,2 @@
-/*
-@description Mobile Detection
-*/
-
-var IsMobile = function(){
-	return {
-		detect:function(){
-			var uagent = navigator.userAgent.toLowerCase(); 
-			var list = this.mobiles;
-			var ismobile = false;
-			for(var d=0;d<list.length;d+=1){
-				if(uagent.indexOf(list[d])!=-1){
-					ismobile = true;
-				}
-			}
-			return ismobile;
-		},
-		mobiles:[
-			"midp","240x320","blackberry","netfront","nokia","panasonic",
-			"portalmmm","sharp","sie-","sonyericsson","symbian",
-			"windows ce","benq","mda","mot-","opera mini",
-			"philips","pocket pc","sagem","samsung","sda",
-			"sgh-","vodafone","xda","palm","iphone",
-			"ipod","android"
-		]
-	};
-}();
+var IsMobile=function(){return{detect:function(){for(var n=navigator.userAgent.toLowerCase(),e=this.mobiles,o=!1,i=0;e.length>i;i+=1)-1!=n.indexOf(e[i])&&(o=!0)
+return o},mobiles:["midp","240x320","blackberry","netfront","nokia","panasonic","portalmmm","sharp","sie-","sonyericsson","symbian","windows ce","benq","mda","mot-","opera mini","philips","pocket pc","sagem","samsung","sda","sgh-","vodafone","xda","palm","iphone","ipod","android"]}}()
