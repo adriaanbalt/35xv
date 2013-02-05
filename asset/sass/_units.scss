@@ -1,22 +1,29 @@
-#fetured-plan {
+#featured-plan {
 	.feature {
-
+		img {
+			width: 100%;
+			max-width: 812px;
+		}
 	}
 }
 #unit-availability {
+	h2 {
+		margin-left: 150px;
+	}
 	td {
 		border-right: 1px solid #eee;
 		border-bottom: 1px solid #eee;
-		padding: 3px 45px;
+		padding: 3px 30px;
 		font-weight: 400;
 		font-size: 13px;
 		&:last-child {
 			border-right: 0;
 		}
+		background: rgba( 255, 255, 255, .3 );
 	}
 	th {
 		background: rgba( 255, 255, 255, .75 );
-		font-weight: 100;
+		font-weight: 400;
 	}
 	.arrow {
 		&.down{
@@ -31,6 +38,9 @@
 	a, a:visited {
 		color: $blue-dark;
 	}
-	color: $blue-dark;
+	table {
+		color: $blue-dark;
+		float: right;
+	}
 	text-transform: uppercase;
 }

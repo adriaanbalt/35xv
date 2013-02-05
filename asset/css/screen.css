@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,700,100italic);
 /* filter-gradient needs this */
 nav {
   background: rgba(255, 255, 255, 0.5);
@@ -9,38 +9,29 @@ nav {
   zoom: 1;
   padding: 0 0 .5em 0;
 }
+nav ul {
+  margin: .5em 0;
+  padding: 0;
+}
 nav ul li {
-  font-weight: 100;
   float: left;
-  margin-right: 2px;
+  margin-right: 1em;
+  line-height: 2em;
 }
 nav a, nav a:visited {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: black;
   position: relative;
   /* IE; docs say this should go first (or better, placed in separate IE-only stylesheet): */
   /* Fallback: */
   /* CSS 3 plus vendor prefixes: */
-  background: #70cbf2;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #70cbf2), color-stop(16%, #34b7ef), color-stop(34%, #20a2d6), color-stop(58%, #70cbf2), color-stop(86%, #20a2d6), color-stop(100%, #7db9e8));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 );
-  /* IE6-9 */
+  background: #70cbf2 url("../img/sky.jpg") repeat-y center center;
+  background-size: cover;
 }
 
 .wrapper {
@@ -54,6 +45,7 @@ body {
 
 section {
   position: relative;
+  margin-top: 100px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -69,25 +61,25 @@ h1 {
 
 h2 {
   font-weight: 100;
-  font-size: 32px;
+  font-size: 55px;
+  line-height: 50px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 20px;
 }
 
 h3 {
-  font-weight: 100;
+  font-weight: 400;
   font-size: 26px;
 }
 
-h4, h5, h6 {
+h4 {
+  font-weight: 400;
+  font-size: 40px;
+  font-style: italic;
+}
+
+h5, h6 {
   font-weight: 100;
-}
-
-ul {
-  margin: .5em 0;
-  padding: 0 0 0 1.5em;
-}
-
-li {
-  padding-right: 1em;
 }
 
 small {
@@ -104,6 +96,10 @@ a, a:visited {
   text-decoration: none;
 }
 
+.content-box {
+  position: relative;
+}
+
 #container {
   z-index: 1;
   zoom: 1;
@@ -113,6 +109,26 @@ a, a:visited {
   position: absolute;
   z-index: 0;
   zoom: 1;
+}
+#clouds img {
+  max-width: 100%;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  display: block;
+}
+
+.video-box {
+  position: relative;
+}
+.video-box .video-js {
+  z-index: 5;
+  zoom: 1;
+}
+.video-box canvas {
+  z-index: 4;
 }
 
 .gallery {
@@ -125,15 +141,19 @@ a, a:visited {
 }
 .gallery .slide {
   float: left;
+  position: relative;
 }
 .gallery .copy {
   position: absolute;
   z-index: 5;
+  right: -1px;
 }
 .gallery .shape {
-  position: absolute;
-  top: 0;
   z-index: 4;
+  right: 0px;
+}
+.gallery .text-slant {
+  font-weight: 400;
 }
 
 #home .content-box {
@@ -142,6 +162,10 @@ a, a:visited {
 #home img {
   display: block;
   margin: 0 auto;
+}
+#home #skyline-img {
+  width: 100%;
+  max-width: 1200px;
 }
 
 #design #building-large {
@@ -168,23 +192,42 @@ a, a:visited {
   height: 250px;
 }
 
+#design-team h2 {
+  margin-left: 150px;
+}
+#design-team h4 {
+  position: absolute;
+  z-index: 5;
+}
+#design-team .grid-whole {
+  margin-top: 60px;
+}
+
+#featured-plan .feature img {
+  width: 100%;
+  max-width: 812px;
+}
+
 #unit-availability {
-  color: #226d96;
   text-transform: uppercase;
+}
+#unit-availability h2 {
+  margin-left: 150px;
 }
 #unit-availability td {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  padding: 3px 45px;
+  padding: 3px 30px;
   font-weight: 400;
   font-size: 13px;
+  background: rgba(255, 255, 255, 0.3);
 }
 #unit-availability td:last-child {
   border-right: 0;
 }
 #unit-availability th {
   background: rgba(255, 255, 255, 0.75);
-  font-weight: 100;
+  font-weight: 400;
 }
 #unit-availability .arrow {
   position: absolute;
@@ -206,4 +249,8 @@ a, a:visited {
 }
 #unit-availability a, #unit-availability a:visited {
   color: #226d96;
+}
+#unit-availability table {
+  color: #226d96;
+  float: right;
 }

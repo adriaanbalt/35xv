@@ -8,14 +8,18 @@
 	}
 	.slide {
 		float: left;
+		position: relative;
 	}
 	.copy {
 		position: absolute;
 		z-index: 5;
+		right: -1px;
 	}
 	.shape {
-		position: absolute;
-		top: 0;
-		z-index: 4
+		z-index: 4;
+		right: 0px;
+	}
+	.text-slant {
+		font-weight: 400;
 	}
 }
