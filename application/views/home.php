@@ -20,7 +20,7 @@
 <section id='home' class="">
 	<div class="content-box center">
 		<img src='asset/img/logo-large.png' class='logo'/>
-		<img src='asset/img/home.png' class='skyline'/>
+		<img src='asset/img/home.png' id='skyline-img'/>
 	</div>
 </section>
 
@@ -59,14 +59,50 @@
 <!-- design-team -->
 	<section id='design-team' class="grid-whole">
 		<h2>DESIGN<br>TEAM</h2>
-		<div class="grid-two-thirds">
-			<div class="padded-inner content-box center">
-				<p>.grid-two-third</p>
+		<div class="grid-whole">
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner-sides content-box center">
+					<div class='video-box'>
+						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
+							<source src="asset/video/temp-video.ogg" type='video/ogg'>
+							<p>Your browser does not support the video tag.</p>
+						</video>
+						<canvas id='shape-fxfowle' class='shape' data-shape='trapezoid' width='510' height='260' data-color='#fff' data-transparency='1' data-overhang='100' style='left:-100px'/>
+					</div>
+					<h4>FX FOWLE</h4>
+				</div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
 			</div>
 		</div>
-		<div class="grid-third">
-			<div class="padded-inner content-box center">
-				<p>.grid-third</p>
+		<div class="grid-whole">
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner-sides content-box center">
+					<div class='video-box'>
+						<video id="bno" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
+							<source src="asset/video/temp-video.ogg" type='video/ogg'>
+							<p>Your browser does not support the video tag.</p>
+						</video>
+						<canvas id='shape-bno' class='shape' data-shape='trapezoid' width='510' height='260' data-color='#fff' data-transparency='1' data-overhang='100' style='left:-100px'/>
+					</div>
+					<h4>BNO</h4>
+				</div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
 			</div>
 		</div>
 	</section>
@@ -92,11 +128,13 @@
 								<div class="padded-inner"></div>
 							</div>
 							<div class="grid-third padded-inner">
-								<h3>LIVING ROOM</h3>
-								<div class='text-slant'>
-									<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+								<div class='copy'>
+									<h3>BATHROOM</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
 								</div>
-								<canvas id='shape-livingroom' class='shape' data-width='500' data-height='500'/>
+								<canvas id='shape-bathroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<div class='slide'>
@@ -105,12 +143,12 @@
 							</div>
 							<div class="grid-third padded-inner">
 								<div class='copy'>
-									<h3>BATHROOM</h3>
+									<h3>LIVING ROOM</h3>
 									<div class='text-slant'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-bathroom' class='shape' data-width='500' data-height='500'/>
+								<canvas id='shape-livingroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<div class='slide'>
@@ -118,11 +156,13 @@
 								<div class="padded-inner"></div>
 							</div>
 							<div class="grid-third padded-inner">
-								<h3>KITCHEN</h3>
-								<div class='text-slant'>
-									<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+								<div class='copy'>
+									<h3>KITCHEN</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
 								</div>
-								<canvas id='shape-kitchen' class='shape' data-width='500' data-height='500'/>
+								<canvas id='shape-kitchen' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 					</div>
@@ -182,16 +222,6 @@
 		<h2>TEAM</h2>
 		<div class="padded-inner content-box center">
 			<p>.grid-whole</p>
-
-			<div>
-				<video id="my_video_1" class="video-js vjs-default-skin" controls
-  preload="auto" width="640" height="264"
-  data-setup="{}">
-					<source src="my_video.mp4" type='video/mp4'>
-					<source src="my_video.webm" type='video/webm'>
-				</video>
-			</div>
-
 		</div>
 	</section>
 
@@ -214,5 +244,6 @@
 </div>
 
 <section id='clouds'>
+	<div class='wrapper'></div>
 </section>
 
