@@ -21,21 +21,50 @@ var TextSlant = function( target, lineHeight, textWidth, boxWidth, increment ) {
 @description Draw shapes with canvas
 */
 
-var DrawShape = function( target, color, width, height ) {
-	console.log ( "color: ", color, target );
+var DrawShape = function( target, color, width, height, type, overhang ) {
 	color = color == undefined?'#fff':color;
+	overhang = overhang == undefined?100:overhang;
 	var canvas = document.getElementById(target).getContext('2d');
 	canvas.fillStyle = color;
 	canvas.beginPath();
-
-	var halfW = Math.floor(width/2);
-	console.log ( "halfW ", halfW, height, width );
-
 	canvas.moveTo(0, 0);
-	canvas.lineTo(width, 0);
-	canvas.lineTo(width, height*2);
-	canvas.lineTo(halfW, height);
+
+	if ( type == 'trapezoid'){
+		width -= (overhang);
+		canvas.lineTo(width, 0);
+		canvas.lineTo(width+overhang, height);
+		canvas.lineTo(overhang, height);
+	} else if ( type == 'parallelogram' ) {
+		canvas.lineTo(width, 0);
+		canvas.lineTo(width, height);
+		canvas.lineTo(overhang, height);
+	}
 
 	canvas.closePath();
 	canvas.fill();
+	
+//	console.log ( "shape: ", color, target, width, height, type, overhang );
 };
+
+var hexToRgb = function(hex) {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+        return r + r + g + g + b + b;
+    });
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+var componentToHex = function(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+var rgbToHex = function(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}

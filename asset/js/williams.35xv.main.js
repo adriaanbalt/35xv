@@ -41,7 +41,7 @@
 		}
 	});
 	imageSequences['residences'] = new ImageSequence({
-		filesPath:'asset/img/residences/temp-{index}.jpg',
+		filesPath:'asset/img/residences/residences-{index}.jpg',
 		imageCount: 2,
 		skipImages: 1,
 		container: $('#residences-gallery .gallery-container'),
@@ -62,7 +62,7 @@
 		filesPath:'asset/img/clouds/cloud-{index}.png',
 		imageCount: 6,
 		skipImages: 1,
-		container: $('#clouds'),
+		container: $('#clouds .wrapper'),
 		onProgress: function() {
 			loadProgress.update( this.skipImages );
 		}
@@ -80,9 +80,10 @@
 
 // DRAW SHAPES
 	$('.shape').each( function() {
-		new DrawShape( $(this).attr('id'), "rgba(255, 255, 255, 0.75)", $(this).data('width'), $(this).data('height') );
+		var rgb = hexToRgb( $(this).data('color') );
+		var c = "rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", " + $(this).data('transparency') + ")";
+		new DrawShape( $(this).attr('id'), c, $(this).attr('width'), $(this).attr('height'), $(this).data('shape'), $(this).data('overhang') );
 	});
-
 
 // GALLERIES
 	residences_gallery = new $.BALT.gallery( $('#residences-gallery') );
