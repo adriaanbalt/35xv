@@ -1,0 +1,24 @@
+.gallery-scroll {
+	height: 3000px;
+	overflow: hidden;
+
+	.gallery-container {
+		position: absolute;
+	}
+	.slide {
+		float: left;
+		position: relative;
+	}
+	.copy {
+		position: absolute;
+		z-index: 5;
+		right: -1px;
+	}
+	.shape {
+		z-index: 4;
+		right: 0px;
+	}
+	.text-slant {
+		font-weight: 400;
+	}
+}

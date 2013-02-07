@@ -32,6 +32,7 @@
 
 .grid-3, .grid-quarter {
   width: 25%;
+  position: relative;
 }
 
 .grid-4, .grid-third {
@@ -70,6 +71,7 @@
 
 .grid-12, .grid-whole {
   width: 100%;
+  position: relative;
 }
 
 /* padding helper classes */

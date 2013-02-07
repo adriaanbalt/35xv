@@ -19,8 +19,8 @@
 <!-- home -->
 <section id='home' class="">
 	<div class="content-box center">
-		<img src='asset/img/logo-large.png' class='logo'/>
-		<img src='asset/img/home.png' id='skyline-img'/>
+		<img src='asset/img/home/logo-large.png' class='logo'/>
+		<img src='asset/img/home/home.png' id='skyline-img'/>
 	</div>
 </section>
 
@@ -32,13 +32,13 @@
 			<div class="grid-two-thirds">
 				<div class="padded-inner content-box center">
 					<!-- spinning building -->
-					<div id='building-large' class='spin'>
+					<div class='sequence'>
 					</div>
 
 				</div>
 			</div>
 			<div class="grid-third content-box" id='design-info'>
-				<div class="padded-inner">
+				<div class="padded-inner">gall
 					<div class='building-section one'>
 						<h3>RESIDENCES</h3>
 					</div>
@@ -111,17 +111,15 @@
 	<section id='residences' class="grid-whole">
 		<h2>RESIDENCES</h2>
 		<div class='equalize'>
-			<div class="grid-whole">
-				<div class="center">
-					<!-- gallery -->
-					<div id='residences-gallery' class='gallery'>
-						<div class='gallery-container clearfix'>
-						</div>
+			<div class="grid-whole clearfix">
+				<!-- gallery -->
+				<div id='residences-gallery' class='gallery-scroll'>
+					<div class='gallery-container clearfix'>
 					</div>
 				</div>
 			</div>
-			<div class="grid-whole layered">
-				<div id='residences-gallery-info' class='gallery'>
+			<div class="grid-whole layered ">
+				<div id='residences-gallery-info' class='gallery-scroll'>
 					<div class='gallery-container clearfix'>
 						<div class='slide'>
 							<div class="grid-two-thirds">
@@ -169,10 +167,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid-whole gallery-controls">
-			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
-			<a href='javascript:void(0);' class='next'>NEXT</a>
-		</div>
 	</section>
 
 <!-- featured-plan -->
@@ -197,14 +191,10 @@
 		<h2>AMENITIES &AMP;<br>SERVICES</h2>
 		<div class="pcontent-box center">
 			<!-- gallery -->
-			<div id='amenities-gallery' class='gallery'>
+			<div id='amenities-gallery' class='gallery-scroll'>
 				<div class='gallery-container clearfix'>
 				</div>
 			</div>
-		</div>
-		<div class="grid-whole gallery-controls">
-			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
-			<a href='javascript:void(0);' class='next'>NEXT</a>
 		</div>
 	</section>
 

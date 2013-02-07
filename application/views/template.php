@@ -55,7 +55,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="asset/js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
         <script src="asset/js/vendor/jquery.tmpl.min.js?v=2"></script>
-        <script src="asset/js/vendor/touchscroll.js?v=2"></script>
+        <script src="asset/js/vendor/jquery.mousewheel.js?v=2"></script>
         <script src='asset/js/vendor/Tween.js?v=2'></script>
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>
         <script src="asset/js/vendor/video.min.js?v=2"></script>
@@ -66,8 +66,9 @@
 
         <script src='asset/js/balt/BALT.utils.js?v=2'></script>
         <script src='asset/js/balt/BALT.animation.ImageSequence.js?v=2'></script>
-        <script src='asset/js/balt/BALT.gallery.js?v=2'></script>
+        <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>
         <script src='asset/js/balt/BALT.animation.scroller.js?v=2'></script>
+        <script src='asset/js/balt/BALT.scrollAnimator.js?v=2'></script>
         <script src='asset/js/williams.35xv.main.js?v=2'></script>
 
     </body>
