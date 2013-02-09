@@ -143,6 +143,9 @@ canvas {
   float: left;
   position: relative;
 }
+.gallery .slide.show {
+  display: block;
+}
 .gallery .copy {
   position: absolute;
   z-index: 5;

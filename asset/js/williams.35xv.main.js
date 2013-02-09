@@ -29,6 +29,26 @@
 
 			amenities_gallery.init();
 		//	amenities_info.init();
+
+			scroller = new $.BALT.animation.scroller();
+				scroller.init({
+					// animation data
+					animation: null,
+
+					// settings
+					maxScroll: 5400,			// max scroll
+					useRAF : false,				// set requestAnimationFrame
+					scrollSpeed: 15,
+					debug: false,				// turn on debug
+					tweenSpeed: .3,				// scrollTop tween speed
+					skipImages: 1,
+					frameSpeed: 1,
+					startAt: 0,	// scrollTop where the experience starts
+					endAt: 1900,
+					container: $('#container'),		// main container
+					imageCount: $('#building-large img').length,
+					images: $('#building-large img')
+				});
 		}
 	});
 	imageSequences['building-large'] = new ImageSequence({
@@ -108,25 +128,6 @@
 
 //	var parallax = new $.BALT.animation.parallax( $(this), keyframes );
 
-	scroller = new $.BALT.animation.scroller();
-		scroller.init({
-			// animation data
-			animation: null,
-
-			// settings
-			maxScroll: 5400,			// max scroll
-			useRAF : false,				// set requestAnimationFrame
-			scrollSpeed: 15,
-			debug: false,				// turn on debug
-			tweenSpeed: .3,				// scrollTop tween speed
-			skipImages: 1,
-			frameSpeed: 1,
-			startAt: 0,	// scrollTop where the experience starts
-			endAt: 1900,
-			container: $('#container'),		// main container
-			imageCount: $('#building-large img').length,
-			images: $('#building-large img')
-		});
 
 
 })(jQuery);
