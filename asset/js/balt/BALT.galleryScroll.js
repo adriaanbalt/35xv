@@ -69,7 +69,7 @@
 		};
 
 		var imageResize = function( img, w, h ) {
-			img.width( w );	
+			img.width( w );
 			img.height( Math.round ( w * root.settings.ratio ) );
 			if ( img.height() < h ) {
 				img.height( h );

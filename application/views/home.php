@@ -1,5 +1,6 @@
 
 
+<div id='status'>000</div>
 <nav>
 	<div class='wrapper'>
 		<ul>
@@ -20,7 +21,12 @@
 <section id='home' class="">
 	<div class="content-box center">
 		<img src='asset/img/home/logo-large.png' class='logo'/>
-		<img src='asset/img/home/home.png' id='skyline-img'/>
+		<img src='asset/img/home/home.png' id='home-gallery'/>
+		<!-- gallery -->
+		<div id='home-gallery' class='gallery-scroll'>
+			<div class='gallery-container clearfix'>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -32,13 +38,13 @@
 			<div class="grid-two-thirds">
 				<div class="padded-inner content-box center">
 					<!-- spinning building -->
-					<div class='sequence'>
+					<div id='building-large' class='sequence'>
 					</div>
 
 				</div>
 			</div>
 			<div class="grid-third content-box" id='design-info'>
-				<div class="padded-inner">gall
+				<div class="padded-inner">
 					<div class='building-section one'>
 						<h3>RESIDENCES</h3>
 					</div>

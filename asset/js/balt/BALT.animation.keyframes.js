@@ -20,7 +20,7 @@
 	$.BALT.animation.keyframes = function( o ) {
 
 		var animationSections = $.extend{
-			{},	
+			{},
 			{
 				'shop': 0,
 				'accessories': 200,
@@ -63,7 +63,7 @@
 				startAt: 399+animationSections.shop,
 				endAt: 1350+animationSections.shop ,
 				keyframes: [
-							{ 
+							{
 								position: 0,
 								onInit: function( anim ) {
 									animationFunctions.centerH.call( this, anim, {});
@@ -72,9 +72,9 @@
 								properties: {
 									top: 0, left: 0
 								}
-								
+
 							},
-							{ 
+							{
 								position: .21 *(thr_vid_mul = 1.2),
 								onInit: function( anim ) {
 									animationFunctions.centerH.call( this, anim, {});
@@ -86,9 +86,9 @@
 								properties: {
 									top: 0, left: 0
 								}
-								
+
 							},
-							{ 
+							{
 								position: .36 * thr_vid_mul,
 								onInit: function( anim ) {
 									animationFunctions.centerH.call( this, anim, {});
@@ -97,9 +97,9 @@
 								properties: {
 									top: 0, left: 0
 								}
-								
+
 							},
-							
+
 							{
 								position: .48 * thr_vid_mul,
 								onInit: function( anim ) {
@@ -113,8 +113,8 @@
 									top: 0, left: 0
 								}
 							},
-						
-							{ 
+
+							{
 								position: .53 * thr_vid_mul,
 								onInit: function( anim ) {
 									animationFunctions.centerH.call( this, anim, {});
@@ -123,9 +123,9 @@
 								properties: {
 									top: 0, left: 0
 								}
-								
+
 							},
-							
+
 							{
 								position: .7 * thr_vid_mul,
 								onInit: function( anim ) {
@@ -142,7 +142,7 @@
 
 
 
-							{ 
+							{
 								position: .78 * thr_vid_mul,
 								onInit: function( anim ) {
 									animationFunctions.centerH.call( this, anim, {});
@@ -151,9 +151,9 @@
 								properties: {
 									top: 0, left: 0
 								}
-								
+
 							},
-							
+
 							{
 								position: 1,
 								onInit: function( anim ) {
@@ -175,7 +175,7 @@
 				startAt: 780+animationSections.accessories,
 				endAt: 816+animationSections.accessories,
 				keyframes: [
-					{ 
+					{
 						position: 0,
 						onInit: function( anim ) {
 							animationFunctions.centerH.call( this, anim, {});
@@ -184,7 +184,7 @@
 						properties: {
 							top: 0, left: 0
 						}
-						
+
 					},
 					{
 						position: 1,
@@ -198,14 +198,14 @@
 						}
 					}
 				]
-				
+
 			},
 			{
 				id: 'share',
 				startAt: 680+animationSections.share,
 				endAt: 1063+animationSections.share,
 				keyframes: [
-					{ 
+					{
 						position: 0,
 						onInit: function( anim ) {
 							animationFunctions.centerH.call( this, anim, {});
@@ -214,7 +214,7 @@
 						properties: {
 							top: 0, left: 0
 						}
-						
+
 					},
 					{
 						position: 1,
@@ -228,15 +228,15 @@
 						}
 					}
 				]
-				
+
 			},
-			
+
 			{
 				id: 'display',
 				startAt: 1350+animationSections.display,
 				endAt: 1750+animationSections.display,
 				keyframes: [
-					{ 
+					{
 						position: 0,
 						onInit: function( anim ) {
 							animationFunctions.centerH.call( this, anim, {});
@@ -245,7 +245,7 @@
 						properties: {
 							top: 0, left: 0
 						}
-						
+
 					},
 					{
 						position: 1,
@@ -259,22 +259,22 @@
 						}
 					}
 				]
-				
+
 			},
-			
+
 			{
 				id: 'performance',
 				startAt: animationSections.performance,
 				endAt: 800+animationSections.performance,
 				keyframes: [
-					{ 
+					{
 						position: 0,
 						onInit: function( anim ) {
 							animationFunctions.bottomOutside.call( this, anim, {});
-							
+
 						},
 						properties: {top: 0, left: 0}
-						
+
 					},
 					{
 						position: .4,
@@ -294,7 +294,7 @@
 						},
 						properties: {top: 0, left: 0}
 					}
-					
+
 				]
 			},
 
@@ -303,14 +303,14 @@
 				startAt: animationSections.reviews,
 				endAt: 800+animationSections.reviews,
 				keyframes: [
-					{ 
+					{
 						position: 0,
 						onInit: function( anim ) {
 							animationFunctions.bottomOutside.call( this, anim, {});
-							
+
 						},
 						properties: {top: 0, left: 0}
-						
+
 					},
 					{
 						position: .4,
@@ -330,7 +330,7 @@
 						},
 						properties: {top: 0, left: 0}
 					}
-					
+
 				]
 			}
 		];

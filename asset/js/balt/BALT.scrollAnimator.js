@@ -1,4 +1,4 @@
-/* Author: 
+/* Author:
 
 */
 
@@ -13,62 +13,86 @@ var ScrollAnimator = function() {
 		touch = false,					// is touch device
 		touchStart = { x: 0, y: 0 },	// vars for touch
 		scrollStart = 0,				// vars for scroll
-		scrollTopTweened = scrollTop = 0;
-		
-	
+		scrollTopTweened = scrollTop = 0,
+		progress = 0,
+		properties = {};
+
+
+
+// check out createDocumentFragment()
+// appendChild( frag );
+
 	// --------------------------------------------------
 	// ANIMATION
 	// --------------------------------------------------
-	function animationLoop() {
+	function animationLoop( time ) {
 		requestAnimFrame(animationLoop);
 
 		if (Math.ceil(scrollTopTweened) !== Math.floor(scrollTop)) {
 			// smooth out scrolling action
-			//scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 			scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 
 			// update status
-			$('#status').html( scrollTop );
-
+			//$('#status').html( scrollTop );
 
 			// run through animations
-			for (var i in animation) {
-				var anim = animation[i];
+			var i = animation.length;
+			var anim;
+			while ( i-- ){
+				anim = animation[i];
 
 				// check if animation is in range
 				if (scrollTopTweened >= anim.startAt && scrollTopTweened <= anim.endAt) {
-					startAnimatable( anim );
+				//	startAnimatable( anim );
 					render( anim );
 				} else {
-
-					stopAnimatable( anim );
+				//	stopAnimatable( anim );
 				}
 			}
 
 			// onAnimate callback
 			//if (typeof settings.onUpdate === 'function') settings.onUpdate();
-		};	
+		};
 	};
 
 
 	function render( anim ) {
 		// figure out where we are within the scroll
-		var progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
+		progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
 
-		var properties = {};
+		// properties = {};
 
-		// check and run keyframes within scroll range
-		if (anim.onProgress && typeof anim.onProgress === 'function') {
-			//console.log(keyframe.position, progress, keyframe);
-			anim.onProgress( progress );
-		};
+		//check and run keyframes within scroll range
+		if (anim.keyframes) {
+			// var i = anim.keyframes.length;
+			// while ( i-- ) {
+			var keyframe;
+			for ( i = 1; i < anim.keyframes.length; i++ ) {
+				keyframe = anim.keyframes[ i ],
+				lastkeyframe = anim.keyframes[ i - 1 ],
+				keyframeProgress = ( lastkeyframe.position - progress ) / ( lastkeyframe.position - keyframe.position );
 
-		// for ( property in anim.properties ) {
-		// 	properties[ property ] = getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], progress, 1, anim.ease );
-		// }
+				if ( keyframeProgress > 0 && keyframeProgress < 1 ) {
+					if (keyframe.onProgress && typeof keyframe.onProgress === 'function') {
+						//console.log(keyframe.position, keyframeProgress, keyframe);
+						keyframe.onProgress( keyframeProgress );
+					};
+
+					for ( property in keyframe.properties ) {
+						properties[ property ] = getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
+					}
+				}
+			}
+		}
 
 		// apply styles
-		//anim._elem.css( properties );
+		// anim._elem.css( properties );
+
+		// onProgress callback
+		if (anim.onProgress && typeof anim.onProgress === 'function') {
+			anim.onProgress.call(anim, progress );
+		}
+
 	}
 
 	/* run before animation starts when animation is in range */
@@ -80,15 +104,16 @@ var ScrollAnimator = function() {
 			} else {
 				anim._elem.css('display', 'block');
 			}
-			
+
 			//console.log('starting', anim.id);
 			anim._started = true;
-			
+
 		}
 	}
 
 	/* run after animation is out of range  */
 	function stopAnimatable( anim ) {
+		console.log ( "stopAnimatable" );
 		// apply end properties
 		if (anim._started && anim.endAt < scrollTopTweened || anim._started && anim.startAt > scrollTopTweened ) {
 			if (anim.onEndAnimate && typeof anim.onEndAnimate === 'function') {
@@ -98,12 +123,12 @@ var ScrollAnimator = function() {
 			}
 			//console.log('stopping', anim.id);
 			anim._started = false;
-			
+
 		}
 	}
 
-	/* 
-	sets up all the start and end parameters for each animation 
+	/*
+	sets up all the start and end parameters for each animation
 	this will run when our page is loaded and on resizing
 	*/
 	function setAnimatable() {
@@ -112,15 +137,72 @@ var ScrollAnimator = function() {
 
 			// grab dom element
 			if (anim._elem == undefined) {
-				anim._elem = $('#'+anim.id);
+				anim._elem = $(anim.id);
 			}
+
+			// iterate through keyframes
+			for (var k in anim.keyframes) {
+				var keyframe = anim.keyframes[k];
+
+				/*	// default starting properties
+					startProperties = {
+						display: 'none',
+						position: 'absolute'
+					};
+
+				// apply starting properties
+				if (keyframe.position == 0) {
+					anim._elem.css( $.extend( startProperties, keyframe.properties ) );
+				};*/
+
+				// setup keyframe 0
+				if (keyframe.position == 0) {
+					var nKeyframe = anim.keyframes[Number(k)+1];	// next keyframe
+					for (property in nKeyframe.properties) {
+						if (keyframe.properties[ property ] == undefined) {
+							// grab current offset and load into properties for keyframe 0
+							if (/left|top/.test(property)) {
+								keyframe.properties[ property ] = anim._elem.position()[ property ];
+							}
+
+							// todo: width & height
+						}
+					}
+				}
+
+				// fill in properties from current element
+				// find missing properties from last occurance of property
+				var bIndex = Number(k); // start 1 back from current
+
+				while (bIndex > 0) {
+					var bKeyframe = anim.keyframes[ bIndex ];
+
+					for (var property in bKeyframe.properties) {
+						if ( keyframe.properties[ property ] == undefined) {
+							keyframe.properties[ property ] = bKeyframe.properties[ property ];
+						}
+					}
+
+					bIndex--;
+				};
+
+
+				// onInit callback
+				if (typeof keyframe.onInit == 'function') keyframe.onInit( anim );
+
+				// reorganize if relative
+
+
+			}
+
 		}
+
 	}
-	
+
 	function resize() {
 		// onResize
 		if (settings.onResize && typeof settings.onResize === 'function') settings.onResize();
-			
+
 		var container = settings.container;
 
 		page = {
@@ -130,17 +212,17 @@ var ScrollAnimator = function() {
 		};
 
 
-		
+
 		resetAnimatable();
 		setAnimatable();
 		start();
 	}
-	
+
 	// resets animations
 	function resetAnimatable() {
 		for (var i in animation) {
 			var anim = animation[i];
-		
+
 			if (anim._started) {
 				delete anim._elem;
 				delete anim._started;
@@ -153,12 +235,12 @@ var ScrollAnimator = function() {
 	// EVENT HANDLERS
 	// --------------------------------------------------
 
-	// window resize 
+	// window resize
 	function resizeHandler(e) {
 		resize();
 	}
 
-	
+
 	// touch
 	function touchStartHandler(e) {
 		//e.preventDefault();
@@ -172,7 +254,7 @@ var ScrollAnimator = function() {
 	};
 
 	function touchEndHandler(e) {
-		
+
 	}
 
 	function touchMoveHandler(e) {
@@ -189,7 +271,7 @@ var ScrollAnimator = function() {
 		offset.x = touchStart.x - e.touches[0].pageX;
 
 		// Get distance finger has moved since swipe begin:
-		offset.y = touchStart.y - e.touches[0].pageY;	
+		offset.y = touchStart.y - e.touches[0].pageY;
 
 		// Add finger move dist to original scroll value
 		scrollTop = Math.max(0, scrollStart + offset.y);
@@ -218,11 +300,11 @@ var ScrollAnimator = function() {
 	// loading
 	// app loop
 
-	
+
 	// --------------------------------------------------
 	// HELPERS
 	// --------------------------------------------------
-	
+
 
 	// get tweened values
 	function getTweenedValue(start, end, currentTime, totalTime, tweener) {
@@ -232,13 +314,13 @@ var ScrollAnimator = function() {
 
 	    return tweener(percentComplete) * delta + start
 	}
-	
+
 	// dected if touch events
 	function isTouch() {
 		return 'ontouchstart' in window;
 	}
 
-	
+
 
 	// --------------------------------------------------
 	// PUBLIC
@@ -254,14 +336,12 @@ var ScrollAnimator = function() {
 			};
 
 		settings = $.extend( defaults, opts );
-		
+
 		animation = settings.animation;
 		touch = isTouch();
 
-
-		
 		if (touch) {
-			
+
 			var container = settings.container[0];
 			container.addEventListener('touchstart', touchStartHandler, true);
 			container.addEventListener('touchmove', touchMoveHandler, true);
@@ -277,13 +357,13 @@ var ScrollAnimator = function() {
 
 		// animation loop
 		window.requestAnimFrame = (function(){
-			console.log ( "REQUEST ANIME FRAME" );
+			console.log ( 'settings.useRAF : ', settings.useRAF );
 			if (settings.useRAF) {
-				return  window.requestAnimationFrame       || 
-				window.webkitRequestAnimationFrame || 
-				window.mozRequestAnimationFrame    || 
-				window.oRequestAnimationFrame      || 
-				window.msRequestAnimationFrame     || 
+				return  window.requestAnimationFrame       ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame    ||
+				window.oRequestAnimationFrame      ||
+				window.msRequestAnimationFrame     ||
 				function( callback ){
 					window.setTimeout(callback, settings.tickSpeed);
 				};
@@ -296,15 +376,15 @@ var ScrollAnimator = function() {
 
 
 		resize();
-		
+
 		return this;
 	};
-	
+
 	// start
 	function start() {
 		//console.log('start', settings.startAt);
 		if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
-		
+
 		scrollTop++;
 
 		if (!started) {
@@ -355,6 +435,7 @@ var ScrollAnimator = function() {
 	}
 
 	function toggleDebug() {
+		console.log ( 'toggleDebug ', settings.debugId );
 		if (settings.debugId == false || settings.debugId == undefined) {
 			console.log('debug on');
 			settings.debugId=true;
@@ -366,7 +447,7 @@ var ScrollAnimator = function() {
 			$('#status2').hide();
 			$('#status').hide();
 		}
-		
+
 		for (var i in animation) {
 			var anim = animation[i];
 
@@ -400,5 +481,5 @@ var ScrollAnimator = function() {
 	}
 };
 
-	
+
 

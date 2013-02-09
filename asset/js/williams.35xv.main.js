@@ -16,7 +16,7 @@
 	};
 
 // LOADING
-	var imageSequences = {};
+	imageSequences = {};
 
 	loadProgress = new LoadProgress({
 		onUpdate: function( val ) {
@@ -35,6 +35,7 @@
 		filesPath:'asset/img/building-large/35XV_rotate_08_000{index}.gif',
 		imageCount: 100,
 		skipImages: 5,
+		frameSpeed: 1,
 		container: $('#design .sequence'),
 		onProgress: function() {
 			loadProgress.update();
@@ -96,85 +97,10 @@
 
 	calculations = new $.BALT.animation.calculations();
 
-	$('.equalize').equalize();
+//	$('.equalize').equalize();
 
-//	var keyframes = new $.BALT.animation.keyframes();
 
-//	var parallax = new $.BALT.animation.parallax( $(this), keyframes );
-
-	scroller = new $.BALT.animation.scroller();
-		
-		scroller.init({
-			// animation data
-			animation: null,
-
-			// settings
-			maxScroll: 5400,			// max scroll
-			useRAF : false,				// set requestAnimationFrame
-			scrollSpeed: 15,
-			debug: false,				// turn on debug
-			tweenSpeed: .3,				// scrollTop tween speed
-			skipImages: 1,
-			frameSpeed: 1,
-			startAt: 0,	// scrollTop where the experience starts
-			endAt: 1900,
-			container: $('#container'),		// main container
-			imageCount: $('#design .sequence img').length,
-			images: $('#design .sequence img')
-		});
-
-	var animation = [
-			{
-				id: 'home',
-				startAt: 0,
-				endAt: 299,
-				ease: TWEEN.Easing.Linear.EaseNone,
-				onInit: function( anim ) {
-				},
-				onProgress: function( progress ) {
-					console.log ( "home onProgress: ", progress );
-				}
-			},
-			{
-				id: 'design',
-				startAt: 300,
-				endAt: 2000,
-				ease: TWEEN.Easing.Linear.EaseNone,
-				sequence: imageSequences['building-large'],
-				onInit: function( anim ) {
-				},
-				onProgress: function( progress ) {
-					var endFrame = (this.sequence.imageCount/this.sequence.skipImages) * this.sequence.frameSpeed,
-					toFrame = Math.floor(progress*endFrame) % this.sequence.imageCount;
-					//showImageAt( toFrame );
-					console.log ( "design onProgress: ", progress, toFrame );
-					var image = settings.images[ index ];
-				}
-			},
-			{
-				id: 'residences',
-				startAt: 2001,
-				endAt: 3000,
-				ease: TWEEN.Easing.Linear.EaseNone,
-				onInit: function( anim ) {
-				},
-				onProgress: function( progress ) {
-					console.log ( "residences onProgress: ", progress );
-				}
-			}
-	];
-		var showImageAt = function( index ) {
-			if (index == currentIndex) return false;
-
-			var image = settings.images[ index ];
-
-			if (image) {
-				hideImageAt( currentIndex );
-				currentIndex = index;
-				image.style.display = 'block';
-			} else {
-			}
-		};
+	animation = new $.BALT.keyframes();
 
 	if (window.location.hash) {
 		settings.startAt = gotoSection[ window.location.hash ];
@@ -183,8 +109,8 @@
 	scrollAnimate = ScrollAnimator();
 		scrollAnimate.init({
 			// data
-			animation: animation,	// animation data
-			
+			animation: animation.getAnim(),	// animation data
+
 			// settings
 			maxScroll: 5400,			// max scroll
 			useRAF : true,				// set requestAnimationFrame
@@ -192,7 +118,7 @@
 			scrollSpeed: 15,
 			debug: false,				// turn on debug
 			tweenSpeed: .3,				// scrollTop tween speed
-			startAt: settings.startAt,	// scrollTop where the experience starts
+			startAt: 0,	// scrollTop where the experience starts
 			container: $('#main'),		// main container
 
 			// callbacks

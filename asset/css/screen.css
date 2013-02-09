@@ -48,6 +48,16 @@ section {
   margin-top: 100px !important;
 }
 
+#status {
+  position: fixed;
+  color: #ff9;
+  font-size: 18px;
+  z-index: 100000;
+  zoom: 1;
+  top: 20px;
+  right: 50px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin: 0;
@@ -132,8 +142,8 @@ canvas {
 }
 
 .gallery-scroll {
-  height: 3000px;
   overflow: hidden;
+  height: 700px;
 }
 .gallery-scroll .gallery-container {
   position: absolute;
@@ -180,6 +190,9 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
+}
+#design .sequence img.show {
+  display: block;
 }
 #design #design-info .one {
   height: 1350px;

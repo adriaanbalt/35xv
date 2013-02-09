@@ -18,6 +18,7 @@ var ImageSequence = function( opts ) {
 		loaded = 0,
 		loadTimeout, recheckTimeout, timeout,
 		filesize = 0,
+		images = [],
 		settings = $.extend( defaults, opts );
 
 // PRIVATE
@@ -31,6 +32,7 @@ var ImageSequence = function( opts ) {
 		};
 
 		if (loaded == settings.imageCount ) {
+			images = settings.container.children();
 			if( settings.onComplete && typeof settings.onComplete === 'function' ) {
 				settings.onComplete();
 			}
@@ -49,11 +51,6 @@ var ImageSequence = function( opts ) {
 		loaded += settings.skipImages;
 	};
 
-	var hideImageAt = function( index ) {
-		var image = settings.container.children()[ index ];
-		//if (image) image.style.display = 'none';
-	};
-
 	// to get the images file size run a XHR
 	// - not sure if this will actually cause the image to download, which is counter intuitive
 	var getImgFileSize = function( image ) {
@@ -62,8 +59,8 @@ var ImageSequence = function( opts ) {
 		xhr.onreadystatechange = function(){
 		  if ( xhr.readyState == 4 ) {
 		    if ( xhr.status == 200 ) {
-				filesize += parseFloat( xhr.getResponseHeader('Content-Length') );
-				console.log( 'filesize : ', filesize );
+			filesize += parseFloat( xhr.getResponseHeader('Content-Length') );
+			console.log( 'filesize : ', filesize );
 		    } else {
 		    	console.log ( "ERROR - image sequence file: ", image );
 		    	filesize += 0;
@@ -77,15 +74,26 @@ var ImageSequence = function( opts ) {
 	var showImageAt = function( index ) {
 		if (index == currentIndex) return false;
 
-		var image = settings.container.children()[ index ];
-		clearTimeout( timeout );
+		var image = images[ index ];
+		//clearTimeout( timeout );
 
 		if (image) {
 			hideImageAt( currentIndex );
 			currentIndex = index;
+			$(image).removeClass('hidden').addClass( 'show' );
+			//image.className = 'slide show';
+			//image.style.display = 'block';
 		} else {
-			clearTimeout(recheckTimeout);
-			recheckTimeout = setTimeout(showImageAt, settings.recheckDelay, index);
+			// clearTimeout(recheckTimeout);
+			// recheckTimeout = setTimeout(showImageAt, settings.recheckDelay, index);
+		}
+	};
+
+	var hideImageAt = function( index ) {
+		var image = images[ index ];
+		if (image) {
+			$(image).removeClass('show').addClass( 'hidden' );
+			//image.style.display = 'none';
 		}
 	};
 
