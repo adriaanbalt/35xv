@@ -142,11 +142,10 @@ canvas {
 }
 
 .gallery-scroll {
-  overflow: hidden;
-  height: 700px;
-}
-.gallery-scroll .gallery-container {
   position: absolute;
+  z-index: 1000;
+  zoom: 1;
+  height: 3000px;
 }
 .gallery-scroll .slide {
   float: left;

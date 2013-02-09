@@ -22,11 +22,6 @@
 	<div class="content-box center">
 		<img src='asset/img/home/logo-large.png' class='logo'/>
 		<img src='asset/img/home/home.png' id='home-gallery'/>
-		<!-- gallery -->
-		<div id='home-gallery' class='gallery-scroll'>
-			<div class='gallery-container clearfix'>
-			</div>
-		</div>
 	</div>
 </section>
 
@@ -119,9 +114,7 @@
 		<div class='equalize'>
 			<div class="grid-whole clearfix">
 				<!-- gallery -->
-				<div id='residences-gallery' class='gallery-scroll'>
-					<div class='gallery-container clearfix'>
-					</div>
+				<div id='residences-gallery' class='gallery-scroll clearfix'>
 				</div>
 			</div>
 			<div class="grid-whole layered ">

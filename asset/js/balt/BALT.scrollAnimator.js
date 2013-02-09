@@ -33,7 +33,7 @@ var ScrollAnimator = function() {
 			scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 
 			// update status
-			//$('#status').html( scrollTop );
+			$('#status').html( scrollTop );
 
 			// run through animations
 			var i = animation.length;
@@ -60,7 +60,7 @@ var ScrollAnimator = function() {
 		// figure out where we are within the scroll
 		progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
 
-		// properties = {};
+		properties = {};
 
 		//check and run keyframes within scroll range
 		if (anim.keyframes) {
@@ -78,15 +78,21 @@ var ScrollAnimator = function() {
 						keyframe.onProgress( keyframeProgress );
 					};
 
+					console.log( 'keyframeProgress ', i, keyframeProgress );
+
 					for ( property in keyframe.properties ) {
-						properties[ property ] = getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
+						if ( typeof property != 'string' ) {
+							properties[ property ] = getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
+						} else {
+							properties[ property ] = keyframe.properties[property];
+						}
 					}
 				}
 			}
 		}
 
 		// apply styles
-		// anim._elem.css( properties );
+		anim._elem.css( properties );
 
 		// onProgress callback
 		if (anim.onProgress && typeof anim.onProgress === 'function') {
@@ -137,7 +143,7 @@ var ScrollAnimator = function() {
 
 			// grab dom element
 			if (anim._elem == undefined) {
-				anim._elem = $(anim.id);
+				anim._elem = $( "#" + anim.id);
 			}
 
 			// iterate through keyframes
@@ -386,6 +392,8 @@ var ScrollAnimator = function() {
 		if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
 
 		scrollTop++;
+
+		console.log ( 'scrollTop: ', scrollTop);
 
 		if (!started) {
 			animationLoop();

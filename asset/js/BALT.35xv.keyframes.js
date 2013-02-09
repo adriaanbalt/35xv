@@ -59,14 +59,88 @@
 			}
 		};
 
+		// var animationFunctions = {
+		// 	spin : function( progress , is, startFrameRatio, endFrameRatio) {
+		// 		var startFrame = (is.imageCount/is.skipImages) * startFrameRatio,
+		// 			endFrame = (is.imageCount/is.skipImages) * endFrameRatio,
+		// 			//toFrame = Math.floor(progress*endFrame);
+		// 			toFrame = Math.floor( startFrame - (progress*(startFrame-endFrame)) );
+
+		// 		is.showImageAt( Math.floor(toFrame) );
+		// 	},
+
+		// 	absPosition: function(opts) {
+		// 		var defaults = {startLeft: 0,
+		// 						startTop: 0,
+		// 						endLeft: 0,
+		// 						endTop: 0},
+		// 		settings = $.extend(defaults, opts);
+		// 		this.startProperties['left'] = settings.startLeft;
+		// 		this.startProperties['top'] = settings.startTop;
+		// 		this.endProperties['left'] = settings.endLeft;
+		// 		this.endProperties['top'] = settings.endTop;
+		// 		this.startProperties['display'] = 'block';
+		// 		this.endProperties['display'] = 'none';
+		// 	},
+
+		// 	bottomLeftOutside: function( anim, opts ) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		getPageInfo();
+		// 		var portrait = false, //wHeight > wWidth ? true : false,
+		// 			elemHalfWidth = anim._elem.width()/2,
+		// 			elemHalfHeight = anim._elem.height()/2,
+		// 			adj = portrait ? wWidth/2 + elemHalfWidth : adj = wHeight/2 + elemHalfHeight,
+		// 			tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+
+		// 		this.properties['top'] = wCenter.top + adj - elemHalfHeight + (portrait ? settings.offset : 0);
+		// 		this.properties['left'] = wCenter.left - adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		// 	},
+		// 	topRightOutside: function( anim, opts ) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		var portrait = false, //wHeight > wWidth ? true : false,
+		// 			elemHalfWidth = anim._elem.width()/2,
+		// 			elemHalfHeight = anim._elem.height()/2,
+		// 			adj = portrait ? wWidth/2 + elemHalfWidth : adj = wHeight/2 + elemHalfHeight,
+		// 			tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+
+		// 		this.properties['top'] = wCenter.top - adj - elemHalfHeight + (portrait ? settings.offset : 0);
+		// 		this.properties['left'] = wCenter.left + adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		// 	},
+		// 	leftOutside: function( anim, opts ) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		this.properties['left'] = -anim._elem.width() + settings.offset;
+		// 	},
+		// 	rightOutside: function( anim, opts ) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		this.properties['left'] = wWidth + settings.offset;
+		// 	},
+		// 	centerV: function( anim, opts ) {
+		// 		getPageInfo();
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		var elemHalfHeight = anim._elem.height()/2;
+		// 		this.properties['top'] = wCenter.top - elemHalfHeight + settings.offset;
+		// 	},
+		// 	centerH: function( anim, opts ) {
+		// 		getPageInfo();
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+
+		// 		var elemHalfWidth = anim._elem.width()/2;
+
+		// 		this.properties['left'] = wCenter.left - elemHalfWidth + settings.offset;
+		// 	},
+		// 	bottomOutside: function( anim, opts ) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		this.properties['top'] = wHeight + settings.offset;
+		// 	},
+		// 	topOutside: function( anim, opts) {
+		// 		var defaults = {offset:0}, settings = $.extend(defaults, opts);
+		// 		this.properties['top'] = -anim._elem.height() + settings.offset;
+		// 	}
+		// }
+
 		this.getAnim = function() {
 
 		return [
-			{
-				id: 'home-gallery',
-				startAt: 0,
-				endAt: 300
-			},
 			{
 				id: 'building-large',
 				startAt: 250,
@@ -94,33 +168,41 @@
 			},
 			{
 				id: 'residences-gallery',
-				startAt: 400,
-				endAt: 500,
+				startAt: 1300,
+				endAt: 2500,
 				keyframes: [
-					{
-						position: 0,
-						ease: TWEEN.Easing.Linear.EaseNone,
-						onInit: function( anim ) {
-							// animationFunctions.centerH.call( this, anim, {});
-							// animationFunctions.centerV.call( this, anim, {});
-						},
-						properties: {
-						}
-					},
-					{
-						position: 1,
-						ease: TWEEN.Easing.Linear.EaseNone,
-						onInit: function( anim ) {
-							// animationFunctions.centerH.call( this, anim, {});
-							// animationFunctions.topOutside.call( this, anim, {});
-						},
-						onProgress: function( progress ) {
-							//console.log ( "progress ", progress );
-							// TODO slide the gallery across
-						},
-						properties: {
-						}
-					}
+	         				{
+	         					position: 0,
+	         					onInit: function( anim ) {},
+	         					properties: { left: 0, position: 'absolute' }
+	         				},
+	         				{
+	         					position: .01,
+	         					onInit: function( anim ) {
+	         						anim._elem.css( {
+	         							left: 0,
+	         							top: 0,
+	         							position: 'absolute'
+	         						})
+	         					},
+	         					properties: { left: 0, position: 'absolute' }
+	         				},
+	         				{
+	         					position: .5,
+	         					ease: TWEEN.Easing.Linear.EaseNone,
+	         					onInit: function( anim ) {
+	         						console.log ( 'residences_gallery.containerWidth: ', residences_gallery.settings.containerWidth, residences_gallery.settings.itemWidth );
+
+	         					},
+	         					properties: { left:  ( residences_gallery.settings.containerWidth - residences_gallery.settings.itemWidth), position: 'fixed', top: 0 }
+	         				},
+	         				{
+	         					position: 1,
+	         					ease: TWEEN.Easing.Linear.EaseNone,
+	         					onInit: function( anim ) {
+	         					},
+	         					properties: { left:  ( residences_gallery.settings.containerWidth - residences_gallery.settings.itemWidth), position: 'absolute', bottom: 0 }
+	         				}
 				]
 			}
 		];
