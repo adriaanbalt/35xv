@@ -48,11 +48,6 @@ var ImageSequence = function( opts ) {
 		loaded += settings.skipImages;
 	};
 
-	var hideImageAt = function( index ) {
-		var image = settings.container.children()[ index ];
-		//if (image) image.style.display = 'none';
-	};
-
 	// to get the images file size run a XHR
 	// - not sure if this will actually cause the image to download, which is counter intuitive
 	var getImgFileSize = function( image ) {
@@ -76,15 +71,23 @@ var ImageSequence = function( opts ) {
 	var showImageAt = function( index ) {
 		if (index == currentIndex) return false;
 
-		var image = settings.container.children()[ index ];
+		var image = sequence[ index ];
 		clearTimeout( timeout );
 
 		if (image) {
 			hideImageAt( currentIndex );
 			currentIndex = index;
+			$(image).removeClass('hidden').addClass( 'show' );
 		} else {
 			clearTimeout(recheckTimeout);
 			recheckTimeout = setTimeout(showImageAt, settings.recheckDelay, index);
+		}
+	};
+
+	var hideImageAt = function( index ) {
+		var image = sequence[ index ];
+		if (image) {
+			$(image).removeClass( 'show' ).addClass('hidden');
 		}
 	};
 
@@ -95,7 +98,7 @@ var ImageSequence = function( opts ) {
 			image.className = 'slide';
 	//		image.style.display = 'none';
 			settings.container.append( image );
-		//	sequence.push(image);
+			sequence.push(image);
 
 			if (image.complete) {
 				imageOnloadHandler();

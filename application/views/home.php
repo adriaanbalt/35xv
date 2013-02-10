@@ -209,11 +209,10 @@
 	</section>
 
 <!-- neighborhood -->
-	<section id='neighborhoods' class="grid-whole">
+	<section id='neighborhood' class="grid-whole">
 		<h2>NEIGHBORHOOD</h2>
-		<div class="padded-inner content-box center">
-			<!-- gallery -->
-			<p>.grid-whole</p>
+		<div class="content-box center">
+			<img src='asset/img/neighborhood/neighborhood.jpg' alt=''/>
 		</div>
 	</section>
 

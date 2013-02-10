@@ -9,9 +9,6 @@
 	.slide {
 		float: left;
 		position: relative;
-		&.show {
-			display: block;
-		}
 	}
 	.copy {
 		position: absolute;

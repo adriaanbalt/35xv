@@ -30,8 +30,8 @@
 			amenities_gallery.init();
 		//	amenities_info.init();
 
-			scroller = new $.BALT.animation.scroller();
-				scroller.init({
+			spinner = new $.BALT.animation.spinner();
+				spinner.init({
 					// animation data
 					animation: null,
 
@@ -47,7 +47,7 @@
 					endAt: 1900,
 					container: $('#container'),		// main container
 					imageCount: $('#building-large img').length,
-					images: $('#building-large img')
+					sequence: imageSequences['building-large']
 				});
 		}
 	});

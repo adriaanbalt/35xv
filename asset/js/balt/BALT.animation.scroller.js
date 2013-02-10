@@ -51,7 +51,7 @@
 
 	};
 
-	$.BALT.animation.scroller = function( o ) {
+	$.BALT.animation.spinner = function( o ) {
 
 		var $window = $(window);
 		root = this,
@@ -60,18 +60,6 @@
 		scrollTopTweened = 0,
 		progress = 0,
 		currentIndex = -1;
-
-		var defaults = {
-			maxScroll: 1000,
-			tickSpeed: 30,
-			useRAF: true,
-			scrollSpeed: 20,
-			tweenSpeed: .3,
-			skipImages: 1,
-			frameSpeed: 1
-		};
-
-		settings = $.extend( defaults, o );
 
 		var spin = function() {
 			requestAnimFrame(spin);
@@ -82,30 +70,10 @@
 				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
 				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
 
-				showImageAt( toFrame );
+				settings.sequence.showImageAt( toFrame );
 			//	console.log ( "progress ", toFrame, " | ", progress, " | ", scrollTopTweened, " | " );
 			}
 			//console.log( 'toFrame: ', toFrame, settings.imageCount, settings.skipImages, settings.frameSpeed, endFrame, progress, settings.startAt, settings.endAt );
-		};
-		var showImageAt = function( index ) {
-			if (index == currentIndex) return false;
-
-			var image = settings.images[ index ];
-
-			if (image) {
-				hideImageAt( currentIndex );
-				currentIndex = index;
-				//image.style.display = 'block';
-				image.className = 'slide show';
-			} else {
-			}
-		};
-		var hideImageAt = function( index ) {
-			var image = settings.images[ index ];
-			if (image) {
-				//image.style.display = 'none';
-				image.className = 'slide hidden';
-			}
 		};
 
 		var resize = function() {
@@ -118,17 +86,12 @@
 		// --------------------------------------------------
 		root.init = function( opts ) {
 			var defaults = {
-					maxScroll: 1000,
-					tickSpeed: 30,
-					scrollSpeed: 20,
-					useRAF: true,
-					tweenSpeed: .3,
-					freezeTouchScroll: false
-				};
+				tickSpeed: 30,
+				useRAF: true,
+				tweenSpeed: .3
+			};
 
 			settings = $.extend( defaults, opts );
-
-			animation = settings.animation;
 
 			window.requestAnimFrame = (function(){
 				if (settings.useRAF) {
@@ -147,7 +110,10 @@
 				};
 			})();
 
+			console.log ( "spinner init" );
+
 			resize();
+			spin();
 
 			return this;
 		};

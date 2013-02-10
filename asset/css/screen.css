@@ -48,6 +48,16 @@ section {
   margin-top: 100px !important;
 }
 
+#status {
+  position: fixed;
+  color: #ff9;
+  font-size: 18px;
+  z-index: 100000;
+  zoom: 1;
+  top: 20px;
+  right: 50px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin: 0;
@@ -143,9 +153,6 @@ canvas {
   float: left;
   position: relative;
 }
-.gallery .slide.show {
-  display: block;
-}
 .gallery .copy {
   position: absolute;
   z-index: 5;
@@ -171,6 +178,10 @@ canvas {
   max-width: 1200px;
 }
 
+#neighborhood img {
+  width: 100%;
+}
+
 #design #building-large {
   height: 2048px;
   position: relative;
@@ -184,6 +195,9 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
+}
+#design #building-large img.show {
+  display: block;
 }
 #design #design-info .one {
   height: 1350px;
