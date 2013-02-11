@@ -31,11 +31,8 @@
 			amenities_gallery.start();
 			spinner = new $.BALT.animation.spinner();
 				spinner.init({
-
-					// settings
 					maxScroll: 5400,			// max scroll
-					useRAF : false,				// set requestAnimationFrame
-					scrollSpeed: 15,
+					useRAF : true,				// set requestAnimationFrame
 					debug: false,				// turn on debug
 					tweenSpeed: .3,				// scrollTop tween speed
 					skipImages: 1,
@@ -48,8 +45,9 @@
 				});
 		}
 	});
+	
 	imageSequences['building-large'] = new ImageSequence({
-		filesPath:'asset/img/building-large/35XV_rotate_08_000{index}.gif',
+		filesPath:'asset/img/building-large/35XV_ROTATE_2013_2_11_000{index}.gif',
 		imageCount: 100,
 		skipImages: 5,
 		container: $('#building-large'),
@@ -57,24 +55,6 @@
 			loadProgress.update();
 		}
 	});
-	// imageSequences['residences'] = new ImageSequence({
-	// 	filesPath:'asset/img/residences/residences-{index}.jpg',
-	// 	imageCount: 2,
-	// 	skipImages: 1,
-	// 	container: $('#residences-gallery .gallery-container'),
-	// 	onProgress: function() {
-	// 		loadProgress.update( this.skipImages );
-	// 	}
-	// });
-	// imageSequences['amenities'] = new ImageSequence({
-	// 	filesPath:'asset/img/amenities-services/temp-{index}.jpg',
-	// 	imageCount: 2,
-	// 	skipImages: 1,
-	// 	container: $('#amenities-gallery .gallery-container'),
-	// 	onProgress: function() {
-	// 		loadProgress.update( this.skipImages );
-	// 	}
-	// });
 	imageSequences['clouds'] = new ImageSequence({
 		filesPath:'asset/img/clouds/cloud-{index}.png',
 		imageCount: 6,
@@ -88,7 +68,6 @@
 		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
 		imageSequences[i].load();
 	}
-// -----
 
 	$('.text-slant').each( function() {
 		new TextSlant( $(this), $(this).css('line-height'), 230, 300, 5 );
@@ -104,12 +83,12 @@
 	calculations = new $.BALT.animation.calculations();
 
 	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), { 
-		onLoad: function() {
+		onProgress: function() {
 			loadProgress.update();
 		}
 	});
 	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), { 
-		onLoad: function() {
+		onProgress: function() {
 			loadProgress.update();
 		}
 	});

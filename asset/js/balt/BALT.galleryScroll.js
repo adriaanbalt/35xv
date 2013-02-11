@@ -30,7 +30,7 @@
 		root.settings = $.extend( root.settings, o );
 
 		root.init = function() {
-			if ( root.settings.onLoad ){
+			if ( root.settings.onProgress ){
 				var images = $target.find('.slide img');
 				images.each(function(){
 					if ( $(this)[0].complete || $(this)[0].readyState == 4 ) {
@@ -43,8 +43,8 @@
 			root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
 		};
 		var imageLoaded = function( e ) {
-			if ( root.settings.onLoad && typeof root.settings.onLoad == 'function' ) {
-				root.settings.onLoad();
+			if ( root.settings.onProgress && typeof root.settings.onProgress == 'function' ) {
+				root.settings.onProgress();
 			}
 		};
 
