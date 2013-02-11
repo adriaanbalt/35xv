@@ -61,9 +61,6 @@
 		<h2>DESIGN<br>TEAM</h2>
 		<div class="grid-whole">
 			<div class="grid-quarter">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
@@ -74,6 +71,9 @@
 					</div>
 					<h4>FX FOWLE</h4>
 				</div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
 			</div>
 			<div class="grid-quarter">
 				<div class="padded-inner"></div>
@@ -92,7 +92,7 @@
 			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
-						<video id="bno" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
+						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
 							<source src="asset/video/BMO.ogv" type='video/ogg'>
 							<source src="asset/video/BMO.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
