@@ -110,8 +110,6 @@
 				};
 			})();
 
-			console.log ( "spinner init" );
-
 			resize();
 			spin();
 
@@ -119,6 +117,32 @@
 		};
 
 	};
+
+
+
+	$.BALT.animation.scroller = function( o ) {
+
+		var root = this,
+		progress = 0;
+
+		registrations = o.register;
+
+		var scrolling = function() {
+			var i = registrations.length;
+			while ( i-- ){
+				registrations[i].scroll( $window.scrollTop() );
+			}
+			//console.log( 'toFrame: ', toFrame, settings.imageCount, settings.skipImages, settings.frameSpeed, endFrame, progress, settings.startAt, settings.endAt );
+		};
+
+		// --------------------------------------------------
+		// PUBLIC
+		// --------------------------------------------------
+		$window.bind('scroll', scrolling);
+
+	};
+
+
 
 })(jQuery);
 

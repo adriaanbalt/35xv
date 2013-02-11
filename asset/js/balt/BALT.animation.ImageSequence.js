@@ -9,7 +9,8 @@ var ImageSequence = function( opts ) {
 	var defaults = {
 			skipImages: 1,
 			recheckDelay: 500,			// delay before checking for current image if not present
-			loadInterval: 100			// delay to wait until loading next image if busy
+			loadInterval: 100,			// delay to wait until loading next image if busy
+			frameSpeed: 1
 		},
 		sequence = [],
 		currentIndex = -1,
@@ -99,7 +100,6 @@ var ImageSequence = function( opts ) {
 	//		image.style.display = 'none';
 			settings.container.append( image );
 			sequence.push(image);
-
 			if (image.complete) {
 				imageOnloadHandler();
 			} else {
@@ -112,7 +112,8 @@ var ImageSequence = function( opts ) {
 		load: load,
 		showImageAt: showImageAt,
 		imageCount: settings.imageCount,
-		skipImages: settings.skipImages
+		skipImages: settings.skipImages,
+		frameSpeed: settings.frameSpeed
 	}
 }
 

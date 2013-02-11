@@ -15,6 +15,8 @@
 		$.BALT = {};
 	};
 
+	$window = $(window);
+
 // LOADING
 	var imageSequences = {};
 
@@ -25,15 +27,13 @@
 		onComplete: function() {
 		//	console.log ( "loadProgress COMPLETE" );
 			residences_gallery.init();
-			residences_info.init();
+		//	residences_info.init();
 
-			amenities_gallery.init();
+		//	amenities_gallery.init();
 		//	amenities_info.init();
 
 			spinner = new $.BALT.animation.spinner();
 				spinner.init({
-					// animation data
-					animation: null,
 
 					// settings
 					maxScroll: 5400,			// max scroll
@@ -43,7 +43,7 @@
 					tweenSpeed: .3,				// scrollTop tween speed
 					skipImages: 1,
 					frameSpeed: 1,
-					startAt: 0,	// scrollTop where the experience starts
+					startAt: 300,	// scrollTop where the experience starts
 					endAt: 1900,
 					container: $('#container'),		// main container
 					imageCount: $('#building-large img').length,
@@ -60,15 +60,15 @@
 			loadProgress.update();
 		}
 	});
-	imageSequences['residences'] = new ImageSequence({
-		filesPath:'asset/img/residences/residences-{index}.jpg',
-		imageCount: 2,
-		skipImages: 1,
-		container: $('#residences-gallery .gallery-container'),
-		onProgress: function() {
-			loadProgress.update( this.skipImages );
-		}
-	});
+	// imageSequences['residences'] = new ImageSequence({
+	// 	filesPath:'asset/img/residences/residences-{index}.jpg',
+	// 	imageCount: 2,
+	// 	skipImages: 1,
+	// 	container: $('#residences-gallery .gallery-container'),
+	// 	onProgress: function() {
+	// 		loadProgress.update( this.skipImages );
+	// 	}
+	// });
 	imageSequences['amenities'] = new ImageSequence({
 		filesPath:'asset/img/amenities-services/temp-{index}.jpg',
 		imageCount: 2,
@@ -105,29 +105,29 @@
 		new DrawShape( $(this).attr('id'), c, $(this).attr('width'), $(this).attr('height'), $(this).data('shape'), $(this).data('overhang') );
 	});
 
-// GALLERIES
-	residences_gallery = new $.BALT.gallery( $('#residences-gallery') );
-	residences_info = new $.BALT.gallery( $('#residences-gallery-info'), {
-		ratioResize: false
-	});
-	residences_controls = new $.BALT.controls( $( '#residences .gallery-controls'), {
-		toControl : [ residences_info, residences_gallery ]
-	} );
 
-	amenities_gallery = new $.BALT.gallery( $('#amenities-gallery') );
-	amenities_controls = new $.BALT.controls( $( '#amenities .gallery-controls'), {
-		toControl : [ amenities_gallery ]
-	} );
+
+// GALLERIES
+	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), { startAt: 3600, endAt: 6000 } );
+	// residences_info = new $.BALT.gallery( $('#residences-gallery-info'), {
+	// 	ratioResize: false
+	// });
+
+	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery') );
 // -----
+
+	scroller = new $.BALT.animation.scroller({
+		register : [ residences_gallery ]
+	});
 
 	calculations = new $.BALT.animation.calculations();
 
 	$('.equalize').equalize();
 
+
 //	var keyframes = new $.BALT.animation.keyframes();
 
 //	var parallax = new $.BALT.animation.parallax( $(this), keyframes );
-
 
 
 })(jQuery);

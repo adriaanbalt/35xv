@@ -19,8 +19,8 @@
 <!-- home -->
 <section id='home' class="">
 	<div class="content-box center">
-		<img src='asset/img/logo-large.png' class='logo'/>
-		<img src='asset/img/home.png' id='skyline-img'/>
+		<img src='asset/img/home/logo-large.png' class='logo'/>
+		<img src='asset/img/home/home.png' id='skyline-img'/>
 	</div>
 </section>
 
@@ -110,20 +110,11 @@
 <!-- residences -->
 	<section id='residences' class="grid-whole">
 		<h2>RESIDENCES</h2>
-		<div class='equalize'>
-			<div class="grid-whole">
-				<div class="center">
-					<!-- gallery -->
-					<div id='residences-gallery' class='gallery'>
-						<div class='gallery-container clearfix'>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="grid-whole layered">
-				<div id='residences-gallery-info' class='gallery'>
-					<div class='gallery-container clearfix'>
-						<div class='slide'>
+		<div class="grid-whole">
+			<div id='residences-gallery' class='gallery-scroll'>
+				<div class='gallery-container clearfix'>
+					<div class='slide'>
+						<div class='layered grid-whole'>
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
@@ -137,7 +128,10 @@
 								<canvas id='shape-bathroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
-						<div class='slide'>
+						<img src="asset/img/residences/residences-0.jpg" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
@@ -151,7 +145,10 @@
 								<canvas id='shape-livingroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
-						<div class='slide'>
+						<img src="asset/img/residences/residences-1.jpg" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
 							<div class="grid-two-thirds">
 								<div class="padded-inner"></div>
 							</div>
@@ -165,13 +162,10 @@
 								<canvas id='shape-kitchen' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
+						<img src="asset/img/residences/residences-2.jpg" />
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="grid-whole gallery-controls">
-			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
-			<a href='javascript:void(0);' class='next'>NEXT</a>
 		</div>
 	</section>
 
@@ -202,10 +196,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid-whole gallery-controls">
-			<a href='javascript:void(0);' class='previous'>PREVIOUS</a>
-			<a href='javascript:void(0);' class='next'>NEXT</a>
-		</div>
 	</section>
 
 <!-- neighborhood -->
@@ -233,12 +223,7 @@
 	</section>
 
 <!-- contact -->
-	<section id='contact' class="grid-whole">
-		<h2>CONTACT</h2>
-		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
-		</div>
-	</section>
+<?php echo $contact_form; ?>
 
 </div>
 

@@ -75,6 +75,7 @@ h2 {
   line-height: 50px;
   border-bottom: 1px solid #000;
   margin-bottom: 20px;
+  color: #053b5e;
 }
 
 h3 {
@@ -141,28 +142,27 @@ canvas {
   z-index: 4;
 }
 
-.gallery {
-  position: relative;
-  height: 700px;
+.gallery-scroll {
   overflow: hidden;
+  position: relative;
 }
-.gallery .gallery-container {
+.gallery-scroll .gallery-container {
   position: absolute;
 }
-.gallery .slide {
+.gallery-scroll .slide {
   float: left;
   position: relative;
 }
-.gallery .copy {
+.gallery-scroll .copy {
   position: absolute;
   z-index: 5;
   right: -1px;
 }
-.gallery .shape {
+.gallery-scroll .shape {
   z-index: 4;
   right: 0px;
 }
-.gallery .text-slant {
+.gallery-scroll .text-slant {
   font-weight: 400;
 }
 
@@ -234,7 +234,7 @@ canvas {
 #unit-availability td {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  padding: 3px 30px;
+  padding: 3px 41px;
   font-weight: 400;
   font-size: 13px;
   background: rgba(255, 255, 255, 0.3);
