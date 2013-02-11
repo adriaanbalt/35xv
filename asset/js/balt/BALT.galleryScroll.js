@@ -23,49 +23,34 @@
 			slideCount : $container.find('.slide').length,
 			loadCounter : 0,
 			direction : 1,
-			ratio : 0
+			ratio : 0,
+			startAt : 0,
+			endAt : 0
 		};
 		root.settings = $.extend( root.settings, o );
 
 		root.init = function() {
-
-			if ( root.settings.loader ){
-				var images = $target.find('.slide');
+			if ( root.settings.onLoad ){
+				var images = $target.find('.slide img');
 				images.each(function(){
-					registerImgFileSize( this.src );
 					if ( $(this)[0].complete || $(this)[0].readyState == 4 ) {
 						imageLoaded();
 					}
 					$(this).load( imageLoaded );
 				});
-			} else {
-				//preloadComplete();
 			}
 
 			root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
-
-			// console.log ( '' );
-			// console.log ( "target ", $target );
-			// console.log ( "ratioResize ", root.settings.ratioResize );
-
-			bindEvents();
+		};
+		var imageLoaded = function( e ) {
+			if ( root.settings.onLoad && typeof root.settings.onLoad == 'function' ) {
+				root.settings.onLoad();
+			}
 		};
 
-		var bindEvents = function() {
+		root.start = function() {
 			$(window).resize( resize );
 			resize();
-		};
-
-		var imageLoaded = function( e ) {
-			try {
-				root.settings.loadCounter++;
-				if (root.settings.loadCounter == (root.settings.slideCount-1) )  {
-					//preloadComplete();
-					resize();
-				}
-			} catch( err ) {
-				// console.log ( "ERROR!!! ", err );
-			}
 		};
 
 		var imageResize = function( img, w, h ) {
@@ -75,10 +60,6 @@
 				img.height( h );
 				img.width( Math.round ( h / root.settings.ratio ) );
 			}
-		};
-
-		var onUpdate = function( progress ) {
-			$target
 		};
 
 		var resize = function () {
@@ -102,23 +83,13 @@
 			});
 
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
-			totalImagesWidth = root.settings.slideCount * root.settings.itemWidth;
+			totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right') );
 
 			$container.width( totalImagesWidth );
 			$target.height( totalImagesWidth-root.settings.itemWidth );
-		};
 
-		var keyboardHandler = function(e) {
-			if (e.keyCode == 37) {
-				console.log ( "nxt" );
-				root.gotoIterativeIndex( 1 );
-				return false;
-			}
-			if (e.keyCode == 39) {
-				console.log ( "prev" );
-				root.gotoIterativeIndex( -1 );
-				return false;
-			}
+			root.settings.startAt = ($target.offset().top - 100 );
+			root.settings.endAt = Math.round( root.settings.startAt + $target.height() );
 		};
 
 		var getAttributeAsNumber = function( target, attribute ){
@@ -127,29 +98,34 @@
 
 		root.scroll = function( scrollY ) {
 
-			var p = 0, start, end, cur, tot, val;
+			var startX, endX, startY, endY, cur_time, tot_time, valX, valY;
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
-				p = ( scrollY - root.settings.startAt ) / ( settings.endAt - root.settings.startAt );
-
-				start = typeof $container.css('left') == 'string' ? 0 : $container.css('left');
-				end = totalImagesWidth;
-				cur = ( scrollY - root.settings.startAt ) ;
-				tot = ( settings.endAt - root.settings.startAt );
-				val = getTweenedValue( start, end, cur, tot );
+				startX = typeof $container.css('left') == 'string' ? 0 : $container.css('left');
+				endX = totalImagesWidth;
+				startY = typeof $container.css('top') == 'string' ? 0 : $container.css('top');
+				endY = $target.height();
+				
+				cur_time = ( scrollY - root.settings.startAt ) ;
+				tot_time = ( root.settings.endAt - root.settings.startAt );
+				
+				valX = Math.round( getTweenedValue( startX, endX, cur_time, tot_time ) * -1 );
+				valY = Math.round( getTweenedValue( startY, endY, cur_time, tot_time ) );
 
 			} else if ( scrollY < root.settings.startAt ) {
-				val = 0;
+				valX = 0;
+				valY = 0;
 			} else if ( scrollY > root.settings.endAt ) {
-				val = 0;
+				valX = 0;
+				valY = 0;
 			}
 
-			console.log ( "val ", val);
-
+			if ( cur_time != undefined ) {
+			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
+			}
 			var properties = {
-				left : val,
-				top : val * -1
+				transform : "translate("+valX+"px,"+valY+"px)",
+				transition : 'all 0s ease'
 			};
-			// console.log ( 'properties: ', properties );
 
 			$container.css ( properties );
 		};
@@ -158,9 +134,14 @@
 			var delta = end - start;
 			var percentComplete = currentTime/totalTime;
 			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
-
-			return tweener(percentComplete) * delta + start
+			return tweener(percentComplete) * delta + start;
 		}
+
+		var getAttributeAsNumber = function( target, attribute ){
+			return parseInt(target.css(attribute).replace('px', ''));
+		};
+
+		root.init();
 	};
 
 

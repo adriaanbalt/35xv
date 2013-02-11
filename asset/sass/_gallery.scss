@@ -9,6 +9,10 @@
 	.slide {
 		float: left;
 		position: relative;
+		img {
+			background: #0f0;
+			@include box-shadow( #000 5px 5px 5px );
+		}
 	}
 	.copy {
 		position: absolute;

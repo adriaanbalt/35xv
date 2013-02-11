@@ -66,11 +66,11 @@
 			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
-						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
-							<source src="asset/video/temp-video.ogg" type='video/ogg'>
+						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+							<source src="asset/video/FXFowle_2013-02-07_01_460x260.ogv" type='video/ogg'>
+							<source src="asset/video/FXFowle_2013-02-07_01_460x260.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
-						<canvas id='shape-fxfowle' class='shape' data-shape='trapezoid' width='510' height='260' data-color='#fff' data-transparency='1' data-overhang='100' style='left:-100px'/>
 					</div>
 					<h4>FX FOWLE</h4>
 				</div>
@@ -93,7 +93,7 @@
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="bno" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
-							<source src="asset/video/temp-video.ogg" type='video/ogg'>
+							<source src="asset/video/JERRY_2013-02-11.ogv" type='video/ogg'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
 						<canvas id='shape-bno' class='shape' data-shape='trapezoid' width='510' height='260' data-color='#fff' data-transparency='1' data-overhang='100' style='left:-100px'/>
@@ -128,7 +128,7 @@
 								<canvas id='shape-bathroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
-						<img src="asset/img/residences/residences-0.jpg" />
+						<img src="asset/img/residences/bathroom.gif" />
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -145,7 +145,7 @@
 								<canvas id='shape-livingroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
-						<img src="asset/img/residences/residences-1.jpg" />
+						<img src="asset/img/residences/livingroom.gif" />
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -162,7 +162,7 @@
 								<canvas id='shape-kitchen' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
-						<img src="asset/img/residences/residences-2.jpg" />
+						<img src="asset/img/residences/kitchen.gif" />
 					</div>
 				</div>
 			</div>
@@ -189,10 +189,112 @@
 <!-- amenities-services -->
 	<section id='amenities' class="grid-whole">
 		<h2>AMENITIES &AMP;<br>SERVICES</h2>
-		<div class="pcontent-box center">
+		<div class="content-box">
 			<!-- gallery -->
-			<div id='amenities-gallery' class='gallery'>
+			<div id='amenities-gallery' class='gallery-scroll'>
 				<div class='gallery-container clearfix'>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>LOUNGE</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-lounge' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/lounge.gif" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>LOBBY</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-lobby' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/lobby.gif" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>MAILROOM</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-mailroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/mailroom.gif" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>FITNESS</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-fitness' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/fitness.gif" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>KIDSROOM</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-kidsroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/kidsroom.gif" />
+					</div>
+					<div class='slide'>
+						<div class='layered grid-whole'>
+							<div class="grid-two-thirds">
+								<div class="padded-inner"></div>
+							</div>
+							<div class="grid-third padded-inner">
+								<div class='copy'>
+									<h3>TERRACE</h3>
+									<div class='text-slant'>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+									</div>
+								</div>
+								<canvas id='shape-terrace' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+							</div>
+						</div>
+						<img src="asset/img/amenities-services/terrace.gif" />
+					</div>
 				</div>
 			</div>
 		</div>

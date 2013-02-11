@@ -1,3 +1,5 @@
+@import "compass/css3/box-shadow";
+
 .gallery-scroll {
 	overflow: hidden;
 	position: relative;
@@ -6,8 +8,12 @@
 		position: absolute;
 	}
 	.slide {
+		margin-right: 30px;
 		float: left;
 		position: relative;
+		img {
+			@include box-shadow( rgba(0,0,0,.25) 5px 5px 5px );
+		}
 	}
 	.copy {
 		position: absolute;

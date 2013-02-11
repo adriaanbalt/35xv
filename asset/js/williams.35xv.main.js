@@ -25,13 +25,10 @@
 		//	console.log (" update: ", val );
 		},
 		onComplete: function() {
-		//	console.log ( "loadProgress COMPLETE" );
-			residences_gallery.init();
-		//	residences_info.init();
+			console.log ( "loadProgress COMPLETE" );
 
-		//	amenities_gallery.init();
-		//	amenities_info.init();
-
+			residences_gallery.start();
+			amenities_gallery.start();
 			spinner = new $.BALT.animation.spinner();
 				spinner.init({
 
@@ -69,15 +66,15 @@
 	// 		loadProgress.update( this.skipImages );
 	// 	}
 	// });
-	imageSequences['amenities'] = new ImageSequence({
-		filesPath:'asset/img/amenities-services/temp-{index}.jpg',
-		imageCount: 2,
-		skipImages: 1,
-		container: $('#amenities-gallery .gallery-container'),
-		onProgress: function() {
-			loadProgress.update( this.skipImages );
-		}
-	});
+	// imageSequences['amenities'] = new ImageSequence({
+	// 	filesPath:'asset/img/amenities-services/temp-{index}.jpg',
+	// 	imageCount: 2,
+	// 	skipImages: 1,
+	// 	container: $('#amenities-gallery .gallery-container'),
+	// 	onProgress: function() {
+	// 		loadProgress.update( this.skipImages );
+	// 	}
+	// });
 	imageSequences['clouds'] = new ImageSequence({
 		filesPath:'asset/img/clouds/cloud-{index}.png',
 		imageCount: 6,
@@ -93,36 +90,33 @@
 	}
 // -----
 
-// TEXT SLANTS
 	$('.text-slant').each( function() {
 		new TextSlant( $(this), $(this).css('line-height'), 230, 300, 5 );
 	});
-
-// DRAW SHAPES
 	$('.shape').each( function() {
 		var rgb = hexToRgb( $(this).data('color') );
 		var c = "rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", " + $(this).data('transparency') + ")";
 		new DrawShape( $(this).attr('id'), c, $(this).attr('width'), $(this).attr('height'), $(this).data('shape'), $(this).data('overhang') );
 	});
 
-
-
-// GALLERIES
-	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), { startAt: 3600, endAt: 6000 } );
-	// residences_info = new $.BALT.gallery( $('#residences-gallery-info'), {
-	// 	ratioResize: false
-	// });
-
-	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery') );
-// -----
-
-	scroller = new $.BALT.animation.scroller({
-		register : [ residences_gallery ]
-	});
+	$('.equalize').equalize();
 
 	calculations = new $.BALT.animation.calculations();
 
-	$('.equalize').equalize();
+	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), { 
+		onLoad: function() {
+			loadProgress.update();
+		}
+	});
+	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), { 
+		onLoad: function() {
+			loadProgress.update();
+		}
+	});
+
+	scroller = new $.BALT.animation.scroller({
+		register : [ residences_gallery, amenities_gallery ]
+	});
 
 
 //	var keyframes = new $.BALT.animation.keyframes();

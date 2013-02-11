@@ -150,8 +150,14 @@ canvas {
   position: absolute;
 }
 .gallery-scroll .slide {
+  margin-right: 30px;
   float: left;
   position: relative;
+}
+.gallery-scroll .slide img {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
 }
 .gallery-scroll .copy {
   position: absolute;
@@ -235,9 +241,8 @@ canvas {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
   padding: 3px 41px;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 13px;
-  background: rgba(255, 255, 255, 0.3);
 }
 #unit-availability td:last-child {
   border-right: 0;
