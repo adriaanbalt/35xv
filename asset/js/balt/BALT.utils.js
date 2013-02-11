@@ -1,70 +1,8 @@
-
-var TextSlant = function( target, lineHeight, textWidth, boxWidth, increment ) {
-	var out = '',
-	remainderWidth = boxWidth - textWidth,
-	smallSideWidth = 0;
-
-	while( remainderWidth > 0 ) {
-		out += '<div style="float:left;clear:left;height:'+lineHeight+';width:'+ smallSideWidth +'px"></div>';
-		out += '<div style="float:right;clear:right;height:'+lineHeight+';width:'+ remainderWidth +'px"></div>';
-		smallSideWidth += increment;
-		remainderWidth -= increment;
-	}
-
-	target.prepend(out);
-}
-
-/*
-@project Helper
-
-@author Adriaan Scholvinck | adriaan@BALT.us | BALT.us
-@description Draw shapes with canvas
-*/
-
-var DrawShape = function( target, color, width, height, type, overhang ) {
-	color = color == undefined?'#fff':color;
-	overhang = overhang == undefined?100:overhang;
-	var canvas = document.getElementById(target).getContext('2d');
-	canvas.fillStyle = color;
-	canvas.beginPath();
-	canvas.moveTo(0, 0);
-
-	if ( type == 'trapezoid'){
-		width -= (overhang);
-		canvas.lineTo(width, 0);
-		canvas.lineTo(width+overhang, height);
-		canvas.lineTo(overhang, height);
-	} else if ( type == 'parallelogram' ) {
-		canvas.lineTo(width, 0);
-		canvas.lineTo(width, height);
-		canvas.lineTo(overhang, height);
-	}
-
-	canvas.closePath();
-	canvas.fill();
-	
-//	console.log ( "shape: ", color, target, width, height, type, overhang );
-};
-
-var hexToRgb = function(hex) {
-    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-        return r + r + g + g + b + b;
-    });
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
-
-var componentToHex = function(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
-
-var rgbToHex = function(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
+var TextSlant=function(e,t,n,o,i){for(var r="",a=o-n,l=0;a>0;)r+='<div style="float:left;clear:left;height:'+t+";width:"+l+'px"></div>',r+='<div style="float:right;clear:right;height:'+t+";width:"+a+'px"></div>',l+=i,a-=i
+e.prepend(r)},DrawShape=function(e,t,n,o,i,r){t=void 0==t?"#fff":t,r=void 0==r?100:r
+var a=document.getElementById(e).getContext("2d")
+a.fillStyle=t,a.beginPath(),a.moveTo(0,0),"trapezoid"==i?(n-=r,a.lineTo(n,0),a.lineTo(n+r,o),a.lineTo(r,o)):"parallelogram"==i&&(a.lineTo(n,0),a.lineTo(n,o),a.lineTo(r,o)),a.closePath(),a.fill()},hexToRgb=function(e){var t=/^#?([a-f\d])([a-f\d])([a-f\d])$/i
+e=e.replace(t,function(e,t,n,o){return t+t+n+n+o+o})
+var n=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e)
+return n?{r:parseInt(n[1],16),g:parseInt(n[2],16),b:parseInt(n[3],16)}:null},componentToHex=function(e){var t=e.toString(16)
+return 1==t.length?"0"+t:t},rgbToHex=function(e,t,n){return"#"+componentToHex(e)+componentToHex(t)+componentToHex(n)}
