@@ -67,8 +67,8 @@
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/FXFowle_2013-02-07_01_460x260.ogv" type='video/ogg'>
-							<source src="asset/video/FXFowle_2013-02-07_01_460x260.mp4" type='video/mp4'>
+							<source src="asset/video/FXFowle.ogv" type='video/ogg'>
+							<source src="asset/video/FXFowle.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
 					</div>
@@ -92,11 +92,11 @@
 			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
-						<video id="bno" class="video-js vjs-default-skin" controls preload="auto" width="310" height="260" data-setup="{}">
-							<source src="asset/video/JERRY_2013-02-11.ogv" type='video/ogg'>
+						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+							<source src="asset/video/BMO.ogv" type='video/ogg'>
+							<source src="asset/video/BMO.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
-						<canvas id='shape-bno' class='shape' data-shape='trapezoid' width='510' height='260' data-color='#fff' data-transparency='1' data-overhang='100' style='left:-100px'/>
 					</div>
 					<h4>BNO</h4>
 				</div>
