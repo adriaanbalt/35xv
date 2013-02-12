@@ -20,6 +20,7 @@ body {
 	// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
 	background: #70cbf2 url('../img/sky.jpg') repeat-y center center;
 	background-size: cover;
+	overflow-x: hidden;
 }
 .wrapper {
 	max-width: 980px;

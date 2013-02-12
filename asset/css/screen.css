@@ -32,6 +32,7 @@ body {
   /* CSS 3 plus vendor prefixes: */
   background: #70cbf2 url("../img/sky.jpg") repeat-y center center;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -143,7 +144,6 @@ canvas {
 }
 
 .gallery-scroll {
-  overflow: hidden;
   position: relative;
 }
 .gallery-scroll .gallery-container {

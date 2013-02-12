@@ -20,6 +20,8 @@
 			ratioResize : true,
 			animating : false,
 			itemWidth : $container.width(),
+			itemHeight : 0,
+			totalImagesWidth : 0,
 			slideCount : $container.find('.slide').length,
 			loadCounter : 0,
 			direction : 1,
@@ -83,10 +85,11 @@
 			});
 
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
-			totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right') );
+			root.settings.itemHeight = $container.find('.slide:eq(0)').height();
+			root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right') );
 
-			$container.width( totalImagesWidth );
-			$target.height( totalImagesWidth-root.settings.itemWidth );
+			$container.width( root.settings.totalImagesWidth );
+			$target.height( root.settings.totalImagesWidth-root.settings.itemWidth );
 
 			root.settings.startAt = ($target.offset().top - 100 );
 			root.settings.endAt = Math.round( root.settings.startAt + $target.height() );
@@ -101,30 +104,38 @@
 			var startX, endX, startY, endY, cur_time, tot_time, valX, valY;
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
 				startX = typeof $container.css('left') == 'string' ? 0 : $container.css('left');
-				endX = totalImagesWidth;
+				endX = root.settings.totalImagesWidth;
 				startY = typeof $container.css('top') == 'string' ? 0 : $container.css('top');
 				endY = $target.height();
 				
 				cur_time = ( scrollY - root.settings.startAt ) ;
 				tot_time = ( root.settings.endAt - root.settings.startAt );
-				
+
 				valX = Math.round( getTweenedValue( startX, endX, cur_time, tot_time ) * -1 );
 				valY = Math.round( getTweenedValue( startY, endY, cur_time, tot_time ) );
+
+				if ( valX < (root.settings.itemWidth - endX) ){
+					valX = (root.settings.itemWidth - endX);
+				}
+				if ( valY > (endY - root.settings.itemHeight) ){
+					valY = (endY - root.settings.itemHeight);
+				}
 
 			} else if ( scrollY < root.settings.startAt ) {
 				valX = 0;
 				valY = 0;
 			} else if ( scrollY > root.settings.endAt ) {
-				valX = 0;
-				valY = 0;
+				valX = (root.settings.itemWidth - endX);
+				valY = (root.settings.itemWidth - endY);
 			}
 
 			if ( cur_time != undefined ) {
 			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
 			}
 			var properties = {
-				transform : "translate("+valX+"px,"+valY+"px)",
-				transition : 'all 0s ease'
+				transform : "translate("+valX+"px,"+valY+"px)"
+				// ,
+				// transition : 'all .01s ease'
 			};
 
 			$container.css ( properties );

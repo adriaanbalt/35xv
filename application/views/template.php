@@ -65,10 +65,9 @@
         <script src='asset/js/utils/UTIL.LoadProgress.js?v=2'></script>
 
         <script src='asset/js/balt/BALT.utils.js?v=2'></script>
-        <script src='asset/js/balt/BALT.animation.ImageSequence.js?v=2'></script>
+        <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>
-        <script src='asset/js/balt/BALT.animation.scroller.js?v=2'></script>
-        <script src='asset/js/balt/BALT.scrollAnimator.js?v=2'></script>
+        <script src='asset/js/balt/BALT.animations.js?v=2'></script>
         <script src='asset/js/williams.35xv.main.js?v=2'></script>
 
     </body>

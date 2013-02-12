@@ -18,37 +18,28 @@
 	}
 
 	$.BALT.animation.calculations = function() {
-
 		var root = this;
-
 		root.calcBgY = function(x, windowHeight, pos, adjuster, inertia){
 			return x + "px " + (-((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
-
 		root.calcBgX = function(y, windowHeight, pos, adjuster, inertia){
 			return (-((windowHeight + pos) - adjuster) * inertia)  + "px " + y + "px";
 		};
-
 		root.calcXY = function(windowHeight, pos, adjusterX, inertiaX, adjusterY, inertiaY){
 			return (-((windowHeight + pos) - adjusterX) * inertiaX)  + "px " + (-((windowHeight + pos) - adjusterY) * inertiaY) + "px";
 		};
-
 		root.calcPos = function(windowHeight, pos, adjuster, inertia) {
 			return (((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
-
 		root.calcRot = function( r, windowHeight, pos, adjuster, inertia ){
 			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
 		};
-
 		root.calcProgress = function( startAt, endAt ) {
 			return ( (startAt - scrollTopTweened) / (startAt - endAt) );
 		};
-
 		root.calcDegrees2Radians = function( degrees ) {
 			return ( degrees * Math.PI / 180 );
 		};
-
 	};
 
 	$.BALT.animation.spinner = function( o ) {
@@ -63,13 +54,11 @@
 
 		var spin = function() {
 			requestAnimFrame(spin);
-
 			scrollTopTweened += settings.tweenSpeed * ($window.scrollTop() - scrollTopTweened);
 			progress = calculations.calcProgress( settings.startAt, settings.endAt );
 			if ( progress <= 1 ) {
 				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
 				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
-
 				settings.sequence.showImageAt( toFrame );
 			//	console.log ( "progress ", toFrame, " | ", progress, " | ", scrollTopTweened, " | " );
 			}
@@ -93,6 +82,7 @@
 
 			settings = $.extend( defaults, opts );
 
+/*
 			if (settings.useRAF) {
 				if ( !window.requestAnimationFrame ){
 					var lastTime = 0;
@@ -134,7 +124,24 @@
 					window.setTimeout( callback, settings.tickSpeed);
 				}
 			};
-			
+*/
+
+			window.requestAnimFrame = (function(){
+				if (settings.useRAF) {
+					return  window.requestAnimationFrame       ||
+					window.webkitRequestAnimationFrame ||
+					window.mozRequestAnimationFrame    ||
+					window.oRequestAnimationFrame      ||
+					window.msRequestAnimationFrame     ||
+					function( callback ){
+						window.setTimeout(callback, settings.tickSpeed);
+					};
+				} else {
+					return function( callback ){
+						window.setTimeout( callback, settings.tickSpeed);
+					}
+				};
+			})();
 
 			resize();
 			spin();
@@ -144,31 +151,17 @@
 
 	};
 
-
-
 	$.BALT.animation.scroller = function( o ) {
-
-		var root = this,
-		progress = 0;
-
+		var root = this;
 		registrations = o.register;
-
 		var scrolling = function() {
 			var i = registrations.length;
 			while ( i-- ){
 				registrations[i].scroll( $window.scrollTop() );
 			}
-			//console.log( 'toFrame: ', toFrame, settings.imageCount, settings.skipImages, settings.frameSpeed, endFrame, progress, settings.startAt, settings.endAt );
 		};
-
-		// --------------------------------------------------
-		// PUBLIC
-		// --------------------------------------------------
 		$window.bind('scroll', scrolling);
-
 	};
-
-
 
 })(jQuery);
 
