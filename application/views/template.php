@@ -64,6 +64,7 @@
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
         <script src='asset/js/utils/UTIL.LoadProgress.js?v=2'></script>
 
+        <script src='asset/js/balt/BALT.loader.js?v=2'></script>
         <script src='asset/js/balt/BALT.utils.js?v=2'></script>
         <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>

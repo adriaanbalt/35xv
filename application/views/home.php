@@ -1,4 +1,13 @@
 
+<div id='loader'>
+	<img src='asset/img/home/logo-large.png' class='logo'/>
+	<p>LOADING...</p>
+	<div class='progress'>
+		<div class='bar'></div>
+	</div>
+</div>
+
+<div id='main'>
 
 <nav>
 	<div class='wrapper'>
@@ -333,3 +342,4 @@
 	<div class='wrapper'></div>
 </section>
 
+</div>
