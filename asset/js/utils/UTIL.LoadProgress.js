@@ -21,7 +21,7 @@ var LoadProgress = function( opts ) {
 			if ( typeof settings.onComplete === 'function' ) settings.onComplete();
 			done = true;
 		} else {
-		//	if ( typeof settings.onUpdate === 'function' ) settings.onUpdate( progress/total );
+			if ( typeof settings.onUpdate === 'function' ) settings.onUpdate( progress/total );
 		}
 	}
 	

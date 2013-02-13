@@ -50,29 +50,33 @@
 		scrollTop = 0,
 		scrollTopTweened = 0,
 		progress = 0,
-		currentIndex = -1;
+		currentIndex = -1,
+		raf = null,
+		cancelAnimation = false;
+
+		root.scroll = function( scrollY ) {
+			if ( scrollY >= settings.startAt && scrollY <= settings.endAt ) {
+				cancelAnimation = false;
+				raf = requestAnimationFrame(spin);
+			} else {
+				if ( !cancelAnimation ) cancelAnimationFrame( raf );
+				cancelAnimation = true;
+			}
+		}
 
 		var spin = function() {
-			requestAnimFrame(spin);
+			if ( !cancelAnimation ){
+				requestAnimationFrame(spin);
+			}
 			scrollTopTweened += settings.tweenSpeed * ($window.scrollTop() - scrollTopTweened);
 			progress = calculations.calcProgress( settings.startAt, settings.endAt );
 			if ( progress <= 1 ) {
 				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
 				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
 				settings.sequence.showImageAt( toFrame );
-			//	console.log ( "progress ", toFrame, " | ", progress, " | ", scrollTopTweened, " | " );
 			}
-			//console.log( 'toFrame: ', toFrame, settings.imageCount, settings.skipImages, settings.frameSpeed, endFrame, progress, settings.startAt, settings.endAt );
 		};
 
-		var resize = function() {
-			// onResize
-			if (settings.onResize && typeof settings.onResize === 'function') settings.onResize();
-		};
-
-		// --------------------------------------------------
-		// PUBLIC
-		// --------------------------------------------------
 		root.init = function( opts ) {
 			var defaults = {
 				tickSpeed: 30,
@@ -82,69 +86,28 @@
 
 			settings = $.extend( defaults, opts );
 
-/*
-			if (settings.useRAF) {
-				if ( !window.requestAnimationFrame ){
-					var lastTime = 0;
-					var vendors = ['ms', 'moz', 'webkit', 'o'];
-					for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-						window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-						window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
-						|| window[vendors[x]+'CancelRequestAnimationFrame'];
-					}
+			var lastTime = 0;
+			var vendors = ['ms', 'moz', 'webkit', 'o'];
+			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+				window.cancelAnimationFrame = 
+				window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+			}
 
-					if (!window.requestAnimationFrame)
-						window.requestAnimationFrame = function(callback, element) {
-							var currTime = new Date().getTime();
-							var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-							var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
-							timeToCall);
-							lastTime = currTime + timeToCall;
-							return id;
-						};
-
-					if (!window.cancelAnimationFrame)
-						window.cancelAnimationFrame = function(id) {
-						clearTimeout(id);
-					};
-				} else {
-					window.requestAnimFrame = (function(){
-						return  window.requestAnimationFrame       ||
-						window.webkitRequestAnimationFrame ||
-						window.mozRequestAnimationFrame    ||
-						window.oRequestAnimationFrame      ||
-						window.msRequestAnimationFrame     ||
-						function( callback ){
-							window.setTimeout(callback, settings.tickSpeed);
-						};
-					})();
-				}
-			} else {
-				return function( callback ){
-					window.setTimeout( callback, settings.tickSpeed);
-				}
-			};
-*/
-
-			window.requestAnimFrame = (function(){
-				if (settings.useRAF) {
-					return  window.requestAnimationFrame       ||
-					window.webkitRequestAnimationFrame ||
-					window.mozRequestAnimationFrame    ||
-					window.oRequestAnimationFrame      ||
-					window.msRequestAnimationFrame     ||
-					function( callback ){
-						window.setTimeout(callback, settings.tickSpeed);
-					};
-				} else {
-					return function( callback ){
-						window.setTimeout( callback, settings.tickSpeed);
-					}
+			if (!window.requestAnimationFrame)
+				window.requestAnimationFrame = function(callback, element) {
+					var currTime = new Date().getTime();
+					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+					var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+					  timeToCall);
+					lastTime = currTime + timeToCall;
+					return id;
 				};
-			})();
 
-			resize();
-			spin();
+			if (!window.cancelAnimationFrame)
+				window.cancelAnimationFrame = function(id) {
+					clearTimeout(id);
+				};
 
 			return this;
 		};

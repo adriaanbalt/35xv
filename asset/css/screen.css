@@ -35,6 +35,31 @@ body {
   overflow-x: hidden;
 }
 
+#main {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
+}
+
+#loader {
+  margin: 250px auto;
+  font-weight: 700;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+}
+#loader .progress {
+  margin: 0px auto;
+  border: 1px solid #000;
+  width: 275px;
+  height: 15px;
+}
+#loader .bar {
+  width: 0px;
+  height: 15px;
+  background-color: #FFF;
+}
+
 .wrapper {
   max-width: 980px;
   margin: 0 auto;
@@ -148,6 +173,8 @@ canvas {
 }
 .gallery-scroll .gallery-container {
   position: absolute;
+  top: 0;
+  left: 0;
 }
 .gallery-scroll .slide {
   margin-right: 30px;
@@ -172,9 +199,6 @@ canvas {
   font-weight: 400;
 }
 
-#home .content-box {
-  margin-top: 100px;
-}
 #home img {
   display: block;
   margin: 0 auto;

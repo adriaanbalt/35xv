@@ -22,6 +22,28 @@ body {
 	background-size: cover;
 	overflow-x: hidden;
 }
+#main {
+	opacity:0;
+	filter:alpha(opacity=0); /* For IE8 and earlier */
+}
+#loader {
+	margin: 250px auto;
+	font-weight: 700;
+	width: 100%;
+	position: fixed;
+	text-align: center;
+	.progress {
+		margin: 0px auto;
+		border: 1px solid #000;
+		width: 275px;
+		height: 15px;
+	}
+	.bar {
+		width: 0px;
+		height: 15px;
+		background-color: #FFF;
+	}
+}
 .wrapper {
 	max-width: 980px;
 	margin: 0 auto;
