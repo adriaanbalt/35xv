@@ -1,4 +1,15 @@
 
+<div id='loader'>
+	<img src='asset/img/home/logo-large.png' class='logo'/>
+	<p>LOADING...</p>
+	<div class='progress'>
+		<div class='bar'></div>
+	</div>
+</div>
+
+<div id='scroller'>
+	<div id='scrubber'></div>
+</div>
 
 <nav>
 	<div class='wrapper'>
@@ -15,6 +26,8 @@
 		</ul>
 	</div>
 </nav>
+
+<div id='main'>
 
 <!-- home -->
 <section id='home' class="">
@@ -61,9 +74,6 @@
 		<h2>DESIGN<br>TEAM</h2>
 		<div class="grid-whole">
 			<div class="grid-quarter">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
@@ -74,6 +84,9 @@
 					</div>
 					<h4>FX FOWLE</h4>
 				</div>
+			</div>
+			<div class="grid-quarter">
+				<div class="padded-inner"></div>
 			</div>
 			<div class="grid-quarter">
 				<div class="padded-inner"></div>
@@ -92,13 +105,13 @@
 			<div class="grid-quarter">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
-						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
 							<source src="asset/video/BMO.ogv" type='video/ogg'>
 							<source src="asset/video/BMO.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
 					</div>
-					<h4>BNO</h4>
+					<h4>BMO</h4>
 				</div>
 			</div>
 			<div class="grid-quarter">
@@ -333,3 +346,4 @@
 	<div class='wrapper'></div>
 </section>
 
+</div>

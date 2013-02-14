@@ -1,13 +1,12 @@
-(function(t){t.BALT||(t.BALT={}),t.BALT.galleryScroll=function(i,s){var n=this,e=i,a=e.find(".gallery-container")
-n.settings={loader:!1,ratioResize:!0,animating:!1,itemWidth:a.width(),slideCount:a.find(".slide").length,loadCounter:0,direction:1,ratio:0,startAt:0,endAt:0},n.settings=t.extend(n.settings,s),n.init=function(){if(n.settings.onLoad){var i=e.find(".slide img")
-i.each(function(){(t(this)[0].complete||4==t(this)[0].readyState)&&o(),t(this).load(o)})}n.settings.ratio=a.find(".slide:eq(0)").height()/a.find(".slide:eq(0)").width()}
-var o=function(){n.settings.onLoad&&"function"==typeof n.settings.onLoad&&n.settings.onLoad()}
-n.start=function(){t(window).resize(r),r()}
-var r=function(){a.find(".slide").each(function(){}),n.settings.itemWidth=a.find(".slide:eq(0)").width(),totalImagesWidth=n.settings.slideCount*(n.settings.itemWidth+d(a.find(".slide:eq(0)"),"margin-right")),a.width(totalImagesWidth),e.height(totalImagesWidth-n.settings.itemWidth),n.settings.startAt=e.offset().top-100,n.settings.endAt=Math.round(n.settings.startAt+e.height())},d=function(t,i){return parseInt(t.css(i).replace("px",""))}
-n.scroll=function(t){var i,s,o,r,d,l,h,f
-n.settings.endAt>t&&t>n.settings.startAt?(i="string"==typeof a.css("left")?0:a.css("left"),s=totalImagesWidth,o="string"==typeof a.css("top")?0:a.css("top"),r=e.height(),d=t-n.settings.startAt,l=n.settings.endAt-n.settings.startAt,h=Math.round(-1*g(i,s,d,l)),f=Math.round(g(o,r,d,l))):n.settings.startAt>t?(h=0,f=0):t>n.settings.endAt&&(h=0,f=0)
-var c={transform:"translate("+h+"px,"+f+"px)",transition:"all 0s ease"}
-a.css(c)}
-var g=function(t,i,s,n,e){var a=i-t,o=s/n
-return e||(e=TWEEN.Easing.Linear.EaseNone),e(o)*a+t},d=function(t,i){return parseInt(t.css(i).replace("px",""))}
-n.init()}})(jQuery)
+(function(t){t.BALT||(t.BALT={}),t.BALT.galleryScroll=function(i,e){var s,n,g,r,o,a,d=this,l=i,h=l.find(".gallery-container"),c=0,f=0
+d.settings={loader:!1,ratioResize:!0,animating:!1,itemWidth:h.width(),itemHeight:0,totalImagesWidth:0,slideCount:h.find(".slide").length,loadCounter:0,direction:1,ratio:0,startAt:0,endAt:0},d.settings=t.extend(d.settings,e),d.init=function(){if(d.settings.onProgress){var i=l.find(".slide img")
+i.each(function(){(t(this)[0].complete||4==t(this)[0].readyState)&&m(),t(this).load(m)})}d.settings.ratio=h.find(".slide:eq(0)").height()/h.find(".slide:eq(0)").width()}
+var m=function(){d.settings.onProgress&&"function"==typeof d.settings.onProgress&&d.settings.onProgress()}
+d.start=function(){t(window).resize(u),u()}
+var u=function(){d.settings.itemWidth=h.find(".slide:eq(0)").width(),d.settings.itemHeight=h.find(".slide:eq(0)").height(),d.settings.totalImagesWidth=d.settings.slideCount*(d.settings.itemWidth+A(h.find(".slide:eq(0)"),"margin-right")),h.width(d.settings.totalImagesWidth),l.height(d.settings.totalImagesWidth-d.settings.itemWidth),d.settings.endAt=d.settings.startAt+l.height()},A=function(t,i){return parseInt(t.css(i).replace("px",""))}
+d.scroll=function(t){console.log(""),console.log("$container ",h.selector),console.log("scroll: ",t,d.settings.startAt,d.settings.endAt),d.settings.endAt>t&&t>d.settings.startAt?(s=d.settings.totalImagesWidth,n=l.height(),g=t-d.settings.startAt,r=d.settings.endAt-d.settings.startAt,o=-1*W(c,s,g,r),a=W(f,n,g,r),d.settings.itemWidth-s>o&&(o=d.settings.itemWidth-s),a>n-d.settings.itemHeight&&(a=n-d.settings.itemHeight)):d.settings.startAt>t?(o=0,a=0):t>d.settings.endAt&&(o=d.settings.itemWidth-s,a=d.settings.itemWidth-n)
+var i={transform:"translate("+o+"px,"+a+"px)"}
+h.css(i)}
+var W=function(t,i,e,s,n){var g=i-t,r=e/s
+return n||(n=TWEEN.Easing.Linear.EaseNone),n(r)*g+t},A=function(t,i){return parseInt(t.css(i).replace("px",""))}
+d.init()}})(jQuery)

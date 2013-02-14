@@ -1,11 +1,12 @@
 @import "compass/css3/box-shadow";
 
 .gallery-scroll {
-	overflow: hidden;
 	position: relative;
 
 	.gallery-container {
 		position: absolute;
+		top: 0;
+		left: 0;
 	}
 	.slide {
 		margin-right: 30px;

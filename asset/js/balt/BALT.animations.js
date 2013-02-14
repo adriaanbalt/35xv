@@ -1,0 +1,12 @@
+(function(n){n.BALT||(n.BALT={}),n.BALT.animation||(n.BALT.animation={}),n.BALT.animation.calculations=function(){var n=this
+n.calcBgY=function(n,e,t,i,o){return n+"px "+-(e+t-i)*o+"px"},n.calcBgX=function(n,e,t,i,o){return-(e+t-i)*o+"px "+n+"px"},n.calcXY=function(n,e,t,i,o,r){return-(n+e-t)*i+"px "+-(n+e-o)*r+"px"},n.calcPos=function(n,e,t,i){return(n+e-t)*i+"px"},n.calcRot=function(n,e,t,i,o){return n+-((e+t-i)*o)},n.calcProgress=function(n,e){return(n-scrollTopTweened)/(n-e)},n.calcDegrees2Radians=function(n){return n*Math.PI/180}},n.BALT.animation.spinner=function(){n(window),root=this,started=!1,scrollTop=0,scrollTopTweened=0,progress=0,currentIndex=-1,raf=null,cancelAnimation=!1,root.scroll=function(n){scrollTop=n,n>=settings.startAt&&settings.endAt>=n?(cancelAnimation=!1,raf=requestAnimationFrame(e)):(cancelAnimation||cancelAnimationFrame(raf),cancelAnimation=!0)}
+var e=function(){if(cancelAnimation||requestAnimationFrame(e),scrollTopTweened+=settings.tweenSpeed*(scrollTop-scrollTopTweened),progress=calculations.calcProgress(settings.startAt,settings.endAt),1>=progress){var n=settings.imageCount/settings.skipImages*settings.frameSpeed,t=Math.floor(progress*n)%settings.imageCount
+settings.sequence.showImageAt(t)}}
+root.init=function(e){var t={tickSpeed:30,useRAF:!0,tweenSpeed:.3}
+settings=n.extend(t,e)
+for(var i=0,o=["ms","moz","webkit","o"],r=0;o.length>r&&!window.requestAnimationFrame;++r)window.requestAnimationFrame=window[o[r]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[o[r]+"CancelAnimationFrame"]||window[o[r]+"CancelRequestAnimationFrame"]
+return window.requestAnimationFrame||(window.requestAnimationFrame=function(n){var e=(new Date).getTime(),t=Math.max(0,16-(e-i)),o=window.setTimeout(function(){n(e+t)},t)
+return i=e+t,o}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(n){clearTimeout(n)}),this}},n.BALT.animation.scroller=function(e){var t,i=this,o=0,r=n(window),a=n(document),s={scrollSpeed:40},c=n.extend(s,e),l=function(){for(var n=c.register.length;n--;)m(o),c.register[n].scroll(o)},m=function(e){var t=e/c.maxScroll*(n("#scroller").height()-n("#scrubber").height())
+n("#main").css({transition:"all 0ms",transform:"translate( 0px, "+-1*e+"px)"}),n("#scrubber").css({transform:"translateY("+t+"px)"})},u=function(n,e){n.preventDefault(),o-=e*c.scrollSpeed,0>o&&(o=0),w(),l()},w=function(){0>o?o=0:o>c.maxScroll&&(o=c.maxScroll)}
+i.init=function(){a.on("mousewheel",u),r.on("resize",f),f()}
+var f=function(){t=r.height(),n("#scroller").height(t-4)}}})(jQuery)

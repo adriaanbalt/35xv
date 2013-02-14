@@ -1,2 +1,2 @@
-var LoadProgress=function(n){var e={},o=$.extend(e,n),t=0,r=0,f=!1,p=function(n){t+=n},u=function(n){r+=n=1,r==t&&f===!1&&("function"==typeof o.onUpdate&&o.onUpdate(r/t),"function"==typeof o.onComplete&&o.onComplete(),f=!0)}
-return{register:p,update:u}}
+var LoadProgress=function(n){var o={},t=$.extend(o,n),e=0,p=0,f=!1,a=function(n){e+=n},r=function(n){p+=n=1,p==e&&f===!1?("function"==typeof t.onUpdate&&t.onUpdate(p/e),"function"==typeof t.onComplete&&t.onComplete(),f=!0):"function"==typeof t.onUpdate&&t.onUpdate(p/e)}
+return{register:a,update:r}}
