@@ -73,7 +73,7 @@ body {
   zoom: 1;
   width: 7px;
   bottom: 2px;
-  top: 100px;
+  top: 0;
   right: 1px;
   pointer-events: none;
   -webkit-transition: opacity 0ms 0ms;
@@ -256,9 +256,6 @@ canvas {
   font-weight: 400;
 }
 
-#home {
-  top: 100px;
-}
 #home img {
   display: block;
   margin: 0 auto;
