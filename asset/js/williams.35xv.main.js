@@ -19,7 +19,7 @@
 
 	loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
-			$('#main').css( { 
+			$('#main').css( {
 				opacity: 1,
 				filter: 'alpha(opacity=' + 100 + ')', /* For IE8 and earlier */
 				transition: 'all 1s'
@@ -35,8 +35,6 @@
 		},
 		onComplete: function() {
 			console.log ( "loadProgress COMPLETE" );
-			
-
 
 			residences_gallery.start();
 			amenities_gallery.start();
@@ -54,12 +52,9 @@
 				sequence: imageSequences['building-large']
 			});
 
-			scroller = new $.BALT.animation.scroller({
-				register : [ residences_gallery, amenities_gallery, spinner ]
-			});
 		}
 	});
-	
+
 	imageSequences['building-large'] = new $.BALT.imageSequence({
 		filesPath:'asset/img/building-large/35XV_ROTATE_2013_2_11_000{index}.gif',
 		imageCount: 100,
@@ -94,15 +89,18 @@
 
 	spinner = new $.BALT.animation.spinner();
 
-	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), { 
+	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), {
 		onProgress: function() {
 			loadProgress.update();
 		}
 	});
-	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), { 
+	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), {
 		onProgress: function() {
 			loadProgress.update();
 		}
+	});
+	scroller = new $.BALT.animation.scroller({
+		register : [ residences_gallery, amenities_gallery, spinner ]
 	});
 
 	loadProgress.register( residences_gallery.settings.slideCount );

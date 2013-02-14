@@ -5,19 +5,19 @@ body {
 	position: relative;
 
 	/* IE; docs say this should go first (or better, placed in separate IE-only stylesheet): */
-	//@include filter-gradient(#aaaaaa, #eeeeee);
+	// @include filter-gradient(#aaaaaa, #eeeeee);
 	/* Fallback: */
 	//background: $blue;
 	/* CSS 3 plus vendor prefixes: */
-	//@include background(linear-gradient(top, $blue, #eeeeee));
-	// background: #70cbf2; /* Old browsers */
-	// background: -moz-linear-gradient(top,  #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%); /* FF3.6+ */
-	// background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#70cbf2), color-stop(16%,#34b7ef), color-stop(34%,#20a2d6), color-stop(58%,#70cbf2), color-stop(86%,#20a2d6), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
-	// background: -webkit-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
-	// background: -o-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Opera 11.10+ */
-	// background: -ms-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* IE10+ */
-	// background: linear-gradient(to bottom,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* W3C */
-	// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+	@include background(linear-gradient(top, $blue, #eeeeee));
+	background: #70cbf2; /* Old browsers */
+	background: -moz-linear-gradient(top,  #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#70cbf2), color-stop(16%,#34b7ef), color-stop(34%,#20a2d6), color-stop(58%,#70cbf2), color-stop(86%,#20a2d6), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
 	background: #70cbf2 url('../img/sky.jpg') repeat-y center center;
 	background-size: cover;
 	overflow-x: hidden;

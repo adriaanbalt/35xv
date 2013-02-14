@@ -90,7 +90,7 @@
 			var vendors = ['ms', 'moz', 'webkit', 'o'];
 			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
 				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-				window.cancelAnimationFrame = 
+				window.cancelAnimationFrame =
 				window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
 			}
 
@@ -98,7 +98,7 @@
 				window.requestAnimationFrame = function(callback, element) {
 					var currTime = new Date().getTime();
 					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-					var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+					var id = window.setTimeout(function() { callback(currTime + timeToCall); },
 					  timeToCall);
 					lastTime = currTime + timeToCall;
 					return id;
@@ -115,15 +115,48 @@
 	};
 
 	$.BALT.animation.scroller = function( o ) {
-		var root = this;
-		registrations = o.register;
+		var root = this,
+		scrollTop = 0,
+		$window = $(window),
+		defaults = {
+			scrollSpeed : 40
+		};
+
+		var settings = $.extend( defaults, o );
+
+
 		var scrolling = function() {
-			var i = registrations.length;
+			//scrollTop = $window.scrollTop();
+			var i = settings.register.length;
 			while ( i-- ){
-				registrations[i].scroll( $window.scrollTop() );
+				settings.register[i].scroll( scrollTop );
 			}
 		};
-		$window.bind('scroll', scrolling);
+
+		// scrollwheel
+		function wheelHandler(e, delta, deltaX, deltaY) {
+			scrollTop -= delta * settings.scrollSpeed;
+			if ( scrollTop < 0) scrollTop = 0;
+			checkScrollExtents();
+			scrolling();
+		};
+
+		function checkScrollExtents() {
+			if (scrollTop < 0) scrollTop = 0;
+			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
+		}
+
+		function scrollTo( scroll ) {
+			scrollTop = scroll;
+		};
+
+		init = function() {
+			$(document).on('mousewheel', wheelHandler);
+		}
+
+		init();
+
+		//$window.bind('scroll', scrolling);
 	};
 
 })(jQuery);

@@ -101,13 +101,20 @@
 		};
 
 		root.scroll = function( scrollY ) {
-
+			console.log ( '' );
+			console.log( '$container ' , $container.selector );
+			console.log ( "scroll: ", scrollY, root.settings.endAt,root.settings.startAt)
+			// if ( cur_time != undefined ) {
+			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
+			//}
+			//
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
 				endX = root.settings.totalImagesWidth;
 				endY = $target.height();
-				
+
 				cur_time = ( scrollY - root.settings.startAt ) ;
 				tot_time = ( root.settings.endAt - root.settings.startAt );
+			console.log ( "root.settings.endAt : ", tot_time );
 
 				valX = getTweenedValue( startX, endX, cur_time, tot_time ) * -1;
 				valY = getTweenedValue( startY, endY, cur_time, tot_time );
@@ -127,16 +134,16 @@
 				valY = (root.settings.itemWidth - endY);
 			}
 
-			// if ( cur_time != undefined ) {
-			// 	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
-			// }
 			var properties = {
 				transform : "translate("+valX+"px,"+valY+"px)"
 				// ,
 				// transition : 'all .01s ease'
 			};
 
+
 			$container.css ( properties );
+
+
 		};
 
 		var getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
