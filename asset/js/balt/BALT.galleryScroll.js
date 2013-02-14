@@ -92,7 +92,7 @@
 			$container.width( root.settings.totalImagesWidth );
 			$target.height( root.settings.totalImagesWidth - root.settings.itemWidth );
 
-			root.settings.startAt = ($target.offset().top - 100 );
+			//root.settings.startAt = ($target.offset().top - 100 );
 			root.settings.endAt = root.settings.startAt + $target.height();
 		};
 
@@ -103,7 +103,7 @@
 		root.scroll = function( scrollY ) {
 			console.log ( '' );
 			console.log( '$container ' , $container.selector );
-			console.log ( "scroll: ", scrollY, root.settings.endAt,root.settings.startAt)
+			console.log ( "scroll: ", scrollY, root.settings.startAt, root.settings.endAt )
 			// if ( cur_time != undefined ) {
 			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
 			//}
@@ -114,7 +114,6 @@
 
 				cur_time = ( scrollY - root.settings.startAt ) ;
 				tot_time = ( root.settings.endAt - root.settings.startAt );
-			console.log ( "root.settings.endAt : ", tot_time );
 
 				valX = getTweenedValue( startX, endX, cur_time, tot_time ) * -1;
 				valY = getTweenedValue( startY, endY, cur_time, tot_time );
@@ -140,10 +139,7 @@
 				// transition : 'all .01s ease'
 			};
 
-
 			$container.css ( properties );
-
-
 		};
 
 		var getTweenedValue = function(start, end, currentTime, totalTime, tweener) {

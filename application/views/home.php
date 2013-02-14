@@ -7,7 +7,9 @@
 	</div>
 </div>
 
-<div id='main'>
+<div id='scroller'>
+	<div id='scrubber'></div>
+</div>
 
 <nav>
 	<div class='wrapper'>
@@ -24,6 +26,8 @@
 		</ul>
 	</div>
 </nav>
+
+<div id='main'>
 
 <!-- home -->
 <section id='home' class="">

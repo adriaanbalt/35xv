@@ -8,6 +8,9 @@ nav {
   z-index: 1000;
   zoom: 1;
   padding: 0 0 .5em 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* For IE8 and earlier */
 }
 nav ul {
   margin: .5em 0;
@@ -51,15 +54,48 @@ body {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 );
   /* IE6-9 */
-  background: #70cbf2 url("../img/sky.jpg") repeat-y center center;
+  background: #70cbf2 url("../img/sky.jpg") repeat-y top center;
   background-size: cover;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #main {
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
+  overflow: hidden;
+  position: absolute;
+}
+
+#scroller {
+  position: absolute;
+  z-index: 10000;
+  zoom: 1;
+  width: 7px;
+  bottom: 2px;
+  top: 100px;
+  right: 1px;
+  pointer-events: none;
+  -webkit-transition: opacity 0ms 0ms;
+  overflow: hidden;
+  opacity: 1;
+}
+#scroller #scrubber {
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.49804);
+  border: 1px solid rgba(255, 255, 255, 0.90196);
+  -webkit-background-clip: padding-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1);
+  -webkit-transform: translate(0px, 0px) translateZ(0px);
+  height: 120px;
 }
 
 #loader {
@@ -220,6 +256,9 @@ canvas {
   font-weight: 400;
 }
 
+#home {
+  top: 100px;
+}
 #home img {
   display: block;
   margin: 0 auto;

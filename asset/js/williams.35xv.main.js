@@ -19,13 +19,28 @@
 
 	loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
-			$('#main').css( {
+			var prop = {
 				opacity: 1,
 				filter: 'alpha(opacity=' + 100 + ')', /* For IE8 and earlier */
 				transition: 'all 1s'
-			});
+			};
+			$('#main').css( prop );
+			$('nav').css( prop );
 		}
 	});
+
+	gotoSection = {
+		'design' : 0,
+		'design-team' : 1740,
+		'residences' : 3530,
+		'feature' : 5000,
+		'availability' : 5880,
+		'amenities-services' : 7470,
+		'neighborhood' : 9960,
+		'team' : 8490,
+		'press' : 8680,
+		'contact' : 8960
+	};
 
 	var imageSequences = {};
 
@@ -34,31 +49,28 @@
 			loader.update( val * 100 );
 		},
 		onComplete: function() {
-			console.log ( "loadProgress COMPLETE" );
-
 			residences_gallery.start();
 			amenities_gallery.start();
 			spinner.init({
-				maxScroll: 5400,			// max scroll
 				useRAF : true,				// set requestAnimationFrame
 				debug: false,				// turn on debug
 				tweenSpeed: .3,				// scrollTop tween speed
 				skipImages: 1,
 				frameSpeed: 1,
-				startAt: 300,	// scrollTop where the experience starts
-				endAt: 1900,
+				startAt: gotoSection['design'],	// scrollTop where the experience starts
+				endAt: gotoSection['design-team'],
 				container: $('#container'),		// main container
 				imageCount: $('#building-large img').length,
 				sequence: imageSequences['building-large']
 			});
-
+			scroller.init();
 		}
 	});
 
 	imageSequences['building-large'] = new $.BALT.imageSequence({
-		filesPath:'asset/img/building-large/35XV_ROTATE_2013_2_11_000{index}.gif',
+		filesPath:'asset/img/building-large/35XV_2013-02-13_000{index}.gif',
 		imageCount: 100,
-		skipImages: 5,
+		skipImages: 3,
 		container: $('#building-large'),
 		onProgress: function() {
 			loadProgress.update( this.skipImages );
@@ -90,16 +102,19 @@
 	spinner = new $.BALT.animation.spinner();
 
 	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), {
+		startAt : gotoSection['residences'],
 		onProgress: function() {
 			loadProgress.update();
 		}
 	});
 	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), {
+		startAt : gotoSection['amenities-services'],
 		onProgress: function() {
 			loadProgress.update();
 		}
 	});
 	scroller = new $.BALT.animation.scroller({
+		maxScroll: 13621,
 		register : [ residences_gallery, amenities_gallery, spinner ]
 	});
 

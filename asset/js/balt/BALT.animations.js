@@ -55,6 +55,7 @@
 		cancelAnimation = false;
 
 		root.scroll = function( scrollY ) {
+			scrollTop = scrollY;
 			if ( scrollY >= settings.startAt && scrollY <= settings.endAt ) {
 				cancelAnimation = false;
 				raf = requestAnimationFrame(spin);
@@ -68,7 +69,7 @@
 			if ( !cancelAnimation ){
 				requestAnimationFrame(spin);
 			}
-			scrollTopTweened += settings.tweenSpeed * ($window.scrollTop() - scrollTopTweened);
+			scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 			progress = calculations.calcProgress( settings.startAt, settings.endAt );
 			if ( progress <= 1 ) {
 				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
@@ -118,45 +119,69 @@
 		var root = this,
 		scrollTop = 0,
 		$window = $(window),
+		$document = $(document),
+		firstTime = true,
+		windowHeight,
 		defaults = {
 			scrollSpeed : 40
 		};
 
 		var settings = $.extend( defaults, o );
 
-
-		var scrolling = function() {
-			//scrollTop = $window.scrollTop();
+		var dispatch = function() {
 			var i = settings.register.length;
 			while ( i-- ){
+				scroll( scrollTop );
 				settings.register[i].scroll( scrollTop );
 			}
 		};
 
-		// scrollwheel
-		function wheelHandler(e, delta, deltaX, deltaY) {
+		var scroll = function( scrollY ) {
+			var y = ( scrollY / settings.maxScroll ) * ( $('#scroller').height() - $('#scrubber').height() );
+			$('#main').css( {
+				transition: 'all 0ms',
+				transform : 'translate( 0px, ' + (scrollY*-1) + 'px)'
+			});
+			$('#scrubber').css( {
+				transform: 'translateY(' + y + 'px)'
+			});
+		};
+
+		var wheelHandler = function(e, delta, deltaX, deltaY) {
+			e.preventDefault();
 			scrollTop -= delta * settings.scrollSpeed;
 			if ( scrollTop < 0) scrollTop = 0;
 			checkScrollExtents();
-			scrolling();
+			dispatch();
 		};
 
-		function checkScrollExtents() {
+		var checkScrollExtents = function() {
 			if (scrollTop < 0) scrollTop = 0;
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
 		}
 
-		function scrollTo( scroll ) {
+		var scrollTo = function( scroll ) {
 			scrollTop = scroll;
 		};
 
-		init = function() {
-			$(document).on('mousewheel', wheelHandler);
+		root.init = function() {
+			$document.on('mousewheel', wheelHandler);
+			$window.on('resize', resize);
+			resize();			
 		}
-
-		init();
-
-		//$window.bind('scroll', scrolling);
+		
+		var resize = function() {
+			windowHeight = $window.height();
+			$('#scroller').height( windowHeight -4 );
+		};
+		
+		var goingDown = function( e ) {
+			if ( e !== undefined && firstTime ){
+				//$window.off('scroll', root.goingDown);
+				firstTime = false;
+				scrollTo( $window.scrollTop() );
+			}			
+		}
 	};
 
 })(jQuery);
