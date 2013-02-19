@@ -43,7 +43,7 @@
 				});
 			}
 
-			root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
+		//	root.settings.ratio = $container.find('.slide:eq(0)').height() / $container.find('.slide:eq(0)').width();
 		};
 		var imageLoaded = function( e ) {
 			if ( root.settings.onProgress && typeof root.settings.onProgress == 'function' ) {
@@ -83,7 +83,7 @@
 
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
 			root.settings.itemHeight = $container.find('.slide:eq(0)').height();
-			root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right') );
+			root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+130 );
 
 			$container.width( root.settings.totalImagesWidth );
 			$target.height( root.settings.totalImagesWidth - root.settings.itemWidth );
@@ -104,7 +104,7 @@
 			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
 			//}
 
-			limitX = (root.settings.itemWidth - endX + getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right'));
+			limitX = (root.settings.itemWidth - endX + 130 );
 			limitY = (endY - root.settings.itemHeight);
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
 				endX = root.settings.totalImagesWidth;

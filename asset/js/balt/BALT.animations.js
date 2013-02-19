@@ -120,6 +120,9 @@
 		scrollTop = 0,
 		$window = $(window),
 		$document = $(document),
+		$scrubber = $('#scrubber'),
+		$scroller = $('#scroller'),
+		$main = $('#main'),
 		firstTime = true,
 		windowHeight,
 		defaults = {
@@ -137,12 +140,13 @@
 		};
 
 		var scroll = function( scrollY ) {
-			var y = ( scrollY / settings.maxScroll ) * ( $('#scroller').height() - $('#scrubber').height() );
-			$('#main').css( {
+			var y = ( scrollY / settings.maxScroll ) * ( windowHeight - 122 );
+			console.log ( "scrollY: ", scrollY, y );
+			$main.css( {
 				transition: 'all 0ms',
 				transform : 'translate( 0px, ' + (scrollY*-1) + 'px)'
 			});
-			$('#scrubber').css( {
+			$scrubber.css( {
 				transform: 'translateY(' + y + 'px)'
 			});
 		};
@@ -156,12 +160,19 @@
 		};
 
 		var mousedown = function( e ) {
-			console.log ( "y: ", e.offsetY, e.pageY );
+			$scrubber.on ( 'mousemove', mousemove );
 		};
 
 		var mouseup = function( e ) {
-			//$(e.currentTarget).height() - e.offsetY
-			console.log ( "y: ", e.offsetY, e.pageY, $(e.currentTarget).height() );
+			$scrubber.off ( 'mousemove', mousemove );
+		};
+
+		var mousemove = function( e ) {
+			console.log ( e.pageY, e.offsetY );
+			var delta = e.pageY - e.offsetY;
+			scrollTop += delta,
+			//scrollTop = (e.pageY - e.offsetY) * settings.maxScroll /  ( windowHeight - 122 );
+			dispatch();
 		};
 
 		var checkScrollExtents = function() {
@@ -177,28 +188,16 @@
 			$document.on('mousewheel', wheelHandler);
 			$window.on('resize', resize);
 
-			$('#scrubber').on ( 'mousedown', mouseup );
-			$('#scrubber').on ( 'mouseup', mousedown );
+			$scrubber.on ( 'mousedown', mousedown );
+			$window.on ( 'mouseup', mouseup );
 
-			console.log ( $('#main') );
-			console.log ( $('#scroller') );
-			console.log ( $('#scrubber') );
-			console.log ( $('body').find('#scroller') );
 			resize();
 		}
 
 		var resize = function() {
 			windowHeight = $window.height();
-			$('#scroller').height( windowHeight -4 );
+			$scroller.height( windowHeight - 4 );
 		};
-
-		var goingDown = function( e ) {
-			if ( e !== undefined && firstTime ){
-				//$window.off('scroll', root.goingDown);
-				firstTime = false;
-				scrollTo( $window.scrollTop() );
-			}
-		}
 	};
 
 })(jQuery);
