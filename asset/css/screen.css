@@ -2,7 +2,7 @@
 /* filter-gradient needs this */
 nav {
   background: rgba(255, 255, 255, 0.5);
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 1000;
@@ -63,39 +63,11 @@ body {
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
-  overflow: hidden;
   position: absolute;
-}
-
-#scroller {
-  position: absolute;
-  z-index: 10000;
+  z-index: 999;
   zoom: 1;
-  width: 7px;
-  bottom: 2px;
-  top: 100px;
-  right: 1px;
-  pointer-events: none;
-  -webkit-transition: opacity 0ms 0ms;
-  overflow: hidden;
-  opacity: 1;
-}
-#scroller #scrubber {
-  position: absolute;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.49804);
-  border: 1px solid rgba(255, 255, 255, 0.90196);
-  -webkit-background-clip: padding-box;
-  box-sizing: border-box;
-  width: 100%;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  pointer-events: none;
-  -webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1);
-  -webkit-transform: translate(0px, 0px) translateZ(0px);
-  height: 120px;
+  left: 50%;
+  margin-left: -600px;
 }
 
 #loader {
@@ -234,7 +206,7 @@ canvas {
   left: 0;
 }
 .gallery-scroll .slide {
-  margin-right: 30px;
+  margin-right: 130px;
   float: left;
   position: relative;
 }
@@ -256,9 +228,36 @@ canvas {
   font-weight: 400;
 }
 
-#home {
-  top: 100px;
+#scroller {
+  background: #0f0;
+  position: fixed;
+  z-index: 10000;
+  zoom: 1;
+  width: 17px;
+  bottom: 2px;
+  top: 0px;
+  right: 1px;
+  -webkit-transition: opacity 0ms 0ms;
+  overflow: hidden;
+  opacity: 1;
 }
+#scroller #scrubber {
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.49804);
+  border: 1px solid rgba(255, 255, 255, 0.90196);
+  -webkit-background-clip: padding-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1);
+  -webkit-transform: translate(0px, 0px) translateZ(0px);
+  height: 120px;
+}
+
 #home img {
   display: block;
   margin: 0 auto;

@@ -22,7 +22,6 @@
 			<li><a href='#team'>TEAM</a></li>
 			<li><a href='#press'>PRESS</a></li>
 			<li><a href='#contact'>CONTACT</a></li>
-			<li><img src='asset/img/logo-small.png' class='logo'/></li>
 		</ul>
 	</div>
 </nav>
@@ -32,6 +31,7 @@
 <!-- home -->
 <section id='home' class="">
 	<div class="content-box center">
+		<p>A SKYMARK</p>
 		<img src='asset/img/home/logo-large.png' class='logo'/>
 		<img src='asset/img/home/home.png' id='skyline-img'/>
 	</div>
@@ -106,12 +106,12 @@
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/BMO.ogv" type='video/ogg'>
-							<source src="asset/video/BMO.mp4" type='video/mp4'>
+							<source src="asset/video/BNO.ogv" type='video/ogg'>
+							<source src="asset/video/BNO.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
 					</div>
-					<h4>BMO</h4>
+					<h4>BNO</h4>
 				</div>
 			</div>
 			<div class="grid-quarter">
@@ -325,7 +325,26 @@
 	<section id='team' class="grid-whole">
 		<h2>TEAM</h2>
 		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
+			<div class='team-member'>
+				<img src='asset/img/team/alchemy.jpg'/>
+				<h4>ALCHEMY</h4>
+				<p>Alchemy Properties Inc. is a privately held, fully integrated real estate firm whose principals have over 75 years of experience in acquiring, developing, leasing, repositioning, managing, financing and selling real estate in the New York City Tri-State area. Started by Kenneth S. Horn in 1990, Alchemy has become a best-in-class partner with a variety of institutional, family foundation and high net worth individuals as long-term repeat investors.</p>
+			</div>
+			<div class='team-member'>
+				<img src=''/>
+				<h4>ANGELO GORDON</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			</div>
+			<div class='team-member'>
+				<img src='asset/img/team/fxfowle.jpg'/>
+				<h4>FX FOWLE</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			</div>
+			<div class='team-member'>
+				<img src='asset/img/team/bno.jpg'/>
+				<h4>BNO</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			</div>
 		</div>
 	</section>
 
@@ -333,12 +352,62 @@
 	<section id='press' class="grid-whole">
 		<h2>PRESS</h2>
 		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
+			<ul>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>REAL DEAL</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+			</ul>
 		</div>
 	</section>
 
 <!-- contact -->
-<?php echo $contact_form; ?>
+	<?php echo $contact_form; ?>
+
+<!-- address -->
+	<section id='address' class="grid-whole">
+	</section>
+
+<!-- footer -->
+	<footer>
+		<p>2013 &copy;</p>
+	</footer>
 
 </div>
 

@@ -155,6 +155,15 @@
 			dispatch();
 		};
 
+		var mousedown = function( e ) {
+			console.log ( "y: ", e.offsetY, e.pageY );
+		};
+
+		var mouseup = function( e ) {
+			//$(e.currentTarget).height() - e.offsetY
+			console.log ( "y: ", e.offsetY, e.pageY, $(e.currentTarget).height() );
+		};
+
 		var checkScrollExtents = function() {
 			if (scrollTop < 0) scrollTop = 0;
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
@@ -167,20 +176,28 @@
 		root.init = function() {
 			$document.on('mousewheel', wheelHandler);
 			$window.on('resize', resize);
-			resize();			
+
+			$('#scrubber').on ( 'mousedown', mouseup );
+			$('#scrubber').on ( 'mouseup', mousedown );
+
+			console.log ( $('#main') );
+			console.log ( $('#scroller') );
+			console.log ( $('#scrubber') );
+			console.log ( $('body').find('#scroller') );
+			resize();
 		}
-		
+
 		var resize = function() {
 			windowHeight = $window.height();
 			$('#scroller').height( windowHeight -4 );
 		};
-		
+
 		var goingDown = function( e ) {
 			if ( e !== undefined && firstTime ){
 				//$window.off('scroll', root.goingDown);
 				firstTime = false;
 				scrollTo( $window.scrollTop() );
-			}			
+			}
 		}
 	};
 

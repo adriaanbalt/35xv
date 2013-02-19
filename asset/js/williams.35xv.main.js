@@ -24,8 +24,10 @@
 				filter: 'alpha(opacity=' + 100 + ')', /* For IE8 and earlier */
 				transition: 'all 1s'
 			};
-			$('#main').css( prop );
-			$('nav').css( prop );
+//			$('#main').css( prop );
+//			$('nav').css( prop );
+			$('#main').animate( prop,1000 );
+			$('nav').animate( prop,1000 );
 		}
 	});
 
@@ -114,7 +116,7 @@
 		}
 	});
 	scroller = new $.BALT.animation.scroller({
-		maxScroll: 13621,
+		maxScroll: 16621,
 		register : [ residences_gallery, amenities_gallery, spinner ]
 	});
 
@@ -127,3 +129,4 @@
 	}
 
 })(jQuery);
+

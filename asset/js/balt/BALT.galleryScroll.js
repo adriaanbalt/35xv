@@ -15,7 +15,7 @@
 		var root = this,
 		$target = target,
 		$container = $target.find('.gallery-container'),
-		startX = 0, endX, startY = 0, endY, cur_time, tot_time, valX, valY;
+		startX = 0, endX, startY = 0, endY, cur_time, tot_time, valX, valY, limitX, limitY;
 		root.settings = {
 			loader : false,
 			ratioResize : true,
@@ -70,11 +70,8 @@
 			// $container.find('.slide').each( function() {
 			// 	$(this).css( {'width':$(window).width(), 'height':$(window).height()} );
 			// 	$(this).width( $target.width() ).height( $target.height() );
-
 			// 	imageResize ( $(this), $target.width(), $target.height() )
-
 			// 	$(this).width( $target.width() );
-
 			// 	if ( root.settings.ratioResize ){
 			// 		$(this).height( Math.round ( $target.width() * root.settings.ratio ) );
 			// 		if ( $(this).height() < $target.height() ) {
@@ -82,7 +79,6 @@
 			// 			$(this).width( Math.round ( $target.height() / root.settings.ratio ) );
 			// 		}
 			// 	}
-
 			// });
 
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
@@ -101,13 +97,15 @@
 		};
 
 		root.scroll = function( scrollY ) {
-			console.log ( '' );
-			console.log( '$container ' , $container.selector );
-			console.log ( "scroll: ", scrollY, root.settings.startAt, root.settings.endAt )
+			// console.log ( '' );
+			// console.log( '$container ' , $container.selector );
+			// console.log ( "scroll: ", scrollY, root.settings.startAt, root.settings.endAt )
 			// if ( cur_time != undefined ) {
 			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
 			//}
-			//
+
+			limitX = (root.settings.itemWidth - endX + getAttributeAsNumber($container.find('.slide:eq(0)'), 'margin-right'));
+			limitY = (endY - root.settings.itemHeight);
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
 				endX = root.settings.totalImagesWidth;
 				endY = $target.height();
@@ -118,23 +116,29 @@
 				valX = getTweenedValue( startX, endX, cur_time, tot_time ) * -1;
 				valY = getTweenedValue( startY, endY, cur_time, tot_time );
 
-				if ( valX < (root.settings.itemWidth - endX) ){
-					valX = (root.settings.itemWidth - endX);
+				if ( valX < limitX ){
+					valX = limitX;
 				}
-				if ( valY > (endY - root.settings.itemHeight) ){
-					valY = (endY - root.settings.itemHeight);
+				if ( valY > limitY ){
+					valY = limitY;
 				}
 
 			} else if ( scrollY < root.settings.startAt ) {
 				valX = 0;
 				valY = 0;
 			} else if ( scrollY > root.settings.endAt ) {
-				valX = (root.settings.itemWidth - endX);
-				valY = (root.settings.itemWidth - endY);
+				valX = limitX;
+				valY = limitY;
 			}
 
 			var properties = {
-				transform : "translate("+valX+"px,"+valY+"px)"
+				// top: valY + "px",
+				// left: valX + "px"
+				'transform': "translate("+valX+"px,"+valY+"px)",
+				'-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
+				'-webkit-transform': "translate("+valX+"px,"+valY+"px)", /* Safari and Chrome */
+				'-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
+				'-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
 				// ,
 				// transition : 'all .01s ease'
 			};
