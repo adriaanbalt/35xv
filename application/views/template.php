@@ -51,18 +51,19 @@
         ?>
         <script src="asset/js/utils/plugins.js?v=2"></script>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="asset/js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="asset/js/vendor/jquery.tmpl.min.js?v=2"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="asset/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         <script src="asset/js/vendor/jquery.mousewheel.js?v=2"></script>
         <script src='asset/js/vendor/Tween.js?v=2'></script>
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>
         <script src="asset/js/vendor/video.min.js?v=2"></script>
+        <script src="asset/js/vendor/jquery.history.js?v=2"></script>
 
         <script src='asset/js/utils/UTIL.IsMobile.js?v=2'></script>
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
         <script src='asset/js/utils/UTIL.LoadProgress.js?v=2'></script>
 
+        <script src='asset/js/balt/BALT.nav.js?v=2'></script>
         <script src='asset/js/balt/BALT.loader.js?v=2'></script>
         <script src='asset/js/balt/BALT.utils.js?v=2'></script>
         <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>

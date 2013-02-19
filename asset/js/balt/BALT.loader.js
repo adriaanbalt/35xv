@@ -16,7 +16,7 @@
 		$target = target,
 		defaults = {
 		};
-		settings = $.extend( defaults, o );
+		var settings = $.extend( defaults, o );
 
 		// root.update = function( val ) {
 		// 	var w = $target.find( '.progress' ).width() * val;

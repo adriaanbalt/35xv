@@ -52,7 +52,8 @@
 		progress = 0,
 		currentIndex = -1,
 		raf = null,
-		cancelAnimation = false;
+		cancelAnimation = false,
+		settings = null;
 
 		root.scroll = function( scrollY ) {
 			scrollTop = scrollY;
@@ -123,6 +124,7 @@
 		$scrubber = $('#scrubber'),
 		$scroller = $('#scroller'),
 		$main = $('#main'),
+		lastY = 0,
 		firstTime = true,
 		windowHeight,
 		defaults = {
@@ -130,6 +132,8 @@
 		};
 
 		var settings = $.extend( defaults, o );
+
+		console.log ( 'settings : ', settings );
 
 		var dispatch = function() {
 			var i = settings.register.length;
@@ -141,12 +145,12 @@
 
 		var scroll = function( scrollY ) {
 			var y = ( scrollY / settings.maxScroll ) * ( windowHeight - 122 );
-			console.log ( "scrollY: ", scrollY, y );
-			$main.css( {
+		//	console.log ( "scrollY: ", scrollY, y );
+			$main.css({
 				transition: 'all 0ms',
 				transform : 'translate( 0px, ' + (scrollY*-1) + 'px)'
 			});
-			$scrubber.css( {
+			$scrubber.css({
 				transform: 'translateY(' + y + 'px)'
 			});
 		};
@@ -160,17 +164,16 @@
 		};
 
 		var mousedown = function( e ) {
-			$scrubber.on ( 'mousemove', mousemove );
+			lastY = e.pageY;
+			$scroller.on( 'mousemove', mousemove );
 		};
-
 		var mouseup = function( e ) {
-			$scrubber.off ( 'mousemove', mousemove );
+			$scroller.off( 'mousemove', mousemove );
 		};
-
 		var mousemove = function( e ) {
-			console.log ( e.pageY, e.offsetY );
-			var delta = e.pageY - e.offsetY;
-			scrollTop += delta,
+			var delta = e.pageY - lastY;
+			scrollTop += delta;
+			console.log ( e.pageY, lastY, delta );
 			//scrollTop = (e.pageY - e.offsetY) * settings.maxScroll /  ( windowHeight - 122 );
 			dispatch();
 		};
@@ -180,18 +183,21 @@
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
 		}
 
-		var scrollTo = function( scroll ) {
+		root.scrollTo = function( scroll ) {
 			scrollTop = scroll;
+			dispatch();
 		};
 
 		root.init = function() {
 			$document.on('mousewheel', wheelHandler);
 			$window.on('resize', resize);
 
-			$scrubber.on ( 'mousedown', mousedown );
+			$scroller.on ( 'mousedown', mousedown );
 			$window.on ( 'mouseup', mouseup );
 
 			resize();
+
+			scrollTo ( settings.startAt );
 		}
 
 		var resize = function() {

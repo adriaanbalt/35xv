@@ -17,6 +17,7 @@
 
 	$window = $(window);
 
+
 	loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
 			var prop = {
@@ -32,7 +33,9 @@
 	});
 
 	gotoSection = {
-		'design' : 0,
+		'' : 0,
+		'home' : 0,
+		'design' : 360,
 		'design-team' : 1740,
 		'residences' : 3530,
 		'feature' : 5000,
@@ -66,6 +69,7 @@
 				sequence: imageSequences['building-large']
 			});
 			scroller.init();
+			nav = new $.BALT.nav( $('nav') );
 		}
 	});
 
@@ -115,8 +119,12 @@
 			loadProgress.update();
 		}
 	});
+		
+		console.log ( 'gotoSection[ window.location.hash ]: ', gotoSection[ window.location.hash ] );
+
 	scroller = new $.BALT.animation.scroller({
 		maxScroll: 16621,
+		startAt : gotoSection[ window.location.hash ],
 		register : [ residences_gallery, amenities_gallery, spinner ]
 	});
 
@@ -128,5 +136,5 @@
 		imageSequences[i].load();
 	}
 
-})(jQuery);
 
+})(jQuery);

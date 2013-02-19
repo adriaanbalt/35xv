@@ -232,7 +232,7 @@ canvas {
   position: fixed;
   z-index: 10000;
   zoom: 1;
-  width: 7px;
+  width: 12px;
   bottom: 2px;
   top: 0px;
   right: 1px;
@@ -248,29 +248,33 @@ canvas {
   -webkit-background-clip: padding-box;
   box-sizing: border-box;
   width: 100%;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   -webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1);
   -webkit-transform: translate(0px, 0px) translateZ(0px);
   height: 120px;
 }
 
-#home img {
+#building-small {
+  position: absolute;
+}
+
+.home img {
   display: block;
   margin: 0 auto;
 }
-#home #skyline-img {
+.home #skyline-img {
   width: 100%;
   max-width: 1200px;
 }
 
-#neighborhood img {
+.neighborhood img {
   width: 100%;
 }
 
-#design #building-large {
+.design #building-large {
   height: 2048px;
   position: relative;
   zoom: 1;
@@ -278,33 +282,33 @@ canvas {
   z-index: 100;
   left: -200px;
 }
-#design #building-large img {
+.design #building-large img {
   display: none;
   position: absolute;
   top: 0;
   left: 0;
 }
-#design #building-large img.show {
+.design #building-large img.show {
   display: block;
 }
-#design #design-info .one {
+.design #design-info .one {
   height: 1350px;
 }
-#design #design-info .two {
+.design #design-info .two {
   height: 250px;
 }
-#design #design-info .three {
+.design #design-info .three {
   height: 250px;
 }
 
-#design-team h2 {
+.design-team h2 {
   margin-left: 150px;
 }
-#design-team h4 {
+.design-team h4 {
   position: absolute;
   z-index: 5;
 }
-#design-team .grid-whole {
+.design-team .grid-whole {
   margin-top: 60px;
 }
 
@@ -356,5 +360,16 @@ canvas {
 }
 #unit-availability table {
   color: #226d96;
+  float: right;
+}
+
+#building-medium {
+  position: absolute;
+}
+
+.team .team-member img {
+  float: left;
+}
+.team .team-member .description {
   float: right;
 }
