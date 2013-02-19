@@ -27,7 +27,7 @@ class Site extends CI_Controller {
 	public function _contact_form($form_length = "small"){
 		$section['content'] = $this->load->view('contact/'.$form_length,'', TRUE);
 		$section['title'] = "CONTACT";
-		$section['css_id'] = "contact";
+		$section['css_class'] = "contact";
 		$section['inner_div_classes'] = "padded-inner content-box";
 		return $this->load->view('section', $section, TRUE);
 	}
@@ -40,7 +40,7 @@ class Site extends CI_Controller {
 		$units = $this->units->get_available();
 
 		$table_template = array (
-                    'table_open'          => '<table border="0" cellpadding="0" cellspacing="0">',
+                    'table_open'          => '<table id="availability" border="0" cellpadding="0" cellspacing="0">',
                     'heading_row_start'   => '<tr>',
                     'heading_row_end'     => '</tr>',
                     'heading_cell_start'  => '<th>',
@@ -63,7 +63,7 @@ class Site extends CI_Controller {
 		$section['content'] = $this->table->generate($units);
 
 		$section['title'] = "UNIT<br />AVAILABILITY";
-		$section['css_id'] = "unit-availability";
+		$section['css_class'] = "unit-availability";
 		$section['inner_div_classes'] = "padded-inner content-box center";
 
 		return $this->load->view('section', $section, TRUE);

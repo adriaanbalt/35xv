@@ -60,7 +60,7 @@
 		};
 
 		var bindEvents = function() {
-			$(window).resize( resize );
+			$window.resize( resize );
 			resize();
 
 			$('.next').click( function( e ) {

@@ -52,7 +52,7 @@
 		};
 
 		root.start = function() {
-			$(window).resize( resize );
+			$window.resize( resize );
 			resize();
 		};
 

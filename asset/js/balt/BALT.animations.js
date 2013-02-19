@@ -35,17 +35,78 @@
 			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
 		};
 		root.calcProgress = function( startAt, endAt ) {
-			return ( (startAt - scrollTopTweened) / (startAt - endAt) );
+		//	return ( (startAt - scrollTopTweened) / (startAt - endAt) );
 		};
 		root.calcDegrees2Radians = function( degrees ) {
 			return ( degrees * Math.PI / 180 );
 		};
 	};
 
+	$.BALT.animation.parallax = function( o ) {
+
+		// PARALLAX the clouds!!
+
+		var root = this,
+		scrollTop = 0,
+		$body = $('body'),
+		valX, valY, limitX, limitY,
+		settings = null;
+
+		root.scroll = function( scrollY ) {
+			scrollTop = scrollY;
+			console.log ( 'scroll: ', calculations.calcBgY( 0, windowHeight, scrollY, 500, .5 ) );
+
+
+			// limitX = (root.settings.itemWidth - endX + 130 );
+			// limitY = (endY - root.settings.itemHeight);
+			// if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
+			// 	endX = root.settings.totalImagesWidth;
+			// 	endY = $target.height();
+
+			// 	cur_time = ( scrollY - root.settings.startAt ) ;
+			// 	tot_time = ( root.settings.endAt - root.settings.startAt );
+
+			// 	valX = getTweenedValue( startX, endX, cur_time, tot_time ) * -1;
+			// 	valY = getTweenedValue( startY, endY, cur_time, tot_time );
+
+			// 	if ( valX < limitX ){
+			// 		valX = limitX;
+			// 	}
+			// 	if ( valY > limitY ){
+			// 		valY = limitY;
+			// 	}
+
+			// } else if ( scrollY < root.settings.startAt ) {
+			// 	valX = 0;
+			// 	valY = 0;
+			// } else if ( scrollY > root.settings.endAt ) {
+			// 	valX = limitX;
+			// 	valY = limitY;
+			// }
+
+			var properties = {
+				// top: valY + "px",
+				// left: valX + "px"
+				'background-position': calculations.calcBgY( 0, windowHeight, scrollY, 500, .5 )
+				// ,
+				// transition : 'all .01s ease'
+			};
+
+			//$body.css ( properties );
+
+
+			// if ( scrollY >= settings.startAt && scrollY <= settings.endAt ) {
+			
+			// } else {
+
+			// }
+		}
+
+	};
+
 	$.BALT.animation.spinner = function( o ) {
 
-		var $window = $(window);
-		root = this,
+		var root = this,
 		started = false,
 		scrollTop = 0,
 		scrollTopTweened = 0,
@@ -71,7 +132,7 @@
 				requestAnimationFrame(spin);
 			}
 			scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
-			progress = calculations.calcProgress( settings.startAt, settings.endAt );
+			progress = (settings.startAt - scrollTopTweened) / (settings.startAt - settings.endAt);
 			if ( progress <= 1 ) {
 				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
 				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
@@ -119,21 +180,20 @@
 	$.BALT.animation.scroller = function( o ) {
 		var root = this,
 		scrollTop = 0,
-		$window = $(window),
 		$document = $(document),
 		$scrubber = $('#scrubber'),
 		$scroller = $('#scroller'),
 		$main = $('#main'),
 		lastY = 0,
+		currentScrollTop = 0,
+		gotoScrollTop = 0,
+		autoScrollInterval = 0,
 		firstTime = true,
-		windowHeight,
 		defaults = {
 			scrollSpeed : 40
 		};
 
 		var settings = $.extend( defaults, o );
-
-		console.log ( 'settings : ', settings );
 
 		var dispatch = function() {
 			var i = settings.register.length;
@@ -147,7 +207,6 @@
 			var y = ( scrollY / settings.maxScroll ) * ( windowHeight - 122 );
 		//	console.log ( "scrollY: ", scrollY, y );
 			$main.css({
-				transition: 'all 0ms',
 				transform : 'translate( 0px, ' + (scrollY*-1) + 'px)'
 			});
 			$scrubber.css({
@@ -158,22 +217,22 @@
 		var wheelHandler = function(e, delta, deltaX, deltaY) {
 			e.preventDefault();
 			scrollTop -= delta * settings.scrollSpeed;
-			if ( scrollTop < 0) scrollTop = 0;
 			checkScrollExtents();
 			dispatch();
 		};
 
 		var mousedown = function( e ) {
 			lastY = e.pageY;
-			$scroller.on( 'mousemove', mousemove );
+			$window.on( 'mousemove', mousemove );
 		};
 		var mouseup = function( e ) {
-			$scroller.off( 'mousemove', mousemove );
+			$window.off( 'mousemove', mousemove );
 		};
 		var mousemove = function( e ) {
 			var delta = e.pageY - lastY;
 			scrollTop += delta;
-			console.log ( e.pageY, lastY, delta );
+			checkScrollExtents();
+			console.log ( $main.position().top, e.pageY, lastY, delta );
 			//scrollTop = (e.pageY - e.offsetY) * settings.maxScroll /  ( windowHeight - 122 );
 			dispatch();
 		};
@@ -188,11 +247,21 @@
 			dispatch();
 		};
 
+		root.autoScroll = function( scroll ) {
+			currentScrollTop = scrollTop;
+			gotoScrollTop = scroll;
+			autoScrollInterval = setInterval( aScroll, 100  );
+		};
+
+		var aScroll = function() {
+			if ( scrollTop == gotoScrollTop ) clearTimeout( autoScrollInterval );
+			checkScrollExtents();
+			dispatch();
+		}
+
 		root.init = function() {
 			$document.on('mousewheel', wheelHandler);
-			$window.on('resize', resize);
-
-			$scroller.on ( 'mousedown', mousedown );
+			$scrubber.on ( 'mousedown', mousedown );
 			$window.on ( 'mouseup', mouseup );
 
 			resize();
@@ -201,9 +270,16 @@
 		}
 
 		var resize = function() {
-			windowHeight = $window.height();
 			$scroller.height( windowHeight - 4 );
 		};
+
+		var getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
+			var delta = end - start;
+			var percentComplete = currentTime/totalTime;
+			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
+			return tweener(percentComplete) * delta + start;
+		}
+
 	};
 
 })(jQuery);

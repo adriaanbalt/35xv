@@ -16,7 +16,9 @@
 	};
 
 	$window = $(window);
-
+	
+	$window.on('resize', resize);
+	windowHeight = $window.height();
 
 	loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
@@ -84,7 +86,7 @@
 	});
 	imageSequences['clouds'] = new $.BALT.imageSequence({
 		filesPath:'asset/img/clouds/cloud-{index}.png',
-		imageCount: 6,
+		imageCount: 8,
 		skipImages: 1,
 		container: $('#clouds .wrapper'),
 		onProgress: function() {
@@ -107,6 +109,8 @@
 
 	spinner = new $.BALT.animation.spinner();
 
+	parallax = new $.BALT.animation.parallax();
+
 	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), {
 		startAt : gotoSection['residences'],
 		onProgress: function() {
@@ -119,13 +123,11 @@
 			loadProgress.update();
 		}
 	});
-		
-		console.log ( 'gotoSection[ window.location.hash ]: ', gotoSection[ window.location.hash ] );
 
 	scroller = new $.BALT.animation.scroller({
-		maxScroll: 16621,
+		maxScroll: 21000,
 		startAt : gotoSection[ window.location.hash ],
-		register : [ residences_gallery, amenities_gallery, spinner ]
+		register : [ residences_gallery, amenities_gallery, spinner, parallax ]
 	});
 
 	loadProgress.register( residences_gallery.settings.slideCount );
@@ -136,5 +138,8 @@
 		imageSequences[i].load();
 	}
 
+	function resize(){
+		windowHeight = $window.height();
+	}
 
 })(jQuery);

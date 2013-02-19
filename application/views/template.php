@@ -58,6 +58,7 @@
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>
         <script src="asset/js/vendor/video.min.js?v=2"></script>
         <script src="asset/js/vendor/jquery.history.js?v=2"></script>
+        <script src='asset/js/vendor/jquery.tablesorter.min.js'></script>
 
         <script src='asset/js/utils/UTIL.IsMobile.js?v=2'></script>
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
@@ -69,6 +70,7 @@
         <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>
         <script src='asset/js/balt/BALT.animations.js?v=2'></script>
+
         <script src='asset/js/williams.35xv.main.js?v=2'></script>
 
     </body>
