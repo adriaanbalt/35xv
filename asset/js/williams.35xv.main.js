@@ -17,6 +17,7 @@
 
 	$window = $(window);
 
+
 	loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
 			var prop = {
@@ -24,22 +25,26 @@
 				filter: 'alpha(opacity=' + 100 + ')', /* For IE8 and earlier */
 				transition: 'all 1s'
 			};
-			$('#main').css( prop );
-			$('nav').css( prop );
+//			$('#main').css( prop );
+//			$('nav').css( prop );
+			$('#main').animate( prop,1000 );
+			$('nav').animate( prop,1000 );
 		}
 	});
 
 	gotoSection = {
-		'design' : 0,
+		'' : 0,
+		'home' : 0,
+		'design' : 530,
 		'design-team' : 1740,
-		'residences' : 3600,
+		'residences' : 3620,
 		'feature' : 5000,
 		'availability' : 5880,
-		'amenities-services' : 7540,
-		'neighborhood' : 9960,
-		'team' : 8490,
-		'press' : 8680,
-		'contact' : 8960
+		'amenities-services' : 7800,
+		'neighborhood' : 13380,
+		'team' : 14000,
+		'press' : 15600,
+		'contact' : 15600
 	};
 
 	var imageSequences = {};
@@ -64,6 +69,7 @@
 				sequence: imageSequences['building-large']
 			});
 			scroller.init();
+			nav = new $.BALT.nav( $('nav') );
 		}
 	});
 
@@ -113,8 +119,12 @@
 			loadProgress.update();
 		}
 	});
+		
+		console.log ( 'gotoSection[ window.location.hash ]: ', gotoSection[ window.location.hash ] );
+
 	scroller = new $.BALT.animation.scroller({
-		maxScroll: 13621,
+		maxScroll: 16621,
+		startAt : gotoSection[ window.location.hash ],
 		register : [ residences_gallery, amenities_gallery, spinner ]
 	});
 
@@ -125,5 +135,6 @@
 		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
 		imageSequences[i].load();
 	}
+
 
 })(jQuery);

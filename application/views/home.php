@@ -18,11 +18,10 @@
 			<li><a href='#design'>DESIGN</a></li>
 			<li><a href='#residences'>RESIDENCES</a></li>
 			<li><a href='#amenities-services'>AMENITIES &AMP; SERVICES</a></li>
-			<li><a href='#neighborhoods'>NEIGHBORHOODS</a></li>
+			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team'>TEAM</a></li>
 			<li><a href='#press'>PRESS</a></li>
 			<li><a href='#contact'>CONTACT</a></li>
-			<li><img src='asset/img/logo-small.png' class='logo'/></li>
 		</ul>
 	</div>
 </nav>
@@ -30,8 +29,9 @@
 <div id='main'>
 
 <!-- home -->
-<section id='home' class="">
+<section class="home">
 	<div class="content-box center">
+		<p>A SKYMARK</p>
 		<img src='asset/img/home/logo-large.png' class='logo'/>
 		<img src='asset/img/home/home.png' id='skyline-img'/>
 	</div>
@@ -40,7 +40,7 @@
 <div id='container' class='wrapper'>
 
 <!-- design -->
-	<section id='design' class="grid-whole">
+	<section class="design grid-whole">
 		<div class='equalize'>
 			<div class="grid-two-thirds">
 				<div class="padded-inner content-box center">
@@ -70,7 +70,7 @@
 	</section>
 
 <!-- design-team -->
-	<section id='design-team' class="grid-whole">
+	<section class="design-team grid-whole">
 		<h2>DESIGN<br>TEAM</h2>
 		<div class="grid-whole">
 			<div class="grid-quarter">
@@ -106,12 +106,12 @@
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/BMO.ogv" type='video/ogg'>
-							<source src="asset/video/BMO.mp4" type='video/mp4'>
+							<source src="asset/video/BNO.ogv" type='video/ogg'>
+							<source src="asset/video/BNO.mp4" type='video/mp4'>
 							<p>Your browser does not support the video tag.</p>
 						</video>
 					</div>
-					<h4>BMO</h4>
+					<h4>BNO</h4>
 				</div>
 			</div>
 			<div class="grid-quarter">
@@ -121,7 +121,7 @@
 	</section>
 
 <!-- residences -->
-	<section id='residences' class="grid-whole">
+	<section class="residences grid-whole">
 		<h2>RESIDENCES</h2>
 		<div class="grid-whole">
 			<div id='residences-gallery' class='gallery-scroll'>
@@ -183,7 +183,7 @@
 	</section>
 
 <!-- featured-plan -->
-	<section id='featured-plan' class="grid-whole">
+	<section class="featured-plan grid-whole">
 		<h2>FEATURED<br>PLAN</h2>
 		<div class="padded-inner content-box center">
 			<div class='feature'>
@@ -194,15 +194,21 @@
 				</ul>
 			</div>
 		</div>
+		<div id='building-medium'>
+			<img src="asset/img/building-line-medium.png"/>
+		</div>
 	</section>
 
 <!-- unit-availability -->
-<?php echo $unit_availability; ?>
+	<?php echo $unit_availability; ?>
 
 <!-- amenities-services -->
-	<section id='amenities' class="grid-whole">
+	<section class="amenities-services grid-whole">
 		<h2>AMENITIES &AMP;<br>SERVICES</h2>
 		<div class="content-box">
+			<div id='building-small'>
+				<img src="asset/img/building-line-small.png"/>
+			</div>
 			<!-- gallery -->
 			<div id='amenities-gallery' class='gallery-scroll'>
 				<div class='gallery-container clearfix'>
@@ -314,7 +320,7 @@
 	</section>
 
 <!-- neighborhood -->
-	<section id='neighborhood' class="grid-whole">
+	<section class="neighborhood grid-whole">
 		<h2>NEIGHBORHOOD</h2>
 		<div class="content-box center">
 			<img src='asset/img/neighborhood/neighborhood.jpg' alt=''/>
@@ -322,23 +328,100 @@
 	</section>
 
 <!-- team -->
-	<section id='team' class="grid-whole">
+	<section class="team grid-whole">
 		<h2>TEAM</h2>
 		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
+			<div class='team-member clearfix'>
+				<img src='asset/img/team/alchemy.jpg'/>
+				<div class='description'>
+					<h4>ALCHEMY</h4>
+					<p>Alchemy Properties Inc. is a privately held, fully integrated real estate firm whose principals have over 75 years of experience in acquiring, developing, leasing, repositioning, managing, financing and selling real estate in the New York City Tri-State area. Started by Kenneth S. Horn in 1990, Alchemy has become a best-in-class partner with a variety of institutional, family foundation and high net worth individuals as long-term repeat investors.</p>
+				</div>
+			</div>
+			<div class='team-member clearfix'>
+				<img src=''/>
+				<div class='description'>
+					<h4>ANGELO GORDON</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				</div>
+			</div>
+			<div class='team-member clearfix'>
+				<img src='asset/img/team/fxfowle.jpg'/>
+				<div class='description'>
+					<h4>FX FOWLE</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				</div>
+			</div>
+			<div class='team-member clearfix'>
+				<img src='asset/img/team/bno.jpg'/>
+				<div class='description'>
+					<h4>BNO</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				</div>
+			</div>
 		</div>
 	</section>
 
 <!-- press -->
-	<section id='press' class="grid-whole">
+	<section class="press grid-whole">
 		<h2>PRESS</h2>
 		<div class="padded-inner content-box center">
-			<p>.grid-whole</p>
+			<ul>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>REAL DEAL</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+				<li>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<p class='source'>New York Times</p>
+					<p class='date'>April 2013</p>
+				</li>
+			</ul>
 		</div>
 	</section>
 
 <!-- contact -->
-<?php echo $contact_form; ?>
+	<?php echo $contact_form; ?>
+
+<!-- address -->
+	<section class="address grid-whole">
+	</section>
+
+<!-- footer -->
+	<footer>
+		<p>&copy; 2013</p>
+	</footer>
 
 </div>
 
