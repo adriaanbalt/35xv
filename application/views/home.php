@@ -18,7 +18,7 @@
 			<li><a href='#design'>DESIGN</a></li>
 			<li><a href='#residences'>RESIDENCES</a></li>
 			<li><a href='#amenities-services'>AMENITIES &AMP; SERVICES</a></li>
-			<li><a href='#neighborhood'>NEIGHBORHOODS</a></li>
+			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team'>TEAM</a></li>
 			<li><a href='#press'>PRESS</a></li>
 			<li><a href='#contact'>CONTACT</a></li>

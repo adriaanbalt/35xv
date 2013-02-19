@@ -32,7 +32,11 @@
 
 		var parseHash = function(hash) {
 			console.log ( "hash: ", hash, scroller, gotoSection[hash] );
-			scroller.scrollTo( gotoSection[hash] );
+			if ( gotoSection[hash] !== undefined ) {
+				scroller.scrollTo( gotoSection[hash] );
+			} else {
+				scroller.scrollTo( 0 );
+			}
 		};
 
 		init();

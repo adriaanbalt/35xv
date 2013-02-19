@@ -35,16 +35,16 @@
 	gotoSection = {
 		'' : 0,
 		'home' : 0,
-		'design' : 360,
+		'design' : 530,
 		'design-team' : 1740,
-		'residences' : 3530,
+		'residences' : 3620,
 		'feature' : 5000,
 		'availability' : 5880,
-		'amenities-services' : 7470,
-		'neighborhood' : 9960,
-		'team' : 8490,
-		'press' : 8680,
-		'contact' : 8960
+		'amenities-services' : 7800,
+		'neighborhood' : 13380,
+		'team' : 14000,
+		'press' : 15600,
+		'contact' : 15600
 	};
 
 	var imageSequences = {};
