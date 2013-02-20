@@ -17,71 +17,457 @@
 		$.BALT.animation = {};
 	}
 
+
 	$.BALT.animation.calculations = function() {
 		var root = this;
+
+		var windowWidth, windowHeight, windowCenter;
+
+		var resize = function() {
+			windowWidth = $window.width();
+			windowHeight = $window.height();
+			windowCenter = { left: $window.width()/2, top: $window.height()/2 };
+		};
+
 		root.calcBgY = function(x, windowHeight, pos, adjuster, inertia){
 			return x + "px, " + (-((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
+		
 		root.calcBgX = function(y, windowHeight, pos, adjuster, inertia){
 			return (-((windowHeight + pos) - adjuster) * inertia)  + "px " + y + "px";
 		};
+		
 		root.calcXY = function(windowHeight, pos, adjusterX, inertiaX, adjusterY, inertiaY){
 			return (-((windowHeight + pos) - adjusterX) * inertiaX)  + "px " + (-((windowHeight + pos) - adjusterY) * inertiaY) + "px";
 		};
+		
 		root.calcPos = function(windowHeight, pos, adjuster, inertia) {
 			return (((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
+		
 		root.calcRot = function( r, windowHeight, pos, adjuster, inertia ){
 			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
 		};
+		
 		root.calcProgress = function( startAt, endAt ) {
 		//	return ( (startAt - scrollTopTweened) / (startAt - endAt) );
 		};
+
+		root.calcScrubber = function( scroll, maxScroll ) {
+			return ( scroll / maxScroll ) * ( windowHeight - 122 );
+		};
+
 		root.calcDegrees2Radians = function( degrees ) {
 			return ( degrees * Math.PI / 180 );
 		};
+
 		// get tweened values
 		root.getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
 		    var delta = end - start;
 		    var percentComplete = currentTime/totalTime;
 		    if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
 		    return tweener(percentComplete) * delta + start
-		}
+		};
+
+		root.absPosition = function(opts) {
+			var defaults = {startLeft: 0,
+							startTop: 0,
+							endLeft: 0,
+							endTop: 0},
+			settings = $.extend(defaults, opts);
+			this.startProperties['left'] = settings.startLeft;
+			this.startProperties['top'] = settings.startTop;
+			this.endProperties['left'] = settings.endLeft;
+			this.endProperties['top'] = settings.endTop;
+			this.startProperties['display'] = 'block';
+			this.endProperties['display'] = 'none';
+		};
+			
+		root.bottomLeftOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			resize();
+			var portrait = false, //windowHeight > windowWidth ? true : false,
+				elemHalfWidth = anim._elem.width()/2,
+				elemHalfHeight = anim._elem.height()/2,
+				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
+				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+			
+			this.properties['top'] = windowCenter.top + adj - elemHalfHeight + (portrait ? settings.offset : 0);
+			this.properties['left'] = windowCenter.left - adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		};
+		
+		root.topRightOutside =function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			var portrait = false, //windowHeight > windowWidth ? true : false,
+				elemHalfWidth = anim._elem.width()/2,
+				elemHalfHeight = anim._elem.height()/2,
+				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
+				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+
+			this.properties['top'] = windowCenter.top - adj - elemHalfHeight + (portrait ? settings.offset : 0);
+			this.properties['left'] = windowCenter.left + adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		};
+		
+		root.leftOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = -anim._elem.width() + settings.offset;
+		};
+
+		root.rightOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = windowWidth + settings.offset;
+		};
+
+		root.centerV = function( anim, opts ) {
+			resize();
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			var elemHalfHeight = anim._elem.height()/2;
+			this.properties['top'] = windowCenter.top - elemHalfHeight + settings.offset;
+		};
+
+		root.centerH = function( anim, opts ) {
+			resize();
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			
+			var elemHalfWidth = anim._elem.width()/2;
+			
+			this.properties['left'] = windowCenter.left - elemHalfWidth + settings.offset;
+		};
+
+		root.bottomOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = windowHeight + settings.offset;
+		};
+
+		root.topOutside = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = -anim._elem.height() + settings.offset;
+		};
+
+		$window.resize( resize );
+		resize();
+
 	};
 
+	$.BALT.animation.keyframes = function( o ) {
+		return [
+		{
+			'id' : '.cloud0',
+			'startAt' : gotoSection['home'],
+			'endAt' : gotoSection['design'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						console.log ( anim );
+						calculations.centerH.call( this, anim, {});
+						calculations.centerV.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						console.log ( anim );
+						calculations.centerH.call( this, anim, {});
+						calculations.topOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '#building-large',
+			'startAt' : gotoSection['design'],
+			'endAt' : gotoSection['design-team'],
+			onProgress: function(progress) {
+				var is = imageSequences['building-large'];
+				var endFrame = (is.imageCount/is.skipImages),
+					toFrame = Math.floor(progress*endFrame) % is.imageCount;
+				is.showImageAt( Math.floor(toFrame) );
+			}
+		},
+		{
+			'id' : '.cloud1',
+			'startAt' : gotoSection['design'],
+			'endAt' : gotoSection['design-team'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						console.log ( anim );
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud2',
+			'startAt' : gotoSection['design-team'],
+			'endAt' : gotoSection['residences'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud3',
+			'startAt' : gotoSection['residences'],
+			'endAt' : gotoSection['feature'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud4',
+			'startAt' : gotoSection['feature'],
+			'endAt' : gotoSection['availability'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud5',
+			'startAt' : gotoSection['availability'],
+			'endAt' : gotoSection['amenities-services'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud6',
+			'startAt' : gotoSection['amenities-services'],
+			'endAt' : gotoSection['neighborhood'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud7',
+			'startAt' : gotoSection['neighborhood'],
+			'endAt' : gotoSection['team'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '.cloud8',
+			'startAt' : gotoSection['team'],
+			'endAt' : gotoSection['press'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
+		];
+	};
 
-	$.BALT.animation.parallax = function( o ) {
-
-		// PARALLAX the clouds!!
-
+	$.BALT.animation.scroller = function( o ) {
+	//public
 		var root = this,
-		scrollTopTweened = 0,
+	//dom
+		$document = $(document),
+		$scrubber = $('#scrubber'),
+		$scroller = $('#scroller'),
+		$main = $('#main'),
+	//scroll
 		scrollTop = 0,
-		$body = $('body'),
-		valX, valY, limitX, limitY,
+		scrollTopTweened = 0,
+	//autoplay
+		currentScrollTop = 0,
+		gotoScrollTop = 0,
+		autoScrollInterval = 0,
+	//scrubber
+		lastY = 0,
+		started = false,
+	//settings
 		defaults = {
+			scrollSpeed : 40,
+			tickSpeed: 30,
+			useRAF: true,
+			tweenSpeed: .3
 		},
 		settings = $.extend( defaults, o );
 
-		root.scroll = function( scrollY ) {
-			scrollTop = scrollY;
-		}
-		
-		root.init = function() {
-					
+	//notify listeners
+		var dispatch = function() {
+			var i = settings.register.length;
+			while ( i-- ){
+				scroll();
+				settings.register[i].scroll( scrollTop );
+			}
+		};
+
+		var setupAnimation = function() {
 			for (var i in settings.animation) {
 				var anim = settings.animation[i];
 
 
 				// grab dom element
 				if (anim._elem == undefined) {
-					anim._elem = $('.'+anim.id);
+					anim._elem = $(anim.id);
 				}
 
 				// iterate through keyframes
 				for (var k in anim.keyframes) {
 					var keyframe = anim.keyframes[k];
-
 
 					// setup keyframe 0
 					if (keyframe.position == 0) {
@@ -123,44 +509,9 @@
 			}
 		}
 
-		var render = function( anim ) {
-			// figure out where we are within the scroll
-			var progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
-
-			var properties = {};
-
-			// check and run keyframes within scroll range
-			if (anim.keyframes) {
-				for ( i = 1; i < anim.keyframes.length; i++ ) {
-					var keyframe = anim.keyframes[ i ],
-						lastkeyframe = anim.keyframes[ i - 1 ],
-						keyframeProgress = ( lastkeyframe.position - progress ) / ( lastkeyframe.position - keyframe.position );
-					
-					if ( keyframeProgress > 0 && keyframeProgress < 1 ) {
-						if (keyframe.onProgress && typeof keyframe.onProgress === 'function') {
-							//console.log(keyframe.position, keyframeProgress, keyframe);
-							keyframe.onProgress( keyframeProgress );
-						};
-
-						for ( property in keyframe.properties ) {
-							properties[ property ] = calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
-						}
-					}
-				}
-			}
-
-			// apply styles
-			anim._elem.css( properties );
-
-
-			// onProgress callback
-			if (anim.onProgress && typeof anim.onProgress === 'function') {
-				anim.onProgress.call(anim, progress );
-			}
-			
-		}
-
-		root.animationLoop = function() {
+	// animation
+		var animationLoop = function() {
+			requestAnimationFrame( animationLoop );
 			if (Math.ceil(scrollTopTweened) !== Math.floor(scrollTop)) {
 				// smooth out scrolling action
 				//scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
@@ -183,133 +534,67 @@
 				//if (typeof settings.onUpdate === 'function') settings.onUpdate();
 			};
 		}
+		var render = function( anim ) {
+			// figure out where we are within the scroll
+			var progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
 
-		// root.scroll = function( scrollY ) {
-		// 	scrollTop = scrollY;
-		// 	console.log ( 'scrollTop: ', scrollTop );
-		// 	var i = 0;
-		// 	while ( i < keyframes.length ) {
-		// 		if ( keyframes[i].startAt < scrollTop && scrollTop < keyframes[i].endAt  ) {
-		// 			if ( keyframes[i].onProgress && typeof keyframes[i].onProgress == 'function' ) keyframes[i].onProgress( scrollTop );
-		// 		}
-		// 		i++;
-		// 	}
-		// }
+			var properties = {};
 
-	};
+			// check and run keyframes within scroll range
+			if (anim.keyframes) {
+				for ( i = 1; i < anim.keyframes.length; i++ ) {
+					var keyframe = anim.keyframes[ i ],
+						lastkeyframe = anim.keyframes[ i - 1 ],
+						keyframeProgress = ( lastkeyframe.position - progress ) / ( lastkeyframe.position - keyframe.position );
+					
+					if ( keyframeProgress > 0 && keyframeProgress < 1 ) {
+						if (keyframe.onProgress && typeof keyframe.onProgress === 'function') {
+							keyframe.onProgress( keyframeProgress );
+						};
 
-	$.BALT.animation.spinner = function( o ) {
+						for ( property in keyframe.properties ) {
+							properties[ property ] = calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
+						}
+					}
+				}
+			}
 
-		var root = this,
-		started = false,
-		scrollTop = 0,
-		scrollTopTweened = 0,
-		progress = 0,
-		currentIndex = -1,
-		raf = null,
-		cancelAnimation = false,
-		settings = null;
+			// apply styles
+			anim._elem.css( properties );
 
-		root.scroll = function( scrollY ) {
-			scrollTop = scrollY;
-			// if ( scrollY >= settings.startAt && scrollY <= settings.endAt ) {
-			// 	cancelAnimation = false;
-			// 	raf = requestAnimationFrame(spin);
-			// } else {
-			// 	if ( !cancelAnimation ) cancelAnimationFrame( raf );
-			// 	cancelAnimation = true;
-			// }
+			// console.log ( '' );
+			// console.log ( '' );
+			// console.log ( 'elem n: ', anim._elem );
+			// console.log ( 'elem n: ', $(anim._elem) );
+			// console.log ( 'a-id n: ', $(anim.id) );
+			// console.log ( 'c    n: ', $('.cloud0') );
+			// console.log ( ' -- ' );
+			// console.log ( 'elem: ', anim._elem.position() );
+			// console.log ( 'a-id: ', $(anim.id).position() );
+			// console.log ( 'c :   ',$('.cloud0').position() );
+			// console.log ( ' -- ' );
+			// console.log ( 'PROP :   ', properties );
+
+			// onProgress callback
+			if (anim.onProgress && typeof anim.onProgress === 'function') {
+				anim.onProgress.call( anim, progress );
+			}
+
+			
 		}
-
-		var spin = function() {
-			//if ( !cancelAnimation ){
-				requestAnimationFrame(spin);
-			//
-			scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
-			progress = (settings.startAt - scrollTopTweened) / (settings.startAt - settings.endAt);
-			if ( progress <= 1 ) {
-				var endFrame = (settings.imageCount/settings.skipImages) * settings.frameSpeed,
-				toFrame = Math.floor(progress*endFrame) % settings.imageCount;
-				settings.sequence.showImageAt( toFrame );
-			}
-		};
-
-		root.init = function( opts ) {
-			var defaults = {
-				tickSpeed: 30,
-				useRAF: true,
-				tweenSpeed: .3
-			};
-
-			settings = $.extend( defaults, opts );
-
-			var lastTime = 0;
-			var vendors = ['ms', 'moz', 'webkit', 'o'];
-			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-				window.cancelAnimationFrame =
-				window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-			}
-
-			if (!window.requestAnimationFrame)
-				window.requestAnimationFrame = function(callback, element) {
-					var currTime = new Date().getTime();
-					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-					var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-					  timeToCall);
-					lastTime = currTime + timeToCall;
-					return id;
-				};
-
-			if (!window.cancelAnimationFrame)
-				window.cancelAnimationFrame = function(id) {
-					clearTimeout(id);
-				};
-
-			spin();
-
-			return this;
-		};
-
-	};
-
-	$.BALT.animation.scroller = function( o ) {
-		var root = this,
-		scrollTop = 0,
-		$document = $(document),
-		$scrubber = $('#scrubber'),
-		$scroller = $('#scroller'),
-		$main = $('#main'),
-		lastY = 0,
-		currentScrollTop = 0,
-		gotoScrollTop = 0,
-		autoScrollInterval = 0,
-		firstTime = true,
-		defaults = {
-			scrollSpeed : 40
-		};
-
-		var settings = $.extend( defaults, o );
-
-	//notify listeners
-		var dispatch = function() {
-			var i = settings.register.length;
-			while ( i-- ){
-				scroll( scrollTop );
-				settings.register[i].scroll( scrollTop );
-			}
-		};
-
+		
 	//move page and scrubber
-		var scroll = function( scrollY ) {
-			var y = ( scrollY / settings.maxScroll ) * ( windowHeight - 122 );
+		var scroll = function() {
+			var y = calculations.calcScrubber( scrollTop, settings.maxScroll );
+			console.log ( "y: ", y );
 			$main.css({
-				transform : 'translate( 0px, ' + (scrollY*-1) + 'px)'
+				transform : 'translate( 0px, ' + (scrollTop*-1) + 'px)'
 			});
 			$scrubber.css({
 				transform: 'translateY(' + y + 'px)'
 			});
-		};
+		}
+
 		root.scrollTo = function( scroll ) {
 			scrollTop = scroll;
 			dispatch();
@@ -377,7 +662,28 @@
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
 		}
 
-		root.init = function() {
+	// generic
+		root.start = function() {
+			//console.log('start', settings.startAt);
+			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
+			
+			scrollTop++;
+
+			if (!started) {
+				animationLoop();
+				started=true;
+			};
+
+			if (settings.onStart && typeof settings.onStart === 'function') {
+				settings.onStart();
+			}
+		}
+
+		var resize = function() {
+			$scroller.height( windowHeight - 4 );
+		};
+
+		var init = function() {
 			$document.on('mousewheel', wheelHandler);
 			$scrubber.on ( 'mousedown', mousedown );
 			$window.on ( 'mouseup', mouseup );
@@ -389,13 +695,36 @@
 				container.on('touchend', touchEndHandler);
 			}
 
+			var lastTime = 0;
+			var vendors = ['ms', 'moz', 'webkit', 'o'];
+			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+				window.cancelAnimationFrame =
+				window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+			}
+
+			if (!window.requestAnimationFrame)
+				window.requestAnimationFrame = function(callback, element) {
+					var currTime = new Date().getTime();
+					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+					var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+					  timeToCall);
+					lastTime = currTime + timeToCall;
+					return id;
+				};
+
+			if (!window.cancelAnimationFrame)
+				window.cancelAnimationFrame = function(id) {
+					clearTimeout(id);
+				};
+
 			resize();
+			setupAnimation();
 			scrollTo ( settings.startAt );
 		}
 
-		var resize = function() {
-			$scroller.height( windowHeight - 4 );
-		};
+
+		init();
 
 	};
 

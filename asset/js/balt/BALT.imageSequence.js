@@ -109,6 +109,7 @@
 				if ( settings.className.indexOf("{index}") >= 0 ){
 					className = settings.className.replace( "{index}", i );	
 				}
+				image.id = 'cloud' + i;
 				image.className = className;
 				settings.container.append( image );
 				sequence.push(image);
