@@ -1,0 +1,29 @@
+
+#background {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+	zoom: 1;
+	margin-top: 550px;
+	
+	img {
+		max-width: 100%;
+	}
+
+	.cloud {
+		display: block;
+	}
+	
+	.cloud.c0 {
+		display: block;
+	}
+
+	.cloud.c1 {
+		display: block;		
+	}
+
+	.cloud.c2 {
+		display: block;
+	}
+}

@@ -31,8 +31,8 @@
 <!-- home -->
 <section class="home">
 	<div class="content-box center">
-		<p>A SKYMARK</p>
 		<img src='asset/img/home/logo-large.png' class='logo'/>
+		<p>A SKYMARK</p>
 		<img src='asset/img/home/home.png' id='skyline-img'/>
 	</div>
 </section>
@@ -425,8 +425,10 @@
 
 </div>
 
-<section id='clouds'>
-	<div class='wrapper'></div>
-</section>
+<!-- background -->
+	<div id='background'>
+	</div>
 
 </div>
+<!-- end MAIN -->
+

@@ -7,65 +7,57 @@ nav {
   width: 100%;
   z-index: 1000;
   zoom: 1;
-  padding: 0 0 .5em 0;
+  padding: 0;
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
 }
 nav ul {
-  margin: .5em 0;
-  padding: 0;
+  margin: 0;
 }
 nav ul li {
   float: left;
-  margin-right: 1em;
-  line-height: 2em;
 }
 nav a, nav a:visited {
+  display: block;
   font-size: 15px;
   font-weight: 700;
+  line-height: 3em;
+  padding: 0.1em 0.5em 0 0.5em;
+}
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
   font-family: 'Josefin Sans', sans-serif;
-  color: black;
+  color: #000;
   position: relative;
-  /* IE; docs say this should go first (or better, placed in separate IE-only stylesheet): */
-  /* Fallback: */
-  /* CSS 3 plus vendor prefixes: */
-  background: -moz-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #70cbf2), color-stop(16%, #34b7ef), color-stop(34%, #20a2d6), color-stop(58%, #70cbf2), color-stop(86%, #20a2d6), color-stop(100%, #7db9e8));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #eeeeee 0%, #eeeeee 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 );
-  /* IE6-9 */
-  background-size: cover;
-  overflow: hidden;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: #70cbf2;
 }
 
 #main {
+  background-color: #70cbf2;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF70CBF2', endColorstr='#FF39C0E5');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #409fd9), color-stop(16%, #34b7ef), color-stop(34%, #4da5dc), color-stop(58%, #409fd9), color-stop(86%, #20a2d6), color-stop(100%, #39c0e5));
+  background-image: -webkit-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -moz-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -o-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
   position: fixed;
   z-index: 999;
   zoom: 1;
-  left: 50%;
-  margin-left: -600px;
+  width: 100%;
 }
 
 #loader {
@@ -99,16 +91,6 @@ body {
 section {
   position: relative;
   margin-top: 100px !important;
-}
-
-#status {
-  position: fixed;
-  color: #ff9;
-  font-size: 18px;
-  z-index: 100000;
-  zoom: 1;
-  top: 20px;
-  right: 50px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -169,26 +151,33 @@ a, a:visited {
   zoom: 1;
 }
 
-#clouds {
-  position: absolute;
-  z-index: 0;
-  zoom: 1;
-}
-#clouds img {
-  max-width: 100%;
-}
-
-*.unselectable {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 canvas {
   position: absolute;
   top: 0;
+  display: block;
+}
+
+#background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  zoom: 1;
+  margin-top: 550px;
+}
+#background img {
+  max-width: 100%;
+}
+#background .cloud {
+  display: block;
+}
+#background .cloud.c0 {
+  display: block;
+}
+#background .cloud.c1 {
+  display: block;
+}
+#background .cloud.c2 {
   display: block;
 }
 
@@ -266,13 +255,14 @@ canvas {
   position: absolute;
 }
 
-.home img {
+.home #skyline-img {
   display: block;
   margin: 0 auto;
-}
-.home #skyline-img {
   width: 100%;
   max-width: 1200px;
+}
+.home p {
+  display: inline;
 }
 
 .neighborhood img {

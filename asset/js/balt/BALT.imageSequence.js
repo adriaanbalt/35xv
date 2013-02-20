@@ -74,7 +74,10 @@
 			xhr.send(null);
 		}
 
-	// PUBLIC
+		var getImageAt = function( index ) {
+			return sequence[index];
+		}
+
 		var showImageAt = function( index ) {
 			if (index == currentIndex) return false;
 
@@ -99,11 +102,14 @@
 		};
 
 		var load = function() {
+			var className;
 			for ( var i = 0; i <= settings.imageCount; i=i+settings.skipImages) {
 				var image = new Image();
 				image.src = settings.filesPath.replace('{index}', i);
-				image.className = 'slide';
-		//		image.style.display = 'none';
+				if ( settings.className.indexOf("{index}") >= 0 ){
+					className = settings.className.replace( "{index}", i );	
+				}
+				image.className = className;
 				settings.container.append( image );
 				sequence.push(image);
 				if (image.complete) {
@@ -117,6 +123,7 @@
 		return {
 			load: load,
 			showImageAt: showImageAt,
+			getImageAt: getImageAt,
 			imageCount: settings.imageCount,
 			skipImages: settings.skipImages,
 			frameSpeed: settings.frameSpeed

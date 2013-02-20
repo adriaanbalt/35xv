@@ -1,42 +1,29 @@
 
 body {
 	font-family: 'Josefin Sans', sans-serif;
-	color: black;
+	color: #000;
 	position: relative;
-
-	/* IE; docs say this should go first (or better, placed in separate IE-only stylesheet): */
-	// @include filter-gradient(#aaaaaa, #eeeeee);
-	/* Fallback: */
-	//background: $blue;
-	/* CSS 3 plus vendor prefixes: */
-	//@include background(linear-gradient(top, $blue, $dark-blue));
-	
-	background: -moz-linear-gradient(top,  #70cbf2 0%, #34b7ef 16%, #20a2d6 34%, #70cbf2 58%, #20a2d6 86%, #7db9e8 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#70cbf2), color-stop(16%,#34b7ef), color-stop(34%,#20a2d6), color-stop(58%,#70cbf2), color-stop(86%,#20a2d6), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #eee 0%,#eee 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #70cbf2 0%,#34b7ef 16%,#20a2d6 34%,#70cbf2 58%,#20a2d6 86%,#7db9e8 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70cbf2', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
-	background-size: cover;
-	overflow: hidden;
-
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	background-color: $blue;
 }
+
 #main {
+	background-color: $blue;
+	@include filter-gradient($blue, #39C0E5, vertical); // IE6-9
+	@include background-image(linear-gradient(top, rgb(64,159,217) 0%, #34b7ef 16%, rgb(77,165,220) 34%, rgb(64,159,217) 58%,#20a2d6 86%, #39C0E5 100%));
 	opacity: 0;
 	filter:alpha(opacity=0); /* For IE8 and earlier */
 	position: fixed;
 	z-index: 999;
 	zoom: 1;
-	left: 50%;
-	margin-left: -600px;
+	width: 100%;
 }
+
 #loader {
 	margin: 250px auto;
 	font-weight: 700;
@@ -55,6 +42,7 @@ body {
 		background-color: #FFF;
 	}
 }
+
 .wrapper {
 	max-width: 980px;
 	margin: 0 auto;
@@ -63,19 +51,10 @@ body {
 .layered {
 	position: absolute;
 }
+
 section {
 	position: relative;
 	margin-top: 100px !important;
-}
-
-#status {
-	position: fixed;
-	color: #ff9;
-	font-size: 18px;
-	z-index: 100000;
-	zoom: 1;
-	top: 20px;
-	right: 50px;
 }
 
 h1,h2,h3,h4,h5,h6 { line-height: 1.2; margin: 0; }
@@ -119,21 +98,6 @@ a, a:visited {
 #container {
 	z-index: 1;
 	zoom: 1;
-}
-#clouds {
-	position: absolute;
-	z-index: 0;
-	zoom: 1;
-	img {
-		max-width: 100%;
-	}
-}
-*.unselectable {
-   -moz-user-select: -moz-none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
 }
 canvas {
 	position: absolute;

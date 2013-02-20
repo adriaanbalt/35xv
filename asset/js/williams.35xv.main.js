@@ -20,7 +20,8 @@
 	$window.on('resize', resize);
 	windowHeight = $window.height();
 
-	loader = new $.BALT.loader( $('#loader'), {
+
+	var loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
 			var prop = {
 				opacity: 1,
@@ -46,8 +47,266 @@
 		'neighborhood' : 13380,
 		'team' : 14000,
 		'press' : 15600,
-		'contact' : 15600
+		'contact' : 15600,
+		'ending' : 21000
 	};
+
+
+
+	animation = [
+	{
+		'id' : 'cloud0',
+		'startAt' : gotoSection['home'],
+		'endAt' : gotoSection['design'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					console.log ( 'anim: ', anim );
+					// animationFunctions.centerH.call( this, anim, {});
+					// animationFunctions.centerV.call( this, anim, {});
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud1',
+		'startAt' : gotoSection['design'],
+		'endAt' : gotoSection['design-team'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud2',
+		'startAt' : gotoSection['design-team'],
+		'endAt' : gotoSection['residences'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud3',
+		'startAt' : gotoSection['residences'],
+		'endAt' : gotoSection['feature'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud4',
+		'startAt' : gotoSection['feature'],
+		'endAt' : gotoSection['availability'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud5',
+		'startAt' : gotoSection['availability'],
+		'endAt' : gotoSection['amenities-services'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud6',
+		'startAt' : gotoSection['amenities-services'],
+		'endAt' : gotoSection['neighborhood'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud7',
+		'startAt' : gotoSection['neighborhood'],
+		'endAt' : gotoSection['team'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	},
+	{
+		'id' : 'cloud8',
+		'startAt' : gotoSection['team'],
+		'endAt' : gotoSection['press'],
+		keyframes :[
+			{
+				position: 0,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			},
+			{
+				position: 1,
+				ease: TWEEN.Easing.Linear.EaseNone,
+				onInit: function( anim ) {
+					
+				},
+				properties: {
+					top: 0, left: 0
+				}
+			}
+		]
+	}
+	];
 
 	var imageSequences = {};
 
@@ -71,24 +330,27 @@
 				sequence: imageSequences['building-large']
 			});
 			scroller.init();
+			parallax.init();
 			nav = new $.BALT.nav( $('nav') );
 		}
 	});
 
 	imageSequences['building-large'] = new $.BALT.imageSequence({
-		filesPath:'asset/img/building-large/35XV_2013-02-13_000{index}.gif',
+		filesPath:'asset/img/building-large/35XV_2013-02-19_000{index}.gif',
 		imageCount: 100,
 		skipImages: 3,
 		container: $('#building-large'),
+		className: '',
 		onProgress: function() {
 			loadProgress.update( this.skipImages );
 		}
 	});
 	imageSequences['clouds'] = new $.BALT.imageSequence({
 		filesPath:'asset/img/clouds/cloud-{index}.png',
-		imageCount: 8,
+		imageCount: 9,
 		skipImages: 1,
-		container: $('#clouds .wrapper'),
+		container: $('#background'),
+		className: 'cloud show cloud{index}',
 		onProgress: function() {
 			loadProgress.update( this.skipImages );
 		}
@@ -109,7 +371,9 @@
 
 	spinner = new $.BALT.animation.spinner();
 
-	parallax = new $.BALT.animation.parallax();
+	parallax = new $.BALT.animation.parallax({
+		animation:animation
+	});
 
 	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), {
 		startAt : gotoSection['residences'],
@@ -125,7 +389,7 @@
 	});
 
 	scroller = new $.BALT.animation.scroller({
-		maxScroll: 21000,
+		maxScroll: gotoSection['ending'],
 		startAt : gotoSection[ window.location.hash ],
 		register : [ residences_gallery, amenities_gallery, spinner, parallax ]
 	});
