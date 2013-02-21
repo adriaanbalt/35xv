@@ -106,11 +106,12 @@
 			for ( var i = 0; i <= settings.imageCount; i=i+settings.skipImages) {
 				var image = new Image();
 				image.src = settings.filesPath.replace('{index}', i);
-				if ( settings.className.indexOf("{index}") >= 0 ){
-					className = settings.className.replace( "{index}", i );	
+				if ( settings.className ){
+					image.className = settings.className.indexOf("{index}") >= 0 ? settings.className.replace( "{index}", i ) : settings.className;
 				}
-				image.id = 'cloud' + i;
-				image.className = className;
+				if ( settings.id ){
+					image.id = settings.id.indexOf("{index}") >= 0 ? settings.id.replace( "{index}", i ) : settings.id;
+				}
 				settings.container.append( image );
 				sequence.push(image);
 				if (image.complete) {

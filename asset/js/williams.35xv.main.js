@@ -27,8 +27,9 @@
 		onComplete : function() {
 			var prop = {
 				opacity: 1,
-				filter: 'alpha(opacity=' + 100 + ')', /* For IE8 and earlier */
-				transition: 'all 1s'
+				filter: 'alpha(opacity=' + 100 + ')'
+				//, /* For IE8 and earlier */
+				//transition: 'all 1s'
 			};
 //			$('#main').css( prop );
 //			$('nav').css( prop );
@@ -48,9 +49,9 @@
 		'amenities-services' : 7800,
 		'neighborhood' : 13380,
 		'team' : 14000,
-		'press' : 15600,
-		'contact' : 15600,
-		'ending' : 21000
+		'press' : 15150,
+		'contact' : 15950,
+		'ending' : 16010
 	};
 
 	imageSequences = {};
@@ -83,7 +84,8 @@
 		imageCount: 9,
 		skipImages: 1,
 		container: $('#background'),
-		className: 'cloud show cloud{index}',
+		id: 'cloud{index}',
+		className: 'cloud show',
 		onProgress: function() {
 			loadProgress.update( this.skipImages );
 		}

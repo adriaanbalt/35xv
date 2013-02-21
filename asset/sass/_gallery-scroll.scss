@@ -12,18 +12,22 @@
 		margin-right: 130px;
 		float: left;
 		position: relative;
-		img {
-			@include box-shadow( rgba(0,0,0,.25) 5px 5px 5px );
-		}
 	}
 	.copy {
 		position: absolute;
 		z-index: 5;
 		right: -1px;
 	}
-	.shape {
+	.shape.over {
 		z-index: 4;
 		right: 0px;
+	}
+	.shape.under {
+		z-index: -1;
+		right: 0px;
+	}
+	.shadow {
+		@include box-shadow( rgba(0,0,0,.25) 5px 5px 5px );
 	}
 	.text-slant {
 		font-weight: 400;

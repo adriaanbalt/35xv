@@ -66,21 +66,6 @@
 		};
 
 		var resize = function () {
-
-			// $container.find('.slide').each( function() {
-			// 	$(this).css( {'width':$(window).width(), 'height':$(window).height()} );
-			// 	$(this).width( $target.width() ).height( $target.height() );
-			// 	imageResize ( $(this), $target.width(), $target.height() )
-			// 	$(this).width( $target.width() );
-			// 	if ( root.settings.ratioResize ){
-			// 		$(this).height( Math.round ( $target.width() * root.settings.ratio ) );
-			// 		if ( $(this).height() < $target.height() ) {
-			// 			$(this).height( $target.height() );
-			// 			$(this).width( Math.round ( $target.height() / root.settings.ratio ) );
-			// 		}
-			// 	}
-			// });
-
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
 			root.settings.itemHeight = $container.find('.slide:eq(0)').height();
 			root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+130 );
@@ -88,7 +73,6 @@
 			$container.width( root.settings.totalImagesWidth );
 			$target.height( root.settings.totalImagesWidth - root.settings.itemWidth );
 
-			//root.settings.startAt = ($target.offset().top - 100 );
 			root.settings.endAt = root.settings.startAt + $target.height();
 		};
 
@@ -97,13 +81,6 @@
 		};
 
 		root.scroll = function( scrollY ) {
-			// console.log ( '' );
-			// console.log( '$container ' , $container.selector );
-			// console.log ( "scroll: ", scrollY, root.settings.startAt, root.settings.endAt )
-			// if ( cur_time != undefined ) {
-			//	console.log ( "val: ", scrollY, " | " , valX, " | " , valY, " | " , cur_time, " | " , tot_time );
-			//}
-
 			limitX = (root.settings.itemWidth - endX + 130 );
 			limitY = (endY - root.settings.itemHeight);
 			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
@@ -132,15 +109,11 @@
 			}
 
 			var properties = {
-				// top: valY + "px",
-				// left: valX + "px"
 				'transform': "translate("+valX+"px,"+valY+"px)",
 				'-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
 				'-webkit-transform': "translate("+valX+"px,"+valY+"px)", /* Safari and Chrome */
 				'-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
 				'-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
-				// ,
-				// transition : 'all .01s ease'
 			};
 
 			$container.css ( properties );

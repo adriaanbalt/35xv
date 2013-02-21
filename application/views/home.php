@@ -138,10 +138,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-bathroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-bathroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/residences/bathroom.gif" />
+						<canvas id='shape-bathroom-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -155,10 +156,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-livingroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-livingroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/residences/livingroom.gif" />
+						<canvas id='shape-livingroom-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -172,10 +174,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-kitchen' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-kitchen' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/residences/kitchen.gif" />
+						<canvas id='shape-kitchen-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 				</div>
 			</div>
@@ -224,10 +227,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-lounge' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-lounge' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/lounge.gif" />
+						<canvas id='shape-lounge-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -241,10 +245,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-lobby' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-lobby' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/lobby.gif" />
+						<canvas id='shape-lobby-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -258,10 +263,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-mailroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-mailroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/mailroom.gif" />
+						<canvas id='shape-mailroom-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -275,10 +281,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-fitness' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-fitness' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/fitness.gif" />
+						<canvas id='shape-fitness-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -292,10 +299,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-kidsroom' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-kidsroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/kidsroom.gif" />
+						<canvas id='shape-kidsroom-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 					<div class='slide'>
 						<div class='layered grid-whole'>
@@ -309,10 +317,11 @@
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
-								<canvas id='shape-terrace' class='shape' class='shape' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
+								<canvas id='shape-terrace' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
 							</div>
 						</div>
 						<img src="asset/img/amenities-services/terrace.gif" />
+						<canvas id='shape-terrace-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
 					</div>
 				</div>
 			</div>
@@ -368,42 +377,42 @@
 		<div class="padded-inner content-box center">
 			<ul>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>REAL DEAL</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>
 				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h5>
+					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
 					<p class='source'>New York Times</p>
 					<p class='date'>April 2013</p>
 				</li>

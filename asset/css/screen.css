@@ -124,7 +124,12 @@ h4 {
   font-style: italic;
 }
 
-h5, h6 {
+h5 {
+  font-weight: 400;
+  font-size: 23px;
+}
+
+h6 {
   font-weight: 100;
 }
 
@@ -170,6 +175,7 @@ canvas {
 }
 #background .cloud {
   display: block;
+  position: absolute;
 }
 #background .cloud.c0 {
   display: block;
@@ -205,19 +211,23 @@ canvas {
   float: left;
   position: relative;
 }
-.gallery-scroll .slide img {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-  box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-}
 .gallery-scroll .copy {
   position: absolute;
   z-index: 5;
   right: -1px;
 }
-.gallery-scroll .shape {
+.gallery-scroll .shape.over {
   z-index: 4;
   right: 0px;
+}
+.gallery-scroll .shape.under {
+  z-index: -1;
+  right: 0px;
+}
+.gallery-scroll .shadow {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
 }
 .gallery-scroll .text-slant {
   font-weight: 400;
@@ -360,11 +370,23 @@ canvas {
 
 #building-medium {
   position: absolute;
+  left: -400px;
+  top: 250px;
 }
 
 .team .team-member img {
   float: left;
 }
 .team .team-member .description {
+  width: 50%;
   float: right;
+}
+
+.press ul li {
+  list-style-type: none;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.press ul li p {
+  margin: 0;
 }

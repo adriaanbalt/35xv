@@ -63,10 +63,10 @@
 
 		// get tweened values
 		root.getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
-		    var delta = end - start;
-		    var percentComplete = currentTime/totalTime;
-		    if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
-		    return tweener(percentComplete) * delta + start
+			var delta = end - start;
+			var percentComplete = currentTime/totalTime;
+			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
+			return tweener(percentComplete) * delta + start
 		};
 
 		root.absPosition = function(opts) {
@@ -123,6 +123,8 @@
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			var elemHalfHeight = anim._elem.height()/2;
 			this.properties['top'] = windowCenter.top - elemHalfHeight + settings.offset;
+
+			console.log ( 'this.properties : ', this.properties );
 		};
 
 		root.centerH = function( anim, opts ) {
@@ -152,7 +154,7 @@
 	$.BALT.animation.keyframes = function( o ) {
 		return [
 		{
-			'id' : '.cloud0',
+			'id' : 'cloud0',
 			'startAt' : gotoSection['home'],
 			'endAt' : gotoSection['design'],
 			keyframes :[
@@ -160,7 +162,6 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						console.log ( anim );
 						calculations.centerH.call( this, anim, {});
 						calculations.centerV.call( this, anim, {});
 					},
@@ -172,9 +173,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						console.log ( anim );
 						calculations.centerH.call( this, anim, {});
-						calculations.topOutside.call( this, anim, {});
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -183,7 +183,7 @@
 			]
 		},
 		{
-			'id' : '#building-large',
+			'id' : 'building-large',
 			'startAt' : gotoSection['design'],
 			'endAt' : gotoSection['design-team'],
 			onProgress: function(progress) {
@@ -194,7 +194,34 @@
 			}
 		},
 		{
-			'id' : '.cloud1',
+			'id' : 'building-small',
+			'startAt' : gotoSection['amenities-services'],
+			'endAt' : gotoSection['neighborhood'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+					//	calculations.centerV.call( this, anim, {});
+					},
+					properties: {
+						top: 250
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						//calculations.bottomOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 5650
+					}
+				}
+			]
+		},
+		{
+			'id' : 'cloud1',
 			'startAt' : gotoSection['design'],
 			'endAt' : gotoSection['design-team'],
 			keyframes :[
@@ -221,7 +248,7 @@
 			]
 		},
 		{
-			'id' : '.cloud2',
+			'id' : 'cloud2',
 			'startAt' : gotoSection['design-team'],
 			'endAt' : gotoSection['residences'],
 			keyframes :[
@@ -249,7 +276,7 @@
 			]
 		},
 		{
-			'id' : '.cloud3',
+			'id' : 'cloud3',
 			'startAt' : gotoSection['residences'],
 			'endAt' : gotoSection['feature'],
 			keyframes :[
@@ -277,7 +304,7 @@
 			]
 		},
 		{
-			'id' : '.cloud4',
+			'id' : 'cloud4',
 			'startAt' : gotoSection['feature'],
 			'endAt' : gotoSection['availability'],
 			keyframes :[
@@ -305,7 +332,7 @@
 			]
 		},
 		{
-			'id' : '.cloud5',
+			'id' : 'cloud5',
 			'startAt' : gotoSection['availability'],
 			'endAt' : gotoSection['amenities-services'],
 			keyframes :[
@@ -333,7 +360,7 @@
 			]
 		},
 		{
-			'id' : '.cloud6',
+			'id' : 'cloud6',
 			'startAt' : gotoSection['amenities-services'],
 			'endAt' : gotoSection['neighborhood'],
 			keyframes :[
@@ -361,7 +388,7 @@
 			]
 		},
 		{
-			'id' : '.cloud7',
+			'id' : 'cloud7',
 			'startAt' : gotoSection['neighborhood'],
 			'endAt' : gotoSection['team'],
 			keyframes :[
@@ -389,7 +416,7 @@
 			]
 		},
 		{
-			'id' : '.cloud8',
+			'id' : 'cloud8',
 			'startAt' : gotoSection['team'],
 			'endAt' : gotoSection['press'],
 			keyframes :[
@@ -456,13 +483,13 @@
 		};
 
 		var setupAnimation = function() {
+
 			for (var i in settings.animation) {
 				var anim = settings.animation[i];
 
-
 				// grab dom element
 				if (anim._elem == undefined) {
-					anim._elem = $(anim.id);
+					anim._elem = $("#" + anim.id);
 				}
 
 				// iterate through keyframes
@@ -562,31 +589,15 @@
 			// apply styles
 			anim._elem.css( properties );
 
-			// console.log ( '' );
-			// console.log ( '' );
-			// console.log ( 'elem n: ', anim._elem );
-			// console.log ( 'elem n: ', $(anim._elem) );
-			// console.log ( 'a-id n: ', $(anim.id) );
-			// console.log ( 'c    n: ', $('.cloud0') );
-			// console.log ( ' -- ' );
-			// console.log ( 'elem: ', anim._elem.position() );
-			// console.log ( 'a-id: ', $(anim.id).position() );
-			// console.log ( 'c :   ',$('.cloud0').position() );
-			// console.log ( ' -- ' );
-			// console.log ( 'PROP :   ', properties );
-
 			// onProgress callback
 			if (anim.onProgress && typeof anim.onProgress === 'function') {
 				anim.onProgress.call( anim, progress );
-			}
-
-			
+			}			
 		}
 		
 	//move page and scrubber
 		var scroll = function() {
 			var y = calculations.calcScrubber( scrollTop, settings.maxScroll );
-			console.log ( "y: ", y );
 			$main.css({
 				transform : 'translate( 0px, ' + (scrollTop*-1) + 'px)'
 			});
@@ -664,6 +675,8 @@
 
 	// generic
 		root.start = function() {
+			setupAnimation();
+
 			//console.log('start', settings.startAt);
 			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
 			
@@ -719,7 +732,6 @@
 				};
 
 			resize();
-			setupAnimation();
 			scrollTo ( settings.startAt );
 		}
 

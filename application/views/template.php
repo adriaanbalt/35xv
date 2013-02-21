@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="asset/css/video-js.css">
         <!--[if IE]><link href="asset/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /><![endif]-->
         <script src="asset/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
+        <!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
     </head>
     <body>
