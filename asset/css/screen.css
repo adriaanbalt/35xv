@@ -168,7 +168,6 @@ canvas {
   width: 100%;
   z-index: -1;
   zoom: 1;
-  margin-top: 550px;
 }
 #background img {
   max-width: 100%;

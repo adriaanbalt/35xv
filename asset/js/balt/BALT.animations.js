@@ -123,8 +123,6 @@
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			var elemHalfHeight = anim._elem.height()/2;
 			this.properties['top'] = windowCenter.top - elemHalfHeight + settings.offset;
-
-			console.log ( 'this.properties : ', this.properties );
 		};
 
 		root.centerH = function( anim, opts ) {
@@ -162,8 +160,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerH.call( this, anim, {});
-						calculations.centerV.call( this, anim, {});
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -173,8 +170,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerH.call( this, anim, {});
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.topRightOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -202,20 +198,22 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-					//	calculations.centerV.call( this, anim, {});
+						calculations.centerV.call( this, anim, {});
 					},
 					properties: {
-						top: 250
+						// top: 250
+						top: 0
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						//calculations.bottomOutside.call( this, anim, {});
+						calculations.bottomOutside.call( this, anim, {offset:1000});
 					},
 					properties: {
-						top: 5650
+						//top: 5650
+						top: 0
 					}
 				}
 			]
@@ -229,17 +227,18 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						console.log ( anim );
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
-						top: 0, left: 0
+						top: gotoSection['design'], left: 0
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.topOutside.call( this, anim, {});
+						calculations.leftOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -256,18 +255,18 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
-						top: 0, left: 0
+						top: gotoSection['design-team'], left: 0
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.topOutside.call( this, anim, {});
+						calculations.rightOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -284,8 +283,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -295,7 +293,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.topOutside.call( this, anim, {});
+						calculations.leftOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -312,8 +311,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -323,7 +321,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.topOutside.call( this, anim, {});
+						calculations.rightOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -340,8 +339,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -368,8 +366,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -379,7 +376,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.topOutside.call( this, anim, {});
+						calculations.rightOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -396,8 +394,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -407,6 +404,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
+						calculations.topOutside.call( this, anim, {});
 						
 					},
 					properties: {
@@ -424,8 +422,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
-						
+						calculations.bottomOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -435,6 +432,35 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
+						calculations.topOutside.call( this, anim, {});
+						calculations.leftOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : 'cloud9',
+			'startAt' : gotoSection['team'],
+			'endAt' : gotoSection['press'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.bottomOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.topOutside.call( this, anim, {});
 						
 					},
 					properties: {
@@ -550,10 +576,10 @@
 					
 					// check if animation is in range
 					if (scrollTopTweened >= anim.startAt && scrollTopTweened <= anim.endAt) {
-				//		startAnimatable( anim );
+						// startAnimatable( anim );
 						render( anim );
 					} else {
-				//		stopAnimatable( anim );
+						// stopAnimatable( anim );
 					}
 				}
 
@@ -593,6 +619,37 @@
 			if (anim.onProgress && typeof anim.onProgress === 'function') {
 				anim.onProgress.call( anim, progress );
 			}			
+		}
+
+		/* run before animation starts when animation is in range */
+		var startAnimatable = function( anim ) {
+			// apply start properties
+			if (!anim._started) {
+				if (anim.onStartAnimate && typeof anim.onStartAnimate === 'function') {
+					anim.onStartAnimate.call( anim );
+				} else {
+					anim._elem.css('display', 'block');
+				}
+				
+				console.log('starting', anim.id);
+				anim._started = true;
+				
+			}
+		}
+
+		/* run after animation is out of range  */
+		var stopAnimatable = function( anim ) {
+			// apply end properties
+			if (anim._started && anim.endAt < scrollTopTweened || anim._started && anim.startAt > scrollTopTweened ) {
+				if (anim.onEndAnimate && typeof anim.onEndAnimate === 'function') {
+					anim.onEndAnimate.call( anim );
+				} else {
+					anim._elem.css('display', 'none');
+				}
+
+				console.log('stopping', anim.id);
+				anim._started = false;
+			}
 		}
 		
 	//move page and scrubber
