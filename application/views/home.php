@@ -17,6 +17,7 @@
 			<li><a href='#home'>SKYMARK</a></li>
 			<li><a href='#design'>DESIGN</a></li>
 			<li><a href='#residences'>RESIDENCES</a></li>
+			<li><a href='#availability'>UNIT AVAILABILITY</a></li>
 			<li><a href='#amenities-services'>AMENITIES &AMP; SERVICES</a></li>
 			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team'>TEAM</a></li>
@@ -53,16 +54,16 @@
 			<div class="grid-third content-box" id='design-info'>
 				<div class="padded-inner">
 					<div class='building-section one'>
-						<h3>RESIDENCES</h3>
+						<h1>RESIDENCES</h1>
 					</div>
 					<div class='building-section two'>
-						<h3>AMENTIY FLOORS</h3>
+						<h1>AMENTIY FLOORS</h1>
 					</div>
 					<div class='building-section three'>
-						<h3>COMMERCIAL SPACE</h3>
+						<h1>COMMERCIAL SPACE</h1>
 					</div>
 					<div class='building-section'>
-						<h3>BUILDING ENTRANCE</h3>
+						<h1>BUILDING ENTRANCE</h1>
 					</div>
 				</div>
 			</div>
