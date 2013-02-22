@@ -261,6 +261,7 @@ canvas {
   box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
 }
 .gallery-scroll .text-slant {
+  width: 325px;
   font-weight: 400;
 }
 
@@ -300,7 +301,6 @@ canvas {
   display: block;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
 }
 .home p {
   display: inline;
