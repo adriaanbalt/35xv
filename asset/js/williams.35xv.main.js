@@ -72,7 +72,7 @@
 	imageSequences['building-large'] = new $.BALT.imageSequence({
 		filesPath:'asset/img/building-large/35XV_2013-02-19_000{index}.gif',
 		imageCount: 100,
-		skipImages: 3,
+		skipImages: 5,
 		container: $('#building-large'),
 		className: '',
 		onProgress: function() {
@@ -81,7 +81,7 @@
 	});
 	imageSequences['clouds'] = new $.BALT.imageSequence({
 		filesPath:'asset/img/clouds/cloud-{index}.png',
-		imageCount: 9,
+		imageCount: 8,
 		skipImages: 1,
 		container: $('#background'),
 		id: 'cloud{index}',
