@@ -144,6 +144,16 @@
 			this.properties['top'] = -anim._elem.height() + settings.offset;
 		};
 
+		root.zeroTop = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = 0 + settings.offset;
+		};
+
+		root.zeroLeft = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = 0 + settings.offset;
+		};
+
 		$window.resize( resize );
 		resize();
 
@@ -151,33 +161,6 @@
 
 	$.BALT.animation.keyframes = function( o ) {
 		return [
-		{
-			'id' : 'cloud0',
-			'startAt' : gotoSection['home'],
-			'endAt' : gotoSection['design'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topRightOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
 		{
 			'id' : 'building-large',
 			'startAt' : gotoSection['design'],
@@ -198,28 +181,26 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, {});
+						calculations.zeroTop.call( this, anim, { offset: 500 });
 					},
 					properties: {
-						// top: 250
-						top: 0
+						top: 0, left: 0
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {offset:1000});
+						calculations.bottomOutside.call( this, anim, { offset: 5000 });
 					},
 					properties: {
-						//top: 5650
-						top: 0
+						top: 0, left: 0
 					}
 				}
 			]
 		},
 		{
-			'id' : 'cloud1',
+			'id' : 'cloud0',
 			'startAt' : gotoSection['design'],
 			'endAt' : gotoSection['design-team'],
 			keyframes :[
@@ -227,10 +208,11 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: 1500 });
+						calculations.centerH.call( this, anim, { offset: 300 });
 					},
 					properties: {
-						top: gotoSection['design'], left: 0
+						top: 0, left: 0
 					}
 				},
 				{
@@ -247,18 +229,48 @@
 			]
 		},
 		{
-			'id' : 'cloud2',
-			'startAt' : gotoSection['design-team'],
-			'endAt' : gotoSection['residences'],
+			'id' : 'cloud1',
+			'startAt' : gotoSection['residences'],
+			'endAt' : gotoSection['feature'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, { offset: -200 });
 					},
 					properties: {
-						top: gotoSection['design-team'], left: 0
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
+						calculations.rightOutside.call( this, anim, { offset: -600 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : 'cloud2',
+			'startAt' : gotoSection['feature'],
+			'endAt' : gotoSection['neighborhood'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
 					}
 				},
 				{
@@ -276,14 +288,15 @@
 		},
 		{
 			'id' : 'cloud3',
-			'startAt' : gotoSection['residences'],
-			'endAt' : gotoSection['feature'],
+			'startAt' : gotoSection['amenities-services'],
+			'endAt' : gotoSection['neighborhood'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -293,8 +306,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.leftOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -311,7 +324,8 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -339,7 +353,8 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -349,7 +364,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						
+						calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
+						calculations.rightOutside.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -366,7 +382,8 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -394,7 +411,8 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -422,7 +440,8 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, {});
 					},
 					properties: {
 						top: 0, left: 0
@@ -434,34 +453,6 @@
 					onInit: function( anim ) {
 						calculations.topOutside.call( this, anim, {});
 						calculations.leftOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud9',
-			'startAt' : gotoSection['team'],
-			'endAt' : gotoSection['press'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						
 					},
 					properties: {
 						top: 0, left: 0
@@ -522,22 +513,28 @@
 				for (var k in anim.keyframes) {
 					var keyframe = anim.keyframes[k];
 
+					// onInit callback
+					if (typeof keyframe.onInit == 'function') keyframe.onInit( anim );
+
 					// setup keyframe 0
 					if (keyframe.position == 0) {
 						var nKeyframe = anim.keyframes[Number(k)+1];	// next keyframe
-						
+
+						anim._elem.css( keyframe.properties );
+
 						for (property in nKeyframe.properties) {
 							if (keyframe.properties[ property ] == undefined) {
 								// grab current offset and load into properties for keyframe 0
 								if (/left|top/.test(property)) {
 									keyframe.properties[ property ] = anim._elem.position()[ property ];
 								}
-
 								// todo: width & height
 							}
 						}
 					}
-					
+
+					console.log ( anim.id , k, keyframe.properties );
+
 					// fill in properties from current element
 					// find missing properties from last occurance of property
 					var bIndex = Number(k); // start 1 back from current
@@ -553,12 +550,10 @@
 
 						bIndex--;
 					};
-
-					// onInit callback
-					if (typeof keyframe.onInit == 'function') keyframe.onInit( anim );
 					
 					// reorganize if relative
 				}
+				console.log ( ' ' );
 			}
 		}
 
