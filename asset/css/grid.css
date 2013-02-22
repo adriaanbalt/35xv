@@ -32,12 +32,10 @@
 
 .grid-3, .grid-quarter {
   width: 25%;
-  position: relative;
 }
 
 .grid-4, .grid-third {
   width: 33.33333%;
-  position: relative;
 }
 
 .grid-5 {
@@ -54,7 +52,6 @@
 
 .grid-8, .grid-two-thirds {
   width: 66.66667%;
-  position: relative;
 }
 
 .grid-9, .grid-three-quarters {
@@ -71,7 +68,6 @@
 
 .grid-12, .grid-whole {
   width: 100%;
-  position: relative;
 }
 
 /* padding helper classes */
@@ -111,6 +107,20 @@
   padding: 0 1em;
 }
 
+.padded-reverse {
+  margin: 0 -0.5em;
+  width: auto;
+  box-sizing: content-box;
+  float: none;
+}
+
+.padded-reverse-all {
+  margin: -0.5em;
+  width: auto;
+  box-sizing: content-box;
+  float: none;
+}
+
 /* miscellaneous helper classes */
 .flow-opposite {
   float: right;
@@ -126,6 +136,14 @@
 
 .right {
   text-align: right;
+}
+
+/* For compatibility with Bootstrap (fixed), Foundation, etc. */
+.row {
+  margin: 0 -0.5em;
+  width: auto;
+  box-sizing: content-box;
+  float: none;
 }
 
 @media (max-width: 480px) {
@@ -222,6 +240,20 @@
 
   .s-padded-inner-sides {
     padding: 0 1em;
+  }
+
+  .s-padded-reverse {
+    margin: 0 -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+  }
+
+  .s-padded-reverse-all {
+    margin: -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
   }
 
   /* miscellaneous helper classes */
@@ -341,6 +373,20 @@
     padding: 0 1em;
   }
 
+  .m-padded-reverse {
+    margin: 0 -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+  }
+
+  .m-padded-reverse-all {
+    margin: -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+  }
+
   /* miscellaneous helper classes */
   .m-flow-opposite {
     float: right;
@@ -456,6 +502,20 @@
 
   .l-padded-inner-sides {
     padding: 0 1em;
+  }
+
+  .l-padded-reverse {
+    margin: 0 -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+  }
+
+  .l-padded-reverse-all {
+    margin: -0.5em;
+    width: auto;
+    box-sizing: content-box;
+    float: none;
   }
 
   /* miscellaneous helper classes */

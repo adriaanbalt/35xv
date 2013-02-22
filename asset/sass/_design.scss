@@ -1,27 +1,9 @@
 .design {
-	#building-large {
-		height: 2048px;
-		position: relative;
-		zoom: 1;
-		//top: 0%;
-		display: block;
-		z-index: 100;
-		left: -200px;
-		img {
-			display: none;
-			position: absolute;
-			top: 0;
-			left: 0;
-		//	width: 100%;
-			&.show {
-				display: block;
-			}
-		}
-	}
 
 	#design-info{
 		.one {
-			height: 1350px;
+			margin-top: 200px;
+			height: 1150px;
 		}
 		.two {
 			height: 250px;

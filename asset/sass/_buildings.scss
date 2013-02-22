@@ -1,0 +1,30 @@
+
+#building-large {
+	height: 2048px;
+	position: relative;
+	zoom: 1;
+	//top: 0%;
+	display: block;
+	z-index: 100;
+	left: -200px;
+	img {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+	//	width: 100%;
+		&.show {
+			display: block;
+		}
+	}
+}
+#building-medium {
+	position: absolute;
+	left: -400px;
+	top: 250px;
+}
+#building-small {
+	position: absolute;
+	left: -400px;
+	top: 250px;
+}

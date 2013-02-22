@@ -11,8 +11,11 @@
 	}
 
 	.cloud {
-		display: block;
 		position: absolute;
+		display: none;
+		&.show {
+			display: block;
+		}
 	}
 	
 	.cloud.c0 {

@@ -99,9 +99,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-family: 'Alfa Slab One', cursive;
-  font-weight: normal;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 35px;
 }
 
 h2 {
@@ -173,8 +172,11 @@ canvas {
   max-width: 100%;
 }
 #background .cloud {
-  display: block;
   position: absolute;
+  display: none;
+}
+#background .cloud.show {
+  display: block;
 }
 #background .cloud.c0 {
   display: block;
@@ -184,6 +186,36 @@ canvas {
 }
 #background .cloud.c2 {
   display: block;
+}
+
+#building-large {
+  height: 2048px;
+  position: relative;
+  zoom: 1;
+  display: block;
+  z-index: 100;
+  left: -200px;
+}
+#building-large img {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#building-large img.show {
+  display: block;
+}
+
+#building-medium {
+  position: absolute;
+  left: -400px;
+  top: 250px;
+}
+
+#building-small {
+  position: absolute;
+  left: -400px;
+  top: 250px;
 }
 
 .video-box {
@@ -278,25 +310,9 @@ canvas {
   width: 100%;
 }
 
-.design #building-large {
-  height: 2048px;
-  position: relative;
-  zoom: 1;
-  display: block;
-  z-index: 100;
-  left: -200px;
-}
-.design #building-large img {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.design #building-large img.show {
-  display: block;
-}
 .design #design-info .one {
-  height: 1350px;
+  margin-top: 200px;
+  height: 1150px;
 }
 .design #design-info .two {
   height: 250px;
@@ -365,12 +381,6 @@ canvas {
 .unit-availability table {
   color: #226d96;
   float: right;
-}
-
-#building-medium {
-  position: absolute;
-  left: -400px;
-  top: 250px;
 }
 
 .team .team-member img {
