@@ -54,10 +54,10 @@ body {
 
 section {
 	position: relative;
-	margin-top: 100px !important;
+	margin: 100px 0 !important;
 }
 
-h1,h2,h3,h4,h5,h6 { line-height: 1.2; margin: 0; }
+h1,h2,h3,h4,h5,h6 { line-height: 1.2; margin: 0; color: $blue-dark;}
 h1 {
 	font-weight: 700;
 	font-size: 35px;
@@ -66,9 +66,8 @@ h2 {
 	font-weight: 100;
 	font-size: 55px;
 	line-height: 50px;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid $blue-dark;
 	margin-bottom: 20px;
-	color: #053b5e;
 }
 h3 {
 	font-weight: 400;

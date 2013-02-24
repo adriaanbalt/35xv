@@ -12,7 +12,7 @@ class Site extends CI_Controller {
 		// Included options are long, short & tiny.
 		// Unfortunately the long one is what they are using currently
 		// The view files are at application/views/contact/{{size}}
-		// I'm using twitter bootstrap markup for the control groups but you can adjust as needed	
+		// I'm using twitter bootstrap markup for the control groups but you can adjust as needed
 		$data['contact_form'] = $this->_contact_form('long');
 
 		// Use the home view for everthing inside <body>

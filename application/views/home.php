@@ -17,7 +17,7 @@
 			<li><a href='#home'>SKYMARK</a></li>
 			<li><a href='#design'>DESIGN</a></li>
 			<li><a href='#residences'>RESIDENCES</a></li>
-			<li><a href='#availability'>UNIT AVAILABILITY</a></li>
+			<li><a href='#unit-availability'>UNIT AVAILABILITY</a></li>
 			<li><a href='#amenities-services'>AMENITIES &AMP; SERVICES</a></li>
 			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team'>TEAM</a></li>
@@ -135,7 +135,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>BATHROOM</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -153,7 +153,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>LIVING ROOM</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -171,7 +171,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>KITCHEN</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -224,7 +224,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>LOUNGE</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -242,7 +242,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>LOBBY</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -260,7 +260,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>MAILROOM</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -278,7 +278,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>FITNESS</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -296,7 +296,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>KIDSROOM</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -314,7 +314,7 @@
 							<div class="grid-third padded-inner">
 								<div class='copy'>
 									<h3>TERRACE</h3>
-									<div class='text-slant'>
+									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
 									</div>
 								</div>
@@ -340,33 +340,33 @@
 <!-- team -->
 	<section class="team grid-whole">
 		<h2>TEAM</h2>
-		<div class="padded-inner content-box center">
-			<div class='team-member clearfix'>
-				<img src='asset/img/team/alchemy.jpg'/>
+		<div class="padded-inner content-box">
+			<div class='team-member clearfix border-bottom'>
+				<img src='asset/img/team/alchemy.gif'/>
 				<div class='description'>
 					<h4>ALCHEMY</h4>
-					<p>Alchemy Properties Inc. is a privately held, fully integrated real estate firm whose principals have over 75 years of experience in acquiring, developing, leasing, repositioning, managing, financing and selling real estate in the New York City Tri-State area. Started by Kenneth S. Horn in 1990, Alchemy has become a best-in-class partner with a variety of institutional, family foundation and high net worth individuals as long-term repeat investors.</p>
+					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Alchemy Properties Inc. is a privately held, fully integrated real estate firm whose principals have over 75 years of experience in acquiring, developing, leasing, repositioning, managing, financing and selling real estate in the New York City Tri-State area. Started by Kenneth S. Horn in 1990, Alchemy has become a best-in-class partner with a variety of institutional, family foundation and high net worth individuals as long-term repeat investors.</p>
 				</div>
 			</div>
-			<div class='team-member clearfix'>
+			<div class='team-member clearfix border-bottom rightside'>
 				<img src=''/>
 				<div class='description'>
 					<h4>ANGELO GORDON</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 				</div>
 			</div>
-			<div class='team-member clearfix'>
-				<img src='asset/img/team/fxfowle.jpg'/>
+			<div class='team-member clearfix rightside'>
+				<img src='asset/img/team/fxfowle.gif'/>
 				<div class='description'>
 					<h4>FX FOWLE</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 				</div>
 			</div>
-			<div class='team-member clearfix'>
-				<img src='asset/img/team/bno.jpg'/>
+			<div class='team-member clearfix border-bottom-dark rightside halfwidth'>
+				<img src='asset/img/team/bno.gif'/>
 				<div class='description'>
 					<h4>BNO</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 				</div>
 			</div>
 		</div>
@@ -375,7 +375,7 @@
 <!-- press -->
 	<section class="press grid-whole">
 		<h2>PRESS</h2>
-		<div class="padded-inner content-box center">
+		<div class="padded-inner content-box clearfix">
 			<ul>
 				<li>
 					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
@@ -424,14 +424,26 @@
 <!-- contact -->
 	<?php echo $contact_form; ?>
 
-<!-- address -->
-	<section class="address grid-whole">
-	</section>
-
 <!-- footer -->
-	<footer>
-		<p>&copy; 2013</p>
-	</footer>
+	<section class="address grid-whole">
+		<hr>
+		<hr>
+		<div class='clearfix'>
+			<div class='addy'>
+				<span>212.244.3515</span>
+				<span class='pipe'></span>
+				<span>THIRTY FIVE WEST FIFTEENTH STREET, NYC</span>
+			</div>
+			<div class='sales'>
+			<span><b>SALES GALLERY</b></span>
+			<SPAN>135 FIFTH AVENUE NEW YORK, NY</SPAN>
+			</div>
+			<div class='border-bottom last'>
+			<span>DEVELOPED BY ALCHEMY PROPERTIES</span>
+			</div>
+		</div>
+		<p class='copyright'>&copy; 2013</p>
+	</section>
 
 </div>
 

@@ -14,6 +14,7 @@
 	$.BALT.loader = function( target, o ) {
 		var root = this,
 		$target = target,
+		firstTime = false,
 		defaults = {
 		};
 		var settings = $.extend( defaults, o );
@@ -39,15 +40,17 @@
 		};
 
 		var complete = function() {
-			var properties = {
-				opacity: 0,
-				filter: 'alpha(opacity=' + 0 + ')', /* For IE8 and earlier */
-				transition: 'all 1s'
-			}
-			$target.css( properties );
+			if ( !firstTime ){
+				firstTime = true;
+				var properties = {
+					opacity: 0,
+					filter: 'alpha(opacity=' + 0 + ')', /* For IE8 and earlier */
+					transition: 'all 1s'
+				}
+				$target.css( properties );
 
-			if (settings.onComplete && typeof settings.onComplete === 'function')
-				var timeoutID = window.setTimeout(settings.onComplete, 1000 );
+				if (settings.onComplete && typeof settings.onComplete === 'function') var timeoutID = window.setTimeout(settings.onComplete, 700 );
+			}
 		};
 
 	};

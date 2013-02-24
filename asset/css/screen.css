@@ -90,12 +90,13 @@ body {
 
 section {
   position: relative;
-  margin-top: 100px !important;
+  margin: 100px 0 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin: 0;
+  color: #053b5e;
 }
 
 h1 {
@@ -107,9 +108,8 @@ h2 {
   font-weight: 100;
   font-size: 55px;
   line-height: 50px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #053b5e;
   margin-bottom: 20px;
-  color: #053b5e;
 }
 
 h3 {
@@ -275,7 +275,7 @@ canvas {
   right: 1px;
   -webkit-transition: opacity 0ms 0ms;
   overflow: hidden;
-  opacity: 1;
+  display: none;
 }
 #scroller #scrubber {
   position: absolute;
@@ -306,6 +306,9 @@ canvas {
   display: inline;
 }
 
+.neighborhood .content-box {
+  padding: 0 1%;
+}
 .neighborhood img {
   width: 100%;
 }
@@ -366,36 +369,152 @@ canvas {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #226d96;
+  border-top: 8px solid #053b5e;
 }
 .unit-availability .arrow.up {
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid #226d96;
+  border-bottom: 8px solid #053b5e;
 }
 .unit-availability a, .unit-availability a:visited {
-  color: #226d96;
+  color: #053b5e;
 }
 .unit-availability table {
-  color: #226d96;
+  color: #053b5e;
   float: right;
 }
 
+.team .team-member {
+  padding: 30px 1%;
+  width: 100%;
+}
 .team .team-member img {
   float: left;
+  padding-right: 2%;
 }
 .team .team-member .description {
   width: 50%;
+  float: left;
+}
+.team .team-member.rightside {
   float: right;
+  width: 80%;
+}
+.team .team-member.halfwidth {
+  width: 65%;
+}
+.team .team-member.border-bottom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.team .team-member.border-bottom-dark {
+  border-bottom: 1px solid #053b5e;
 }
 
 .press ul li {
+  float: right;
   list-style-type: none;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .press ul li p {
   margin: 0;
+}
+
+.contact .control-group {
+  margin-top: 5px;
+  font-size: 20px;
+  color: #053b5e;
+  float: right;
+}
+.contact .control-group .controls {
+  float: left;
+}
+.contact .control-group .controls input {
+  background: transparent;
+  border: 1px solid #666;
+  font-weight: 100;
+  font-size: 16px;
+  width: 400px;
+  padding: 3px;
+}
+.contact .control-group label {
+  width: 300px;
+  float: left;
+}
+.contact .control-group button {
+  margin-top: 20px;
+  background: transparent;
+  border: 0;
+  color: #053b5e;
+  font-weight: 100;
+  font-size: 35px;
+  padding: 0;
+}
+
+.address {
+  font-size: 30px;
+  color: #053b5e;
+}
+.address div {
+  margin-top: 5px;
+}
+.address hr {
+  border: 0;
+  height: 1px;
+  background: #053b5e;
+  margin: 5px 0 0 0;
+}
+.address .pipe {
+  display: inline-block;
+  width: 1px;
+  height: 23px;
+  background: #053b5e;
+  margin: 0 7px;
+}
+.address .addy {
+  float: right;
+  width: 98%;
+}
+.address .sales {
+  float: right;
+  width: 96%;
+}
+.address .last {
+  float: right;
+  font-size: 20px;
+  width: 94%;
+  padding-bottom: 10px;
+}
+.address .border-bottom {
+  border-bottom: 1px solid #053b5e;
+}
+
+.copyright {
+  text-align: right;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 10000;
+  zoom: 1;
+  opacity: 0;
+}
+.modal > .inner {
+  padding: 5%;
+}
+.modal .close {
+  font-size: 80px;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-weight: 100;
+  color: #000;
 }

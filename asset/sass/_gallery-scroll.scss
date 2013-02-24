@@ -45,7 +45,7 @@
 	right: 1px;
 	-webkit-transition: opacity 0ms 0ms;
 	overflow: hidden;
-	opacity: 1;
+	display: none;
 	#scrubber {
 		position: absolute;
 		z-index: 100;

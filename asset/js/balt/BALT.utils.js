@@ -14,6 +14,7 @@ var TextSlant = function( target, lineHeight, textWidth, boxWidth, increment ) {
 	target.prepend(out);
 }
 
+
 /*
 @project Helper
 
@@ -26,7 +27,7 @@ var DrawShape = function( target, color, width, height, type, overhang ) {
 	overhang = overhang == undefined?100:overhang;
 
 	if(window['G_vmlCanvasManager'] && !document.getElementById(target).getContext) G_vmlCanvasManager.initElement( document.getElementById(target) );
-			
+
 	var canvas = document.getElementById(target).getContext('2d');
 	canvas.fillStyle = color;
 	canvas.beginPath();
@@ -45,7 +46,7 @@ var DrawShape = function( target, color, width, height, type, overhang ) {
 
 	canvas.closePath();
 	canvas.fill();
-	
+
 //	console.log ( "shape: ", color, target, width, height, type, overhang );
 };
 

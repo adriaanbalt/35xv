@@ -19,23 +19,21 @@
 		var settings = $.extend( defaults, o );
 
 		var init = function(){
-			$.history.init(parseHash);
-			$target.on( 'click', 'a', navigate );
-			
+			$.history.init(root.navigate);
 		};
 
-		var navigate = function( e, target ) {
-		//	e.preventDefault();
-			console.log ( 'navigate', $(e.currentTarget).attr('href').split('#')[1] );
-		//	parseHash( $(e.currentTarget).attr('href').split('#')[1] );
-		};
-
-		var parseHash = function(hash) {
-			if ( gotoSection[hash] !== undefined ) {
-				scroller.scrollTo( gotoSection[hash] );
+		root.navigate = function( hash ) {
+			if ( hash.indexOf('modal') ==-1 ){
+				if ( gotoSection[hash] !== undefined ) {
+					scroller.scrollTo( gotoSection[hash] );
+					scroller.scrollTo( gotoSection[hash] );
+				} else {
+					scroller.scrollTo( 0 );
+				}
 			} else {
-				scroller.scrollTo( 0 );
+				console.log ( "THIS is a modal!" );
 			}
+
 		};
 
 		init();

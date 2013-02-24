@@ -67,6 +67,7 @@
         <script src='asset/js/balt/BALT.nav.js?v=2'></script>
         <script src='asset/js/balt/BALT.loader.js?v=2'></script>
         <script src='asset/js/balt/BALT.utils.js?v=2'></script>
+        <script src='asset/js/balt/BALT.modal.js?v=2'></script>
         <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>
         <script src='asset/js/balt/BALT.animations.js?v=2'></script>

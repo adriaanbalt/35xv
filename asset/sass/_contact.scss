@@ -1,3 +1,74 @@
 .contact {
-	
+	.control-group {
+		margin-top: 5px;
+		font-size: 20px;
+		color: $blue-dark;
+		float: right;
+		.controls {
+			float: left;
+			input {
+				background: transparent;
+				border: 1px solid #666;
+				font-weight: 100;
+				font-size: 16px;
+				width: 400px;
+				padding: 3px;
+			}
+		}
+		label {
+			width: 300px;
+			float: left;
+		}
+		button {
+			margin-top: 20px;
+			background: transparent;
+			border: 0;
+			color: $blue-dark;
+			font-weight: 100;
+			font-size: 35px;
+			padding: 0;
+		}
+	}
+}
+
+.address {
+	font-size: 30px;
+	color: $blue-dark;
+	div {
+		margin-top: 5px;
+	}
+	hr {
+		border: 0;
+		height: 1px;
+		background: $blue-dark;
+		margin: 5px 0 0 0;
+	}
+	.pipe {
+		display: inline-block;
+		width: 1px;
+		height: 23px;
+		background: $blue-dark;
+		margin: 0 7px;
+	}
+	.addy {
+		float: right;
+		width: 98%;
+	}
+	.sales {
+		float: right;
+		width: 96%;
+	}
+	.last {
+		float: right;
+		font-size: 20px;
+		width: 94%;
+		padding-bottom: 10px
+	}
+	.border-bottom {
+		border-bottom: 1px solid $blue-dark;
+	}
+}
+
+.copyright {
+	text-align: right;
 }

@@ -51,7 +51,8 @@
 			}
 		};
 
-		root.start = function() {
+		root.start = function( o ) {
+			root.settings = $.extend( root.settings, o );
 			$window.resize( resize );
 			resize();
 		};
@@ -107,6 +108,7 @@
 				valX = limitX;
 				valY = limitY;
 			}
+
 
 			var properties = {
 				'transform': "translate("+valX+"px,"+valY+"px)",

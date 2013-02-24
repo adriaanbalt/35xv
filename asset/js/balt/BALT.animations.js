@@ -32,23 +32,23 @@
 		root.calcBgY = function(x, windowHeight, pos, adjuster, inertia){
 			return x + "px, " + (-((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
-		
+
 		root.calcBgX = function(y, windowHeight, pos, adjuster, inertia){
 			return (-((windowHeight + pos) - adjuster) * inertia)  + "px " + y + "px";
 		};
-		
+
 		root.calcXY = function(windowHeight, pos, adjusterX, inertiaX, adjusterY, inertiaY){
 			return (-((windowHeight + pos) - adjusterX) * inertiaX)  + "px " + (-((windowHeight + pos) - adjusterY) * inertiaY) + "px";
 		};
-		
+
 		root.calcPos = function(windowHeight, pos, adjuster, inertia) {
 			return (((windowHeight + pos) - adjuster) * inertia)  + "px";
 		};
-		
+
 		root.calcRot = function( r, windowHeight, pos, adjuster, inertia ){
 			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
 		};
-		
+
 		root.calcProgress = function( startAt, endAt ) {
 		//	return ( (startAt - scrollTopTweened) / (startAt - endAt) );
 		};
@@ -82,7 +82,7 @@
 			this.startProperties['display'] = 'block';
 			this.endProperties['display'] = 'none';
 		};
-			
+
 		root.bottomLeftOutside = function( anim, opts ) {
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			resize();
@@ -91,11 +91,11 @@
 				elemHalfHeight = anim._elem.height()/2,
 				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
 				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
-			
+
 			this.properties['top'] = windowCenter.top + adj - elemHalfHeight + (portrait ? settings.offset : 0);
 			this.properties['left'] = windowCenter.left - adj - elemHalfWidth + (portrait ? 0 : settings.offset);
 		};
-		
+
 		root.topRightOutside =function( anim, opts ) {
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			var portrait = false, //windowHeight > windowWidth ? true : false,
@@ -107,7 +107,7 @@
 			this.properties['top'] = windowCenter.top - adj - elemHalfHeight + (portrait ? settings.offset : 0);
 			this.properties['left'] = windowCenter.left + adj - elemHalfWidth + (portrait ? 0 : settings.offset);
 		};
-		
+
 		root.leftOutside = function( anim, opts ) {
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			this.properties['left'] = -anim._elem.width() + settings.offset;
@@ -128,9 +128,9 @@
 		root.centerH = function( anim, opts ) {
 			resize();
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			
+
 			var elemHalfWidth = anim._elem.width()/2;
-			
+
 			this.properties['left'] = windowCenter.left - elemHalfWidth + settings.offset;
 		};
 
@@ -423,7 +423,7 @@
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.topOutside.call( this, anim, {});
-						
+
 					},
 					properties: {
 						top: 0, left: 0
@@ -480,6 +480,9 @@
 		autoScrollInterval = 0,
 	//scrubber
 		lastY = 0,
+		offsetY = 0,
+		scrubbrerUpperLimit = 0,
+		scrubberHeight = 122,
 		started = false,
 	//settings
 		defaults = {
@@ -490,14 +493,6 @@
 		},
 		settings = $.extend( defaults, o );
 
-	//notify listeners
-		var dispatch = function() {
-			var i = settings.register.length;
-			while ( i-- ){
-				scroll();
-				settings.register[i].scroll( scrollTop );
-			}
-		};
 
 		var setupAnimation = function() {
 
@@ -533,7 +528,7 @@
 						}
 					}
 
-					console.log ( anim.id , k, keyframe.properties );
+//					console.log ( anim.id , k, keyframe.properties );
 
 					// fill in properties from current element
 					// find missing properties from last occurance of property
@@ -550,10 +545,10 @@
 
 						bIndex--;
 					};
-					
+
 					// reorganize if relative
 				}
-				console.log ( ' ' );
+			//	console.log ( ' ' );
 			}
 		}
 
@@ -568,7 +563,7 @@
 				// run through animations
 				for (var i in animation) {
 					var anim = animation[i];
-					
+
 					// check if animation is in range
 					if (scrollTopTweened >= anim.startAt && scrollTopTweened <= anim.endAt) {
 						// startAnimatable( anim );
@@ -594,7 +589,7 @@
 					var keyframe = anim.keyframes[ i ],
 						lastkeyframe = anim.keyframes[ i - 1 ],
 						keyframeProgress = ( lastkeyframe.position - progress ) / ( lastkeyframe.position - keyframe.position );
-					
+
 					if ( keyframeProgress > 0 && keyframeProgress < 1 ) {
 						if (keyframe.onProgress && typeof keyframe.onProgress === 'function') {
 							keyframe.onProgress( keyframeProgress );
@@ -613,7 +608,7 @@
 			// onProgress callback
 			if (anim.onProgress && typeof anim.onProgress === 'function') {
 				anim.onProgress.call( anim, progress );
-			}			
+			}
 		}
 
 		/* run before animation starts when animation is in range */
@@ -625,10 +620,10 @@
 				} else {
 					anim._elem.css('display', 'block');
 				}
-				
-				console.log('starting', anim.id);
+
+			//	console.log('starting', anim.id);
 				anim._started = true;
-				
+
 			}
 		}
 
@@ -642,11 +637,21 @@
 					anim._elem.css('display', 'none');
 				}
 
-				console.log('stopping', anim.id);
+			//	console.log('stopping', anim.id);
 				anim._started = false;
 			}
 		}
-		
+
+
+	//notify listeners
+		var dispatch = function() {
+			var i = settings.register.length;
+			while ( i-- ){
+				scroll();
+				settings.register[i].scroll( scrollTop );
+			}
+		};
+
 	//move page and scrubber
 		var scroll = function() {
 			var y = calculations.calcScrubber( scrollTop, settings.maxScroll );
@@ -689,7 +694,7 @@
 			offset = {};
 			offset.x = touchStart.x - e.touches[0].pageX;
 			// Get distance finger has moved since swipe begin:
-			offset.y = touchStart.y - e.touches[0].pageY;	
+			offset.y = touchStart.y - e.touches[0].pageY;
 			// Add finger move dist to original scroll value
 			scrollTop = Math.max(0, scrollStart + offset.y);
 			checkScrollExtents();
@@ -706,18 +711,31 @@
 	//scrubber
 		var mousedown = function( e ) {
 			lastY = e.pageY;
+			offsetY = e.offsetY;
 			$window.on( 'mousemove', mousemove );
 		};
 		var mouseup = function( e ) {
 			$window.off( 'mousemove', mousemove );
 		};
 		var mousemove = function( e ) {
-			var delta = e.pageY - lastY;
-			scrollTop += delta;
+			var scrubberPos,
+			pos = ( e.pageY - offsetY ); // where the mouse is minus the offsetclicked on the scrubber
+			scrubberPos = (pos < scrubbrerUpperLimit ? scrubbrerUpperLimit : pos);
+			scrubberPos = (scrubberPos > (windowHeight-scrubberHeight) ? (windowHeight-scrubberHeight) : scrubberPos)
+
+			// var delta = e.pageY - lastY;
+			// scrollTop += delta;
+			scrollTop = (( scrubberPos / (windowHeight-scrubberHeight) ) * settings.maxScroll ) ;
 			checkScrollExtents();
-			console.log ( $main.position().top, e.pageY, lastY, delta );
-			//scrollTop = (e.pageY - e.offsetY) * settings.maxScroll /  ( windowHeight - 122 );
+
+
 			dispatch();
+
+			$scrubber.css({
+				transform: 'translateY(' + scrubberPos + 'px)'
+			});
+
+			console.log ( scrubberPos, scrollTop, tippytop, pos );
 		};
 
 		var checkScrollExtents = function() {
@@ -726,12 +744,13 @@
 		}
 
 	// generic
-		root.start = function() {
+		root.start = function( o ) {
+			settings = $.extend( settings, o );
 			setupAnimation();
 
 			//console.log('start', settings.startAt);
 			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
-			
+
 			scrollTop++;
 
 			if (!started) {
@@ -785,6 +804,8 @@
 
 			resize();
 			scrollTo ( settings.startAt );
+
+
 		}
 
 
