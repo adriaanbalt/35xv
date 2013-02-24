@@ -449,6 +449,7 @@
 
 <!-- background -->
 	<div id='background'>
+		<img src="asset/img/clouds/cloud-0.png" class='cloud' id='cloud0'>
 	</div>
 
 </div>

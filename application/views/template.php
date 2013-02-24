@@ -30,7 +30,6 @@
         <link rel="stylesheet" href="asset/css/video-js.css">
         <!--[if IE]><link href="asset/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" /><![endif]-->
         <script src="asset/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <!--[if IE]><script src="excanvas.js"></script><![endif]-->
 
     </head>
     <body>
@@ -53,6 +52,7 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="asset/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+        <!--[if IE]><script src="excanvas.js"></script><![endif]-->
         <script src="asset/js/vendor/jquery.mousewheel.js?v=2"></script>
         <script src='asset/js/vendor/Tween.js?v=2'></script>
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>

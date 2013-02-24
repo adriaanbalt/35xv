@@ -44,10 +44,12 @@
 				firstTime = true;
 				var properties = {
 					opacity: 0,
-					filter: 'alpha(opacity=' + 0 + ')', /* For IE8 and earlier */
-					transition: 'all 1s'
+					filter: 'alpha(opacity=' + 0 + ')'
+					// ,
+					// transition: 'all 1s'
 				}
-				$target.css( properties );
+				//$target.css( properties );
+				$target.animate( properties, 1000 );
 
 				if (settings.onComplete && typeof settings.onComplete === 'function') var timeoutID = window.setTimeout(settings.onComplete, 700 );
 			}

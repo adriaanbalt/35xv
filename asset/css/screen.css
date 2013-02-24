@@ -46,11 +46,11 @@ body {
   background-color: #70cbf2;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF70CBF2', endColorstr='#FF39C0E5');
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #409fd9), color-stop(16%, #34b7ef), color-stop(34%, #4da5dc), color-stop(58%, #409fd9), color-stop(86%, #20a2d6), color-stop(100%, #39c0e5));
-  background-image: -webkit-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: -moz-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: -o-linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: linear-gradient(top, #409fd9 0%, #34b7ef 16%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #409fd9), color-stop(5%, #34b7ef), color-stop(15%, #34b7ef), color-stop(17%, #65b1e8), color-stop(24%, #65b1e8), color-stop(34%, #4da5dc), color-stop(58%, #409fd9), color-stop(86%, #20a2d6), color-stop(100%, #39c0e5));
+  background-image: -webkit-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -moz-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -o-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
@@ -165,7 +165,6 @@ canvas {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: -1;
   zoom: 1;
 }
 #background img {
@@ -173,34 +172,65 @@ canvas {
 }
 #background .cloud {
   position: absolute;
-  display: none;
 }
 #background .cloud.show {
   display: block;
 }
-#background .cloud.c0 {
-  display: block;
+#background #cloud0 {
+  opacity: .50;
+  zoom: 1;
+  filter: alpha(opacity=50);
+  /* For IE8 and earlier */
+  z-index: 1000;
 }
-#background .cloud.c1 {
-  display: block;
+#background #cloud1 {
+  opacity: .4;
+  zoom: 1;
+  filter: alpha(opacity=40);
+  /* For IE8 and earlier */
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Safari and Chrome */
+  -o-transform: rotate(180deg);
+  /* Opera */
+  -moz-transform: rotate(180deg);
+  /* Firefox */
+  transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  /* IE 9 */
+  -webkit-transform: scale(1.5);
+  /* Safari and Chrome */
+  -o-transform: scale(1.5);
+  /* Opera */
+  -moz-transform: scale(1.5);
+  /* Firefox */
 }
-#background .cloud.c2 {
-  display: block;
+#background #cloud2 {
+  opacity: .3;
+  zoom: 1;
+  filter: alpha(opacity=30);
+  /* For IE8 and earlier */
+}
+#background #cloud3 {
+  opacity: .2;
+  zoom: 1;
+  filter: alpha(opacity=20);
+  /* For IE8 and earlier */
 }
 
 #building-large {
   height: 2048px;
-  position: relative;
-  zoom: 1;
   display: block;
   z-index: 100;
+  zoom: 1;
+  position: absolute;
+  top: 0;
   left: -200px;
 }
 #building-large img {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 #building-large img.show {
   display: block;
@@ -297,9 +327,16 @@ canvas {
   position: absolute;
 }
 
+.home {
+  zoom: 1;
+  z-index: 1000;
+}
+.home .content-box {
+  padding-top: 70px;
+}
 .home #skyline-img {
   display: block;
-  margin: 0 auto;
+  margin: 120px auto 0 auto;
   width: 100%;
 }
 .home p {
@@ -313,12 +350,21 @@ canvas {
   width: 100%;
 }
 
+.design #design-info h1 {
+  text-align: right;
+  width: 100%;
+  padding: 25px 0px;
+}
+.design #design-info .building-section {
+  border-left: 1px solid #053b5e;
+  border-top: 1px solid #053b5e;
+}
 .design #design-info .one {
   margin-top: 200px;
-  height: 1150px;
+  height: 1080px;
 }
 .design #design-info .two {
-  height: 250px;
+  height: 255px;
 }
 .design #design-info .three {
   height: 250px;

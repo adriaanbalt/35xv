@@ -49,8 +49,8 @@
 			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
 		};
 
-		root.calcProgress = function( startAt, endAt ) {
-		//	return ( (startAt - scrollTopTweened) / (startAt - endAt) );
+		root.calcProgress = function( startAt, endAt, scrollTop ) {
+			return ( (startAt - scrollTop) / (startAt - endAt) );
 		};
 
 		root.calcScrubber = function( scroll, maxScroll ) {
@@ -71,9 +71,9 @@
 
 		root.absPosition = function(opts) {
 			var defaults = {startLeft: 0,
-							startTop: 0,
-							endLeft: 0,
-							endTop: 0},
+					startTop: 0,
+					endLeft: 0,
+					endTop: 0},
 			settings = $.extend(defaults, opts);
 			this.startProperties['left'] = settings.startLeft;
 			this.startProperties['top'] = settings.startTop;
@@ -139,6 +139,16 @@
 			this.properties['top'] = windowHeight + settings.offset;
 		};
 
+		root.bottomOutsideAnim = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = anim.endAt + settings.offset;
+		};
+
+		root.bottomInside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = windowHeight - settings.offset;
+		};
+
 		root.topOutside = function( anim, opts) {
 			var defaults = {offset:0}, settings = $.extend(defaults, opts);
 			this.properties['top'] = -anim._elem.height() + settings.offset;
@@ -163,38 +173,54 @@
 		return [
 		{
 			'id' : 'building-large',
-			'startAt' : gotoSection['design'],
-			'endAt' : gotoSection['design-team'],
+			'startAt' : gotoSection['home'],
+			'endAt' : gotoSection['design'] + windowHeight,
 			onProgress: function(progress) {
 				var is = imageSequences['building-large'];
 				var endFrame = (is.imageCount/is.skipImages),
 					toFrame = Math.floor(progress*endFrame) % is.imageCount;
 				is.showImageAt( Math.floor(toFrame) );
-			}
+			},
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Quadratic.EaseIn,
+					properties: {
+						top: 0, left: 50
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Quadratic.EaseIn,
+					properties: {
+						top: 0, left: -200
+					}
+				}
+			]
 		},
 		{
 			'id' : 'building-small',
 			'startAt' : gotoSection['amenities-services'],
-			'endAt' : gotoSection['neighborhood'],
+			'endAt' : gotoSection['neighborhood'] - windowHeight,
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.zeroTop.call( this, anim, { offset: 500 });
+						calculations.zeroTop.call( this, anim, { offset: 100 });
 					},
 					properties: {
-						top: 0, left: 0
+						top: 0, left: -100
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: 5000 });
+						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 200 });
 					},
 					properties: {
-						top: 0, left: 0
+						top: 0, left: -75
 					}
 				}
 			]
@@ -209,7 +235,7 @@
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.centerV.call( this, anim, { offset: 1500 });
-						calculations.centerH.call( this, anim, { offset: 300 });
+						calculations.centerH.call( this, anim, { offset: -400 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -220,7 +246,7 @@
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.topOutside.call( this, anim, {});
-						calculations.leftOutside.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: -700 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -230,15 +256,15 @@
 		},
 		{
 			'id' : 'cloud1',
-			'startAt' : gotoSection['residences'],
-			'endAt' : gotoSection['feature'],
+			'startAt' : gotoSection['home'],
+			'endAt' : gotoSection['design-team'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, { offset: -200 });
+						calculations.centerV.call( this, anim, { offset: 600 });
+						calculations.centerH.call( this, anim, { offset: 600 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -248,8 +274,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
-						calculations.rightOutside.call( this, anim, { offset: -600 });
+						calculations.topOutside.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: 800 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -259,15 +285,15 @@
 		},
 		{
 			'id' : 'cloud2',
-			'startAt' : gotoSection['feature'],
-			'endAt' : gotoSection['neighborhood'],
+			'startAt' : gotoSection['featured-plan'],
+			'endAt' : gotoSection['amenities-services'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 400 });
+						calculations.centerH.call( this, anim, { offset: 1000 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -277,8 +303,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.rightOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
+						calculations.centerH.call( this, anim, { offset: 600 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -288,15 +314,15 @@
 		},
 		{
 			'id' : 'cloud3',
-			'startAt' : gotoSection['amenities-services'],
-			'endAt' : gotoSection['neighborhood'],
+			'startAt' : gotoSection['press'],
+			'endAt' : gotoSection['address'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: -500 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -306,153 +332,9 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerV.call( this, anim, { offset: anim.endAt });
 						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud4',
-			'startAt' : gotoSection['feature'],
-			'endAt' : gotoSection['availability'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.rightOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud5',
-			'startAt' : gotoSection['availability'],
-			'endAt' : gotoSection['amenities-services'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
-						calculations.rightOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud6',
-			'startAt' : gotoSection['amenities-services'],
-			'endAt' : gotoSection['neighborhood'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.rightOutside.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud7',
-			'startAt' : gotoSection['neighborhood'],
-			'endAt' : gotoSection['team'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud8',
-			'startAt' : gotoSection['team'],
-			'endAt' : gotoSection['press'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, {});
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.leftOutside.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: -650 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -460,6 +342,152 @@
 				}
 			]
 		}
+		// ,
+		// {
+		// 	'id' : 'cloud4',
+		// 	'startAt' : gotoSection['feature'],
+		// 	'endAt' : gotoSection['availability'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : 'cloud5',
+		// 	'startAt' : gotoSection['availability'],
+		// 	'endAt' : gotoSection['amenities-services'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : 'cloud6',
+		// 	'startAt' : gotoSection['amenities-services'],
+		// 	'endAt' : gotoSection['neighborhood'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : 'cloud7',
+		// 	'startAt' : gotoSection['neighborhood'],
+		// 	'endAt' : gotoSection['team'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : 'cloud8',
+		// 	'startAt' : gotoSection['team'],
+		// 	'endAt' : gotoSection['press'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.leftOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// }
 		];
 	};
 
@@ -735,7 +763,7 @@
 				transform: 'translateY(' + scrubberPos + 'px)'
 			});
 
-			console.log ( scrubberPos, scrollTop, tippytop, pos );
+			console.log ( scrubberPos, scrollTop, pos );
 		};
 
 		var checkScrollExtents = function() {

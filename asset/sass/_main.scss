@@ -15,7 +15,7 @@ body {
 #main {
 	background-color: $blue;
 	@include filter-gradient($blue, #39C0E5, vertical); // IE6-9
-	@include background-image(linear-gradient(top, rgb(64,159,217) 0%, #34b7ef 16%, rgb(77,165,220) 34%, rgb(64,159,217) 58%,#20a2d6 86%, #39C0E5 100%));
+	@include background-image(linear-gradient(top, rgb(64,159,217) 0%, #34b7ef 5%,  #34b7ef 15%, #65b1e8 17%,  rgb(101,177,232) 24%, rgb(77,165,220) 34%, rgb(64,159,217) 58%,#20a2d6 86%, #39C0E5 100%));
 	opacity: 0;
 	filter:alpha(opacity=0); /* For IE8 and earlier */
 	position: fixed;

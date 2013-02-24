@@ -3,30 +3,54 @@
 	position: absolute;
 	top: 0;
 	width: 100%;
-	z-index: -1;
 	zoom: 1;
-	
+
 	img {
 		max-width: 100%;
 	}
 
 	.cloud {
 		position: absolute;
-		display: none;
 		&.show {
 			display: block;
 		}
 	}
-	
-	.cloud.c0 {
-		display: block;
+
+	#cloud0 {
+		opacity: .50;
+		zoom: 1;
+		filter:alpha(opacity=50); /* For IE8 and earlier */
+		z-index: 1000;
 	}
 
-	.cloud.c1 {
-		display: block;		
+	#cloud1 {
+		opacity: .4;
+		zoom: 1;
+		filter:alpha(opacity=40); /* For IE8 and earlier */
+		transform: rotate(180deg);
+		-ms-transform: rotate(180deg); /* IE 9 */
+		-webkit-transform: rotate(180deg); /* Safari and Chrome */
+		-o-transform: rotate(180deg); /* Opera */
+		-moz-transform: rotate(180deg); /* Firefox */
+
+
+		transform: scale(1.5);
+		-ms-transform: scale(1.5); /* IE 9 */
+		-webkit-transform: scale(1.5); /* Safari and Chrome */
+		-o-transform: scale(1.5); /* Opera */
+		-moz-transform: scale(1.5); /* Firefox */
+
 	}
 
-	.cloud.c2 {
-		display: block;
+	#cloud2 {
+		opacity: .3;
+		zoom: 1;
+		filter:alpha(opacity=30); /* For IE8 and earlier */
+	}
+
+	#cloud3 {
+		opacity: .2;
+		zoom: 1;
+		filter:alpha(opacity=20); /* For IE8 and earlier */
 	}
 }

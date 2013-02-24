@@ -37,6 +37,7 @@
 			};
 
 			if (loaded == settings.imageCount ) {
+				//console.log ( "seq load complete ", settings );
 				if( settings.onComplete && typeof settings.onComplete === 'function' ) {
 					settings.onComplete();
 				}

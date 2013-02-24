@@ -37,6 +37,14 @@
 			loader.update( val * 100 );
 		},
 		onComplete: function() {
+
+			var clone;
+			for ( var i = 1; i < 4; i++ ){
+				clone = $('#cloud0').clone();
+				clone.attr('id', 'cloud' + i );
+				$('#background').append( clone );
+			}
+
 		// catch 22 w the galleries, need to call start twice =(
 			residences_gallery.start({
 				startAt : gotoSection[ 'residences' ]
@@ -82,7 +90,6 @@
 			$('#main').animate( prop,1000 );
 			$('nav').animate( prop,1000 );
 			$('#scroller').css( {display: 'block' } );
-
 		}
 	});
 
@@ -96,17 +103,18 @@
 			loadProgress.update( this.skipImages );
 		}
 	});
-	imageSequences['clouds'] = new $.BALT.imageSequence({
-		filesPath:'asset/img/clouds/cloud-{index}.png',
-		imageCount: 8,
-		skipImages: 1,
-		container: $('#background'),
-		id: 'cloud{index}',
-		className: 'cloud show',
-		onProgress: function() {
-			loadProgress.update( this.skipImages );
-		}
-	});
+	// imageSequences['clouds'] = new $.BALT.imageSequence({
+	// 	filesPath:'asset/img/clouds/cloud-{index}.png',
+	// 	imageCount: 0,
+	// 	skipImages: 1,
+	// 	container: $('#background'),
+	// 	id: 'cloud{index}',
+	// 	className: 'cloud show',
+	// 	onProgress: function() {
+	// 		//console.log ( "progress clouds" );
+	// 		loadProgress.update( this.skipImages );
+	// 	}
+	// });
 
 	$('.floorplan-modal').each( function() {
 		new $.BALT.modal( $(this) );
