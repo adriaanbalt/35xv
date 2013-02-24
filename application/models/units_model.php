@@ -25,9 +25,9 @@ class Units_model extends CI_Model {
              array('12A', '2Bed/2Bath', '10', '1,234', '$2,700,000', anchor('#modal-plan-unique6', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
              array('13A', '2Bed/2Bath', '11', '1,234', '$2,700,000', anchor('#modal-plan-unique5', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
              array('18B', '3Bed/2Bath', '18', '2,143', '$3,700,000', anchor('#modal-plan-unique4', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
-             array('19B', '2Bed/3Bath', '19', '2,134', '$3,200,000', anchor('#modal-plan-unique3', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature3.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
-             array('15B', '3Bed/3Bath', '15', '2,144', '$3,300,000', anchor('#modal-plan-unique2', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature2.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
-             array('7B',  '3Bed/3Bath', '7',  '2,434', '$3,400,000', anchor('#modal-plan-unique1', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature1.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank')))
+             array('19B', '2Bed/3Bath', '19', '2,134', '$3,200,000', anchor('#modal-plan-unique3', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
+             array('15B', '3Bed/3Bath', '15', '2,144', '$3,300,000', anchor('#modal-plan-unique2', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank'))),
+             array('7B',  '3Bed/3Bath', '7',  '2,434', '$3,400,000', anchor('#modal-plan-unique1', 'view', array('data-image' => 'asset/img/featured-plan/plan-feature.png', 'class' => 'floorplan-modal') ).'/'. anchor('#pdflink','download', array('target' => '_blank')))
         );
     }
 

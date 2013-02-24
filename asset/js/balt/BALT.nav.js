@@ -31,7 +31,6 @@
 					scroller.scrollTo( 0 );
 				}
 			} else {
-				console.log ( "THIS is a modal!" );
 			}
 
 		};

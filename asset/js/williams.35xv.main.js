@@ -66,10 +66,10 @@
 
 		// catch 22 w the galleries, need to call start twice =(
 			residences_gallery.start({
-				startAt : gotoSection[ 'residences' ]
+				startAt : gotoSection[ 'residences' ] + 100
 			});
 			amenities_gallery.start({
-				startAt : gotoSection[ 'amenities-services' ]
+				startAt : gotoSection[ 'amenities-services' ] + 150
 			});
 			scroller.start({
 				startAt : gotoSection[ window.location.hash ],

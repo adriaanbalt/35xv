@@ -14,12 +14,13 @@
 	$.BALT.modal = function( target, o ) {
 		var root = this,
 		$target = target,
-		$template = $("<div class='modal'><div class='inner'><a href='javascript:void(0);' class='close'>X</a></div></div>"),
 		image = undefined,
 		settings = {
 			loader : true
 		};
-		settings = $.extend( settings, o );
+		settings = $.extend( settings, o ),
+		apended =  false,
+		$template = $("<div class='modal'><div class='inner'><a href='javascript:void(0);' class='close'>X</a></div></div>");
 
 		var click = function( e ) {
 			e.preventDefault();
@@ -33,16 +34,18 @@
 			// load image, unless already loaded
 			image = new Image();
 			image.src = $target.data('image');
-			console.log ( "image.complete : ", image.complete );
 			if ( image.complete ) {
-				reveal();
+				imageLoaded();
 			} else {
 				image.onload = imageLoaded;
 			}
 		};
 		var imageLoaded = function( e ) {
 			// append to dom
-			$template.find('.inner').append( image );
+			if ( !apended ) {
+				$template.find('.inner').append( image );
+				apended = true;
+			}
 			$('body').append( $template );
 			reveal();
 		};
