@@ -24,7 +24,6 @@
 	resize();
 	gotoSection = {};
 
-
 	var loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
 		}
@@ -85,8 +84,8 @@
 				//, /* For IE8 and earlier */
 				//transition: 'all 1s'
 			};
-//			$('#main').css( prop );
-//			$('nav').css( prop );
+			$('#main').css( prop );
+			$('nav').css( prop );
 			$('#main').animate( prop,1000 );
 			$('nav').animate( prop,1000 );
 			$('#scroller').css( {display: 'block' } );

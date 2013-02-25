@@ -514,6 +514,9 @@
 		scrubbrerUpperLimit = 0,
 		scrubberHeight = 122,
 		started = false,
+	//touch
+		touchStart = {},
+		scrollStart = 0,
 	//settings
 		defaults = {
 			scrollSpeed : 40,
@@ -711,9 +714,9 @@
 	// touch
 		var touchStartHandler = function(e) {
 			//e.preventDefault();
-			touchStart.x = e.touches[0].pageX;
+			touchStart.x = e.originalEvent.touches[0].pageX;
 			// Store the position of finger on swipe begin:
-			touchStart.y = e.touches[0].pageY;
+			touchStart.y = e.originalEvent.touches[0].pageY;
 			// Store scroll val on swipe begin:
 			scrollStart = scrollTop;
 		};
@@ -722,12 +725,13 @@
 		var touchMoveHandler = function(e) {
 			e.preventDefault();
 			offset = {};
-			offset.x = touchStart.x - e.touches[0].pageX;
+			offset.x = touchStart.x - e.originalEvent.touches[0].pageX;
 			// Get distance finger has moved since swipe begin:
-			offset.y = touchStart.y - e.touches[0].pageY;
+			offset.y = touchStart.y - e.originalEvent.touches[0].pageY;
 			// Add finger move dist to original scroll value
 			scrollTop = Math.max(0, scrollStart + offset.y);
 			checkScrollExtents();
+			dispatch();
 		}
 
 	//wheel
@@ -803,10 +807,10 @@
 			$window.on ( 'mouseup', mouseup );
 
 			if ( 'ontouchstart' in window ) {
-				var container = settings.container[0];
-				container.on('touchstart', touchStartHandler);
-				container.on('touchmove', touchMoveHandler);
-				container.on('touchend', touchEndHandler);
+				console.log ( "settings: ", $window );
+				$window.on('touchstart', touchStartHandler);
+				$window.on('touchmove', touchMoveHandler);
+				$window.on('touchend', touchEndHandler);
 			}
 
 			var lastTime = 0;
