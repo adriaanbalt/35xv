@@ -522,7 +522,8 @@
 			scrollSpeed : 40,
 			tickSpeed: 30,
 			useRAF: true,
-			tweenSpeed: .3
+			tweenSpeed: .3,
+			startAt: 0
 		},
 		settings = $.extend( defaults, o );
 
@@ -762,14 +763,12 @@
 			scrollTop = (( scrubberPos / (windowHeight-scrubberHeight) ) * settings.maxScroll ) ;
 			checkScrollExtents();
 
-
 			dispatch();
 
 			$scrubber.css({
 				transform: 'translateY(' + scrubberPos + 'px)'
 			});
 
-			console.log ( scrubberPos, scrollTop, pos );
 		};
 
 		var checkScrollExtents = function() {
@@ -807,7 +806,6 @@
 			$window.on ( 'mouseup', mouseup );
 
 			if ( 'ontouchstart' in window ) {
-				console.log ( "settings: ", $window );
 				$window.on('touchstart', touchStartHandler);
 				$window.on('touchmove', touchMoveHandler);
 				$window.on('touchend', touchEndHandler);
@@ -837,8 +835,7 @@
 				};
 
 			resize();
-			scrollTo ( settings.startAt );
-
+			root.scrollTo ( settings.startAt );
 
 		}
 
