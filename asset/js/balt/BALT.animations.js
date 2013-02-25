@@ -208,19 +208,21 @@
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.zeroTop.call( this, anim, { offset: 100 });
+						calculations.centerH.call( this, anim, { offset: 0 });
 					},
 					properties: {
-						top: 0, left: -100
+						top: 0, left: 0
 					}
 				},
 				{
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 200 });
+						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 500 });
+						calculations.centerH.call( this, anim, { offset: 0 });
 					},
 					properties: {
-						top: 0, left: -75
+						top: 0, left: 0
 					}
 				}
 			]
@@ -285,7 +287,7 @@
 		},
 		{
 			'id' : 'cloud2',
-			'startAt' : gotoSection['featured-plan'],
+			'startAt' : gotoSection['featured-plan'] - 500,
 			'endAt' : gotoSection['amenities-services'],
 			keyframes :[
 				{
@@ -314,8 +316,8 @@
 		},
 		{
 			'id' : 'cloud3',
-			'startAt' : gotoSection['press'],
-			'endAt' : gotoSection['address'],
+			'startAt' : gotoSection['team'],
+			'endAt' : gotoSection['contact'],
 			keyframes :[
 				{
 					position: 0,
@@ -332,7 +334,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.endAt });
+						calculations.centerV.call( this, anim, { offset: anim.endAt - anim._elem.height() });
 						calculations.centerH.call( this, anim, {});
 						calculations.centerH.call( this, anim, { offset: -650 });
 					},
@@ -624,7 +626,7 @@
 						};
 
 						for ( property in keyframe.properties ) {
-							properties[ property ] = calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease );
+							properties[ property ] = Math.round( calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease ) );
 						}
 					}
 				}
