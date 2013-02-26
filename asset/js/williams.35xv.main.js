@@ -30,6 +30,7 @@
 	});
 
 	imageSequences = {};
+	gallerySequences = {};
 
 	loadProgress = new LoadProgress({
 		onUpdate: function( val ) {
@@ -45,10 +46,10 @@
 			}
 
 		// catch 22 w the galleries, need to call start twice =(
-			residences_gallery.start({
+			gallerySequences['residences-gallery'].start({
 				startAt : gotoSection[ 'residences' ]
 			});
-			amenities_gallery.start({
+			gallerySequences['amenities-gallery'].start({
 				startAt : gotoSection[ 'amenities-services' ]
 			});
 
@@ -64,10 +65,10 @@
 			animation = new $.BALT.animation.keyframes();
 
 		// catch 22 w the galleries, need to call start twice =(
-			residences_gallery.start({
+			gallerySequences['residences-gallery'].start({
 				startAt : gotoSection[ 'residences' ] + 100
 			});
-			amenities_gallery.start({
+			gallerySequences['amenities-gallery'].start({
 				startAt : gotoSection[ 'amenities-services' ] + 150
 			});
 			scroller.start({
@@ -145,22 +146,22 @@
 	$('.equalize').equalize();
 
 	calculations = new $.BALT.animation.calculations();
-	residences_gallery = new $.BALT.galleryScroll( $('#residences-gallery'), {
+	gallerySequences['residences-gallery'] = new $.BALT.galleryScroll( $('#residences-gallery'), {
 		onProgress: function() {
 			loadProgress.update();
 		}
 	});
-	amenities_gallery = new $.BALT.galleryScroll( $('#amenities-gallery'), {
+	gallerySequences['amenities-gallery'] = new $.BALT.galleryScroll( $('#amenities-gallery'), {
 		onProgress: function() {
 			loadProgress.update();
 		}
 	});
 	scroller = new $.BALT.animation.scroller({
-		register : [ residences_gallery, amenities_gallery ]
+		register : [ gallerySequences['residences-gallery'], gallerySequences['amenities-gallery'] ]
 	});
 
-	loadProgress.register( residences_gallery.settings.slideCount );
-	loadProgress.register( amenities_gallery.settings.slideCount );
+	loadProgress.register( gallerySequences['residences-gallery'].settings.slideCount );
+	loadProgress.register( gallerySequences['amenities-gallery'].settings.slideCount );
 
 	for (i in imageSequences) {
 		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );

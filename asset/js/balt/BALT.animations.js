@@ -17,482 +17,6 @@
 		$.BALT.animation = {};
 	}
 
-
-	$.BALT.animation.calculations = function() {
-		var root = this;
-
-		var windowWidth, windowHeight, windowCenter;
-
-		var resize = function() {
-			windowWidth = $window.width();
-			windowHeight = $window.height();
-			windowCenter = { left: $window.width()/2, top: $window.height()/2 };
-		};
-
-		root.calcBgY = function(x, windowHeight, pos, adjuster, inertia){
-			return x + "px, " + (-((windowHeight + pos) - adjuster) * inertia)  + "px";
-		};
-
-		root.calcBgX = function(y, windowHeight, pos, adjuster, inertia){
-			return (-((windowHeight + pos) - adjuster) * inertia)  + "px " + y + "px";
-		};
-
-		root.calcXY = function(windowHeight, pos, adjusterX, inertiaX, adjusterY, inertiaY){
-			return (-((windowHeight + pos) - adjusterX) * inertiaX)  + "px " + (-((windowHeight + pos) - adjusterY) * inertiaY) + "px";
-		};
-
-		root.calcPos = function(windowHeight, pos, adjuster, inertia) {
-			return (((windowHeight + pos) - adjuster) * inertia)  + "px";
-		};
-
-		root.calcRot = function( r, windowHeight, pos, adjuster, inertia ){
-			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
-		};
-
-		root.calcProgress = function( startAt, endAt, scrollTop ) {
-			return ( (startAt - scrollTop) / (startAt - endAt) );
-		};
-
-		root.calcScrubber = function( scroll, maxScroll ) {
-			return ( scroll / maxScroll ) * ( windowHeight - 122 );
-		};
-
-		root.calcDegrees2Radians = function( degrees ) {
-			return ( degrees * Math.PI / 180 );
-		};
-
-		// get tweened values
-		root.getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
-			var delta = end - start;
-			var percentComplete = currentTime/totalTime;
-			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
-			return tweener(percentComplete) * delta + start
-		};
-
-		root.absPosition = function(opts) {
-			var defaults = {startLeft: 0,
-					startTop: 0,
-					endLeft: 0,
-					endTop: 0},
-			settings = $.extend(defaults, opts);
-			this.startProperties['left'] = settings.startLeft;
-			this.startProperties['top'] = settings.startTop;
-			this.endProperties['left'] = settings.endLeft;
-			this.endProperties['top'] = settings.endTop;
-			this.startProperties['display'] = 'block';
-			this.endProperties['display'] = 'none';
-		};
-
-		root.bottomLeftOutside = function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			resize();
-			var portrait = false, //windowHeight > windowWidth ? true : false,
-				elemHalfWidth = anim._elem.width()/2,
-				elemHalfHeight = anim._elem.height()/2,
-				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
-				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
-
-			this.properties['top'] = windowCenter.top + adj - elemHalfHeight + (portrait ? settings.offset : 0);
-			this.properties['left'] = windowCenter.left - adj - elemHalfWidth + (portrait ? 0 : settings.offset);
-		};
-
-		root.topRightOutside =function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			var portrait = false, //windowHeight > windowWidth ? true : false,
-				elemHalfWidth = anim._elem.width()/2,
-				elemHalfHeight = anim._elem.height()/2,
-				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
-				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
-
-			this.properties['top'] = windowCenter.top - adj - elemHalfHeight + (portrait ? settings.offset : 0);
-			this.properties['left'] = windowCenter.left + adj - elemHalfWidth + (portrait ? 0 : settings.offset);
-		};
-
-		root.leftOutside = function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['left'] = -anim._elem.width() + settings.offset;
-		};
-
-		root.rightOutside = function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['left'] = windowWidth + settings.offset;
-		};
-
-		root.centerV = function( anim, opts ) {
-			resize();
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			var elemHalfHeight = anim._elem.height()/2;
-			this.properties['top'] = windowCenter.top - elemHalfHeight + settings.offset;
-		};
-
-		root.centerH = function( anim, opts ) {
-			resize();
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-
-			var elemHalfWidth = anim._elem.width()/2;
-
-			this.properties['left'] = windowCenter.left - elemHalfWidth + settings.offset;
-		};
-
-		root.bottomOutside = function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['top'] = windowHeight + settings.offset;
-		};
-
-		root.bottomOutsideAnim = function( anim, opts) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['top'] = anim.endAt + settings.offset;
-		};
-
-		root.bottomInside = function( anim, opts ) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['top'] = windowHeight - settings.offset;
-		};
-
-		root.topOutside = function( anim, opts) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['top'] = -anim._elem.height() + settings.offset;
-		};
-
-		root.zeroTop = function( anim, opts) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['top'] = 0 + settings.offset;
-		};
-
-		root.zeroLeft = function( anim, opts) {
-			var defaults = {offset:0}, settings = $.extend(defaults, opts);
-			this.properties['left'] = 0 + settings.offset;
-		};
-
-		$window.resize( resize );
-		resize();
-
-	};
-
-	$.BALT.animation.keyframes = function( o ) {
-		return [
-		{
-			'id' : 'building-large',
-			'startAt' : gotoSection['home'],
-			'endAt' : gotoSection['design'] + windowHeight,
-			onProgress: function(progress) {
-				var is = imageSequences['building-large'];
-				var endFrame = (is.imageCount/is.skipImages),
-					toFrame = Math.floor(progress*endFrame) % is.imageCount;
-				is.showImageAt( Math.floor(toFrame) );
-			},
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Quadratic.EaseIn,
-					properties: {
-						top: 0, left: 50
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Quadratic.EaseIn,
-					properties: {
-						top: 0, left: -200
-					}
-				}
-			]
-		},
-		{
-			'id' : 'building-small',
-			'startAt' : gotoSection['amenities-services'],
-			'endAt' : gotoSection['neighborhood'] - windowHeight,
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.zeroTop.call( this, anim, { offset: 100 });
-						calculations.centerH.call( this, anim, { offset: 0 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 500 });
-						calculations.centerH.call( this, anim, { offset: 0 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud0',
-			'startAt' : gotoSection['design'],
-			'endAt' : gotoSection['design-team'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: 1500 });
-						calculations.centerH.call( this, anim, { offset: -400 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.centerH.call( this, anim, { offset: -700 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud1',
-			'startAt' : gotoSection['home'],
-			'endAt' : gotoSection['design-team'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: 600 });
-						calculations.centerH.call( this, anim, { offset: 600 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.topOutside.call( this, anim, {});
-						calculations.centerH.call( this, anim, { offset: 800 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud2',
-			'startAt' : gotoSection['featured-plan'] - 500,
-			'endAt' : gotoSection['amenities-services'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 400 });
-						calculations.centerH.call( this, anim, { offset: 1000 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
-						calculations.centerH.call( this, anim, { offset: 600 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
-		{
-			'id' : 'cloud3',
-			'startAt' : gotoSection['team'],
-			'endAt' : gotoSection['contact'],
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.centerH.call( this, anim, { offset: -500 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.endAt - anim._elem.height() });
-						calculations.centerH.call( this, anim, {});
-						calculations.centerH.call( this, anim, { offset: -650 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		}
-		// ,
-		// {
-		// 	'id' : 'cloud4',
-		// 	'startAt' : gotoSection['feature'],
-		// 	'endAt' : gotoSection['availability'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : 'cloud5',
-		// 	'startAt' : gotoSection['availability'],
-		// 	'endAt' : gotoSection['amenities-services'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : 'cloud6',
-		// 	'startAt' : gotoSection['amenities-services'],
-		// 	'endAt' : gotoSection['neighborhood'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : 'cloud7',
-		// 	'startAt' : gotoSection['neighborhood'],
-		// 	'endAt' : gotoSection['team'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : 'cloud8',
-		// 	'startAt' : gotoSection['team'],
-		// 	'endAt' : gotoSection['press'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-		// 				calculations.leftOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// }
-		];
-	};
-
 	$.BALT.animation.scroller = function( o ) {
 	//public
 		var root = this,
@@ -522,7 +46,7 @@
 			scrollSpeed : 40,
 			tickSpeed: 30,
 			useRAF: true,
-			tweenSpeed: .3,
+			tweenSpeed: 0.3,
 			startAt: 0
 		},
 		settings = $.extend( defaults, o );
@@ -535,7 +59,7 @@
 
 				// grab dom element
 				if (anim._elem == undefined) {
-					anim._elem = $("#" + anim.id);
+					anim._elem = $(anim.id);
 				}
 
 				// iterate through keyframes
@@ -591,8 +115,7 @@
 			requestAnimationFrame( animationLoop );
 			if (Math.ceil(scrollTopTweened) !== Math.floor(scrollTop)) {
 				// smooth out scrolling action
-				//scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
-				scrollTopTweened += .3 * (scrollTop - scrollTopTweened);
+				scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 
 				// run through animations
 				for (var i in animation) {
@@ -631,6 +154,8 @@
 
 						for ( property in keyframe.properties ) {
 							properties[ property ] = Math.round( calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease ) );
+
+							console.log ( "properties[ property ]: ", property, properties[ property ], lastkeyframe.properties[property] );
 						}
 					}
 				}
@@ -638,6 +163,8 @@
 
 			// apply styles
 			anim._elem.css( properties );
+
+			// console.log ( "anim._elem " , anim._elem, properties, anim._elem.position() );
 
 			// onProgress callback
 			if (anim.onProgress && typeof anim.onProgress === 'function') {
@@ -839,9 +366,599 @@
 
 		}
 
-
 		init();
 
+	};
+
+
+	$.BALT.animation.calculations = function() {
+		var root = this;
+
+		var windowWidth, windowHeight, windowCenter;
+
+		var resize = function() {
+			windowWidth = $window.width();
+			windowHeight = $window.height();
+			windowCenter = { left: $window.width()/2, top: $window.height()/2 };
+		};
+
+		root.calcBgY = function(x, windowHeight, pos, adjuster, inertia){
+			return x + "px, " + (-((windowHeight + pos) - adjuster) * inertia)  + "px";
+		};
+
+		root.calcBgX = function(y, windowHeight, pos, adjuster, inertia){
+			return (-((windowHeight + pos) - adjuster) * inertia)  + "px " + y + "px";
+		};
+
+		root.calcXY = function(windowHeight, pos, adjusterX, inertiaX, adjusterY, inertiaY){
+			return (-((windowHeight + pos) - adjusterX) * inertiaX)  + "px " + (-((windowHeight + pos) - adjusterY) * inertiaY) + "px";
+		};
+
+		root.calcPos = function(windowHeight, pos, adjuster, inertia) {
+			return (((windowHeight + pos) - adjuster) * inertia)  + "px";
+		};
+
+		root.calcRot = function( r, windowHeight, pos, adjuster, inertia ){
+			return (r + -(((windowHeight + pos) - adjuster ) * inertia));
+		};
+
+		root.calcProgress = function( startAt, endAt, scrollTop ) {
+			return ( (startAt - scrollTop) / (startAt - endAt) );
+		};
+
+		root.calcScrubber = function( scroll, maxScroll ) {
+			return ( scroll / maxScroll ) * ( windowHeight - 122 );
+		};
+
+		root.calcDegrees2Radians = function( degrees ) {
+			return ( degrees * Math.PI / 180 );
+		};
+
+
+		rootimageResize = function( img, w, h ) {
+			img.width( w );
+			img.height( Math.round ( w * root.settings.ratio ) );
+			if ( img.height() < h ) {
+				img.height( h );
+				img.width( Math.round ( h / root.settings.ratio ) );
+			}
+			return img;
+		};
+
+		// get tweened values
+		root.getTweenedValue = function(start, end, currentTime, totalTime, tweener) {
+			var delta = end - start;
+			var percentComplete = currentTime/totalTime;
+			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
+			return tweener(percentComplete) * delta + start
+		};
+
+		root.absPosition = function(opts) {
+			var defaults = {startLeft: 0,
+					startTop: 0,
+					endLeft: 0,
+					endTop: 0},
+			settings = $.extend(defaults, opts);
+			this.startProperties['left'] = settings.startLeft;
+			this.startProperties['top'] = settings.startTop;
+			this.endProperties['left'] = settings.endLeft;
+			this.endProperties['top'] = settings.endTop;
+			this.startProperties['display'] = 'block';
+			this.endProperties['display'] = 'none';
+		};
+
+		root.bottomLeftOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			resize();
+			var portrait = false, //windowHeight > windowWidth ? true : false,
+				elemHalfWidth = anim._elem.width()/2,
+				elemHalfHeight = anim._elem.height()/2,
+				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
+				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+
+			this.properties['top'] = windowCenter.top + adj - elemHalfHeight + (portrait ? settings.offset : 0);
+			this.properties['left'] = windowCenter.left - adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		};
+
+		root.topRightOutside =function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			var portrait = false, //windowHeight > windowWidth ? true : false,
+				elemHalfWidth = anim._elem.width()/2,
+				elemHalfHeight = anim._elem.height()/2,
+				adj = portrait ? windowWidth/2 + elemHalfWidth : adj = windowHeight/2 + elemHalfHeight,
+				tan = Math.sqrt( Math.pow( adj, 2) + Math.pow( adj, 2) );
+
+			this.properties['top'] = windowCenter.top - adj - elemHalfHeight + (portrait ? settings.offset : 0);
+			this.properties['left'] = windowCenter.left + adj - elemHalfWidth + (portrait ? 0 : settings.offset);
+		};
+
+		root.leftOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = -anim._elem.width() + settings.offset;
+		};
+
+		root.rightOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = windowWidth + settings.offset;
+		};
+
+		root.centerV = function( anim, opts ) {
+			resize();
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			var elemHalfHeight = anim._elem.height()/2;
+			this.properties['top'] = windowCenter.top - elemHalfHeight + settings.offset;
+		};
+
+		root.centerH = function( anim, opts ) {
+			resize();
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+
+			var elemHalfWidth = anim._elem.width()/2;
+
+			this.properties['left'] = windowCenter.left - elemHalfWidth + settings.offset;
+		};
+
+		root.bottomOutside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = windowHeight + settings.offset;
+		};
+
+		root.bottomOutsideAnim = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = anim.endAt + settings.offset;
+		};
+
+		root.bottomInside = function( anim, opts ) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = windowHeight - settings.offset;
+		};
+
+		root.topOutside = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = -anim._elem.height() + settings.offset;
+		};
+
+		root.zeroTop = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['top'] = 0 + settings.offset;
+		};
+
+		root.zeroLeft = function( anim, opts) {
+			var defaults = {offset:0}, settings = $.extend(defaults, opts);
+			this.properties['left'] = 0 + settings.offset;
+		};
+
+		root.gallery_translate = function( scrollY ) {
+			limitX = (root.settings.itemWidth - endX + 130 );
+			limitY = (endY - root.settings.itemHeight);
+			if ( scrollY < root.settings.endAt && scrollY > root.settings.startAt ){
+				endX = root.settings.totalImagesWidth;
+				endY = $target.height();
+
+				cur_time = ( scrollY - root.settings.startAt ) ;
+				tot_time = ( root.settings.endAt - root.settings.startAt );
+
+				valX = getTweenedValue( startX, endX, cur_time, tot_time ) * -1;
+				valY = getTweenedValue( startY, endY, cur_time, tot_time );
+
+				if ( valX < limitX ){
+					valX = limitX;
+				}
+				if ( valY > limitY ){
+					valY = limitY;
+				}
+
+			} else if ( scrollY < root.settings.startAt ) {
+				valX = 0;
+				valY = 0;
+			} else if ( scrollY > root.settings.endAt ) {
+				valX = limitX;
+				valY = limitY;
+			}
+
+			this.properties['top'] = valY;
+			this.properties['left'] = valX;
+
+			// var properties = {
+			// 	'transform': "translate("+valX+"px,"+valY+"px)",
+			// 	'-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
+			// 	'-webkit-transform': "translate("+valX+"px,"+valY+"px)",  Safari and Chrome 
+			// 	'-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
+			// 	'-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
+			// };
+
+			// this.properties = properties;
+		};
+
+		root.sequence = function( is, progress ) {
+			var endFrame = (is.imageCount/is.skipImages),
+				toFrame = Math.floor(progress*endFrame) % is.imageCount;
+			is.showImageAt( Math.floor(toFrame) );
+		};
+
+		$window.resize( resize );
+		resize();
+
+	};
+
+	$.BALT.animation.keyframes = function( o ) {
+		return [
+		{
+			'id' : '#building-large',
+			'startAt' : gotoSection['home'],
+			'endAt' : gotoSection['design'] + windowHeight,
+			onProgress: function(progress) {
+				calculations.sequence( imageSequences['building-large'], progress );
+			},
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Quadratic.EaseIn,
+					properties: {
+						top: 0, left: 50
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Quadratic.EaseIn,
+					properties: {
+						top: 0, left: -200
+					}
+				}
+			]
+		},
+		{
+			'id' : '#building-small',
+			'startAt' : gotoSection['amenities-services'],
+			'endAt' : gotoSection['neighborhood'] - windowHeight,
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.zeroTop.call( this, anim, { offset: 100 });
+						calculations.centerH.call( this, anim, { offset: 0 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 500 });
+						calculations.centerH.call( this, anim, { offset: 0 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		// {
+		// 	'id' : '#residences-gallery .gallery-container',
+		// 	'startAt' : gotoSection['residences'],
+		// 	'endAt' : gotoSection['featured-plan'] - windowHeight,
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.zeroTop.call( this, anim, {});
+		// 				calculations.zeroLeft.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.zeroLeft.call( this, anim, { offset: gallerySequences['residences-gallery'].gWidth });
+		// 				calculations.zeroTop.call( this, anim, { offset: gallerySequences['residences-gallery'].gHeight });
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : '#amenities-gallery .gallery-container',
+		// 	'startAt' : gotoSection['amenities-services'],
+		// 	'endAt' : gotoSection['neighborhood'] - windowHeight,
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.zeroTop.call( this, anim, {});
+		// 				calculations.zeroLeft.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.zeroLeft.call( this, anim, { offset: gallerySequences['amenities-gallery'].gWidth });
+		// 				calculations.zeroTop.call( this, anim, { offset: gallerySequences['amenities-gallery'].gHeight });
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		{
+			'id' : '#cloud0',
+			'startAt' : gotoSection['design'],
+			'endAt' : gotoSection['design-team'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: 1500 });
+						calculations.centerH.call( this, anim, { offset: -400 });
+
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.topOutside.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: -700 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '#cloud1',
+			'startAt' : gotoSection['home'],
+			'endAt' : gotoSection['design-team'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: 600 });
+						calculations.centerH.call( this, anim, { offset: 600 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.topOutside.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: 800 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '#cloud2',
+			'startAt' : gotoSection['featured-plan'] - 500,
+			'endAt' : gotoSection['amenities-services'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 400 });
+						calculations.centerH.call( this, anim, { offset: 1000 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
+						calculations.centerH.call( this, anim, { offset: 600 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		},
+		{
+			'id' : '#cloud3',
+			'startAt' : gotoSection['team'],
+			'endAt' : gotoSection['contact'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, { offset: -500 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.endAt - anim._elem.height() });
+						calculations.centerH.call( this, anim, {});
+						calculations.centerH.call( this, anim, { offset: -650 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
+		// ,
+		// {
+		// 	'id' : '#cloud4',
+		// 	'startAt' : gotoSection['feature'],
+		// 	'endAt' : gotoSection['availability'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : '#cloud5',
+		// 	'startAt' : gotoSection['availability'],
+		// 	'endAt' : gotoSection['amenities-services'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : '#cloud6',
+		// 	'startAt' : gotoSection['amenities-services'],
+		// 	'endAt' : gotoSection['neighborhood'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.rightOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : '#cloud7',
+		// 	'startAt' : gotoSection['neighborhood'],
+		// 	'endAt' : gotoSection['team'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
+		// {
+		// 	'id' : '#cloud8',
+		// 	'startAt' : gotoSection['team'],
+		// 	'endAt' : gotoSection['press'],
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
+		// 				calculations.centerH.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.topOutside.call( this, anim, {});
+		// 				calculations.leftOutside.call( this, anim, {});
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// }
+		];
 	};
 
 })(jQuery);

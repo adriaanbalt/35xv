@@ -31,6 +31,8 @@
 			endAt : 0
 		};
 		root.settings = $.extend( root.settings, o );
+		root.gHeight = $target.height();
+		root.gWidth = root.settings.totalImagesWidth;
 
 		root.init = function() {
 			if ( root.settings.onProgress ){
@@ -53,32 +55,24 @@
 
 		root.start = function( o ) {
 			root.settings = $.extend( root.settings, o );
-			$window.resize( resize );
+			//$window.resize( resize );
 			resize();
 		};
 
-		var imageResize = function( img, w, h ) {
-			img.width( w );
-			img.height( Math.round ( w * root.settings.ratio ) );
-			if ( img.height() < h ) {
-				img.height( h );
-				img.width( Math.round ( h / root.settings.ratio ) );
-			}
-		};
 
 		var resize = function () {
 			root.settings.itemWidth = $container.find('.slide:eq(0)').width();
 			root.settings.itemHeight = $container.find('.slide:eq(0)').height();
-			root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+130 );
+			root.gWidth = root.settings.totalImagesWidth = root.settings.slideCount * (root.settings.itemWidth+130 );
+			root.gHeight = root.settings.totalImagesWidth - root.settings.itemWidth;
 
-			$container.width( root.settings.totalImagesWidth );
-			$target.height( root.settings.totalImagesWidth - root.settings.itemWidth );
+			$container.width( root.gWidth );
+			$target.height( root.gHeight );
+
+			// hack
+			root.gWidth *= -1;
 
 			root.settings.endAt = root.settings.startAt + $target.height();
-		};
-
-		var getAttributeAsNumber = function( target, attribute ){
-			return parseInt(target.css(attribute).replace('px', ''));
 		};
 
 		root.scroll = function( scrollY ) {
@@ -128,11 +122,8 @@
 			return tweener(percentComplete) * delta + start;
 		}
 
-		var getAttributeAsNumber = function( target, attribute ){
-			return parseInt(target.css(attribute).replace('px', ''));
-		};
-
 		root.init();
+
 	};
 
 
