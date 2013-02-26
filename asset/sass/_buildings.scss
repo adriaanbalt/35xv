@@ -1,5 +1,6 @@
 
 #building-large {
+	width: 1024px;
 	height: 2048px;
 	display: block;
 	z-index: 100;
@@ -9,7 +10,8 @@
 	left: -200px;
 	img {
 		display: none;
-	//	width: 100%;
+		width: 100%;
+		height: 100%;
 		&.show {
 			display: block;
 		}
