@@ -93,7 +93,7 @@
 	});
 
 	imageSequences['building-large'] = new $.BALT.imageSequence({
-		filesPath:'asset/img/building-large/35XV_2013-02-19_000{index}.gif',
+		filesPath:'asset/img/building-large/highres/35XV_2013-02-19_000{index}.gif',
 		imageCount: 100,
 		skipImages: 3,
 		container: $('#building-large'),

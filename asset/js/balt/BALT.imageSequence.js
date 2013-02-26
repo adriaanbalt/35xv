@@ -14,9 +14,13 @@
 	$.BALT.imageSequence = function( opts ) {
 		var defaults = {
 				skipImages: 1,
+				highresDelay: 500,
 				recheckDelay: 500,			// delay before checking for current image if not present
 				loadInterval: 100,			// delay to wait until loading next image if busy
-				frameSpeed: 1
+				frameSpeed: 1,				// used by animation
+				useHighres: false,			// determine if you wish to use the highres
+				highresPattern: /lowres/,	// regex match to replace low resolution image with high resolution
+				highresReplace: 'highres'		// replace match with
 			},
 			sequence = [],
 			currentIndex = -1,
@@ -89,6 +93,8 @@
 				hideImageAt( currentIndex );
 				currentIndex = index;
 				$(image).removeClass('hidden').addClass( 'show' );
+				
+				if ( settings.useHighres )timeout = setTimeout(loadHighresImage, settings.highresDelay);
 			} else {
 				clearTimeout(recheckTimeout);
 				recheckTimeout = setTimeout(showImageAt, settings.recheckDelay, index);
@@ -100,6 +106,22 @@
 			if (image) {
 				$(image).removeClass( 'show' ).addClass('hidden');
 			}
+		};
+
+		var clearHighresImage = function() {
+			if (currentLowres) settings.container.children()[ currentIndex ].src = currentLowres;
+			currentLowres = null;
+		};
+
+		var loadHighresImage = function() {
+			currentLowres = settings.container.children()[ currentIndex ].src;
+			settings.container.children()[ currentIndex ].src = settings.container.children()[ currentIndex ].src.replace(settings.highresPattern, settings.highresReplace);
+
+			/*currentLowres = settings.container.children()[ currentIndex ].src;
+			var highresPath = settings.container.children()[ currentIndex ].src.replace(/vid-50/, 'vid');
+			var image = new Image();
+			image.src = highresPath;
+			image.onload = showHighresImage;*/
 		};
 
 		var load = function() {
