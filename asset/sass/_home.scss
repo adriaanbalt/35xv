@@ -1,16 +1,16 @@
 .home {
 	zoom: 1;
 	z-index: 1000;
-	.content-box {
-		padding-top: 70px;
-	}
 	#skyline-img {
 		display: block;
-		margin: 120px auto 0 auto;
+		margin: 20px auto 0 auto;
 		width: 100%;
 	}
 	p {
 		display: inline;
+		vertical-align: bottom;
+		font-size: 20px;
+		line-height: 10px;
 	}
 }
 

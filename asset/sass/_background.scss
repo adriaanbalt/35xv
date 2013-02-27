@@ -17,16 +17,16 @@
 	}
 
 	#cloud0 {
-		opacity: .50;
-		zoom: 1;
-		filter:alpha(opacity=50); /* For IE8 and earlier */
+		// opacity: .50;
+		// zoom: 1;
+		// filter:alpha(opacity=50); /* For IE8 and earlier */
 		z-index: 1000;
 	}
 
 	#cloud1 {
-		opacity: .4;
-		zoom: 1;
-		filter:alpha(opacity=40); /* For IE8 and earlier */
+		// opacity: .4;
+		// zoom: 1;
+		// filter:alpha(opacity=40); /* For IE8 and earlier */
 		transform: rotate(180deg);
 		-ms-transform: rotate(180deg); /* IE 9 */
 		-webkit-transform: rotate(180deg); /* Safari and Chrome */
@@ -43,14 +43,14 @@
 	}
 
 	#cloud2 {
-		opacity: .3;
-		zoom: 1;
-		filter:alpha(opacity=30); /* For IE8 and earlier */
+		// opacity: .3;
+		// zoom: 1;
+		// filter:alpha(opacity=30); /* For IE8 and earlier */
 	}
 
 	#cloud3 {
-		opacity: .2;
-		zoom: 1;
-		filter:alpha(opacity=20); /* For IE8 and earlier */
+		// opacity: .2;
+		// zoom: 1;
+		// filter:alpha(opacity=20); /* For IE8 and earlier */
 	}
 }

@@ -18,7 +18,7 @@
 			<li><a href='#design'>DESIGN</a></li>
 			<li><a href='#residences'>RESIDENCES</a></li>
 			<li><a href='#unit-availability'>UNIT AVAILABILITY</a></li>
-			<li><a href='#amenities-services'>AMENITIES &AMP; SERVICES</a></li>
+			<li><a href='#services-amenities'>SERVICES &AMP; AMENITIES</a></li>
 			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team'>TEAM</a></li>
 			<li><a href='#press'>PRESS</a></li>
@@ -54,16 +54,16 @@
 			<div class="grid-third content-box" id='design-info'>
 				<div class="padded-inner">
 					<div class='building-section one'>
-						<h1>RESIDENCES</h1>
+						<span class='carat-left'></span><h1>RESIDENCES</h1>
 					</div>
 					<div class='building-section two'>
-						<h1>AMENTIY FLOORS</h1>
+						<span class='carat-left'></span><h1>AMENTIY FLOORS</h1>
 					</div>
 					<div class='building-section three'>
-						<h1>COMMERCIAL SPACE</h1>
+						<span class='carat-left'></span><h1>COMMERCIAL SPACE</h1>
 					</div>
 					<div class='building-section'>
-						<h1>BUILDING ENTRANCE</h1>
+						<span class='carat-left'></span><h1>BUILDING ENTRANCE</h1>
 					</div>
 				</div>
 			</div>
@@ -186,6 +186,9 @@
 		</div>
 	</section>
 
+<!-- unit-availability -->
+	<?php echo $unit_availability; ?>
+
 <!-- featured-plan -->
 	<section class="featured-plan grid-whole">
 		<h2>FEATURED<br>PLAN</h2>
@@ -203,12 +206,9 @@
 		</div>
 	</section>
 
-<!-- unit-availability -->
-	<?php echo $unit_availability; ?>
-
 <!-- amenities-services -->
-	<section class="amenities-services grid-whole">
-		<h2>AMENITIES &AMP;<br>SERVICES</h2>
+	<section class="services-amenities grid-whole">
+		<h2>SERVICES &AMP;<br>AMENITIES</h2>
 		<div class="content-box">
 			<div id='building-small'>
 				<img src="asset/img/building-line-small.png"/>

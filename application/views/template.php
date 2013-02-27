@@ -52,7 +52,7 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="asset/js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-        <!--[if IE]><script src="excanvas.js"></script><![endif]-->
+        <!--[if IE]><script src="asset/js/vendor/excanvas.js?v=2"></script><![endif]-->
         <script src="asset/js/vendor/jquery.mousewheel.js?v=2"></script>
         <script src='asset/js/vendor/Tween.js?v=2'></script>
         <script src="asset/js/vendor/equalize.min.js?v=2"></script>

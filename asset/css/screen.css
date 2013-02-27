@@ -57,7 +57,7 @@ and (min-width : 1824px) {
   /* Styles */
 }
 nav {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   position: fixed;
   top: 0;
   width: 100%;
@@ -78,11 +78,10 @@ nav a, nav a:visited {
   display: block;
   font-size: 15px;
   font-weight: 700;
-  line-height: 3em;
   padding: 0.1em 0.5em 0 0.5em;
 }
 nav a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: white;
 }
 
 body {
@@ -102,11 +101,11 @@ body {
   background-color: #70cbf2;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF70CBF2', endColorstr='#FF39C0E5');
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #409fd9), color-stop(5%, #34b7ef), color-stop(15%, #34b7ef), color-stop(17%, #65b1e8), color-stop(24%, #65b1e8), color-stop(34%, #4da5dc), color-stop(58%, #409fd9), color-stop(86%, #20a2d6), color-stop(100%, #39c0e5));
-  background-image: -webkit-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: -moz-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: -o-linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
-  background-image: linear-gradient(top, #409fd9 0%, #34b7ef 5%, #34b7ef 15%, #65b1e8 17%, #65b1e8 24%, #4da5dc 34%, #409fd9 58%, #20a2d6 86%, #39c0e5 100%);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #65b1e8), color-stop(5%, #65b1e8), color-stop(15%, #65b1e8), color-stop(17%, #65b1e8), color-stop(24%, #65b1e8), color-stop(50%, #65b1e8), color-stop(55%, #4da5dc), color-stop(65%, #409fd9), color-stop(85%, #20a2d6), color-stop(90%, #65b1e8), color-stop(95%, #20a2d6), color-stop(100%, #65b1e8));
+  background-image: -webkit-linear-gradient(top, #65b1e8 0%, #65b1e8 5%, #65b1e8 15%, #65b1e8 17%, #65b1e8 24%, #65b1e8 50%, #4da5dc 55%, #409fd9 65%, #20a2d6 85%, #65b1e8 90%, #20a2d6 95%, #65b1e8 100%);
+  background-image: -moz-linear-gradient(top, #65b1e8 0%, #65b1e8 5%, #65b1e8 15%, #65b1e8 17%, #65b1e8 24%, #65b1e8 50%, #4da5dc 55%, #409fd9 65%, #20a2d6 85%, #65b1e8 90%, #20a2d6 95%, #65b1e8 100%);
+  background-image: -o-linear-gradient(top, #65b1e8 0%, #65b1e8 5%, #65b1e8 15%, #65b1e8 17%, #65b1e8 24%, #65b1e8 50%, #4da5dc 55%, #409fd9 65%, #20a2d6 85%, #65b1e8 90%, #20a2d6 95%, #65b1e8 100%);
+  background-image: linear-gradient(top, #65b1e8 0%, #65b1e8 5%, #65b1e8 15%, #65b1e8 17%, #65b1e8 24%, #65b1e8 50%, #4da5dc 55%, #409fd9 65%, #20a2d6 85%, #65b1e8 90%, #20a2d6 95%, #65b1e8 100%);
   opacity: 0;
   filter: alpha(opacity=0);
   /* For IE8 and earlier */
@@ -146,17 +145,17 @@ body {
 
 section {
   position: relative;
-  margin: 100px 0 !important;
+  margin: 50px 0 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin: 0;
-  color: #053b5e;
+  color: #2c6086;
 }
 
 h1 {
-  font-weight: 700;
+  font-weight: 400;
   font-size: 35px;
 }
 
@@ -164,7 +163,7 @@ h2 {
   font-weight: 100;
   font-size: 55px;
   line-height: 50px;
-  border-bottom: 1px solid #053b5e;
+  border-bottom: 1px solid #2c6086;
   margin-bottom: 20px;
 }
 
@@ -198,7 +197,7 @@ sup {
 }
 
 a, a:visited {
-  color: #4e7bc5;
+  color: #2c6086;
   text-decoration: none;
 }
 
@@ -233,17 +232,9 @@ canvas {
   display: block;
 }
 #background #cloud0 {
-  opacity: .50;
-  zoom: 1;
-  filter: alpha(opacity=50);
-  /* For IE8 and earlier */
   z-index: 1000;
 }
 #background #cloud1 {
-  opacity: .4;
-  zoom: 1;
-  filter: alpha(opacity=40);
-  /* For IE8 and earlier */
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   /* IE 9 */
@@ -262,18 +253,6 @@ canvas {
   /* Opera */
   -moz-transform: scale(1.5);
   /* Firefox */
-}
-#background #cloud2 {
-  opacity: .3;
-  zoom: 1;
-  filter: alpha(opacity=30);
-  /* For IE8 and earlier */
-}
-#background #cloud3 {
-  opacity: .2;
-  zoom: 1;
-  filter: alpha(opacity=20);
-  /* For IE8 and earlier */
 }
 
 #building-large {
@@ -305,6 +284,8 @@ canvas {
   position: absolute;
   left: -400px;
   top: 250px;
+  display: none;
+  visibility: hidden;
 }
 
 .video-box {
@@ -345,9 +326,9 @@ canvas {
   right: 0px;
 }
 .gallery-scroll .shadow {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
-  box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
 }
 .gallery-scroll .text-slant {
   width: 325px;
@@ -390,16 +371,16 @@ canvas {
   zoom: 1;
   z-index: 1000;
 }
-.home .content-box {
-  padding-top: 70px;
-}
 .home #skyline-img {
   display: block;
-  margin: 120px auto 0 auto;
+  margin: 20px auto 0 auto;
   width: 100%;
 }
 .home p {
   display: inline;
+  vertical-align: bottom;
+  font-size: 20px;
+  line-height: 10px;
 }
 
 .neighborhood .content-box {
@@ -409,14 +390,13 @@ canvas {
   width: 100%;
 }
 
-.design #design-info h1 {
-  text-align: right;
-  width: 100%;
-  padding: 25px 0px;
+.design #design-info span {
+  float: left;
 }
-.design #design-info .building-section {
-  border-left: 1px solid #053b5e;
-  border-top: 1px solid #053b5e;
+.design #design-info h1 {
+  float: left;
+  width: 200px;
+  padding: 3px 30px;
 }
 .design #design-info .one {
   margin-top: 200px;
@@ -428,10 +408,14 @@ canvas {
 .design #design-info .three {
   height: 250px;
 }
-
-.design-team h2 {
-  margin-left: 150px;
+.design #design-info .carat-left {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid #2c6086;
 }
+
 .design-team h4 {
   position: absolute;
   z-index: 5;
@@ -448,13 +432,10 @@ canvas {
 .unit-availability {
   text-transform: uppercase;
 }
-.unit-availability h2 {
-  margin-left: 150px;
-}
 .unit-availability td {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  padding: 3px 41px;
+  padding: 3px 51px;
   font-weight: 700;
   font-size: 13px;
 }
@@ -474,21 +455,20 @@ canvas {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid #053b5e;
+  border-top: 8px solid #2c6086;
 }
 .unit-availability .arrow.up {
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid #053b5e;
+  border-bottom: 8px solid #2c6086;
 }
 .unit-availability a, .unit-availability a:visited {
-  color: #053b5e;
+  color: #2c6086;
 }
 .unit-availability table {
-  color: #053b5e;
-  float: right;
+  color: #2c6086;
 }
 
 .team .team-member {
@@ -514,7 +494,7 @@ canvas {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 .team .team-member.border-bottom-dark {
-  border-bottom: 1px solid #053b5e;
+  border-bottom: 1px solid #2c6086;
 }
 
 .press ul li {
@@ -530,7 +510,7 @@ canvas {
 .contact .control-group {
   margin-top: 5px;
   font-size: 20px;
-  color: #053b5e;
+  color: #2c6086;
   float: right;
 }
 .contact .control-group .controls {
@@ -538,7 +518,7 @@ canvas {
 }
 .contact .control-group .controls input {
   background: transparent;
-  border: 1px solid #053b5e;
+  border: 1px solid #2c6086;
   font-weight: 100;
   font-size: 16px;
   width: 400px;
@@ -552,15 +532,49 @@ canvas {
   margin-top: 20px;
   background: transparent;
   border: 0;
-  color: #053b5e;
+  color: #2c6086;
   font-weight: 100;
   font-size: 35px;
   padding: 0;
 }
+.contact .control-group .custom-dropdown .values {
+  display: none;
+  z-index: 100;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+.contact .control-group .custom-dropdown .values > .inner {
+  padding: 10px 0;
+}
+.contact .control-group .custom-dropdown .values ol {
+  list-style: none;
+}
+.contact .control-group .custom-dropdown .values ol li {
+  padding: 8px 0 10px 18px;
+}
+.contact .control-group .custom-dropdown .values ol li span {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 3px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #2c6086;
+}
 
 .address {
-  font-size: 30px;
-  color: #053b5e;
+  font-size: 20px;
+  color: #2c6086;
+  margin-top: 0 !important;
 }
 .address div {
   margin-top: 5px;
@@ -568,14 +582,14 @@ canvas {
 .address hr {
   border: 0;
   height: 1px;
-  background: #053b5e;
+  background: #2c6086;
   margin: 5px 0 0 0;
 }
 .address .pipe {
   display: inline-block;
   width: 1px;
   height: 23px;
-  background: #053b5e;
+  background: #2c6086;
   margin: 0 7px;
 }
 .address .addy {
@@ -588,12 +602,12 @@ canvas {
 }
 .address .last {
   float: right;
-  font-size: 20px;
+  font-size: 14px;
   width: 94%;
   padding-bottom: 10px;
 }
 .address .border-bottom {
-  border-bottom: 1px solid #053b5e;
+  border-bottom: 1px solid #2c6086;
 }
 
 .copyright {
@@ -607,13 +621,16 @@ canvas {
   height: 90%;
   margin: 5%;
   text-align: center;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.9);
   z-index: 10000;
   zoom: 1;
   opacity: 0;
 }
 .modal > .inner {
   padding: 5%;
+}
+.modal img {
+  max-height: 100%;
 }
 .modal .close {
   font-size: 80px;

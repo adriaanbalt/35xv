@@ -154,8 +154,6 @@
 
 						for ( property in keyframe.properties ) {
 							properties[ property ] = Math.round( calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease ) );
-
-							console.log ( "properties[ property ]: ", property, properties[ property ], lastkeyframe.properties[property] );
 						}
 					}
 				}
@@ -609,7 +607,7 @@
 		},
 		{
 			'id' : '#building-small',
-			'startAt' : gotoSection['amenities-services'],
+			'startAt' : gotoSection['services-amenities'],
 			'endAt' : gotoSection['neighborhood'] - windowHeight,
 			keyframes :[
 				{
@@ -627,7 +625,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: $('.amenities-services').height() - windowHeight - anim._elem.height() - 500 });
+						calculations.bottomOutside.call( this, anim, { offset: $('.services-amenities').height() - windowHeight - anim._elem.height() - 500 });
 						calculations.centerH.call( this, anim, { offset: 0 });
 					},
 					properties: {
@@ -667,7 +665,7 @@
 		// },
 		// {
 		// 	'id' : '#amenities-gallery .gallery-container',
-		// 	'startAt' : gotoSection['amenities-services'],
+		// 	'startAt' : gotoSection['services-amenities'],
 		// 	'endAt' : gotoSection['neighborhood'] - windowHeight,
 		// 	keyframes :[
 		// 		{
@@ -733,7 +731,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: 600 });
+						calculations.centerV.call( this, anim, { offset: 300 });
 						calculations.centerH.call( this, anim, { offset: 600 });
 					},
 					properties: {
@@ -755,14 +753,14 @@
 		},
 		{
 			'id' : '#cloud2',
-			'startAt' : gotoSection['featured-plan'] - 500,
-			'endAt' : gotoSection['amenities-services'],
+			'startAt' : gotoSection['floor-plans'],
+			'endAt' : gotoSection['neighborhood'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 400 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt - 400 });
 						calculations.centerH.call( this, anim, { offset: 1000 });
 					},
 					properties: {
@@ -845,7 +843,7 @@
 		// {
 		// 	'id' : '#cloud5',
 		// 	'startAt' : gotoSection['availability'],
-		// 	'endAt' : gotoSection['amenities-services'],
+		// 	'endAt' : gotoSection['services-amenities'],
 		// 	keyframes :[
 		// 		{
 		// 			position: 0,
@@ -873,7 +871,7 @@
 		// },
 		// {
 		// 	'id' : '#cloud6',
-		// 	'startAt' : gotoSection['amenities-services'],
+		// 	'startAt' : gotoSection['services-amenities'],
 		// 	'endAt' : gotoSection['neighborhood'],
 		// 	keyframes :[
 		// 		{

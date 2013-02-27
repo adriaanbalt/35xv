@@ -28,12 +28,40 @@
 			font-size: 35px;
 			padding: 0;
 		}
+		.custom-dropdown {
+			.values {
+				display: none;
+				z-index: 100;
+				position: absolute;
+				top: -5px;
+				left: 0;
+				width: 100%;
+				@include border-radius( 3px );
+				> .inner {
+					padding: 10px 0;
+				}
+				ol {
+					list-style: none;
+					li {
+						padding: 8px 0 10px 18px;
+						span {
+							display: block;
+							position: absolute;
+							top: 9px;
+							left: 3px;
+							@include triangle ( 'right', 5px, $blue-dark );
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
 .address {
-	font-size: 30px;
+	font-size: 20px;
 	color: $blue-dark;
+	margin-top: 0 !important;
 	div {
 		margin-top: 5px;
 	}
@@ -60,7 +88,7 @@
 	}
 	.last {
 		float: right;
-		font-size: 20px;
+		font-size: 14px;
 		width: 94%;
 		padding-bottom: 10px
 	}

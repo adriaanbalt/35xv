@@ -15,7 +15,7 @@ body {
 #main {
 	background-color: $blue;
 	@include filter-gradient($blue, #39C0E5, vertical); // IE6-9
-	@include background-image(linear-gradient(top, rgb(64,159,217) 0%, #34b7ef 5%,  #34b7ef 15%, #65b1e8 17%,  rgb(101,177,232) 24%, rgb(77,165,220) 34%, rgb(64,159,217) 58%,#20a2d6 86%, #39C0E5 100%));
+	@include background-image(linear-gradient(top, $home-bg 0%, $design-bg 5%,  $design-bg 15%, $design-team-bg 17%,  $residences-bg 24%, $featuredplan-bg 50%, $floorplan-bg 55%, $services-amenities-bg 65%, $neighborhood-bg 85%, $team-bg 90%, $press-bg 95%, $contact-bg 100%));	
 	opacity: 0;
 	filter:alpha(opacity=0); /* For IE8 and earlier */
 	position: fixed;
@@ -54,12 +54,12 @@ body {
 
 section {
 	position: relative;
-	margin: 100px 0 !important;
+	margin: 50px 0 !important;
 }
 
 h1,h2,h3,h4,h5,h6 { line-height: 1.2; margin: 0; color: $blue-dark;}
 h1 {
-	font-weight: 700;
+	font-weight: 400;
 	font-size: 35px;
 }
 h2 {
@@ -89,7 +89,7 @@ small { font-weight: normal; font-size: .75em; }
 sup { font-weight: normal; }
 
 a, a:visited {
-	color: #4e7bc5;
+	color: $blue-dark;
 	text-decoration: none;
 }
 .content-box {

@@ -50,26 +50,27 @@
 				startAt : gotoSection[ 'residences' ]
 			});
 			gallerySequences['amenities-gallery'].start({
-				startAt : gotoSection[ 'amenities-services' ]
+				startAt : gotoSection[ 'services-amenities' ]
 			});
 
 		//build gotoSection
 			var accumulator = 0;
 			$('section').each( function() {
 				var h = 0;
-				if ( $(this).css('display') != 'none' ) h =$(this).height() + 200;
+				if ( $(this).css('display') != 'none' ) h = $(this).height() + 100;
 				gotoSection[ $(this).context.className.split(' ')[0]  ] = accumulator;
 				accumulator +=h;
 			});
 
 			animation = new $.BALT.animation.keyframes();
 
+
 		// catch 22 w the galleries, need to call start twice =(
 			gallerySequences['residences-gallery'].start({
 				startAt : gotoSection[ 'residences' ] + 100
 			});
 			gallerySequences['amenities-gallery'].start({
-				startAt : gotoSection[ 'amenities-services' ] + 150
+				startAt : gotoSection[ 'services-amenities' ] + 150
 			});
 			scroller.start({
 				startAt : gotoSection[ window.location.hash ],
@@ -167,6 +168,49 @@
 		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
 		imageSequences[i].load();
 	}
+
+	$("#availability").tablesorter({
+		// make the table header unselectable to enchance button feel
+		cancelSelection: true,
+		sortInitialOrder: 'desc',
+		headers: {
+
+			// Unit Number Column 
+			0: {
+				// Disable sorting, as it is not logical
+				sorter: false
+			},
+			3: {
+				// Force square footage sorter to use digits, despite commas being in the string 
+				sorter: 'digit'
+			},
+			// Price Column 
+			4: {
+				// Force sorter to use numbers, despite 'sold out' etc 
+				sorter: 'currency',
+				string: 'bottom'
+			},
+			// Floorplan View / Download Column 
+			5: {
+				// Disable sorting, as all values are the same! 
+				sorter: false
+			}
+		},
+		sortList: [[4,1]],
+		cssAsc: 'availability-asc',
+		cssDesc: 'availability-desc',
+		cssHeader: 'availability-header'
+	});
+
+	$('.availability-header').find('.tablesorter-header-inner').append('<span class="arrow"></span>');
+	$('.availability-asc').find('.arrow').removeClass('down').addClass('up');
+	$('.availability-desc').find('.arrow').removeClass('up').addClass('down');
+	$("#availability").bind("sortStart",function() {
+		$('.availability-header').find('.arrow').removeClass('up').removeClass('down');
+	}).bind("sortEnd",function() {
+		$('.availability-asc').find('.arrow').removeClass('down').addClass('up');
+		$('.availability-desc').find('.arrow').removeClass('up').addClass('down');
+	});
 
 	function resize(){
 		windowWidth = $window.height();

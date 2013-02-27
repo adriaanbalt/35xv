@@ -62,8 +62,8 @@ class Site extends CI_Controller {
 		$this->table->set_template($table_template);
 		$section['content'] = $this->table->generate($units);
 
-		$section['title'] = "UNIT<br />AVAILABILITY";
-		$section['css_class'] = "unit-availability";
+		$section['title'] = "FLOOR<br />PLANS";
+		$section['css_class'] = "floor-plans";
 		$section['inner_div_classes'] = "padded-inner content-box center";
 
 		return $this->load->view('section', $section, TRUE);
