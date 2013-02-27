@@ -105,11 +105,14 @@
 
 
 			var properties = {
-				'transform': "translate("+valX+"px,"+valY+"px)",
-				'-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
-				'-webkit-transform': "translate("+valX+"px,"+valY+"px)", /* Safari and Chrome */
-				'-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
-				'-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
+				top: valY + 'px',
+				left: valX + 'px'
+				// ,
+				// 'transform': "translate("+valX+"px,"+valY+"px)",
+				// '-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
+				// '-webkit-transform': "translate("+valX+"px,"+valY+"px)", /* Safari and Chrome */
+				// '-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
+				// '-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
 			};
 
 			$container.css ( properties );

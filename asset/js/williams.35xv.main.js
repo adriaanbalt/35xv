@@ -78,11 +78,11 @@
 				animation: animation
 			});
 
-			nav = new $.BALT.nav( $('nav') );
+			nav = new $.BALT.nav( $('nav'), {scroller: scroller} );
 
 			var prop = {
-				opacity: 1,
-				filter: 'alpha(opacity=' + 100 + ')'
+				filter: ' alpha(opacity=' + 100 + ')',
+				opacity: 1
 				//, /* For IE8 and earlier */
 				//transition: 'all 1s'
 			};
@@ -157,7 +157,7 @@
 			loadProgress.update();
 		}
 	});
-	scroller = new $.BALT.animation.scroller({
+	var scroller = new $.BALT.animation.scroller({
 		register : [ gallerySequences['residences-gallery'], gallerySequences['amenities-gallery'] ]
 	});
 

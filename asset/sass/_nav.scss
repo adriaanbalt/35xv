@@ -1,4 +1,5 @@
 nav {
+	background: #fff;
 	background: rgba( 255, 255, 255, .8 );
 	position: fixed;
 	top: 0;
@@ -22,5 +23,8 @@ nav {
 	}
 	a:hover {
 		background-color: rgba(255,255,255,1);
+	}
+	.wrapper {
+		max-width: 1050px;
 	}
 }

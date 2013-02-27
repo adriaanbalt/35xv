@@ -25,10 +25,11 @@
 		root.navigate = function( hash ) {
 			if ( hash.indexOf('modal') ==-1 ){
 				if ( gotoSection[hash] !== undefined ) {
-					scroller.scrollTo( gotoSection[hash] );
-					scroller.scrollTo( gotoSection[hash] );
+					settings.scroller.scrollTo( gotoSection[hash] );
+					settings.scroller.scrollTo( gotoSection[hash] );
 				} else {
-					scroller.scrollTo( 0 );
+					console.log ( "settings.scroller " , settings.scroller );
+					settings.scroller.scrollTo( 0 );
 				}
 			} else {
 			}

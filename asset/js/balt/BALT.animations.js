@@ -215,10 +215,10 @@
 		var scroll = function() {
 			var y = calculations.calcScrubber( scrollTop, settings.maxScroll );
 			$main.css({
-				transform : 'translate( 0px, ' + (scrollTop*-1) + 'px)'
+				top: (scrollTop*-1) + 'px'
 			});
 			$scrubber.css({
-				transform: 'translateY(' + y + 'px)'
+				top: y + 'px'
 			});
 		}
 
