@@ -21,16 +21,25 @@
 	windowWidth = $window.height();
 	windowHeight = $window.height();
 	windowCenter = { left: $window.width()/2, top: $window.height()/2 };
-	resize();
 	gotoSection = {};
+	imageSequences = {};
+	gallerySequences = {};
 
 	var loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
+			var prop = {
+				filter: ' alpha(opacity=' + 100 + ')',
+				opacity: 1
+				//, /* For IE8 and earlier */
+				//transition: 'all 1s'
+			};
+			// $('#main').css( prop );
+			// $('nav').css( prop );
+			$('#main').animate( prop, 1000 );
+			$('nav').animate( prop, 1000 );
+			$('#scroller').css( {display: 'block' } );
 		}
 	});
-
-	imageSequences = {};
-	gallerySequences = {};
 
 	loadProgress = new LoadProgress({
 		onUpdate: function( val ) {
@@ -39,7 +48,7 @@
 		onComplete: function() {
 
 			var clone;
-			for ( var i = 1; i < 4; i++ ){
+			for ( var i = 1; i < 8; i++ ){
 				clone = $('#cloud0').clone();
 				clone.attr('id', 'cloud' + i );
 				$('#background').append( clone );
@@ -57,13 +66,13 @@
 			var accumulator = 0;
 			$('section').each( function() {
 				var h = 0;
-				if ( $(this).css('display') != 'none' ) h = $(this).height() + 100;
+				if ( $(this).css('display') !=  'none' ) h = $(this).height() + 200; // 200 for the distance between sectiosn (<section> margin-top + margin-bottom)
 				gotoSection[ $(this).context.className.split(' ')[0]  ] = accumulator;
 				accumulator +=h;
 			});
 
-			animation = new $.BALT.animation.keyframes();
 
+			animation = new $.BALT.animation.keyframes();
 
 		// catch 22 w the galleries, need to call start twice =(
 			gallerySequences['residences-gallery'].start({
@@ -75,22 +84,10 @@
 			scroller.start({
 				startAt : gotoSection[ window.location.hash ],
 				maxScroll: gotoSection['address'],
-				animation: animation
+				animation : animation
 			});
 
 			nav = new $.BALT.nav( $('nav'), {scroller: scroller} );
-
-			var prop = {
-				filter: ' alpha(opacity=' + 100 + ')',
-				opacity: 1
-				//, /* For IE8 and earlier */
-				//transition: 'all 1s'
-			};
-			$('#main').css( prop );
-			$('nav').css( prop );
-			$('#main').animate( prop,1000 );
-			$('nav').animate( prop,1000 );
-			$('#scroller').css( {display: 'block' } );
 		}
 	});
 
@@ -212,10 +209,26 @@
 		$('.availability-desc').find('.arrow').removeClass('up').addClass('down');
 	});
 
+	resize();
 	function resize(){
 		windowWidth = $window.height();
 		windowHeight = $window.height();
 		windowCenter = { left: $window.width()/2, top: $window.height()/2 };
+
+		var accumulator = 0;
+		$('section').each( function() {
+			var h = 0;
+			if ( $(this).css('display') != 'none' ) h = $(this).height() + 200; // 200 for the distance between sectiosn (<section> margin-top + margin-bottom)
+			gotoSection[ $(this).context.className.split(' ')[0]  ] = accumulator;
+			accumulator +=h;
+		});
+
+		gallerySequences['residences-gallery'].start({
+			startAt : gotoSection[ 'residences' ] + 100
+		});
+		gallerySequences['amenities-gallery'].start({
+			startAt : gotoSection[ 'services-amenities' ] + 150
+		});
 	}
 
 })(jQuery);

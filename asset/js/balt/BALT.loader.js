@@ -32,6 +32,7 @@
 		// };
 
 		root.update = function( val ) {
+			console.log ( "update: ", val );
 			if ( val > 100 ) val = 100;
 			$target.find( '.bar' ).css( { width: val + '%', transition: 'width .2s' } );
 			if ( val == 100 ) {
