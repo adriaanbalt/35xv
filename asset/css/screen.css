@@ -132,11 +132,11 @@ body {
   margin: 0px auto;
   border: 1px solid #000;
   width: 275px;
-  height: 15px;
+  height: 5px;
 }
 #loader .bar {
   width: 0px;
-  height: 15px;
+  height: 5px;
   background-color: #FFF;
 }
 

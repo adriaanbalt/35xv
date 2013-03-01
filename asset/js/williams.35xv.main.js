@@ -27,6 +27,17 @@
 
 	var loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
+			var prop = {
+				filter: ' alpha(opacity=' + 100 + ')',
+				opacity: 1
+				//, /* For IE8 and earlier */
+				//transition: 'all 1s'
+			};
+			// $('#main').css( prop );
+			// $('nav').css( prop );
+			$('#main').animate( prop, 1000 );
+			$('nav').animate( prop, 1000 );
+			$('#scroller').css( {display: 'block' } );
 		}
 	});
 
@@ -77,18 +88,6 @@
 			});
 
 			nav = new $.BALT.nav( $('nav'), {scroller: scroller} );
-
-			var prop = {
-				filter: ' alpha(opacity=' + 100 + ')',
-				opacity: 1
-				//, /* For IE8 and earlier */
-				//transition: 'all 1s'
-			};
-			$('#main').css( prop );
-			$('nav').css( prop );
-			$('#main').animate( prop,1000 );
-			$('nav').animate( prop,1000 );
-			$('#scroller').css( {display: 'block' } );
 		}
 	});
 

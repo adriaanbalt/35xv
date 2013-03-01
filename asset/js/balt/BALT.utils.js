@@ -1,7 +1,7 @@
 
 var TextSlant = function( target, lineHeight, textWidth, boxWidth, increment ) {
 	var out = '',
-	remainderWidth = boxWidth - textWidth,
+	remainderWidth = boxWidth;// - textWidth,
 	smallSideWidth = 0;
 
 	while( remainderWidth > 0 ) {
