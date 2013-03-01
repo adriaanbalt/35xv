@@ -52,6 +52,27 @@
 		settings = $.extend( defaults, o );
 
 
+	// start!
+		root.start = function( o ) {
+			console.log ( "start" );
+			settings = $.extend( settings, o );
+			setupAnimation();
+
+			//console.log('start', settings.startAt);
+			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
+
+			scrollTop++;
+
+			if (!started) {
+				animationLoop();
+				started=true;
+			};
+
+			if (settings.onStart && typeof settings.onStart === 'function') {
+				settings.onStart();
+			}
+		};
+
 		var setupAnimation = function() {
 
 			for (var i in settings.animation) {
@@ -109,6 +130,18 @@
 			//	console.log ( ' ' );
 			}
 		}
+		// resets animations
+		var resetAnimation = function() {
+			for (var i in settings.animation) {
+				var anim = settings.animation[i];
+				if (anim._started) {
+					delete anim.startAt;
+					delete anim.endAt;
+					delete anim._elem;
+					delete anim._started;
+				}
+			}
+		}
 
 	// animation
 		var animationLoop = function() {
@@ -118,8 +151,8 @@
 				scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 
 				// run through animations
-				for (var i in animation) {
-					var anim = animation[i];
+				for (var i in settings.animation) {
+					var anim = settings.animation[i];
 
 					// check if animation is in range
 					if (scrollTopTweened >= anim.startAt && scrollTopTweened <= anim.endAt) {
@@ -291,6 +324,7 @@
 			dispatch();
 
 			$scrubber.css({
+				top: scrubberPos + 'px',
 				transform: 'translateY(' + scrubberPos + 'px)'
 			});
 
@@ -301,34 +335,18 @@
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
 		}
 
-	// generic
-		root.start = function( o ) {
-			settings = $.extend( settings, o );
-			setupAnimation();
-
-			//console.log('start', settings.startAt);
-			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
-
-			scrollTop++;
-
-			if (!started) {
-				animationLoop();
-				started=true;
-			};
-
-			if (settings.onStart && typeof settings.onStart === 'function') {
-				settings.onStart();
-			}
-		}
-
 		var resize = function() {
 			$scroller.height( windowHeight - 4 );
+			if (settings.onResize && typeof settings.onResize === 'function') settings.onResize();
+			resetAnimation();
+			setupAnimation();
 		};
 
 		var init = function() {
 			$document.on('mousewheel', wheelHandler);
 			$scrubber.on ( 'mousedown', mousedown );
 			$window.on ( 'mouseup', mouseup );
+			$window.resize ( 'resize', resize );
 
 			if ( 'ontouchstart' in window ) {
 				$window.on('touchstart', touchStartHandler);
@@ -605,35 +623,35 @@
 				}
 			]
 		},
-		{
-			'id' : '#building-small',
-			'startAt' : gotoSection['services-amenities'],
-			'endAt' : gotoSection['neighborhood'] - windowHeight,
-			keyframes :[
-				{
-					position: 0,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.zeroTop.call( this, anim, { offset: 100 });
-						calculations.centerH.call( this, anim, { offset: 0 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: 1,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.bottomOutside.call( this, anim, { offset: $('.services-amenities').height() - windowHeight - anim._elem.height() - 500 });
-						calculations.centerH.call( this, anim, { offset: 0 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				}
-			]
-		},
+		// {
+		// 	'id' : '#building-small',
+		// 	'startAt' : gotoSection['services-amenities'],
+		// 	'endAt' : gotoSection['neighborhood'] - windowHeight,
+		// 	keyframes :[
+		// 		{
+		// 			position: 0,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.zeroTop.call( this, anim, { offset: 100 });
+		// 				calculations.centerH.call( this, anim, { offset: 0 });
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		},
+		// 		{
+		// 			position: 1,
+		// 			ease: TWEEN.Easing.Linear.EaseNone,
+		// 			onInit: function( anim ) {
+		// 				calculations.bottomOutside.call( this, anim, { offset: $('.services-amenities').height() - windowHeight - anim._elem.height() - 500 });
+		// 				calculations.centerH.call( this, anim, { offset: 0 });
+		// 			},
+		// 			properties: {
+		// 				top: 0, left: 0
+		// 			}
+		// 		}
+		// 	]
+		// },
 		// {
 		// 	'id' : '#residences-gallery .gallery-container',
 		// 	'startAt' : gotoSection['residences'],
@@ -754,14 +772,14 @@
 		{
 			'id' : '#cloud2',
 			'startAt' : gotoSection['floor-plans'],
-			'endAt' : gotoSection['neighborhood'],
+			'endAt' : gotoSection['services-amenities'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.centerV.call( this, anim, { offset: anim.startAt - 400 });
-						calculations.centerH.call( this, anim, { offset: 1000 });
+						calculations.rightOutside.call( this, anim, { offset: - 50 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -771,8 +789,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
-						calculations.centerH.call( this, anim, { offset: 600 });
+						calculations.centerV.call( this, anim, { offset: anim.endAt });
+						calculations.leftOutside.call( this, anim, { });
 					},
 					properties: {
 						top: 0, left: 0
@@ -810,123 +828,137 @@
 				}
 			]
 		}
+		,
+		{
+			'id' : '#cloud4',
+			'startAt' : gotoSection['residences'],
+			'endAt' : gotoSection['floor-plans'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, { offset: -500});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 800 });
+						calculations.rightOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
+		,
+		{
+			'id' : '#cloud5',
+			'startAt' : gotoSection['residences'],
+			'endAt' : gotoSection['floor-plans'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt+1200 });
+						calculations.centerH.call( this, anim, { offset: 500});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1500 });
+						calculations.leftOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
+		,
+		{
+			'id' : '#cloud6',
+			'startAt' : gotoSection['residences'],
+			'endAt' : gotoSection['floor-plans'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt+1800 });
+						calculations.centerH.call( this, anim, { offset: -500});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 2050 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
+		,
+		{
+			'id' : '#cloud7',
+			'startAt' : gotoSection['services-amenities'],
+			'endAt' : gotoSection['neighborhood'],
+			keyframes :[
+				{
+					position: 0,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.leftOutside.call( this, anim, { offset: 150 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: .5,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 800 });
+						calculations.centerH.call( this, anim, { offset: 0 });
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				},
+				{
+					position: 1,
+					ease: TWEEN.Easing.Linear.EaseNone,
+					onInit: function( anim ) {
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1200 });
+						calculations.leftOutside.call( this, anim, {});
+					},
+					properties: {
+						top: 0, left: 0
+					}
+				}
+			]
+		}
 		// ,
-		// {
-		// 	'id' : '#cloud4',
-		// 	'startAt' : gotoSection['feature'],
-		// 	'endAt' : gotoSection['availability'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : '#cloud5',
-		// 	'startAt' : gotoSection['availability'],
-		// 	'endAt' : gotoSection['services-amenities'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.bottomOutside.call( this, anim, { offset: anim.startAt });
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : '#cloud6',
-		// 	'startAt' : gotoSection['services-amenities'],
-		// 	'endAt' : gotoSection['neighborhood'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-		// 				calculations.rightOutside.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
-		// {
-		// 	'id' : '#cloud7',
-		// 	'startAt' : gotoSection['neighborhood'],
-		// 	'endAt' : gotoSection['team'],
-		// 	keyframes :[
-		// 		{
-		// 			position: 0,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.centerV.call( this, anim, { offset: anim.startAt });
-		// 				calculations.centerH.call( this, anim, {});
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		},
-		// 		{
-		// 			position: 1,
-		// 			ease: TWEEN.Easing.Linear.EaseNone,
-		// 			onInit: function( anim ) {
-		// 				calculations.topOutside.call( this, anim, {});
-
-		// 			},
-		// 			properties: {
-		// 				top: 0, left: 0
-		// 			}
-		// 		}
-		// 	]
-		// },
 		// {
 		// 	'id' : '#cloud8',
 		// 	'startAt' : gotoSection['team'],

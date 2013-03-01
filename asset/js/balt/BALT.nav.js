@@ -28,7 +28,6 @@
 					settings.scroller.scrollTo( gotoSection[hash] );
 					settings.scroller.scrollTo( gotoSection[hash] );
 				} else {
-					console.log ( "settings.scroller " , settings.scroller );
 					settings.scroller.scrollTo( 0 );
 				}
 			} else {

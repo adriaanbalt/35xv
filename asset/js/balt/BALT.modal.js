@@ -16,11 +16,14 @@
 		$target = target,
 		image = undefined,
 		settings = {
-			loader : true
+			loader : true,
+			appended : false,
+			ratio : 0,
+			tWidth : 0,
+			tHeight : 0,
+			$template : $("<div class='modal'><div class='inner'><a href='javascript:void(0);' class='close'>X</a></div></div>")
 		};
-		settings = $.extend( settings, o ),
-		apended =  false,
-		$template = $("<div class='modal'><div class='inner'><a href='javascript:void(0);' class='close'>X</a></div></div>");
+		settings = $.extend( settings, o );
 
 		var click = function( e ) {
 			e.preventDefault();
@@ -42,38 +45,44 @@
 		};
 		var imageLoaded = function( e ) {
 			// append to dom
-			if ( !apended ) {
-				$template.find('.inner').append( image );
-				apended = true;
+			if ( !settings.appended ) {
+				settings.$template.find('.inner').append( image );
+				settings.appended = true;
+				settings.ratio = image.height / image.width;
+				resize();
+				imageResize( $(image), settings.tWidth, settings.tHeight );
 			}
-			$('body').append( $template );
+			$('body').append( settings.$template );
 			reveal();
 		};
 		var reveal = function() {
-			$template.removeClass('hidden');
-			$template.animate( {
+			settings.$template.removeClass('hidden');
+			settings.$template.animate( {
 				opacity: 1,
 			}, 500 );
 		}
 
 		root.hide = function() {
-			$template.animate( {
+			settings.$template.animate( {
 				opacity: 0,
 			}, 500, function() {
-				$template.addClass('hidden');
+				settings.$template.addClass('hidden');
 			} );
 		}
 
 		var imageResize = function( img, w, h ) {
 			img.width( w );
-			img.height( Math.round ( w * root.settings.ratio ) );
-			if ( img.height() < h ) {
+			img.height( Math.round ( w * settings.ratio ) );
+			if ( img.height() > h ) {
 				img.height( h );
-				img.width( Math.round ( h / root.settings.ratio ) );
+				img.width( Math.round ( h / settings.ratio ) );
 			}
 		};
 
 		var resize = function () {
+			settings.tWidth = ( $window.width() * .8 );
+			settings.tHeight = ( $window.height() * .8 );
+			imageResize( $(image), settings.tWidth, settings.tHeight );
 		};
 
 		var getAttributeAsNumber = function( target, attribute ){
@@ -92,7 +101,7 @@
 		};
 
 		$target.on( 'click', click );
-		$template.on( 'click', root.hide );
+		settings.$template.on( 'click', root.hide );
 	};
 
 

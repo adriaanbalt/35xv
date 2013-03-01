@@ -14,15 +14,15 @@
 <nav>
 	<div class='wrapper'>
 		<ul>
-			<li><a href='#home'>SKYMARK</a></li>
-			<li><a href='#design'>DESIGN</a></li>
-			<li><a href='#residences'>RESIDENCES</a></li>
-			<li><a href='#unit-availability'>UNIT AVAILABILITY</a></li>
-			<li><a href='#services-amenities'>SERVICES &AMP; AMENITIES</a></li>
-			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
-			<li><a href='#team'>TEAM</a></li>
-			<li><a href='#press'>PRESS</a></li>
-			<li><a href='#contact'>CONTACT</a></li>
+			<li><a href='#home' class='home'>SKYMARK</a></li>
+			<li><a href='#design' class='design'>DESIGN</a></li>
+			<li><a href='#residences' class='residences'>RESIDENCES</a></li>
+			<li><a href='#floor-plans' class='floor-plans'>FLOOR PLANS</a></li>
+			<li><a href='#services-amenities' class='services-amenities'>SERVICES &AMP; AMENITIES</a></li>
+			<li><a href='#neighborhood' class='neighborhood'>NEIGHBORHOOD</a></li>
+			<li><a href='#team' class='team'>TEAM</a></li>
+			<li><a href='#press' class='press'>PRESS</a></li>
+			<li><a href='#contact' class='contact'>CONTACT</a></li>
 		</ul>
 	</div>
 </nav>
@@ -42,6 +42,7 @@
 
 <!-- design -->
 	<section class="design grid-whole">
+		<h2>DESIGN</h2>
 		<div class='equalize'>
 			<div class="grid-two-thirds">
 				<div class="padded-inner content-box center">
@@ -54,16 +55,16 @@
 			<div class="grid-third content-box" id='design-info'>
 				<div class="padded-inner">
 					<div class='building-section one'>
-						<span class='carat-left'></span><h1>RESIDENCES</h1>
+						<span class='carat-left'></span><h1>RESIDENTIAL TOWER</h1>
 					</div>
 					<div class='building-section two'>
-						<span class='carat-left'></span><h1>AMENTIY FLOORS</h1>
+						<span class='carat-left'></span><h1>EIGTH FLOOR AMENITIES</h1>
 					</div>
 					<div class='building-section three'>
-						<span class='carat-left'></span><h1>COMMERCIAL SPACE</h1>
+						<span class='carat-left'></span><h1>COMMERCIAL BASE</h1>
 					</div>
 					<div class='building-section'>
-						<span class='carat-left'></span><h1>BUILDING ENTRANCE</h1>
+						<span class='carat-left'></span><h1>RESIDENTIAL ENTRANCE</h1>
 					</div>
 				</div>
 			</div>
@@ -74,7 +75,7 @@
 	<section class="design-team grid-whole">
 		<h2>DESIGN<br>TEAM</h2>
 		<div class="grid-whole">
-			<div class="grid-quarter">
+			<div class="grid-half">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
@@ -86,24 +87,15 @@
 					<h4>FX FOWLE</h4>
 				</div>
 			</div>
-			<div class="grid-quarter">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-quarter">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-quarter">
+			<div class="grid-half">
 				<div class="padded-inner"></div>
 			</div>
 		</div>
 		<div class="grid-whole">
-			<div class="grid-quarter">
+			<div class="grid-half">
 				<div class="padded-inner"></div>
 			</div>
-			<div class="grid-quarter">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-quarter">
+			<div class="grid-half">
 				<div class="padded-inner-sides content-box center">
 					<div class='video-box'>
 						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
@@ -112,11 +104,8 @@
 							<p>Your browser does not support the video tag.</p>
 						</video>
 					</div>
-					<h4>BNO</h4>
+					<h4>BENJAMIN<br>NORIEGA&#45;ORTIZ</h4>
 				</div>
-			</div>
-			<div class="grid-quarter">
-				<div class="padded-inner"></div>
 			</div>
 		</div>
 	</section>
@@ -127,60 +116,28 @@
 		<div class="grid-whole">
 			<div id='residences-gallery' class='gallery-scroll'>
 				<div class='gallery-container clearfix'>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>BATHROOM</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-bathroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/residences/bathroom.gif" />
-						<canvas id='shape-bathroom-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>LIVING ROOM</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-livingroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/residences/livingroom.gif" />
-						<canvas id='shape-livingroom-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>KITCHEN</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-kitchen' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/residences/kitchen.gif" />
-						<canvas id='shape-kitchen-under' class='shape under shadow' data-shape='parallelogram' width='845' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
+					<?php foreach ($residences_gallery->media as $k => $m)
+					{
+						echo '<div class="slide">';
+							echo '<div class="layered grid-whole">';
+								echo '<div class="grid-two-thirds">&nbsp;</div>';
+								echo '<div class="grid-third padded-inner">';
+									echo '<div class="copy">';
+										echo heading($m->media_title, 3);
+										echo '<div class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="5">';
+											echo '<span>'.$m->media_description.'</span>';
+										echo '</div>';
+									echo '</div>';
+								echo '<canvas id="shape-'.$k.'" class="shape over" data-shape="parallelogram" width="360" height="350" data-color="#fff" data-transparency=".75" data-overhang="85"/>';
+								echo '</div>';
+							echo '</div>';
+
+							echo img($m->file_path);
+							echo '<canvas id="shape-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="845" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
+						echo '</div>';
+					}
+					?>
+
 				</div>
 			</div>
 		</div>
@@ -194,7 +151,9 @@
 		<h2>FEATURED<br>PLAN</h2>
 		<div class="padded-inner content-box center">
 			<div class='feature'>
-				<img src="asset/img/featured-plan/plan-feature.png"/>
+
+				<?php echo anchor($featured_unit->floorplan_pdf_path,img($featured_unit->floorplan_image_path), array('target' => '_blank') ); ?>
+
 			</div>
 			<div class='list'>
 				<ul>
@@ -208,7 +167,7 @@
 
 <!-- amenities-services -->
 	<section class="services-amenities grid-whole">
-		<h2>SERVICES &AMP;<br>AMENITIES</h2>
+		<h2>SERVICES &AMP;<br />AMENITIES</h2>
 		<div class="content-box">
 			<div id='building-small'>
 				<img src="asset/img/building-line-small.png"/>
@@ -216,114 +175,26 @@
 			<!-- gallery -->
 			<div id='amenities-gallery' class='gallery-scroll'>
 				<div class='gallery-container clearfix'>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>LOUNGE</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-lounge' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/lounge.gif" />
-						<canvas id='shape-lounge-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>LOBBY</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-lobby' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/lobby.gif" />
-						<canvas id='shape-lobby-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>MAILROOM</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-mailroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/mailroom.gif" />
-						<canvas id='shape-mailroom-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>FITNESS</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-fitness' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/fitness.gif" />
-						<canvas id='shape-fitness-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>KIDSROOM</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-kidsroom' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/kidsroom.gif" />
-						<canvas id='shape-kidsroom-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
-					<div class='slide'>
-						<div class='layered grid-whole'>
-							<div class="grid-two-thirds">
-								<div class="padded-inner"></div>
-							</div>
-							<div class="grid-third padded-inner">
-								<div class='copy'>
-									<h3>TERRACE</h3>
-									<div class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='5'>
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
-									</div>
-								</div>
-								<canvas id='shape-terrace' class='shape over' data-shape='parallelogram' width='360' height='350' data-color='#fff' data-transparency='.75' data-overhang='85'/>
-							</div>
-						</div>
-						<img src="asset/img/amenities-services/terrace.gif" />
-						<canvas id='shape-terrace-under' class='shape under shadow' data-shape='parallelogram' width='745' height='640' data-color='#fff' data-transparency='1' data-overhang='0'/>
-					</div>
+					<?php foreach ($amenities_gallery->media as $k => $m)
+					{
+						echo '<div class="slide">';
+							echo '<div class="layered grid-whole">';
+								echo '<div class="grid-two-thirds">&nbsp;</div>';
+								echo '<div class="grid-third padded-inner">';
+									echo '<div class="copy">';
+										echo heading($m->media_title, 3);
+										echo '<div class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="5">';
+											echo '<span>'.$m->media_description.'</span>';
+										echo '</div>';
+									echo '</div>';
+								echo '<canvas id="shape-amenities-'.$k.'" class="shape over" data-shape="parallelogram" width="360" height="350" data-color="#fff" data-transparency=".75" data-overhang="85"/>';
+								echo '</div>';
+							echo '</div>';
+							echo img($m->file_path);
+							echo '<canvas id="shape-amenties-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="745" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
+						echo '</div>';
+					}
+					?>
 				</div>
 			</div>
 		</div>
@@ -333,7 +204,7 @@
 	<section class="neighborhood grid-whole">
 		<h2>NEIGHBORHOOD</h2>
 		<div class="content-box center">
-			<img src='asset/img/neighborhood/neighborhood.jpg' alt=''/>
+			<?php echo img($site_data['neighborhood_image_path']); ?>
 		</div>
 	</section>
 
@@ -341,34 +212,42 @@
 	<section class="team grid-whole">
 		<h2>TEAM</h2>
 		<div class="padded-inner content-box">
-			<div class='team-member clearfix border-bottom'>
-				<img src='asset/img/team/alchemy.gif'/>
-				<div class='description'>
-					<h4>ALCHEMY</h4>
-					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Alchemy Properties Inc. is a privately held, fully integrated real estate firm whose principals have over 75 years of experience in acquiring, developing, leasing, repositioning, managing, financing and selling real estate in the New York City Tri-State area. Started by Kenneth S. Horn in 1990, Alchemy has become a best-in-class partner with a variety of institutional, family foundation and high net worth individuals as long-term repeat investors.</p>
-				</div>
-			</div>
-			<div class='team-member clearfix border-bottom rightside'>
-				<img src=''/>
-				<div class='description'>
-					<h4>ANGELO GORDON</h4>
-					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
-			</div>
-			<div class='team-member clearfix rightside'>
-				<img src='asset/img/team/fxfowle.gif'/>
-				<div class='description'>
-					<h4>FX FOWLE</h4>
-					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
-			</div>
-			<div class='team-member clearfix border-bottom-dark rightside halfwidth'>
-				<img src='asset/img/team/bno.gif'/>
-				<div class='description'>
-					<h4>BNO</h4>
-					<p class='text-slant' data-textWidth='230' data-boxWidth='300' data-increment='7'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
-			</div>
+			<?php foreach ($team_members as $k => $m) {
+
+				switch ($k) {
+					case '0':
+						$extra_classes = "clearfix border-bottom";
+					break;
+					case '1':
+						$extra_classes = "clearfix border-bottom rightside";
+					break;
+					case '2':
+						$extra_classes = "clearfix border-bottom rightside";
+					break;
+					case '3':
+						$extra_classes = "clearfix border-bottom rightside halfwidth";
+					break;
+					case '4':
+						$extra_classes = "clearfix rightside halfwidth";
+					break;
+					default:
+						$extra_classes = "clearfix";
+					break;
+				}
+
+				echo '<div class="team-member '.$extra_classes.'">';
+					if ($m->image_path != "") { echo img($m->image_path); }
+					echo '<div class="description">';
+						echo heading($m->title,4);
+						echo '<p class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="7">';
+							echo $m->description;
+						echo '</p>';
+					echo '</div>';
+				echo '</div>';
+
+		} ?>
+
+
 		</div>
 	</section>
 
@@ -377,46 +256,14 @@
 		<h2>PRESS</h2>
 		<div class="padded-inner content-box clearfix">
 			<ul>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>REAL DEAL</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
-				<li>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</h5>
-					<p class='source'>New York Times</p>
-					<p class='date'>April 2013</p>
-				</li>
+				<?php foreach ($press_articles as $k => $article) {
+					echo '<li>';
+						echo heading($article->content, 5);
+						echo '<p class="source">'.$article->source.'</p>';
+						echo '<p class="date">'.$article->date.'</p>';
+					echo '</li>';
+				}
+				?>
 			</ul>
 		</div>
 	</section>
@@ -430,19 +277,19 @@
 		<hr>
 		<div class='clearfix'>
 			<div class='addy'>
-				<span>212.244.3515</span>
+				<span><?php echo $site_data['phone']; ?></span>
 				<span class='pipe'></span>
-				<span>THIRTY FIVE WEST FIFTEENTH STREET, NYC</span>
+				<span><?php echo $site_data['address']; ?></span>
 			</div>
 			<div class='sales'>
-			<span><b>SALES GALLERY</b></span>
-			<SPAN>135 FIFTH AVENUE NEW YORK, NY</SPAN>
+			<span><b><?php echo $site_data['sales_title']; ?></b></span>
+			<SPAN><?php echo $site_data['sales_address']; ?></SPAN>
 			</div>
 			<div class='border-bottom last'>
-			<span>DEVELOPED BY ALCHEMY PROPERTIES</span>
+			<span><?php echo $site_data['developer_credit']; ?></span>
 			</div>
 		</div>
-		<p class='copyright'>&copy; 2013</p>
+		<p class='copyright'>&copy; <?php echo date('Y'); ?></p>
 	</section>
 
 </div>

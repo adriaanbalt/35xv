@@ -6,17 +6,21 @@
 		}
 	}
 }
-.unit-availability {
+.floor-plans {
+	z-index: 10001;
 	td {
 		border-right: 1px solid #eee;
 		border-bottom: 1px solid #eee;
-		padding: 3px 51px;
+		padding: 3px 50px;
 		font-weight: 700;
 		font-size: 13px;
 		&:last-child {
 			border-right: 0;
 		}
 		//background: rgba( 255, 255, 255, .3 );
+	}
+	td:nth-child(2) {
+		padding: 3px 10px;
 	}
 	th {
 		background: rgba( 255, 255, 255, .75 );

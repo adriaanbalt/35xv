@@ -27,18 +27,21 @@
 		// opacity: .4;
 		// zoom: 1;
 		// filter:alpha(opacity=40); /* For IE8 and earlier */
-		transform: rotate(180deg);
-		-ms-transform: rotate(180deg); /* IE 9 */
-		-webkit-transform: rotate(180deg); /* Safari and Chrome */
-		-o-transform: rotate(180deg); /* Opera */
-		-moz-transform: rotate(180deg); /* Firefox */
+		// transform: rotate(180deg);
+		// -ms-transform: rotate(180deg); /* IE 9 */
+		// -webkit-transform: rotate(180deg); /* Safari and Chrome */
+		// -o-transform: rotate(180deg); /* Opera */
+		// -moz-transform: rotate(180deg); /* Firefox */
 
 
-		transform: scale(1.5);
-		-ms-transform: scale(1.5); /* IE 9 */
-		-webkit-transform: scale(1.5); /* Safari and Chrome */
-		-o-transform: scale(1.5); /* Opera */
-		-moz-transform: scale(1.5); /* Firefox */
+		// transform: scale(1.5);
+		// -ms-transform: scale(1.5); /* IE 9 */
+		// -webkit-transform: scale(1.5); /* Safari and Chrome */
+		// -o-transform: scale(1.5); /* Opera */
+		// -moz-transform: scale(1.5); /* Firefox */
+
+		@include rotate(180deg);
+		@include scale(1.5);
 
 	}
 
@@ -48,9 +51,12 @@
 		// filter:alpha(opacity=30); /* For IE8 and earlier */
 	}
 
-	#cloud3 {
-		// opacity: .2;
-		// zoom: 1;
-		// filter:alpha(opacity=20); /* For IE8 and earlier */
+	#cloud5 {
+		@include scale(.75);
+		@include rotate(180deg);
+	}
+
+	#cloud6 {
+		z-index: -1;
 	}
 }

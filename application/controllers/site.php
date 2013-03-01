@@ -5,23 +5,44 @@ class Site extends CI_Controller {
 	public function index()
 	{
 
+		$this->load->database();
+		$this->load->model('sitedata_model', 'site_data');
+		$site_data = $this->site_data->get_all();
+		foreach ($site_data as $k => $d) { $data->site_data[$d->title] = $d->content; }
+
 		// Load up the unit availabilty chart into $data for inclusion in the home template
-		$data['unit_availability'] = $this->_unit_availability();
+		$data->unit_availability = $this->_unit_availability();
+
+		$this->load->model('units_model', 'units');
+		$data->featured_unit = $this->units->get($data->site_data['featured_plan']);
+
+		// Load up the galleries
+		$this->load->model('galleries_model', 'galleries');
+		$data->residences_gallery = $this->galleries->get_with_media(1);
+		$data->amenities_gallery  = $this->galleries->get_with_media(2);
+
+		// Get press articles
+		$this->load->model('articles_model', 'articles');
+		$data->press_articles = $this->articles->get_all();
+
+		// Get team members
+		$this->load->model('team_member_model', 'team');
+		$data->team_members = $this->team->get_all();
 
 		// Load up the contact form  into $data for inclusion in the home template
 		// Included options are long, short & tiny.
 		// Unfortunately the long one is what they are using currently
 		// The view files are at application/views/contact/{{size}}
-		// I'm using twitter bootstrap markup for the control groups but you can adjust as needed
-		$data['contact_form'] = $this->_contact_form('long');
+		// I'm using twitter bootstrap markup for the control groups but you can adjust as needed	
+		$data->contact_form = $this->_contact_form('long');
 
 		// Use the home view for everthing inside <body>
 		// We don't pass data in the second arguement
 		// The TRUE flag returns the view as data instead of echoing
-		$page['content'] = $this->load->view('home', $data, TRUE);
+		$data->content = $this->load->view('home', $data, TRUE);
 
 		// Load page data into html5 boilerplate and echo to browser
-		$this->load->view('template', $page);
+		$this->load->view('template', $data);
 	}
 
 	public function _contact_form($form_length = "small"){
@@ -37,6 +58,7 @@ class Site extends CI_Controller {
 		$this->load->model('units_model', 'units');
 		$this->load->library('table');
 		$this->load->helper('html');
+
 		$units = $this->units->get_available();
 
 		$table_template = array (

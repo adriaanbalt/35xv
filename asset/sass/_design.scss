@@ -27,14 +27,14 @@
 			@include triangle( 'left' , 20px, $blue-dark );
 		}
 	}
-
-
 }
 
 .design-team {
 	h4 {
 		position: absolute;
 		z-index: 5;
+		margin-left: 83px;
+		text-align: left;
 	}
 	.grid-whole {
 		margin-top: 60px;
