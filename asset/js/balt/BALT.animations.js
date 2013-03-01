@@ -265,17 +265,29 @@
 			});
 
 			// change nav
-			// for ( var i=0; i<$list.length; i++ ){
-			// 	console.log ( "li: ", $list[i] );
-			// 	$list[i].removeClass('active');
-			// }
-			var i = 0;
-			for ( var sec in gotoSection ){
-				if ( gotoSection[sec] <= y && y <= gotoSection[i] ) {
-					$nav.find( '.' + sec ).addClass('active');
-					break;
+			var index = 0;
+			for ( var sec in gotoSection ) {
+				if ( gotoSection[sec] <= scrollTop ){
+					index = findSectionIndex( gotoSection[sec] );
+					if( scrollTop < gotoSectionIterative[index+1] ) {
+						$nav.find('.' + sec ).addClass('active');
+					} else {
+						$nav.find('.' + sec ).removeClass('active');
+					}
+				} else {
+					$nav.find('.' + sec ).removeClass('active');
 				}
 			}
+
+		}
+		// helper for the change nav calculation
+		var findSectionIndex = function( sectionTop ){
+			for ( var i = 0; i < gotoSectionIterative.length; i++ ){
+				if ( gotoSectionIterative[i] == sectionTop ) {
+					return i;
+				}
+			}
+			return 0;
 		}
 
 		root.scrollTo = function( scroll ) {

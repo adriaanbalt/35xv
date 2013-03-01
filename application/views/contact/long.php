@@ -101,9 +101,9 @@
 
 		 <div class="control-group clearfix">
 			<label class="control-label">Residence Type Preferred</label>
-				  <?php echo form_error('form_type'); ?>
+			<?php echo form_error('form_type'); ?>
 			<div class="controls">
-				<div class='custom-dropdown'>
+				<div class='dropdown'>
 					<span class='current-value'>Please Select...</span>
 					<div class='values'>
 						<div class='inner'>
@@ -117,11 +117,11 @@
 						</div>
 					</div>
 					<select name="form_type" class="input-medium hidden">
-					  <option value="No Type Selected" selected>Please Select...</option>
-					  <option value="One Bedroom">One Bedroom from $1,500,000 - $2,100,000</option>
-					  <option value="Two Bedrooms">Two Bedrooms from $2,500,000 - $4,000,000</option>
-					  <option value="Three Bedrooms">Three Bedrooms from $4,600,000- $8,950,000</option>
-					  <option value="Four Bedrooms">Four Bedrooms from $5,650,000 - $9,950,000</option>
+						<option value="No Type Selected" selected>Please Select...</option>
+						<option value="One Bedroom">One Bedroom from $1,500,000 - $2,100,000</option>
+						<option value="Two Bedrooms">Two Bedrooms from $2,500,000 - $4,000,000</option>
+						<option value="Three Bedrooms">Three Bedrooms from $4,600,000- $8,950,000</option>
+						<option value="Four Bedrooms">Four Bedrooms from $5,650,000 - $9,950,000</option>
 					</select>
 				</div>
 			</div>

@@ -22,6 +22,7 @@
 	windowHeight = $window.height();
 	windowCenter = { left: $window.width()/2, top: $window.height()/2 };
 	gotoSection = {};
+	gotoSectionIterative = [];
 	imageSequences = {};
 	gallerySequences = {};
 
@@ -68,9 +69,9 @@
 				var h = 0;
 				if ( $(this).css('display') != 'none' ) h = $(this).height() + 200; // 200 for the distance between sectiosn (<section> margin-top + margin-bottom)
 				gotoSection[ $(this).context.className.split(' ')[0]  ] = accumulator;
+				gotoSectionIterative.push(accumulator);
 				accumulator +=h;
 			});
-
 
 			animation = new $.BALT.animation.keyframes();
 
@@ -113,6 +114,22 @@
 	// 		loadProgress.update( this.skipImages );
 	// 	}
 	// });
+
+	$('.dropdown').each( function() {
+		console.log ( "DROPDOWN" );
+		new $.BALT.UTIL.dropdown( $(this), {
+			onInit: function(){
+				// console.log($el, el, 'onInit');
+			},
+			onOpen: function(){
+				// console.log($el, el, 'onOpen');
+			},
+			onClose: function(){
+				// console.log($el, el, 'onClose');
+			},
+			multiselection: false
+		});
+	});
 
 	$('.floorplan-modal').each( function() {
 		new $.BALT.modal( $(this) );
@@ -227,7 +244,7 @@
 			startAt : gotoSection[ 'residences' ] + 100
 		});
 		gallerySequences['amenities-gallery'].start({
-			startAt : gotoSection[ 'services-amenities' ] + 150
+			startAt : gotoSection[ 'services-amenities' ] + 100
 		});
 	}
 

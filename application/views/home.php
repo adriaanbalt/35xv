@@ -14,15 +14,15 @@
 <nav>
 	<div class='wrapper'>
 		<ul>
-			<li><a href='#home'>SKYMARK</a></li>
-			<li><a href='#design'>DESIGN</a></li>
-			<li><a href='#residences'>RESIDENCES</a></li>
-			<li><a href='#floor-plans'>FLOOR PLANS</a></li>
-			<li><a href='#services-amenities'>SERVICES &AMP; AMENITIES</a></li>
-			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
-			<li><a href='#team'>TEAM</a></li>
-			<li><a href='#press'>PRESS</a></li>
-			<li><a href='#contact'>CONTACT</a></li>
+			<li><a href='#home' class='home'>SKYMARK</a></li>
+			<li><a href='#design' class='design'>DESIGN</a></li>
+			<li><a href='#residences' class='residences'>RESIDENCES</a></li>
+			<li><a href='#floor-plans' class='floor-plans'>FLOOR PLANS</a></li>
+			<li><a href='#services-amenities' class='services-amenities'>SERVICES &AMP; AMENITIES</a></li>
+			<li><a href='#neighborhood' class='neighborhood'>NEIGHBORHOOD</a></li>
+			<li><a href='#team' class='team'>TEAM</a></li>
+			<li><a href='#press' class='press'>PRESS</a></li>
+			<li><a href='#contact' class='contact'>CONTACT</a></li>
 		</ul>
 	</div>
 </nav>

@@ -100,3 +100,75 @@
 .copyright {
 	text-align: right;
 }
+
+
+.dropdown {
+	position: relative;
+	width: 408px;
+	> .dropdown-arrow {
+		position: absolute;
+		top: 10px;
+		right: 6px;
+	}
+	.values {
+		border: 1px solid #000;
+		border-bottom: 0;
+//		display: none;
+		background: $blue;
+		z-index: 100;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		> .inner {
+		}
+		.values-footer {
+			border-top: 1px solid #cccccc;
+			> a {
+				display: block;
+				position: relative;
+				text-decoration: none;
+				font-size: 12px;
+				font-weight: 700;
+				padding: 11px 0 5px 35px;
+				color: $blue-dark !important;
+				&:hover, &:visited {
+					text-decoration: underline;
+				}
+			}
+			.more-icon {
+				position: absolute;
+				top: 3px;
+				left: 10px;
+			}
+		}
+		ol {
+			margin: 0;
+			list-style-type: none;
+			li {
+				cursor: pointer;
+				position: relative;
+				padding: 5px 5px;
+				font-size: 15px;
+				color: #000;
+				border-bottom: 1px solid #000;
+				&:hover {
+					background-color: $blue-dark;
+					color: $blue;
+				}
+				&.active {
+					.checked-icon {
+						@include triangle( 'right', 5px, #000 );
+						display: inline-block;
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+	&.active {
+		.values {
+			display: block;
+		}
+	}
+}
