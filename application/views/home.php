@@ -14,15 +14,15 @@
 <nav>
 	<div class='wrapper'>
 		<ul>
-			<li><a href='#home' class='home'>SKYMARK</a></li>
-			<li><a href='#design' class='design'>DESIGN</a></li>
-			<li><a href='#residences' class='residences'>RESIDENCES</a></li>
-			<li><a href='#floor-plans' class='floor-plans'>FLOOR PLANS</a></li>
-			<li><a href='#services-amenities' class='services-amenities'>SERVICES &AMP; AMENITIES</a></li>
-			<li><a href='#neighborhood' class='neighborhood'>NEIGHBORHOOD</a></li>
-			<li><a href='#team' class='team'>TEAM</a></li>
-			<li><a href='#press' class='press'>PRESS</a></li>
-			<li><a href='#contact' class='contact'>CONTACT</a></li>
+			<li><a href='#home'>SKYMARK</a></li>
+			<li><a href='#design'>DESIGN</a></li>
+			<li><a href='#residences'>RESIDENCES</a></li>
+			<li><a href='#floor-plans'>FLOOR PLANS</a></li>
+			<li><a href='#services-amenities'>SERVICES &AMP; AMENITIES</a></li>
+			<li><a href='#neighborhood'>NEIGHBORHOOD</a></li>
+			<li><a href='#team'>TEAM</a></li>
+			<li><a href='#press'>PRESS</a></li>
+			<li><a href='#contact'>CONTACT</a></li>
 		</ul>
 	</div>
 </nav>
@@ -54,11 +54,14 @@
 			</div>
 			<div class="grid-third content-box" id='design-info'>
 				<div class="padded-inner">
+					<div class='building-section zero'>
+						<div class="padded-inner"></div>
+					</div>
 					<div class='building-section one'>
 						<span class='carat-left'></span><h1>RESIDENTIAL TOWER</h1>
 					</div>
 					<div class='building-section two'>
-						<span class='carat-left'></span><h1>EIGTH FLOOR AMENITIES</h1>
+						<span class='carat-left'></span><h1>SEVENTH FLOOR AMENITIES</h1>
 					</div>
 					<div class='building-section three'>
 						<span class='carat-left'></span><h1>COMMERCIAL BASE</h1>
@@ -66,45 +69,6 @@
 					<div class='building-section'>
 						<span class='carat-left'></span><h1>RESIDENTIAL ENTRANCE</h1>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-<!-- design-team -->
-	<section class="design-team grid-whole">
-		<h2>DESIGN<br>TEAM</h2>
-		<div class="grid-whole">
-			<div class="grid-half">
-				<div class="padded-inner-sides content-box center">
-					<div class='video-box'>
-						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/FXFowle.ogv" type='video/ogg'>
-							<source src="asset/video/FXFowle.mp4" type='video/mp4'>
-							<p>Your browser does not support the video tag.</p>
-						</video>
-					</div>
-					<h4>FX FOWLE</h4>
-				</div>
-			</div>
-			<div class="grid-half">
-				<div class="padded-inner"></div>
-			</div>
-		</div>
-		<div class="grid-whole">
-			<div class="grid-half">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-half">
-				<div class="padded-inner-sides content-box center">
-					<div class='video-box'>
-						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/BNO.ogv" type='video/ogg'>
-							<source src="asset/video/BNO.mp4" type='video/mp4'>
-							<p>Your browser does not support the video tag.</p>
-						</video>
-					</div>
-					<h4>BENJAMIN<br>NORIEGA&#45;ORTIZ</h4>
 				</div>
 			</div>
 		</div>
@@ -124,7 +88,7 @@
 								echo '<div class="grid-third padded-inner">';
 									echo '<div class="copy">';
 										echo heading($m->media_title, 3);
-										echo '<div class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="5">';
+										echo '<div class="text-slant" data-boxWidth="70" data-increment="5">';
 											echo '<span>'.$m->media_description.'</span>';
 										echo '</div>';
 									echo '</div>';
@@ -183,7 +147,7 @@
 								echo '<div class="grid-third padded-inner">';
 									echo '<div class="copy">';
 										echo heading($m->media_title, 3);
-										echo '<div class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="5">';
+										echo '<div class="text-slant" data-boxWidth="70" data-increment="5">';
 											echo '<span>'.$m->media_description.'</span>';
 										echo '</div>';
 									echo '</div>';
@@ -205,6 +169,7 @@
 		<h2>NEIGHBORHOOD</h2>
 		<div class="content-box center">
 			<?php echo img($site_data['neighborhood_image_path']); ?>
+			<canvas id="shape-neighborhood-under" class="shape under shadow" data-shape="parallelogram" width="835" height="440" data-color="#fff" data-transparency="1" data-overhang="0"/>';
 		</div>
 	</section>
 
@@ -217,18 +182,23 @@
 				switch ($k) {
 					case '0':
 						$extra_classes = "clearfix border-bottom";
+						$shape = '<p class="text-slant" data-boxWidth="90" data-increment="6">';
 					break;
 					case '1':
-						$extra_classes = "clearfix border-bottom rightside";
+						$extra_classes = "clearfix border-bottom rightside descriptionLargeWidth";
+						$shape = '<p class="text-slant" data-boxWidth="40" data-increment="6">';
 					break;
 					case '2':
 						$extra_classes = "clearfix border-bottom rightside";
+						$shape = '<p class="text-slant" data-boxWidth="90" data-increment="6">';
 					break;
 					case '3':
-						$extra_classes = "clearfix border-bottom rightside halfwidth";
+						$extra_classes = "clearfix border-bottom rightside descriptionMediumWidth";
+						$shape = '<p class="text-slant" data-boxWidth="120" data-increment="6">';
 					break;
 					case '4':
 						$extra_classes = "clearfix rightside halfwidth";
+						$shape = '<p class="text-slant" data-boxWidth="18" data-increment="6">';
 					break;
 					default:
 						$extra_classes = "clearfix";
@@ -236,10 +206,19 @@
 				}
 
 				echo '<div class="team-member '.$extra_classes.'">';
-					if ($m->image_path != "") { echo img($m->image_path); }
+					if ($m->image_path != "") { 
+						echo img($m->image_path);
+					}
+					// if ( $m->video_path != "" ){
+					// 	echo '<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+					// 			<source src="asset/video/FXFowle.ogv" type="video/ogg">
+					// 			<source src="asset/video/FXFowle.mp4" type="video/mp4">
+					// 			<p>Your browser does not support the video tag.</p>
+					// 		</video>';
+					// }
 					echo '<div class="description">';
 						echo heading($m->title,4);
-						echo '<p class="text-slant" data-textWidth="230" data-boxWidth="300" data-increment="7">';
+						echo $shape;
 							echo $m->description;
 						echo '</p>';
 					echo '</div>';
@@ -248,6 +227,45 @@
 		} ?>
 
 
+		</div>
+	</section>
+
+<!-- design-team -->
+	<section class="design-team grid-whole">
+		<h2>DESIGN<br>TEAM</h2>
+		<div class="grid-whole">
+			<div class="grid-half">
+				<div class="padded-inner-sides content-box center">
+					<div class='video-box'>
+						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+							<source src="asset/video/FXFowle.ogv" type='video/ogg'>
+							<source src="asset/video/FXFowle.mp4" type='video/mp4'>
+							<p>Your browser does not support the video tag.</p>
+						</video>
+					</div>
+					<h4>FX FOWLE</h4>
+				</div>
+			</div>
+			<div class="grid-half">
+				<div class="padded-inner"></div>
+			</div>
+		</div>
+		<div class="grid-whole">
+			<div class="grid-half">
+				<div class="padded-inner"></div>
+			</div>
+			<div class="grid-half">
+				<div class="padded-inner-sides content-box center">
+					<div class='video-box'>
+						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
+							<source src="asset/video/BNO.ogv" type='video/ogg'>
+							<source src="asset/video/BNO.mp4" type='video/mp4'>
+							<p>Your browser does not support the video tag.</p>
+						</video>
+					</div>
+					<h4>BENJAMIN<br>NORIEGA&#45;ORTIZ</h4>
+				</div>
+			</div>
 		</div>
 	</section>
 

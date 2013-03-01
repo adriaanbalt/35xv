@@ -271,7 +271,6 @@
 			// }
 			var i = 0;
 			for ( var sec in gotoSection ){
-				console.log ( sec, gotoSection[sec], gotoSection, y );
 				if ( gotoSection[sec] <= y && y <= gotoSection[i] ) {
 					$nav.find( '.' + sec ).addClass('active');
 					break;
@@ -730,7 +729,7 @@
 		{
 			'id' : '#cloud0',
 			'startAt' : gotoSection['design'],
-			'endAt' : gotoSection['design-team'],
+			'endAt' : gotoSection['design'] + windowHeight,
 			keyframes :[
 				{
 					position: 0,
@@ -760,7 +759,7 @@
 		{
 			'id' : '#cloud1',
 			'startAt' : gotoSection['home'],
-			'endAt' : gotoSection['design-team'],
+			'endAt' : gotoSection['design'] + windowHeight,
 			keyframes :[
 				{
 					position: 0,

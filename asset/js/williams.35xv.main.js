@@ -119,7 +119,7 @@
 	});
 
 	$('.text-slant').each( function() {
-		new TextSlant( $(this), $(this).css('line-height'), $(this).data('textwidth'), $(this).data('boxwidth'), $(this).data('increment') );
+		new TextSlant( $(this), $(this).css('line-height'), $(this).data('boxwidth'), $(this).data('increment') );
 	});
 
 	$('.shape').each( function() {

@@ -10,18 +10,30 @@
 			width: 50%;
 			float: left;
 		}
-		&.rightside {
-			float: right;
-			width: 80%;
+	}
+
+	.rightside {
+		float: right;
+		width: 80%;
+	}
+	.halfwidth {
+		width: 65%;
+	}
+	.descriptionLargeWidth {
+		width: 85%;
+		.description{
+			width: 100%;
 		}
-		&.halfwidth {
+	}
+	.descriptionMediumWidth {
+		.description {
 			width: 65%;
 		}
-		&.border-bottom {
-			border-bottom: 1px solid rgba( 255, 255, 255, .5 );
-		}
-		&.border-bottom-dark {
-			border-bottom: 1px solid $blue-dark;
-		}
+	}
+	.border-bottom {
+		border-bottom: 1px solid rgba( 255, 255, 255, .5 );
+	}
+	.border-bottom-dark {
+		border-bottom: 1px solid $blue-dark;
 	}
 }
