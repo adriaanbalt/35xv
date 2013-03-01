@@ -25,6 +25,7 @@
 		$scrubber = $('#scrubber'),
 		$scroller = $('#scroller'),
 		$main = $('#main'),
+		$nav = $('nav'),
 	//scroll
 		scrollTop = 0,
 		scrollTopTweened = 0,
@@ -70,7 +71,17 @@
 
 			if (settings.onStart && typeof settings.onStart === 'function') {
 				settings.onStart();
+				
 			}
+			setupBuilding();
+		};
+
+		var setupBuilding = function() {
+			var end = gotoSection['home'],
+				start = gotoSection['design'] + windowHeight;
+			var progress = ( start - scrollTopTweened) / (start - end);
+			var anim = settings.animation[0];
+			anim.onProgress.call( anim, progress );
 		};
 
 		var setupAnimation = function() {
@@ -124,10 +135,7 @@
 
 						bIndex--;
 					};
-
-					// reorganize if relative
 				}
-			//	console.log ( ' ' );
 			}
 		}
 		// resets animations
@@ -247,12 +255,28 @@
 	//move page and scrubber
 		var scroll = function() {
 			var y = calculations.calcScrubber( scrollTop, settings.maxScroll );
+			// move the page itself
 			$main.css({
-				top: (scrollTop*-1) + 'px'
+				top: (scrollTop * -1) + 'px'
 			});
+			// update scrubber
 			$scrubber.css({
 				top: y + 'px'
 			});
+
+			// change nav
+			// for ( var i=0; i<$list.length; i++ ){
+			// 	console.log ( "li: ", $list[i] );
+			// 	$list[i].removeClass('active');
+			// }
+			var i = 0;
+			for ( var sec in gotoSection ){
+				console.log ( sec, gotoSection[sec], gotoSection, y );
+				if ( gotoSection[sec] <= y && y <= gotoSection[i] ) {
+					$nav.find( '.' + sec ).addClass('active');
+					break;
+				}
+			}
 		}
 
 		root.scrollTo = function( scroll ) {
@@ -313,21 +337,14 @@
 		var mousemove = function( e ) {
 			var scrubberPos,
 			pos = ( e.pageY - offsetY ); // where the mouse is minus the offsetclicked on the scrubber
-			scrubberPos = (pos < scrubbrerUpperLimit ? scrubbrerUpperLimit : pos);
-			scrubberPos = (scrubberPos > (windowHeight-scrubberHeight) ? (windowHeight-scrubberHeight) : scrubberPos)
 
-			// var delta = e.pageY - lastY;
-			// scrollTop += delta;
+			scrubberPos = (pos < scrubbrerUpperLimit ? scrubbrerUpperLimit : pos);
+			scrubberPos = (scrubberPos > (windowHeight-scrubberHeight) ? (windowHeight-scrubberHeight) : scrubberPos);
+
 			scrollTop = (( scrubberPos / (windowHeight-scrubberHeight) ) * settings.maxScroll ) ;
 			checkScrollExtents();
 
 			dispatch();
-
-			$scrubber.css({
-				top: scrubberPos + 'px',
-				transform: 'translateY(' + scrubberPos + 'px)'
-			});
-
 		};
 
 		var checkScrollExtents = function() {
@@ -336,7 +353,7 @@
 		}
 
 		var resize = function() {
-			$scroller.height( windowHeight - 4 );
+			$scroller.height( windowHeight );
 			if (settings.onResize && typeof settings.onResize === 'function') settings.onResize();
 			resetAnimation();
 			setupAnimation();
@@ -431,7 +448,7 @@
 		};
 
 
-		rootimageResize = function( img, w, h ) {
+		root.imageResize = function( img, w, h ) {
 			img.width( w );
 			img.height( Math.round ( w * root.settings.ratio ) );
 			if ( img.height() < h ) {

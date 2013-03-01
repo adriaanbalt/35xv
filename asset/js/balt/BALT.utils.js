@@ -1,14 +1,14 @@
 
-var TextSlant = function( target, lineHeight, textWidth, boxWidth, increment ) {
+var TextSlant = function( target, lineHeight, textWidth, total, increment ) {
 	var out = '',
-	remainderWidth = boxWidth;// - textWidth,
-	smallSideWidth = 0;
+	rWidth = total;// - textWidth,
+	lWidth = 0;
 
-	while( remainderWidth > 0 ) {
-		out += '<div style="float:left;clear:left;height:'+lineHeight+';width:'+ smallSideWidth +'px"></div>';
-		out += '<div style="float:right;clear:right;height:'+lineHeight+';width:'+ remainderWidth +'px"></div>';
-		smallSideWidth += increment;
-		remainderWidth -= increment;
+	while( rWidth > 0 ) {
+		out += '<div style="float:left;clear:left;height:'+lineHeight+';width:'+ lWidth +'px"></div>';
+		out += '<div style="float:right;clear:right;height:'+lineHeight+';width:'+ rWidth +'px"></div>';
+		lWidth += increment;
+		rWidth -= increment;
 	}
 
 	target.prepend(out);
