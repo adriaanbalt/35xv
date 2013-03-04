@@ -71,9 +71,11 @@
 
 			if (settings.onStart && typeof settings.onStart === 'function') {
 				settings.onStart();
-				
+
 			}
 			setupBuilding();
+			console.log ( "scrollTopTweened: ", scrollTopTweened , scrollTop );
+			dispatch();
 		};
 
 		var setupBuilding = function() {
@@ -606,7 +608,7 @@
 			// var properties = {
 			// 	'transform': "translate("+valX+"px,"+valY+"px)",
 			// 	'-ms-transform': "translate("+valX+"px,"+valY+"px)", /* IE 9 */
-			// 	'-webkit-transform': "translate("+valX+"px,"+valY+"px)",  Safari and Chrome 
+			// 	'-webkit-transform': "translate("+valX+"px,"+valY+"px)",  Safari and Chrome
 			// 	'-o-transform': "translate("+valX+"px,"+valY+"px)", /* Opera */
 			// 	'-moz-transform': "translate("+valX+"px,"+valY+"px)" /* Firefox */
 			// };
@@ -679,7 +681,8 @@
 		// 			}
 		// 		}
 		// 	]
-		// },
+		// }
+		// ,
 		// {
 		// 	'id' : '#residences-gallery .gallery-container',
 		// 	'startAt' : gotoSection['residences'],
@@ -708,7 +711,8 @@
 		// 			}
 		// 		}
 		// 	]
-		// },
+		// }
+		// ,
 		// {
 		// 	'id' : '#amenities-gallery .gallery-container',
 		// 	'startAt' : gotoSection['services-amenities'],
@@ -737,7 +741,8 @@
 		// 			}
 		// 		}
 		// 	]
-		// },
+		// }
+		// ,
 		{
 			'id' : '#cloud0',
 			'startAt' : gotoSection['design'],
@@ -830,14 +835,14 @@
 		,
 		{
 			'id' : '#cloud3',
-			'startAt' : gotoSection['team'],
+			'startAt' : gotoSection['team'] - 300,
 			'endAt' : gotoSection['contact'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
 						calculations.centerH.call( this, anim, { offset: -500 });
 					},
 					properties: {
@@ -848,7 +853,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.endAt - anim._elem.height() });
+						calculations.centerV.call( this, anim, { offset: anim.startAt - 300 });
 						calculations.centerH.call( this, anim, {});
 						calculations.centerH.call( this, anim, { offset: -650 });
 					},
@@ -861,7 +866,7 @@
 		,
 		{
 			'id' : '#cloud4',
-			'startAt' : gotoSection['residences'],
+			'startAt' : gotoSection['residences'] - 300,
 			'endAt' : gotoSection['floor-plans'],
 			keyframes :[
 				{
@@ -869,7 +874,7 @@
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
 						calculations.centerV.call( this, anim, { offset: anim.startAt+500 });
-						calculations.centerH.call( this, anim, { offset: -500});
+						calculations.centerH.call( this, anim, { offset: -900});
 					},
 					properties: {
 						top: 0, left: 0
@@ -957,18 +962,7 @@
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt });
-						calculations.leftOutside.call( this, anim, { offset: 150 });
-					},
-					properties: {
-						top: 0, left: 0
-					}
-				},
-				{
-					position: .5,
-					ease: TWEEN.Easing.Linear.EaseNone,
-					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 800 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 1000 });
 						calculations.centerH.call( this, anim, { offset: 0 });
 					},
 					properties: {
@@ -979,8 +973,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 1200 });
-						calculations.leftOutside.call( this, anim, {});
+						calculations.centerV.call( this, anim, { offset: anim.startAt });
+						calculations.centerH.call( this, anim, { offset: 300 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -1020,15 +1014,15 @@
 		,
 		{
 			'id' : '#cloud9',
-			'startAt' : gotoSection['floor-plans'],
+			'startAt' : gotoSection['floor-plans'] - 300,
 			'endAt' : gotoSection['services-amenities'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt + 300 });
-						calculations.centerH.call( this, anim, { offset: 300 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt + 600 });
+						calculations.centerH.call( this, anim, { offset: -300 });
 					},
 					properties: {
 						top: 0, left: 0
@@ -1038,7 +1032,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt - 700 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt - 1000  });
 						calculations.centerH.call( this, anim, { offset: -200 });
 					},
 					properties: {
@@ -1050,14 +1044,14 @@
 		,
 		{
 			'id' : '#cloud10',
-			'startAt' : gotoSection['floor-plans'] + 1500,
-			'endAt' : gotoSection['services-amenities'] + 600,
+			'startAt' : gotoSection['neighborhood'],
+			'endAt' : gotoSection['press'],
 			keyframes :[
 				{
 					position: 0,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt+1500 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt+700 });
 						calculations.centerH.call( this, anim, { offset: 300 });
 					},
 					properties: {
@@ -1068,8 +1062,8 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.endAt });
-						calculations.centerH.call( this, anim, { offset: -200 });
+						calculations.centerV.call( this, anim, { offset: anim.startAt -100});
+						calculations.centerH.call( this, anim, { offset: 100 });
 					},
 					properties: {
 						top: 0, left: 0
