@@ -59,22 +59,27 @@
 			settings = $.extend( settings, o );
 			setupAnimation();
 
-			//console.log('start', settings.startAt);
+			// preliminary set of the ubiquitous "scrollTop"
 			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
 
+			// make sure it's not equal to scrollTopTweened
 			scrollTop++;
 
+			// really commence the app
 			if (!started) {
 				animationLoop();
 				started=true;
 			};
 
+			// callback onStart
 			if (settings.onStart && typeof settings.onStart === 'function') {
 				settings.onStart();
 
 			}
+
 			setupBuilding();
-			console.log ( "scrollTopTweened: ", scrollTopTweened , scrollTop );
+
+			// sends scroll event
 			dispatch();
 		};
 
@@ -86,6 +91,14 @@
 			anim.onProgress.call( anim, progress );
 		};
 
+		/*
+		 * setupAnimation
+		 *
+		 * @description:
+		 *		setup positions
+		 *		setup containers
+		 *
+		 */
 		var setupAnimation = function() {
 
 			for (var i in settings.animation) {
@@ -140,7 +153,8 @@
 				}
 			}
 		}
-		// resets animations
+
+		// resets each animations
 		var resetAnimation = function() {
 			for (var i in settings.animation) {
 				var anim = settings.animation[i];
@@ -153,14 +167,14 @@
 			}
 		}
 
-	// animation
+	// animation called by the RequestAnimationFrame
 		var animationLoop = function() {
 			requestAnimationFrame( animationLoop );
 			if (Math.ceil(scrollTopTweened) !== Math.floor(scrollTop)) {
 				// smooth out scrolling action
 				scrollTopTweened += settings.tweenSpeed * (scrollTop - scrollTopTweened);
 
-				// run through animations
+				// run through all animations
 				for (var i in settings.animation) {
 					var anim = settings.animation[i];
 
@@ -177,6 +191,8 @@
 				//if (typeof settings.onUpdate === 'function') settings.onUpdate();
 			};
 		}
+
+	// move through each keyframe in the animation object
 		var render = function( anim ) {
 			// figure out where we are within the scroll
 			var progress = (anim.startAt - scrollTopTweened) / (anim.startAt - anim.endAt);
@@ -191,10 +207,12 @@
 						keyframeProgress = ( lastkeyframe.position - progress ) / ( lastkeyframe.position - keyframe.position );
 
 					if ( keyframeProgress > 0 && keyframeProgress < 1 ) {
+						// if something is happening during the course of the animation
 						if (keyframe.onProgress && typeof keyframe.onProgress === 'function') {
 							keyframe.onProgress( keyframeProgress );
 						};
 
+						// css attributes to adjust
 						for ( property in keyframe.properties ) {
 							properties[ property ] = Math.round( calculations.getTweenedValue( lastkeyframe.properties[property], keyframe.properties[property], keyframeProgress, 1, keyframe.ease ) );
 						}
@@ -213,7 +231,7 @@
 			}
 		}
 
-		/* run before animation starts when animation is in range */
+	// run before animation starts when animation is in range
 		var startAnimatable = function( anim ) {
 			// apply start properties
 			if (!anim._started) {
@@ -229,23 +247,23 @@
 			}
 		}
 
-		/* run after animation is out of range  */
+	// run after animation is out of range
 		var stopAnimatable = function( anim ) {
 			// apply end properties
 			if (anim._started && anim.endAt < scrollTopTweened || anim._started && anim.startAt > scrollTopTweened ) {
 				if (anim.onEndAnimate && typeof anim.onEndAnimate === 'function') {
 					anim.onEndAnimate.call( anim );
 				} else {
+					// hide it when it's not in view
 					anim._elem.css('display', 'none');
 				}
 
-			//	console.log('stopping', anim.id);
 				anim._started = false;
 			}
 		}
 
 
-	//notify listeners
+	//notify listeners of scroll events and send them the scrollTop
 		var dispatch = function() {
 			var i = settings.register.length;
 			while ( i-- ){
@@ -266,7 +284,7 @@
 				top: y + 'px'
 			});
 
-			// change nav
+			// update nav highlights
 			var index = 0;
 			for ( var sec in gotoSection ) {
 				if ( gotoSection[sec] <= scrollTop ){
@@ -282,7 +300,8 @@
 			}
 
 		}
-		// helper for the change nav calculation
+
+	// helper for the change nav calculation
 		var findSectionIndex = function( sectionTop ){
 			for ( var i = 0; i < gotoSectionIterative.length; i++ ){
 				if ( gotoSectionIterative[i] == sectionTop ) {
@@ -292,10 +311,12 @@
 			return 0;
 		}
 
+	// public function for scrolling to a specific point
 		root.scrollTo = function( scroll ) {
 			scrollTop = scroll;
 			dispatch();
 		};
+	// scroll to point over time (DOES NO WORK YET)
 		root.autoScroll = function( scroll ) {
 			currentScrollTop = scrollTop;
 			gotoScrollTop = scroll;
@@ -359,13 +380,14 @@
 
 			dispatch();
 		};
-
+	// make sure we aren't out of the scrollable region
 		var checkScrollExtents = function() {
 			if (scrollTop < 0) scrollTop = 0;
 			else if (scrollTop > settings.maxScroll) scrollTop = settings.maxScroll;
 		}
 
 		var resize = function() {
+			settings.maxScroll = gotoSection['address']-(windowHeight/2);
 			$scroller.height( windowHeight );
 			if (settings.onResize && typeof settings.onResize === 'function') settings.onResize();
 			resetAnimation();
@@ -384,6 +406,7 @@
 				$window.on('touchend', touchEndHandler);
 			}
 
+		// pollyfill for RequestAnimationFrame
 			var lastTime = 0;
 			var vendors = ['ms', 'moz', 'webkit', 'o'];
 			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -416,7 +439,7 @@
 
 	};
 
-
+	// reusable calculations for setting up the animations
 	$.BALT.animation.calculations = function() {
 		var root = this;
 
@@ -616,6 +639,7 @@
 			// this.properties = properties;
 		};
 
+	// great for image sequences
 		root.sequence = function( is, progress ) {
 			var endFrame = (is.imageCount/is.skipImages),
 				toFrame = Math.floor(progress*endFrame) % is.imageCount;
@@ -627,6 +651,7 @@
 
 	};
 
+	// an array of objects where each object is an item that you want to move around the screen at various intervals
 	$.BALT.animation.keyframes = function( o ) {
 		return [
 		{
