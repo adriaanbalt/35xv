@@ -40,6 +40,7 @@
 				images.each(function(){
 					if ( $(this)[0].complete || $(this)[0].readyState == 4 ) {
 						imageLoaded();
+						console.log ( " cached! " );
 					}
 					$(this).load( imageLoaded );
 				});
@@ -124,8 +125,6 @@
 			if (!tweener) tweener = TWEEN.Easing.Linear.EaseNone;
 			return tweener(percentComplete) * delta + start;
 		}
-
-		root.init();
 
 	};
 
