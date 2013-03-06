@@ -59,10 +59,11 @@
 			settings = $.extend( settings, o );
 			setupAnimation();
 
-			// preliminary set of the ubiquitous "scrollTop"
-			if (!started && settings.startAt) scrollTopTweened = scrollTop = settings.startAt;
-
 			// make sure it's not equal to scrollTopTweened
+			if ( scrollTopTweened === null || scrollTopTweened === undefined || scrollTop === undefined || scrollTop === null ) {
+				scrollTopTweened = scrollTop = 0;
+			}
+
 			scrollTop++;
 
 			// really commence the app
@@ -279,6 +280,7 @@
 			$main.css({
 				top: (scrollTop * -1) + 'px'
 			});
+
 			// update scrubber
 			$scrubber.css({
 				top: y + 'px'
@@ -362,7 +364,7 @@
 	//scrubber
 		var mousedown = function( e ) {
 			lastY = e.pageY;
-			offsetY = e.offsetY;
+			offsetY = e.offsetY === undefined ? ($scrubber.height()/2) : e.offsetY;
 			$window.on( 'mousemove', mousemove );
 		};
 		var mouseup = function( e ) {
@@ -860,7 +862,7 @@
 		,
 		{
 			'id' : '#cloud3',
-			'startAt' : gotoSection['team'] - 300,
+			'startAt' : gotoSection['press'] - 200,
 			'endAt' : gotoSection['contact'],
 			keyframes :[
 				{
@@ -1069,8 +1071,8 @@
 		,
 		{
 			'id' : '#cloud10',
-			'startAt' : gotoSection['neighborhood'],
-			'endAt' : gotoSection['press'],
+			'startAt' : gotoSection['services-amenities']+1000,
+			'endAt' : gotoSection['team'],
 			keyframes :[
 				{
 					position: 0,
@@ -1087,7 +1089,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Linear.EaseNone,
 					onInit: function( anim ) {
-						calculations.centerV.call( this, anim, { offset: anim.startAt -100});
+						calculations.centerV.call( this, anim, { offset: anim.startAt - 100});
 						calculations.centerH.call( this, anim, { offset: 100 });
 					},
 					properties: {
