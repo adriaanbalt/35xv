@@ -7,6 +7,7 @@
 		width: 100%;
 	}
 	p {
+		color: $blue-dark;
 		display: inline;
 		vertical-align: bottom;
 		font-size: 20px;
@@ -14,12 +15,14 @@
 	}
 }
 
-
 .neighborhood {
 	.content-box {
 		padding: 0 1%;
 	}
 	img {
 		width: 100%;
+	}
+	canvas {
+		margin: 0 1%;
 	}
 }

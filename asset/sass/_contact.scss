@@ -28,29 +28,45 @@
 			font-size: 35px;
 			padding: 0;
 		}
-		.custom-dropdown {
-			.values {
-				display: none;
-				z-index: 100;
-				position: absolute;
-				top: -5px;
-				left: 0;
-				width: 100%;
-				@include border-radius( 3px );
-				> .inner {
-					padding: 10px 0;
-				}
-				ol {
-					list-style: none;
-					li {
-						padding: 8px 0 10px 18px;
-						span {
-							display: block;
-							position: absolute;
-							top: 9px;
-							left: 3px;
-							@include triangle ( 'right', 5px, $blue-dark );
-						}
+	}
+}
+
+.drop {
+	.controls {
+		width: 407px;
+	}
+}
+
+.dropdown {
+	.dropdown-label {
+		border: 1px solid $blue-dark;
+		padding: 0 20px 0 5px;
+		font-size: 18px;
+	}
+	.dropdown-arrow {
+		@include triangle( 'down', 5px, #000 );
+		position: absolute;
+		top: 12px;
+		right: 10px;
+	}
+	.dropdown-list-container {
+		border: 1px solid $blue-dark;
+		border-top: 0;
+		background: rgba( 255,255,255, .8 );
+		font-size: 16px;
+		.dropdown-list-wrapper {
+			ul {
+				margin: 0;
+				li {
+					cursor: pointer;
+					padding: 0 5px;
+					line-height: 25px;
+					//border-bottom: 1px solid rgba( 255,255,255, 1 );
+					&:last-child{
+						border-bottom: 0;
+					}
+					&:hover{
+						background: rgba( 255,255,255, 1 );
 					}
 				}
 			}
@@ -59,7 +75,7 @@
 }
 
 .address {
-	font-size: 20px;
+	font-size: 14px;
 	color: $blue-dark;
 	margin-top: 0 !important;
 	div {
@@ -74,7 +90,7 @@
 	.pipe {
 		display: inline-block;
 		width: 1px;
-		height: 23px;
+		height: 15px;
 		background: $blue-dark;
 		margin: 0 7px;
 	}
@@ -88,7 +104,7 @@
 	}
 	.last {
 		float: right;
-		font-size: 14px;
+		font-size: 12px;
 		width: 94%;
 		padding-bottom: 10px
 	}
@@ -99,76 +115,4 @@
 
 .copyright {
 	text-align: right;
-}
-
-
-.dropdown {
-	position: relative;
-	width: 408px;
-	> .dropdown-arrow {
-		position: absolute;
-		top: 10px;
-		right: 6px;
-	}
-	.values {
-		border: 1px solid #000;
-		border-bottom: 0;
-//		display: none;
-		background: $blue;
-		z-index: 100;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		> .inner {
-		}
-		.values-footer {
-			border-top: 1px solid #cccccc;
-			> a {
-				display: block;
-				position: relative;
-				text-decoration: none;
-				font-size: 12px;
-				font-weight: 700;
-				padding: 11px 0 5px 35px;
-				color: $blue-dark !important;
-				&:hover, &:visited {
-					text-decoration: underline;
-				}
-			}
-			.more-icon {
-				position: absolute;
-				top: 3px;
-				left: 10px;
-			}
-		}
-		ol {
-			margin: 0;
-			list-style-type: none;
-			li {
-				cursor: pointer;
-				position: relative;
-				padding: 5px 5px;
-				font-size: 15px;
-				color: #000;
-				border-bottom: 1px solid #000;
-				&:hover {
-					background-color: $blue-dark;
-					color: $blue;
-				}
-				&.active {
-					.checked-icon {
-						@include triangle( 'right', 5px, #000 );
-						display: inline-block;
-						margin-right: 5px;
-					}
-				}
-			}
-		}
-	}
-	&.active {
-		.values {
-			display: block;
-		}
-	}
 }

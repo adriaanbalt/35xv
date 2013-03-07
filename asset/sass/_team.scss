@@ -10,6 +10,12 @@
 			width: 50%;
 			float: left;
 		}
+		&.last {
+			padding: 30px 1% 0 1%;
+		}
+	}
+	.video-js {
+		float: left;
 	}
 
 	.rightside {
@@ -35,5 +41,11 @@
 	}
 	.border-bottom-dark {
 		border-bottom: 1px solid $blue-dark;
+	}
+	#alchemy-logo {
+		background: url('../img/team/angelo-logo.png') no-repeat top left;
+		width: 220px;
+		height: 76px;
+		float: right;
 	}
 }
