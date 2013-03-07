@@ -16,7 +16,7 @@ var LoadProgress = function( opts ) {
 
 	var update = function( val ) {
 		progress += val = 1;
-		if (progress == total && done === false) {
+		if (progress == total && done === false && progress != 0 ) {
 			if ( typeof settings.onUpdate === 'function' ) settings.onUpdate( progress/total );
 			if ( typeof settings.onComplete === 'function' ) settings.onComplete();
 			done = true;
