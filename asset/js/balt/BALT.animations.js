@@ -55,7 +55,6 @@
 
 	// start!
 		root.start = function( o ) {
-			console.log ( "start" );
 			settings = $.extend( settings, o );
 			setupAnimation();
 
@@ -376,8 +375,8 @@
 
 			scrubberPos = (pos < scrubbrerUpperLimit ? scrubbrerUpperLimit : pos);
 			scrubberPos = (scrubberPos > (windowHeight-scrubberHeight) ? (windowHeight-scrubberHeight) : scrubberPos);
-
 			scrollTop = (( scrubberPos / (windowHeight-scrubberHeight) ) * settings.maxScroll ) ;
+			
 			checkScrollExtents();
 
 			dispatch();
@@ -675,7 +674,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Quadratic.EaseIn,
 					properties: {
-						top: 0, left: -200
+						top: 0, left: -50
 					}
 				}
 			]
