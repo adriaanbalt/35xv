@@ -674,7 +674,7 @@
 					position: 1,
 					ease: TWEEN.Easing.Quadratic.EaseIn,
 					properties: {
-						top: 0, left: -50
+						top: 0, left: -200
 					}
 				}
 			]
