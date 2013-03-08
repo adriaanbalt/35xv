@@ -89,7 +89,6 @@
 				maxScroll: gotoSection['address']-(windowHeight/2),
 				animation : animation
 			});
-			console.log ( "(windowHeight/2): ", (windowHeight/2) );
 
 			nav = new $.BALT.nav( $('nav'), {scroller: scroller} );
 		}
