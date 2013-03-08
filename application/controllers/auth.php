@@ -53,10 +53,11 @@ class Auth extends CI_Controller {
 			$remember = (bool) $this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'), $remember))
-			{ //if the login is successful
+			{ 
+				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('admin', 'refresh');
+				redirect(base_url(), 'refresh');
 				// hard coding destination - should add flashdata of where they want to go
 			}
 			else
@@ -82,7 +83,7 @@ class Auth extends CI_Controller {
 			);
 
 			$this->data['content'] = $this->load->view('auth/login', $this->data, TRUE);
-			$this->load->view('admin/template', $this->data);
+			$this->load->view('admin/login-template', $this->data);
 		}
 	}
 

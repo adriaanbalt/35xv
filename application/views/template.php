@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 lt-ie"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 lt-ie"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 lt-ie"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <title>35XV</title>
+        <title><?= $site_data['site_title']; ?></title>
 
-        <meta content='' name='description' />
-        <meta content='' name='keywords' />
+        <meta content='<?= $site_data['meta_description']; ?>' name='description' />
+        <meta content='<?= $site_data['meta_keywords']; ?>' name='keywords' />
 
-        <meta property="og:title" content="35XV"/>
+        <meta property="og:title" content="<?= $site_data['site_title']; ?>"/>
         <meta property="og:type" content="realestate"/>
-        <meta property="og:url" content=""/>
-        <meta property="og:image" content=""/>
-        <meta property="og:site_name" content=""/>
-        <meta property="fb:admins" content=""/>
-        <meta property="og:description" content=""/>
+        <meta property="og:url" content="http://www.35XV.com"/>
+        <meta property="og:image" content="<?=site_url('asset/img/35xv-facebook.jpg'); ?>"/>
+        <meta property="og:site_name" content="35XV - Luxury Amenity Highrise"/>
+        <meta property="fb:admins" content="Adriaan Scholvinck, Ben Lundquist"/>
+        <meta property="og:description" content="<?= $site_data['meta_description']; ?>"/>
 
-        <meta name='author' content='' />
+        <meta name='author' content='Williams New York, Adriaan BALT Scholvinck, Ben Lundquist' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable = no'  />
 
         <link rel="stylesheet" href="asset/css/normalize.css">
@@ -39,15 +39,8 @@
 
         <?php echo $content; ?>
 
-        <?php
-        // <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        // <script>
-        //     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-        //     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        //     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        //     s.parentNode.insertBefore(g,s)}(document,'script'));
-        // </script>
-        ?>
+        <?php //include_once("analyticstracking.php") ?>
+
         <script src="asset/js/utils/plugins.js?v=2"></script>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -59,16 +52,15 @@
         <script src="asset/js/vendor/video.min.js?v=2"></script>
         <script src="asset/js/vendor/jquery.history.js?v=2"></script>
         <script src='asset/js/vendor/jquery.tablesorter.min.js'></script>
-
+        
+        <script src='asset/js/utils/jquery.dropdown.js'></script>
         <script src='asset/js/utils/UTIL.IsMobile.js?v=2'></script>
         <script src='asset/js/utils/UTIL.BrowserDetect.js?v=2'></script>
         <script src='asset/js/utils/UTIL.LoadProgress.js?v=2'></script>
-        
-        <script src='asset/js/balt/BALT.utils.js?v=2'></script>
-        <script src='asset/js/balt/BALT.UTIL.offclick.js?v=2'></script>
-        <script src='asset/js/balt/BALT.UTIL.dropdown.js?v=2'></script>
+
         <script src='asset/js/balt/BALT.nav.js?v=2'></script>
         <script src='asset/js/balt/BALT.loader.js?v=2'></script>
+        <script src='asset/js/balt/BALT.utils.js?v=2'></script>
         <script src='asset/js/balt/BALT.modal.js?v=2'></script>
         <script src='asset/js/balt/BALT.imageSequence.js?v=2'></script>
         <script src='asset/js/balt/BALT.galleryScroll.js?v=2'></script>

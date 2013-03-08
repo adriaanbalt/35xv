@@ -26,6 +26,8 @@
 	imageSequences = {};
 	gallerySequences = {};
 
+	window.onselectstart = function (){ return false; }
+
 	var loader = new $.BALT.loader( $('#loader'), {
 		onComplete : function() {
 			var prop = {
@@ -47,9 +49,9 @@
 			loader.update( val * 100 );
 		},
 		onComplete: function() {
-
+		// creating clouds
 			var clone;
-			for ( var i = 1; i < 8; i++ ){
+			for ( var i = 1; i < 11; i++ ){
 				clone = $('#cloud0').clone();
 				clone.attr('id', 'cloud' + i );
 				$('#background').append( clone );
@@ -57,10 +59,10 @@
 
 		// catch 22 w the galleries, need to call start twice =(
 			gallerySequences['residences-gallery'].start({
-				startAt : gotoSection[ 'residences' ]
+				startAt : 0
 			});
 			gallerySequences['amenities-gallery'].start({
-				startAt : gotoSection[ 'services-amenities' ]
+				startAt : 0
 			});
 
 		//build gotoSection
@@ -77,24 +79,25 @@
 
 		// catch 22 w the galleries, need to call start twice =(
 			gallerySequences['residences-gallery'].start({
-				startAt : gotoSection[ 'residences' ] + 100
+				startAt : gotoSection[ 'residences' ] + 150
 			});
 			gallerySequences['amenities-gallery'].start({
-				startAt : gotoSection[ 'services-amenities' ] + 150
+				startAt : gotoSection[ 'services-amenities' ] + 215
 			});
 			scroller.start({
 				startAt : gotoSection[ window.location.hash ],
-				maxScroll: gotoSection['address'],
+				maxScroll: gotoSection['address']-(windowHeight/2),
 				animation : animation
 			});
+			console.log ( "(windowHeight/2): ", (windowHeight/2) );
 
 			nav = new $.BALT.nav( $('nav'), {scroller: scroller} );
 		}
 	});
 
 	imageSequences['building-large'] = new $.BALT.imageSequence({
-		filesPath:'asset/img/building-large/highres/35XV_2013-02-19_000{index}.gif',
-		imageCount: 100,
+		filesPath:'asset/img/building-large/highres/{index}.gif',
+		imageCount: 102,
 		skipImages: 3,
 		container: $('#building-large'),
 		className: '',
@@ -110,26 +113,11 @@
 	// 	id: 'cloud{index}',
 	// 	className: 'cloud show',
 	// 	onProgress: function() {
-	// 		//console.log ( "progress clouds" );
 	// 		loadProgress.update( this.skipImages );
 	// 	}
 	// });
 
-	$('.dropdown').each( function() {
-		console.log ( "DROPDOWN" );
-		new $.BALT.UTIL.dropdown( $(this), {
-			onInit: function(){
-				// console.log($el, el, 'onInit');
-			},
-			onOpen: function(){
-				// console.log($el, el, 'onOpen');
-			},
-			onClose: function(){
-				// console.log($el, el, 'onClose');
-			},
-			multiselection: false
-		});
-	});
+	$('.dropdown').dropdown();
 
 	$('.floorplan-modal').each( function() {
 		new $.BALT.modal( $(this) );
@@ -156,32 +144,38 @@
 		$(this).width( 100 - (2 * i) + "%");
 		i++;
 	});
-	$('.address').height( $window.height() )
+	$('.address').height( 200 )
 
 	$('.equalize').equalize();
 
 	calculations = new $.BALT.animation.calculations();
+
+	gallerySequences = {};
 	gallerySequences['residences-gallery'] = new $.BALT.galleryScroll( $('#residences-gallery'), {
-		onProgress: function() {
-			loadProgress.update();
-		}
+		// onProgress: function() {
+		// 	loadProgress.update();
+		// }
 	});
 	gallerySequences['amenities-gallery'] = new $.BALT.galleryScroll( $('#amenities-gallery'), {
-		onProgress: function() {
-			loadProgress.update();
-		}
+		// onProgress: function() {
+		// 	loadProgress.update();
+		// }
 	});
 	var scroller = new $.BALT.animation.scroller({
 		register : [ gallerySequences['residences-gallery'], gallerySequences['amenities-gallery'] ]
 	});
 
-	loadProgress.register( gallerySequences['residences-gallery'].settings.slideCount );
-	loadProgress.register( gallerySequences['amenities-gallery'].settings.slideCount );
+	// loadProgress.register( gallerySequences['residences-gallery'].settings.slideCount );
+	// loadProgress.register( gallerySequences['amenities-gallery'].settings.slideCount );
 
 	for (i in imageSequences) {
 		loadProgress.register( Math.ceil((imageSequences[i].imageCount+1)/imageSequences[i].skipImages) );
 		imageSequences[i].load();
 	}
+
+	gallerySequences['residences-gallery'].init();
+	gallerySequences['amenities-gallery'].init();
+
 
 	$("#availability").tablesorter({
 		// make the table header unselectable to enchance button feel
@@ -189,24 +183,24 @@
 		sortInitialOrder: 'desc',
 		headers: {
 
-			// Unit Number Column 
+			// Unit Number Column
 			0: {
 				// Disable sorting, as it is not logical
 				sorter: false
 			},
 			3: {
-				// Force square footage sorter to use digits, despite commas being in the string 
+				// Force square footage sorter to use digits, despite commas being in the string
 				sorter: 'digit'
 			},
-			// Price Column 
+			// Price Column
 			4: {
-				// Force sorter to use numbers, despite 'sold out' etc 
+				// Force sorter to use numbers, despite 'sold out' etc
 				sorter: 'currency',
 				string: 'bottom'
 			},
-			// Floorplan View / Download Column 
+			// Floorplan View / Download Column
 			5: {
-				// Disable sorting, as all values are the same! 
+				// Disable sorting, as all values are the same!
 				sorter: false
 			}
 		},
@@ -244,7 +238,7 @@
 			startAt : gotoSection[ 'residences' ] + 100
 		});
 		gallerySequences['amenities-gallery'].start({
-			startAt : gotoSection[ 'services-amenities' ] + 100
+			startAt : gotoSection[ 'services-amenities' ] + 150
 		});
 	}
 

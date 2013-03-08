@@ -2,13 +2,42 @@
 
 class Site extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->library('ion_auth');
+		$this->load->library('session');
+		$this->load->library('form_validation');
+		$this->load->helper('url');
+	}
+
+	function change_sitedata_ajax(){
+
+		$data['id'] = $this->input->post('id');
+		$data['content'] = $this->input->post('content');
+
+		$this->load->model('sitedata_model', 'site_data');
+		$this->site_data->update_row($data);
+
+	}
+
 	public function index()
 	{
+
+		if (!$this->ion_auth->logged_in())
+		{
+			//redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		else
+		{
 
 		$this->load->database();
 		$this->load->model('sitedata_model', 'site_data');
 		$site_data = $this->site_data->get_all();
 		foreach ($site_data as $k => $d) { $data->site_data[$d->title] = $d->content; }
+
+		$data->site_data['press_active'] = 1;
 
 		// Load up the unit availabilty chart into $data for inclusion in the home template
 		$data->unit_availability = $this->_unit_availability();
@@ -43,6 +72,8 @@ class Site extends CI_Controller {
 
 		// Load page data into html5 boilerplate and echo to browser
 		$this->load->view('template', $data);
+
+		}
 	}
 
 	public function _contact_form($form_length = "small"){

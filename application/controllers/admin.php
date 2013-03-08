@@ -21,11 +21,10 @@ class Admin extends CI_Controller {
 	// Routes
     // X	Admin 					Home
     // X	admin/units 			Unit Availability
-    // o	admin/inquiries 		Inquiry Table
+    // X	admin/inquiries 		Inquiry Table
     // o	admin/inquiries/csv 	Excel Download
-    // o	admin/gallery/1     	Residences
-    // o	admin/gallery/2     	Amenities & Service
-    // o	admin/design-team   	Design Team
+    // X	admin/gallery/1     	Residences
+    // X	admin/gallery/2     	Amenities & Service
     // X	admin/project-team  	Project Team
     // o	admin/press         	Press Links
 
@@ -39,6 +38,9 @@ class Admin extends CI_Controller {
 	function units()
 	{
 		$this->load->model('units_model', 'units');
+		$this->load->model('sitedata_model', 'sitedata');
+		$featured_unit_site_data = $this->sitedata->get_row_by_column('title', 'featured_plan');
+		$featured_unit_id = $featured_unit_site_data->content;
 		$units = $this->units->get_all(true);
 		$this->data['page_title'] = "Unit Availability";
 		$this->data['slug'] = "units";
@@ -69,7 +71,7 @@ class Admin extends CI_Controller {
 	$this->table->set_template($table_template);
 
 
-			$this->table->set_heading('ID', 'Unit Number', 'Bed','Bath', 'Floor', 'SqFt', 'Price', 'Unit Status' );
+			$this->table->set_heading('ID', 'Unit Number', 'Bed','Bath', 'Floor', 'SqFt', 'Price', 'Unit Status', 'Extended Edit' );
 
 			// Clean up units data
 			foreach ($units as $k => $unit) {
@@ -78,6 +80,8 @@ class Admin extends CI_Controller {
 
     			// Format square footage
                 $units[$k]['sqft'] = number_format($unit['sqft']);
+
+                $units[$k]['extended_edit'] = anchor('#', 'Extended Edit', array('class' => 'unit-edit-extended') );
 
     			// Replace status codes with strings
     			// Format price as needed
@@ -98,25 +102,52 @@ class Admin extends CI_Controller {
 
 
     		}
-			$this->data['content'] = $this->table->generate($units);
 
+    	$featured_unit_options = array();
 
+    	foreach ($units as $k => $unit) {
+    		if ($unit['unit_status_id'] == 'Available') {
+	    		$featured_unit_options[ $unit['id'] ] = $unit['unit_number'];
+    		}
+    	}
 
+    	natsort($featured_unit_options);
+
+		$c = heading('35XV Unit Availability');
+		$selector = form_dropdown('featured_unit', $featured_unit_options, $featured_unit_id, 'class="span4 featured_unit_edit"');
+		$c.= heading('Current Featured Unit &nbsp'.$selector, 3);
+		$c.= heading('All Units', 4);
+
+		$c.= $this->table->generate($units);
+		$this->data['content'] = $c;
 		$this->load->view('admin/template', $this->data);
 	}
 
 	function edit_unit_form($unit_id)
 	{
 		$this->load->model('unit_model', 'units');
+
+		$extended_edit = false;
+
+		if ($this->uri->segment(4) == 'extended') {
+			$extended_edit = true;
+		}
+
 		if ($unit = $this->units->get($unit_id)) {
 			$this->load->helper('form');
 			echo form_open('admin/update_unit', array('class' => 'form form-horizontal') );
 				echo form_hidden('id', $unit->id);
-				echo '<div class="control-group">';
-					echo form_label('Unit Number', 'unit_number', array('class' => 'control-label') );
-						echo '&nbsp;';
-					echo form_input('unit_number', $unit->unit_number);
-				echo '</div>';
+
+				// they won't need to edit Beds Baths Floor and square footage
+				// but let's add an extended edit feature just in case
+				if ($extended_edit){
+
+				// echo '<div class="control-group">';
+				// 	echo form_label('Unit Number', 'unit_number', array('class' => 'control-label') );
+				// 		echo '&nbsp;';
+				// 	echo form_input('unit_number', $unit->unit_number);
+				// echo '</div>';
+
 				echo '<div class="control-group">';
 					echo form_label('Bedrooms', 'bedrooms', array('class' => 'control-label') );
 						echo '&nbsp;';
@@ -137,19 +168,79 @@ class Admin extends CI_Controller {
 						echo '&nbsp;';
 					echo form_input('sqft', $unit->sqft);
 				echo '</div>';
+
+				} else {
+				// extended edit is not enabled so let's show a summary of the unit's info					
+				echo heading('Bedrooms '. $unit->bedrooms .' Baths '. $unit->bathrooms .' Floor: '. $unit->floor, 4);
+				}
+
 				echo '<div class="control-group">';
 					echo form_label('Price', 'price', array('class' => 'control-label') );
 						echo '&nbsp;';
-					echo form_input('price', $unit->price);
+					$price_string = money_format('%.0n', $unit->price);
+					echo form_input('price', $price_string);
+				echo '</div>';
+
+				echo '<div class="control-group">';
+
+				$check_available = FALSE;
+				$check_contract  = FALSE;
+				$check_sold      = FALSE;
+
+				switch ($unit->unit_status_id) {
+					case '1':
+						$check_available = TRUE;
+						break;
+					case '2':
+						$check_contact = TRUE;
+						break;
+					case '3':
+						$check_sold = TRUE;
+						break;
+					default:
+						break;
+				}
+
+				$checkbox_available = array(
+				    'name'        => 'unit_status_id',
+				    'id'          => 'unit_status_available',
+				    'value'       => '1',
+				    'checked'     => $check_available
+			    );
+				$checkbox_contract = array(
+				    'name'        => 'unit_status_id',
+				    'id'          => 'unit_status_contract',
+				    'value'       => '2',
+				    'checked'     => $check_contract
+			    );
+				$checkbox_sold = array(
+				    'name'        => 'unit_status_id',
+				    'id'          => 'unit_status_sold',
+				    'value'       => '3',
+				    'checked'     => $check_sold
+			    );
+	
+
+				echo heading('Unit Status:', 4);
+				echo '<div class="control-group">';
+					echo form_label('Available', 'unit_status_id', array('class' => 'control-label') );
+						echo '&nbsp;';
+					echo form_radio($checkbox_available);
 				echo '</div>';
 				echo '<div class="control-group">';
-					echo form_label('Unit Status ID', 'unit_status_id', array('class' => 'control-label') );
+					echo form_label('In Contract', 'unit_status_id', array('class' => 'control-label') );
 						echo '&nbsp;';
-					echo form_input('unit_status_id', $unit->unit_status_id);
+					echo form_radio($checkbox_contract);
 				echo '</div>';
+				echo '<div class="control-group">';
+					echo form_label('Sold', 'unit_status_id', array('class' => 'control-label') );
+						echo '&nbsp;';
+					echo form_radio($checkbox_sold);
 				echo '</div>';
+
+				echo '</div>';
+
 				echo '<div class="footer">';
-					echo '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>';
 					echo form_submit('submit', 'Save Changes to Unit', 'class="btn btn-primary"');
   				echo '</div>';
 			echo form_close();
@@ -183,21 +274,51 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	function site_data()
+	{
+		$this->load->model('sitedata_model', 'site_data');
+		$this->data['site_data'] = $this->site_data->get_all();
+		$this->data['page_title'] = "Edit Site Data";
+		$this->data['slug'] = "site_data";
+		$this->data['content'] = $this->load->view('admin/site_data', $this->data, TRUE);
+		$this->load->view('admin/template', $this->data);
+	}
 
 	function gallery($gallery_id)
 	{
-		$this->data['content'] = heading('gallery'.$gallery_id);
- 		$this->data['page_title'] = "Project Team";
+		$this->load->model('galleries_model', 'galleries');
+		$this->data['gallery'] = $this->galleries->get_with_media($gallery_id);
+		$this->data['content'] = $this->load->view('admin/gallery', $this->data, TRUE);
+ 		$this->data['page_title'] = "Edit Gallery";
 		$this->data['slug'] = "gallery_".$gallery_id;
 		$this->load->view('admin/template', $this->data);
 	}
 
-	function design_team()
+	function edit_gallery_item_form($media_id)
 	{
-		$this->data['content'] = heading('Design Team');
- 		$this->data['page_title'] = "Design Team";
-		$this->data['slug'] = "design_team";
-		$this->load->view('admin/template', $this->data);
+		$this->load->model('media_model', 'media');
+		if ($media = $this->media->get($media_id)) {
+			$this->load->helper('form');
+			echo form_open('admin/update_media_item', array('class' => 'form form-horizontal') );
+				echo form_hidden('id', $media->id);
+				echo form_hidden('gallery_id', $this->uri->segment(4) );
+				echo '<div class="control-group">';
+					echo form_label('Title', 'title', array('class' => 'control-label') );
+						echo '&nbsp;';
+					echo form_input('title', $media->media_title);
+				echo '</div>';
+				echo '<div class="control-group">';
+					echo form_label('Description', 'description', array('class' => 'control-label') );
+						echo '&nbsp;';
+					echo form_textarea('description', $media->media_description);
+				echo '</div>';
+				echo '<div class="footer">';
+					echo form_submit('submit', 'Save Changes to Media Item', 'class="btn btn-primary"');
+  				echo '</div>';
+			echo form_close();
+		} else {
+			echo 'Something is wrong, there is no media to edit.';
+		}
 	}
 
 	function project_team()
@@ -218,6 +339,27 @@ class Admin extends CI_Controller {
  		$this->load->view('admin/template', $this->data);
 	}
 
+	function update_media_item()
+	{
+		$media_id = $this->input->post('id');
+		$this->load->model('media_model', 'media');
+		$gallery_id = $this->input->post('gallery_id');
+		if ($media = $this->media->get($media_id)) {
+			$form_data = array(
+				'id' 						=> $this->input->post('id'),
+				'media_title' 				=> $this->input->post('title'),
+				'media_description' 		=> $this->input->post('description')
+			);
+			if ( $update_status = $this->media->update_row($form_data) ) {
+				redirect('admin/gallery/'.$gallery_id);
+			} else {
+				redirect('admin/gallery/'.$gallery_id.'#nochange');
+			}
+		} else {
+			echo 'could not find a media item';
+		}
+	}
+
 	function edit_team_member_form($member_id)
 	{
 		$this->load->model('team_member_model', 'members');
@@ -235,13 +377,13 @@ class Admin extends CI_Controller {
 						echo '&nbsp;';
 					echo form_textarea('description', $member->description);
 				echo '</div>';
-				echo '<div class="control-group">';
-					echo form_label('Image ID', 'image_id', array('class' => 'control-label') );
-						echo '&nbsp;';
-					echo form_input('image_id', $member->image_id);
-				echo '</div>';
+				// echo '<div class="control-group">';
+				// 	echo form_label('Image ID', 'image_id', array('class' => 'control-label') );
+				// 		echo '&nbsp;';
+				// 	echo form_input('image_id', $member->image_id);
+				// echo '</div>';
 				echo '<div class="footer">';
-					echo '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>';
+					// echo '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>';
 					echo form_submit('submit', 'Save Changes to Team Member', 'class="btn btn-primary"');
   				echo '</div>';
 			echo form_close();

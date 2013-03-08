@@ -1,4 +1,5 @@
-	<h1>Please login with your email address and password below.</h1>
+	<h4>Please login with your email address and password below.</h4>
+  <br />
 	<div id="infoMessage"><?php echo $message;?></div>
     <?php echo form_open("auth/login", 'class="form-horizontal"');?>
         <div class="control-group">

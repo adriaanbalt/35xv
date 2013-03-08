@@ -7,7 +7,7 @@
 	</div>
 </div>
 
-<div id='scroller'>
+<div id='scroller' unselectable='on'>
 	<div id='scrubber'></div>
 </div>
 
@@ -21,7 +21,9 @@
 			<li><a href='#services-amenities' class='services-amenities'>SERVICES &AMP; AMENITIES</a></li>
 			<li><a href='#neighborhood' class='neighborhood'>NEIGHBORHOOD</a></li>
 			<li><a href='#team' class='team'>TEAM</a></li>
-			<li><a href='#press' class='press'>PRESS</a></li>
+			<?php if ($site_data['press_active'] == 1) {
+				echo '<li><a href="#press" class="press">PRESS</a></li>';
+			} ?>
 			<li><a href='#contact' class='contact'>CONTACT</a></li>
 		</ul>
 	</div>
@@ -58,16 +60,16 @@
 						<div class="padded-inner"></div>
 					</div>
 					<div class='building-section one'>
-						<span class='carat-left'></span><h1>RESIDENTIAL TOWER</h1>
+						<!-- <span class='carat-left'></span><h1>RESIDENTIAL TOWER</h1> -->
 					</div>
 					<div class='building-section two'>
-						<span class='carat-left'></span><h1>SEVENTH FLOOR AMENITIES</h1>
+						<!-- <span class='carat-left'></span><h1>SEVENTH FLOOR AMENITIES</h1> -->
 					</div>
 					<div class='building-section three'>
-						<span class='carat-left'></span><h1>COMMERCIAL BASE</h1>
+						<!-- <span class='carat-left'></span><h1>COMMERCIAL BASE</h1> -->
 					</div>
 					<div class='building-section'>
-						<span class='carat-left'></span><h1>RESIDENTIAL ENTRANCE</h1>
+						<!-- <span class='carat-left'></span><h1>RESIDENTIAL ENTRANCE</h1> -->
 					</div>
 				</div>
 			</div>
@@ -97,7 +99,7 @@
 							echo '</div>';
 
 							echo img($m->file_path);
-							echo '<canvas id="shape-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="845" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
+							echo '<canvas id="shape-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="843" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
 						echo '</div>';
 					}
 					?>
@@ -155,7 +157,7 @@
 								echo '</div>';
 							echo '</div>';
 							echo img($m->file_path);
-							echo '<canvas id="shape-amenties-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="745" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
+							echo '<canvas id="shape-amenties-'.$k.'-under" class="shape under shadow" data-shape="parallelogram" width="743" height="640" data-color="#fff" data-transparency="1" data-overhang="0"/>';
 						echo '</div>';
 					}
 					?>
@@ -182,23 +184,31 @@
 				switch ($k) {
 					case '0':
 						$extra_classes = "clearfix border-bottom";
-						$shape = '<p class="text-slant" data-boxWidth="90" data-increment="6">';
+						$logo = '';
+						$boxWidth = 90;
+						$videoID = '61196658';
 					break;
 					case '1':
-						$extra_classes = "clearfix border-bottom rightside descriptionLargeWidth";
-						$shape = '<p class="text-slant" data-boxWidth="40" data-increment="6">';
+						$extra_classes = "clearfix border-bottom descriptionLargeWidth";
+						$logo = '<div id="alchemy-logo"></div>';
+						$boxWidth = 40;
 					break;
 					case '2':
-						$extra_classes = "clearfix border-bottom rightside";
-						$shape = '<p class="text-slant" data-boxWidth="90" data-increment="6">';
+						$extra_classes = "clearfix border-bottom";
+						$logo = '';
+						$boxWidth = 60;
+						$videoID = '61211465';
 					break;
 					case '3':
-						$extra_classes = "clearfix border-bottom rightside descriptionMediumWidth";
-						$shape = '<p class="text-slant" data-boxWidth="120" data-increment="6">';
+						$extra_classes = "clearfix border-bottom";
+						$logo = '';
+						$boxWidth = 120;
+						$videoID = '61209565';
 					break;
 					case '4':
-						$extra_classes = "clearfix rightside halfwidth";
-						$shape = '<p class="text-slant" data-boxWidth="18" data-increment="6">';
+						$extra_classes = "clearfix halfwidth last";
+						$logo = '';
+						$boxWidth = 18;
 					break;
 					default:
 						$extra_classes = "clearfix";
@@ -206,20 +216,27 @@
 				}
 
 				echo '<div class="team-member '.$extra_classes.'">';
-					if ($m->image_path != "") { 
-						echo img($m->image_path);
+					if ( $m->video_path != "" ){
+					// Let's show a video is we have one set
+						// echo '<video id="'.$m->title.'-vid" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">';
+						// 	echo '<source src="'.$m->video_path.'.ogv" type="video/ogg">';
+						// 	echo '<source src="'.$m->video_path.'.mp4" type="video/mp4">';
+						// 	echo '<source src="'.$m->video_path.'.webm" type="video/webm">';
+						// 	echo '<source src="'.$m->video_path.'.m4v" type="video/m4v">';
+						// 	echo '<p>Video unavailable on your browser.</p>';
+						// echo '</video>';
+						echo '<iframe src="http://player.vimeo.com/video/' . $videoID . '" width="445" height="255" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+					} elseif ($m->image_path != "") { 
+					// no video? let's try to show an image
+						echo img($m->image_path); 
+					} else {
+					// we don't have an image or a video so show nothing
 					}
-					// if ( $m->video_path != "" ){
-					// 	echo '<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-					// 			<source src="asset/video/FXFowle.ogv" type="video/ogg">
-					// 			<source src="asset/video/FXFowle.mp4" type="video/mp4">
-					// 			<p>Your browser does not support the video tag.</p>
-					// 		</video>';
-					// }
+					echo $logo;
 					echo '<div class="description">';
 						echo heading($m->title,4);
-						echo $shape;
-							echo $m->description;
+							$description_with_shape = '<p class="text-slant" data-boxWidth="'. $boxWidth .'" data-increment="6">'. $m->description .'</p>';
+							echo $description_with_shape;
 						echo '</p>';
 					echo '</div>';
 				echo '</div>';
@@ -230,46 +247,10 @@
 		</div>
 	</section>
 
-<!-- design-team -->
-	<section class="design-team grid-whole">
-		<h2>DESIGN<br>TEAM</h2>
-		<div class="grid-whole">
-			<div class="grid-half">
-				<div class="padded-inner-sides content-box center">
-					<div class='video-box'>
-						<video id="fxfowle" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/FXFowle.ogv" type='video/ogg'>
-							<source src="asset/video/FXFowle.mp4" type='video/mp4'>
-							<p>Your browser does not support the video tag.</p>
-						</video>
-					</div>
-					<h4>FX FOWLE</h4>
-				</div>
-			</div>
-			<div class="grid-half">
-				<div class="padded-inner"></div>
-			</div>
-		</div>
-		<div class="grid-whole">
-			<div class="grid-half">
-				<div class="padded-inner"></div>
-			</div>
-			<div class="grid-half">
-				<div class="padded-inner-sides content-box center">
-					<div class='video-box'>
-						<video id="bmo" class="video-js vjs-default-skin" controls preload="auto" width="445" height="260" data-setup="{}">
-							<source src="asset/video/BNO.ogv" type='video/ogg'>
-							<source src="asset/video/BNO.mp4" type='video/mp4'>
-							<p>Your browser does not support the video tag.</p>
-						</video>
-					</div>
-					<h4>BENJAMIN<br>NORIEGA&#45;ORTIZ</h4>
-				</div>
-			</div>
-		</div>
-	</section>
 
 <!-- press -->
+<?php if ($site_data['press_active'] == 1): ?>
+
 	<section class="press grid-whole">
 		<h2>PRESS</h2>
 		<div class="padded-inner content-box clearfix">
@@ -286,6 +267,8 @@
 		</div>
 	</section>
 
+<?php endif; ?>
+
 <!-- contact -->
 	<?php echo $contact_form; ?>
 
@@ -301,21 +284,24 @@
 			</div>
 			<div class='sales'>
 			<span><b><?php echo $site_data['sales_title']; ?></b></span>
-			<SPAN><?php echo $site_data['sales_address']; ?></SPAN>
+			<span><?php echo $site_data['sales_address']; ?></span>
 			</div>
 			<div class='border-bottom last'>
 			<span><?php echo $site_data['developer_credit']; ?></span>
 			</div>
 		</div>
 		<p class='copyright'>&copy; <?php echo date('Y'); ?></p>
+		<div class='terms'><p>LEGAL DISCLAIMER</p><p>On behalf of AGA 15th Street LL C, Alchemy Properties Inc. is proud to be the Exclusive Sales Broker of The 35XV Condominium. Co-Brokers are welcomed and encouraged. The complete terms are in an Offering Plan available from the sponsor. New York State Attorney General File No. CD12-0108. Sponsor reserves the right to make changes in accordance with the Offering Plan. All dimensions and illustrations are approximate. Noted dimensions reflect interior dimensions of space. Please consult the Offering Plan for more detail.</p></div>
 	</section>
 
 </div>
+<!-- end CONTAINER -->
+
 
 <!-- background -->
-	<div id='background'>
-		<img src="asset/img/clouds/cloud-0.png" class='cloud' id='cloud0'>
-	</div>
+<div id='background'>
+	<img src="asset/img/clouds/cloud-0.png" class='cloud' id='cloud0'>
+</div>
 
 </div>
 <!-- end MAIN -->

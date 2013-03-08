@@ -33,8 +33,8 @@ body { font-family: 'Josefin Sans', sans-serif; color: #000; position: relative;
 
 #loader { margin: 250px auto; font-weight: 700; width: 100%; position: fixed; text-align: center; }
 #loader p { color: #2c6086; }
-#loader .progress { margin: 0px auto; border: 1px solid #000; width: 275px; height: 5px; }
-#loader .bar { width: 0px; height: 5px; background-color: #FFF; }
+#loader .progress { margin: 0px auto; border: 1px solid #000; width: 275px; height: 5px; overflow: hidden; }
+#loader .bar { width: 0px; height: 5px; background-color: #FFF; float: left; }
 
 .wrapper { max-width: 980px; margin: 0 auto; }
 
@@ -70,15 +70,14 @@ canvas { position: absolute; top: 0; display: block; }
 
 #background { position: absolute; top: 0; width: 100%; zoom: 1; }
 #background img { max-width: 100%; }
-#background .cloud { position: absolute; opacity: .85; filter: alpha(opacity=85); /* For IE8 and earlier */ position: absolute; zoom: 1; }
+#background .cloud { position: absolute; z-index: -1; zoom: 1; }
 #background .cloud.show { display: block; }
-#background #cloud0 { z-index: 1000; -webkit-transform: rotate(160deg); -moz-transform: rotate(160deg); -ms-transform: rotate(160deg); -o-transform: rotate(160deg); transform: rotate(160deg); }
+#background #cloud0 { -webkit-transform: rotate(160deg); -moz-transform: rotate(160deg); -ms-transform: rotate(160deg); -o-transform: rotate(160deg); transform: rotate(160deg); }
 #background #cloud1 { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); -webkit-transform: scale(1.5, 1.5); -moz-transform: scale(1.5, 1.5); -ms-transform: scale(1.5, 1.5); -o-transform: scale(1.5, 1.5); transform: scale(1.5, 1.5); }
-#background #cloud3 { z-index: 1000; }
 #background #cloud5 { -webkit-transform: scale(0.75, 0.75); -moz-transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -o-transform: scale(0.75, 0.75); transform: scale(0.75, 0.75); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); -webkit-transform: rotate(180deg) scale(0.75, 0.75); -moz-transform: rotate(180deg) scale(0.75, 0.75); -ms-transform: rotate(180deg) scale(0.75, 0.75); -o-transform: rotate(180deg) scale(0.75, 0.75); transform: rotate(180deg) scale(0.75, 0.75); }
 #background #cloud6 { z-index: -1; -webkit-transform: scale(0.75, 0.75); -moz-transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -o-transform: scale(0.75, 0.75); transform: scale(0.75, 0.75); }
 #background #cloud7 { z-index: -1; -webkit-transform: scale(1.25, 1.25); -moz-transform: scale(1.25, 1.25); -ms-transform: scale(1.25, 1.25); -o-transform: scale(1.25, 1.25); transform: scale(1.25, 1.25); }
-#background #cloud8 { -webkit-transform: scale(1.25, 1.25); -moz-transform: scale(1.25, 1.25); -ms-transform: scale(1.25, 1.25); -o-transform: scale(1.25, 1.25); transform: scale(1.25, 1.25); opacity: .5; filter: alpha(opacity=50); /* For IE8 and earlier */ }
+#background #cloud8 { -webkit-transform: scale(1.25, 1.25); -moz-transform: scale(1.25, 1.25); -ms-transform: scale(1.25, 1.25); -o-transform: scale(1.25, 1.25); transform: scale(1.25, 1.25); }
 #background #cloud9 { z-index: -1; -webkit-transform: rotate(180deg) scale(1.25, 1.25); -moz-transform: rotate(180deg) scale(1.25, 1.25); -ms-transform: rotate(180deg) scale(1.25, 1.25); -o-transform: rotate(180deg) scale(1.25, 1.25); transform: rotate(180deg) scale(1.25, 1.25); }
 #background #cloud10 { z-index: -1; }
 
@@ -146,6 +145,7 @@ canvas { position: absolute; top: 0; display: block; }
 .team .team-member { padding: 30px 1%; width: 100%; }
 .team .team-member img { float: left; padding-right: 2%; }
 .team .team-member .description { width: 50%; float: left; }
+.team .team-member iframe { float: left; }
 .team .team-member.last { padding: 30px 1% 0 1%; }
 .team .video-js { float: left; }
 .team .rightside { float: right; width: 80%; }
@@ -182,10 +182,10 @@ canvas { position: absolute; top: 0; display: block; }
 .address .pipe { display: inline-block; width: 1px; height: 15px; background: #2c6086; margin: 0 7px; }
 .address .addy { float: right; width: 98%; }
 .address .sales { float: right; width: 96%; }
-.address .last { float: right; font-size: 12px; width: 94%; padding-bottom: 10px; }
+.address .last { float: right; width: 94%; padding-bottom: 10px; }
 .address .border-bottom { border-bottom: 1px solid #2c6086; }
 
-.copyright { text-align: right; }
+.copyright { text-align: right; margin-bottom: 100px; }
 
 .modal { position: fixed; top: 0; width: 90%; height: 90%; margin: 5%; text-align: center; background: rgba(255, 255, 255, 0.9); z-index: 10000; zoom: 1; opacity: 0; }
 .modal > .inner { padding: 5%; }

@@ -28,3 +28,45 @@ table thead th {
 table caption + thead tr:first-child th, table caption + thead tr:first-child td, table colgroup + thead tr:first-child th, table colgroup + thead tr:first-child td, table thead:first-child tr:first-child th, table thead:first-child tr:first-child td {
 	border-top: 0;
 }
+
+.unit-edit {
+    cursor:pointer;
+}
+
+.main-contain {
+    
+    margin-top:100px;
+
+}
+
+/*
+ *
+ *    Module Specific Styles
+ *
+*/
+
+.gallery_image {
+
+    margin:0 10px 10px 0;
+
+}
+
+.arrow { position: absolute; margin: 7px 5px; }
+.arrow.down { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #2c6086; }
+.arrow.up { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid #2c6086; }
+
+.fancy-alert {
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0;
+    border: 0;
+    position: absolute;
+    top: 41px;
+    width: 100%;
+    left: 0;
+    font-size:18px;
+    font-weight:bold;
+    line-height: 59px;
+    padding:0 20px;
+    display:none;
+}

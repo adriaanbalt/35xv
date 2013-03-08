@@ -10,9 +10,7 @@
 
 	.cloud {
 		position: absolute;
-		opacity: .85;
-		filter:alpha(opacity=85); /* For IE8 and earlier */
-		position: absolute;
+		z-index: -1;
 		zoom: 1;
 		&.show {
 			display: block;
@@ -20,10 +18,8 @@
 	}
 
 	#cloud0 {
-		// opacity: .50;
 		// zoom: 1;
-		// filter:alpha(opacity=50); /* For IE8 and earlier */
-		z-index: 1000;
+		//z-index: 1000;
 
 		-webkit-transform: rotate(160deg);
 		-moz-transform: rotate(160deg);
@@ -33,9 +29,7 @@
 	}
 
 	#cloud1 {
-		// opacity: .4;
 		// zoom: 1;
-		// filter:alpha(opacity=40); /* For IE8 and earlier */
 		// transform: rotate(180deg);
 		// -ms-transform: rotate(180deg); /* IE 9 */
 		// -webkit-transform: rotate(180deg); /* Safari and Chrome */
@@ -55,13 +49,11 @@
 	}
 
 	#cloud2 {
-		// opacity: .3;
 		// zoom: 1;
-		// filter:alpha(opacity=30); /* For IE8 and earlier */
 	}
 
 	#cloud3 {
-		z-index: 1000;
+		//z-index: 1000;
 	}
 
 	#cloud5 {
@@ -87,8 +79,6 @@
 
 	#cloud8 {
 		@include scale(1.25);
-		opacity: .5;
-		filter:alpha(opacity=50); /* For IE8 and earlier */
 	}
 
 	#cloud9 {

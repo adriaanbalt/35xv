@@ -7,14 +7,16 @@
 		echo form_open('register/process'); ?>
 
 		<div class='clearfix'>
-		 <div class="control-group clearfix">
+		 <div class="control-group clearfix drop">
 			<label class="control-label">Title</label>
 			<div class="controls">
-			<select name="form_title" class="input-small">
-			  <option value="Mr.">Mr.</option>
-			  <option value="Mrs.">Mrs.</option>
-			  <option value="Ms.">Ms.</option>
-			</select>
+				<div class='dropdown'>
+					<select name="form_type" class="input-medium hidden">
+						<option value="Mr">Mr.</option>
+						<option value="Mrs">Mrs.</option>
+						<option value="Ms">Ms.</option>
+					</select>
+				</div>
 			</div>
 		 </div>
 
@@ -99,23 +101,11 @@
 			</div>
 		 </div>
 
-		 <div class="control-group clearfix">
+		 <div class="control-group clearfix drop">
 			<label class="control-label">Residence Type Preferred</label>
-			<?php echo form_error('form_type'); ?>
+				  <?php echo form_error('form_type'); ?>
 			<div class="controls">
 				<div class='dropdown'>
-					<span class='current-value'>Please Select...</span>
-					<div class='values'>
-						<div class='inner'>
-							<ol>
-								<li data-value="No Type Selected" class='active'><span class='checked-icon'></span>Please Select...</li>
-								<li data-value="One Bedroom"><span class='checked-icon'></span>One Bedroom from $1,500,000 - $2,100,000</li>
-								<li data-value="Two Bedrooms"><span class='checked-icon'></span>Two Bedrooms from $2,500,000 - $4,000,000</li>
-								<li data-value="Three Bedrooms"><span class='checked-icon'></span>Three Bedrooms from $4,600,000- $8,950,000</li>
-								<li data-value="Four Bedrooms"><span class='checked-icon'></span>Four Bedrooms from $5,650,000 - $9,950,000</li>
-							</ol>
-						</div>
-					</div>
 					<select name="form_type" class="input-medium hidden">
 						<option value="No Type Selected" selected>Please Select...</option>
 						<option value="One Bedroom">One Bedroom from $1,500,000 - $2,100,000</option>

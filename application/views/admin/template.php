@@ -30,18 +30,18 @@
                           </button>
                           <a class="brand" href="#">35XV</a>
                           <div class="nav-collapse collapse" style="height: 0px; ">
-                            <p class="navbar-text pull-right">
+<!--                             <p class="navbar-text pull-right">
                               Logged in as <a href="#" class="navbar-link">Username</a>
                             </p>
-                            <ul class="nav">
+ -->                            <ul class="nav">
                               <li class="active"><a href="#">Home</a></li>
                             </ul>
                           </div><!--/.nav-collapse -->
                         </div>
                       </div>
                 </div>
-<br /><br /><br /><br />
-      <div class="container-fluid">
+
+      <div class="container-fluid main-contain">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -53,29 +53,28 @@
                 <li class="<?php if($slug == 'units'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/units', '<i class="icon-th-list"> </i> Unit Availability'); ?>
                 </li>
+                <li class="<?php if($slug == 'site_data'){ echo 'active'; } ?>" >
+                  <?php echo anchor('admin/site_data', '<i class="icon-list-alt"> </i> Site Data'); ?>
+                </li>
               <li class="nav-header">Contact Form</li>
                 <li class="<?php if($slug == 'inquiries'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/inquiries', '<i class="icon-user"> </i> Inquries Table'); ?>
                 </li>
-                <li>
+<!--                 <li>
                   <?php echo anchor('admin/inquiries_csv', '<i class="icon-circle-arrow-down"> </i> Excel Download'); ?>
                 </li>
-              <li class="nav-header">Edit Galleries</li>
+ -->              <li class="nav-header">Edit Content</li>
                 <li class="<?php if($slug == 'gallery_1'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/gallery/1', '<i class="icon-th"> </i> Residences'); ?>
                 <li class="<?php if($slug == 'gallery_2'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/gallery/2', '<i class="icon-th"> </i> Amenities & Service'); ?>
-              <li class="nav-header">Edit Content</li>
-                <li class="<?php if($slug == 'design_team'){ echo 'active'; } ?>" >
-                  <?php echo anchor('admin/design_team', '<i class="icon-facetime-video"> </i> Design Team'); ?>
-                </li>
                 <li class="<?php if($slug == 'project_team'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/project_team', '<i class="icon-briefcase"> </i> Project Team'); ?>
                 </li>
-                <li class="<?php if($slug == 'press'){ echo 'active'; } ?>" >
+<!--                 <li class="<?php if($slug == 'press'){ echo 'active'; } ?>" >
                   <?php echo anchor('admin/press', '<i class="icon-bullhorn"> </i> Press Links'); ?>
                 </li>
-            </ul>
+ -->            </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">

@@ -10,6 +10,7 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 	background-color: $blue;
+	
 }
 
 #main {
@@ -38,11 +39,13 @@ body {
 		border: 1px solid #000;
 		width: 275px;
 		height: 5px;
+		overflow: hidden;
 	}
 	.bar {
 		width: 0px;
 		height: 5px;
 		background-color: #FFF;
+		float: left;
 	}
 }
 
