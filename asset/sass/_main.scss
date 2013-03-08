@@ -30,6 +30,9 @@ body {
 	width: 100%;
 	position: fixed;
 	text-align: center;
+	p {
+		color: $blue-dark;
+	}
 	.progress {
 		margin: 0px auto;
 		border: 1px solid #000;
@@ -59,19 +62,21 @@ section {
 
 h1,h2,h3,h4,h5,h6 { line-height: 1.2; margin: 0; color: $blue-dark;}
 h1 {
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 35px;
 }
 h2 {
 	font-weight: 100;
 	font-size: 55px;
-	line-height: 50px;
+	line-height: 70px;
 	border-bottom: 1px solid $blue-dark;
 	margin-bottom: 20px;
 }
 h3 {
 	font-weight: 400;
 	font-size: 26px;
+	text-transform: uppercase;
+	color: #000;
 }
 h4 {
 	font-weight: 400;
