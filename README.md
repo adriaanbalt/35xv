@@ -11,7 +11,7 @@ JS
 - Custom Scroller
 - RequestAnimationFrame
 - Custom Dropdown
-Vendor>
+= Vendor>
 - Mondernizr
 - Respond JS
 - Equalize
